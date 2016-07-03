@@ -1,5 +1,5 @@
 " vimrc is only used to source stuff.
-" for confir, see ~/.vim/config or
+" for config, see ~/.vim/config or
 " fuzzy find with <leader>lv
 source $HOME/.vim/config/000_library.vim
 source $HOME/.vim/config/001_functions.vim
