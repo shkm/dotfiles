@@ -1,0 +1,9 @@
+tags
+tmp
+.git/
+.cache
+node_modules/
+app/assets/fonts/
+app/assets/images/
+app/assets/javascripts/vendor
+doc/

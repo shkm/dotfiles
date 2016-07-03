@@ -1,0 +1,21 @@
+snippet pry
+abbr binding.pry breakpoint
+  binding.pry
+
+snippet ;
+abbr &:
+  &:
+
+# Rails
+
+snippet rli
+abbr Rails.logger.info() breakpoint
+  Rails.logger.info(${0})
+
+snippet concern
+abbr ActiveSupport::Concern
+  module ${1:`substitute(expand('%:t:r:r:r'), '\v%(^(.)|_(.))', '\u\1\u\2', 'g')`}
+    extend ActiveSupport::Concern
+
+    ${2:TARGET}
+  end

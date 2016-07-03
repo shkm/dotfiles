@@ -1,0 +1,84 @@
+snippet desc
+abbr describe 'something' do ... end
+  describe '${1:something}' do
+    ${2}
+  end
+
+snippet con
+abbr context 'the context' do ... end
+  context '${1:the context}' do
+    ${2}
+  end
+
+snippet subj
+abbr subject { ... }
+  subject { ${1} }
+
+snippet it
+abbr it { ... }
+  it { ${1} }
+
+snippet itb
+abbr it 'does something' do ... end
+  it '${1:does something}' do
+    ${2}
+  end
+
+snippet bef
+abbr before { ... }
+  before { ${2} }
+
+snippet befb
+abbr before do ... end
+  before do
+    ${2}
+  end
+
+snippet let
+abbr let(:id) { ... }
+  let(:${1:id}) { ${1} }
+
+snippet letb
+abbr let(:id) do ... end
+  let(:${1:id}) do
+    ${1} }
+  end
+
+# Expects
+
+snippet ex
+abbr expect(obj) ...
+  expect(${1:obj})${2}
+
+snippet ext
+abbr expect(obj).to ...
+  expect(${1:obj}).to ${2}
+
+snippet exnt
+abbr expect(obj).not_to ...
+  expect(${1:obj}).not_to ${2}
+
+snippet iex
+abbr is_expected
+  is_expected${1}
+
+snippet iext
+abbr is_expected.to ...
+  is_expected.to ${1}
+
+snippet iexnt
+abbr is_expected.not_to ...
+  is_expected.not_to ${1}
+
+# Other stuff
+
+snippet rt
+abbr respond_to(:method)
+  respond_to(${1::method})
+
+snippet bv
+abbr be_valid
+  be_valid
+
+
+# vim:set et ts=2 sts=2 sw=2 tw=0:
