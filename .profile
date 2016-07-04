@@ -45,3 +45,9 @@ export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' \
     -c 'nnoremap A <nop>' \
     -c 'nnoremap <Space> <C-f>' \
     -c 'noremap q :quit<CR>' -"
+
+# Manage ruby with chruby for bash/zsh
+if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  chruby $(cat ~/.ruby-version)
+fi

@@ -1,7 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -26,11 +25,11 @@ values."
      auto-completion
      ;; better-defaults
      gnus
-     mu4e
      osx
      emacs-lisp
      git
-     ruby
+     (ruby :variables
+           ruby-version-manager 'chruby)
      ruby-on-rails
      markdown
      org
@@ -114,7 +113,7 @@ values."
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Fira Code"
                                :size 16
-                               :weight normal
+                               :weight regular
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -175,7 +174,7 @@ values."
    dotspacemacs-enable-paste-micro-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
    ;; right; if there is insufficient space it displays it at the bottom.
@@ -187,10 +186,10 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-fullscreen-use-non-native t
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
@@ -198,7 +197,7 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 70
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -236,7 +235,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'changed
    ))
 
 (defun dotspacemacs/user-init ()
@@ -246,6 +245,39 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq
+   ;; Remove warning about setting PATH and MANPATH from zshrc/bashrc
+   ;; and the like.
+   exec-path-from-shell-arguments '("-l")
+
+   ;; Reasonable British dictionary (comes with aspell)
+   ispell-dictionary "british-ize-w_accents"
+   )
+  )
+
+(defun dotspacemacs/mapping ()
+  "Simple key remaps"
+
+  ;; Go to first non-blank character in line.
+  ;; g0 is equivalent to default behaviour.
+  (define-key evil-normal-state-map "0" "^")
+  )
+
+(defun dotspacemacs/mac ()
+  "Mac-only configuration. TODO: load only for mac"
+  (mac-auto-operator-composition-mode)
+  )
+
+(defun dotspacemacs/modeline ()
+  "Mode-line configuration"
+
+  ;; No ugly separators, please.
+  (setq powerline-default-separator 'nil)
+  ;; Show battery status
+  (spacemacs/toggle-mode-line-battery-on)
+
+  ;; Required to get mode-line changes working
+  (spaceline-compile)
   )
 
 (defun dotspacemacs/user-config ()
@@ -255,6 +287,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (dotspacemacs/mapping)
+  (dotspacemacs/mac)
+  (dotspacemacs/modeline)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
