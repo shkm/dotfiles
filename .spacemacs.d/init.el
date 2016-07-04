@@ -40,6 +40,7 @@ values."
      spell-checking
      syntax-checking
      version-control
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -100,13 +101,11 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+   dotspacemacs-themes '(afternoon
+                         sanityinc-tomorrow-blue
+                         farmhouse-dark
+                         odersky
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -275,6 +274,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq powerline-default-separator 'nil)
   ;; Show battery status
   (spacemacs/toggle-mode-line-battery-on)
+  ;; Ensure a reasonable font
+  (set-face-attribute 'mode-line nil :family "Fira Code")
 
   ;; Required to get mode-line changes working
   (spaceline-compile)
