@@ -47,6 +47,7 @@ Session.vim
 .sass-cache
 .rubocop-https*yml
 tags
+TAGS
 
 # OS generated files #
 ######################
