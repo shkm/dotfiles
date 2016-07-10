@@ -17,21 +17,37 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     auto-completion
-     ;; better-defaults
-     gnus
+     ;; basics
      osx
-     emacs-lisp
+
+     ;; mail
+     gnus
+     (eyebrowse :variables
+                eyebrowse-display-help 't)
+     ;; file management
+     (ranger :variables
+             ranger-show-preview t)
+     ;; vc
+     version-control
      git
+
+     ;; themes
+     themes-megapack
+
+     ;; languages
+     emacs-lisp
+     html
      (ruby :variables
            ruby-version-manager 'chruby)
+     yaml
+     javascript
      ruby-on-rails
      markdown
+
+     ;; misc
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
+     vagrant
      org
      (shell :variables
             shell-default-shell 'multi-term
@@ -39,8 +55,6 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     version-control
-     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
