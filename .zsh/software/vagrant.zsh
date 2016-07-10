@@ -4,7 +4,7 @@
 # Execute vagrant sub-commands as normal.
 # Any other commands are passed onto the box with `vssh`.
 v() {
-  vagrant_commands=(box connect destroy global-status halt help init login package plugin port powershell provision push rdp reload resumescp share snapshot ssh-config status suspend up version rsync-auto)
+  vagrant_commands=(box connect destroy global-status halt help init login package plugin port powershell provision push rdp reload resumescp share snapshot ssh-config status suspend up version rsync-auto fsnotify)
 
   if [[ "${vagrant_commands[(r)$1]}" == "$1" ]]; then
     vagrant $*
