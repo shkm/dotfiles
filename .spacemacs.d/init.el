@@ -305,6 +305,12 @@ you should place your code here."
   (dotspacemacs/mapping)
   (dotspacemacs/mac)
   (dotspacemacs/modeline)
+
+  (setq
+   ;; 2-spaced JavaScript indentation
+   js2-basic-offset 2
+   js-indent-level 2
+   )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
