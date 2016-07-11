@@ -1,7 +1,7 @@
 # vim: foldmethod=marker:
 
 # --- Aliases {{{
-if [[ command -v apt-get 2>/dev/null]]
+if ! type "apt-get" > /dev/null; then
   alias apti="sudo apt-get install"
   alias apts="apt-cache search"
   alias aptr="sudo apt-get remove"
