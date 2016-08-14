@@ -38,16 +38,16 @@ export NAME="Jamie Schembri"
 export SMTPSERVER="smtp.gmail.com"
 
 # vim as manpager
-export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' \
-    -c 'nnoremap i <nop>' \
-    -c 'nnoremap I <nop>' \
-    -c 'nnoremap a <nop>' \
-    -c 'nnoremap A <nop>' \
-    -c 'nnoremap <Space> <C-f>' \
-    -c 'noremap q :quit<CR>' -"
+# export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' \
+#     -c 'nnoremap i <nop>' \
+#     -c 'nnoremap I <nop>' \
+#     -c 'nnoremap a <nop>' \
+#     -c 'nnoremap A <nop>' \
+#     -c 'nnoremap <Space> <C-f>' \
+#     -c 'noremap q :quit<CR>' -"
 
 # Manage ruby with chruby for bash/zsh
-if [ -f "/usr/local/opt/chruby/share/chruby/chruby.sh" ] && [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
+if [ -a /usr/local/opt/chruby/share/chruby/chruby.sh ] && [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
   chruby $(cat ~/.ruby-version)
 fi

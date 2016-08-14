@@ -1,5 +1,7 @@
 # vim: foldmethod=marker:
 
+if ! [ $(uname) = "Linux" ]; then exit 0; fi
+
 # --- Aliases {{{
 if ! type "apt-get" > /dev/null; then
   alias apti="sudo apt-get install"
@@ -14,4 +16,10 @@ if ! type "apt-get" > /dev/null; then
   alias aptdg="sudo apt-get upgrade"
   alias ppa="sudo apt-add-repository"
 fi
+
+if ! type "pacman" > /dev/null; then
+  alias paci "sudo pacman -S"
+  alias pacr "sudo pacman -R"
+fi
+
 # }}}
