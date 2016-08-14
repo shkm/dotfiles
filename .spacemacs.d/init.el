@@ -22,11 +22,11 @@ values."
 
      ;; mail
      gnus
-     (eyebrowse :variables
-                eyebrowse-display-help 't)
+
      ;; file management
      (ranger :variables
              ranger-show-preview t)
+
      ;; vc
      version-control
      git
@@ -47,10 +47,11 @@ values."
      ;; misc
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t)
+     gtags
      vagrant
      org
      (shell :variables
-            shell-default-shell 'multi-term
+            shell-default-shell 'ansi-term
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
@@ -125,7 +126,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Fira Code"
-                               :size 16
+                               :size 14
                                :weight regular
                                :width normal
                                :powerline-scale 1.1)
@@ -251,29 +252,22 @@ values."
    dotspacemacs-whitespace-cleanup 'changed
    ))
 
-(defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
-  (setq
-   ;; Remove warning about setting PATH and MANPATH from zshrc/bashrc
-   ;; and the like.
-   exec-path-from-shell-arguments '("-l")
-
-   ;; Reasonable British dictionary (comes with aspell)
-   ispell-dictionary "british-ize-w_accents"
-   )
-  )
-
 (defun dotspacemacs/mapping ()
   "Simple key remaps"
 
   ;; Go to first non-blank character in line.
   ;; g0 is equivalent to default behaviour.
   (define-key evil-normal-state-map "0" "^")
+
+  ;; C-p / C-n for terminal
+
+  (evil-define-key 'insert term-raw-map
+    (kbd "C-p") 'term-send-up
+    (kbd "C-n") 'term-send-down)
+  (evil-define-key 'normal term-raw-map
+    (kbd "C-p") 'term-send-up
+    (kbd "C-n") 'term-send-down
+    (kbd "RET") 'term-send-raw)
   )
 
 (defun dotspacemacs/mac ()
@@ -295,6 +289,39 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (spaceline-compile)
   )
 
+(defun dotspacemacs/indentation ()
+  "Indentation configuration"
+
+  (setq
+   ;; JS
+   js2-basic-offset 2
+   js-indent-level 2
+
+   ;; CSS
+   css-indent-offset 2
+   )
+  )
+
+(defun dotspacemacs/user-init ()
+  "Initialization function for user code.
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
+  (setq eshell-aliases-file (concat
+                             dotspacemacs-directory
+                             "eshell-aliases"))
+  (setq
+   ;; Remove warning about setting PATH and MANPATH from zshrc/bashrc
+   ;; and the like.
+   exec-path-from-shell-arguments '("-l")
+
+   ;; Reasonable British dictionary (comes with aspell)
+   ispell-dictionary "british-ize-w_accents"
+   )
+  )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -305,13 +332,48 @@ you should place your code here."
   (dotspacemacs/mapping)
   (dotspacemacs/mac)
   (dotspacemacs/modeline)
+  (dotspacemacs/indentation)
+  (global-company-mode)
+  (spacemacs/helm-gtags-define-keys-for-mode 'ruby-mode)
 
-  (setq
-   ;; 2-spaced JavaScript indentation
-   js2-basic-offset 2
-   js-indent-level 2
-   )
+  (use-package rspec-mode
+    :ensure t
+    :config
+    (progn
+      (add-hook 'after-init-hook 'inf-ruby-switch-setup)
+      (setq
+       compilation-scroll-output t
+       rspec-use-rake-when-possible nil
+       rspec-use-bundler-when-possible t
+       rspec-use-spring-when-possible nil
+       rspec-spec-command "vssh bundle exec rspec"
+       )
+      ))
+
+  (use-package inf-ruby
+    :ensure t
+    :config
+    (progn
+      (add-to-list 'inf-ruby-implementations
+                   '("vagrant-irb" . "vssh bundle exec irb"))
+      (add-to-list 'inf-ruby-implementations
+                   '("vagrant-pry" . "vssh bundle exec pry"))
+
+      (setq inf-ruby-default-implementation "vagrant-irb")
+      )
+
+    ;; (defun inf-ruby-console-rails (dir)
+    ;;   "Run Rails console in DIR."
+    ;;   (interactive "D")
+    ;;   (let* ((default-directory (file-name-as-directory dir))
+    ;;          (envs (inf-ruby-console-rails-envs))
+    ;;          (env (completing-read "Rails environment: " envs nil t
+    ;;                                nil nil (car (member "development" envs)))))
+    ;;     (run-ruby (concat
+    ;;                "vssh bundle exec rails console "
+    ;;                env)
+    ;;               "rails")))
+
+    ;; )
+    )
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.

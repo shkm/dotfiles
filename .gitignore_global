@@ -41,6 +41,7 @@
 *~
 .netrwhist
 Session.vim
+.projectile
 
 # Tool files #
 ##############
@@ -48,6 +49,11 @@ Session.vim
 .rubocop-https*yml
 tags
 TAGS
+
+# GNU global
+GPATH
+GRTAGS
+GTAGS
 
 # OS generated files #
 ######################
