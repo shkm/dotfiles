@@ -44,6 +44,9 @@ Plug 'tpope/vim-vinegar'
 " Autocompletion
 Plug 'shougo/deoplete.nvim'
 
+" Better readline mappings
+Plug 'tpope/vim-rsi'
+
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-endwise'
