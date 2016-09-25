@@ -1,3 +1,7 @@
+" vim: set fdm=marker :
+
+" -- Setup {{{
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -13,11 +17,33 @@ function! BuildComposer(info)
   endif
 endfunction
 
-" -- Essentials
+" -- Setup }}}
+
+" -- Essentials {{{
+
+" Fuzzy-finding
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
+
+" Build/linting
 Plug 'benekastah/neomake'
+
+" Commenting
 Plug 'tpope/vim-commentary'
+
+" Searching
+Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
+
+" Leader menus
+Plug 'hecal3/vim-leader-guide'
+
+" File management
+Plug 'justinmk/vim-dirvish'
+Plug 'tpope/vim-vinegar'
+
+" Autocompletion
+Plug 'shougo/deoplete.nvim'
+
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-endwise'
@@ -25,20 +51,18 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-vinegar'
-Plug 'justinmk/vim-dirvish'
 Plug 'matchit.zip'
-Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
-" Plug 'rking/ag.vim'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'shougo/deoplete.nvim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Neovim requires extra steps for vim-tmux-navigator.
 " See https://github.com/christoomey/vim-tmux-navigator/issues/61#issuecomment-87284887
 Plug 'christoomey/vim-tmux-navigator'
 
-" -- Version control
+" -- Essentials }}}
+
+" -- Version control {{{
+
 Plug 'rhysd/committia.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
@@ -46,7 +70,9 @@ Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 Plug 'int3/vim-extradite'
 
-" -- Language / Framework support
+" -- Version control }}}
+
+" -- Language / Framework support {{{
 
 " Ruby
 Plug 'osyo-manga/vim-monster'
@@ -57,8 +83,6 @@ Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-" Plug 'vhakulinen/neovim-intellij-complete'
-" Plug 'vhakulinen/neovim-intellij-complete-deoplete'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
@@ -86,15 +110,20 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }
 Plug 'tmux-plugins/vim-tmux'
 Plug 'rhysd/vim-crystal'
 
+" -- Language / Framework support }}}
 
-" -- Color schemes
+" -- Color schemes {{{
+
 Plug 'mhartington/oceanic-next'
 Plug 'noahfrederick/vim-noctu'
 Plug 'whatyouhide/vim-gotham'
 Plug 'eddsteel/vim-vimbrant'
 Plug 'dracula/vim'
 
-" -- Misc
+" -- Color schemes }}}
+
+" -- Misc {{{
+
 Plug 'schickling/vim-bufonly', { 'on': 'Bonly' }
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
 Plug 'godlygeek/tabular', { 'on': 'Tab' }
@@ -102,14 +131,15 @@ Plug 'benmills/vimux'
 Plug 'Konfekt/FastFold'
 Plug 'Keithbsmiley/investigate.vim'
 Plug 'gorkunov/smartpairs.vim'
-" Plug 'blueyed/vim-diminactive'
-Plug 'calebsmith/vim-lambdify'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'thinca/vim-ref'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'metakirby5/codi.vim'
 
-" Snippets.
+" Snippets
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+
+" -- Misc {{{
 
 call plug#end()

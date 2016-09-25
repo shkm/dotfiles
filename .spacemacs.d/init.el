@@ -17,45 +17,46 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; basics
+     ; ;; basics
      osx
 
-     ;; mail
-     gnus
+     ; ;; mail
+     ; gnus
 
-     ;; file management
-     (ranger :variables
-             ranger-show-preview t)
+     ; ;; file management
+     ; (ranger :variables
+     ;         ranger-show-preview t)
 
-     ;; vc
-     version-control
-     git
+     ; ;; vc
+     ; version-control
+     ; git
 
-     ;; themes
-     themes-megapack
+     ; ;; themes
+     ; ; themes-megapack
 
-     ;; languages
-     emacs-lisp
-     html
-     (ruby :variables
-           ruby-version-manager 'chruby)
-     yaml
-     javascript
-     ruby-on-rails
-     markdown
+     ; ;; languages
+     ; emacs-lisp
+     ; html
+     ; ruby
 
-     ;; misc
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t)
-     gtags
-     vagrant
-     org
-     (shell :variables
-            shell-default-shell 'ansi-term
-            shell-default-height 30
-            shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
+     ; ;; (ruby :variables
+     ; ;;       ruby-version-manager 'chruby)
+     ; yaml
+     ; javascript
+     ; ruby-on-rails
+     ; markdown
+
+     ; ;; misc
+     ; (auto-completion :variables
+     ;                  auto-completion-enable-snippets-in-popup t)
+     ; vagrant
+     ; org
+     ; (shell :variables
+     ;        shell-default-shell 'ansi-term
+     ;        shell-default-height 30
+     ;        shell-default-position 'bottom)
+     ; spell-checking
+     ; syntax-checking
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -250,7 +251,7 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup 'changed
-   ))
+   )
 
 (defun dotspacemacs/mapping ()
   "Simple key remaps"
@@ -309,17 +310,17 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq eshell-aliases-file (concat
-                             dotspacemacs-directory
-                             "eshell-aliases"))
-  (setq
-   ;; Remove warning about setting PATH and MANPATH from zshrc/bashrc
-   ;; and the like.
-   exec-path-from-shell-arguments '("-l")
+  ; (setq eshell-aliases-file (concat
+  ;                            dotspacemacs-directory
+  ;                            "eshell-aliases"))
+  ; (setq
+  ;  ;; Remove warning about setting PATH and MANPATH from zshrc/bashrc
+  ;  ;; and the like.
+  ;  exec-path-from-shell-arguments '("-l")
 
-   ;; Reasonable British dictionary (comes with aspell)
-   ispell-dictionary "british-ize-w_accents"
-   )
+  ;  ;; Reasonable British dictionary (comes with aspell)
+  ;  ispell-dictionary "british-ize-w_accents"
+  ;  )
   )
 
 (defun dotspacemacs/user-config ()
@@ -329,38 +330,38 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (dotspacemacs/mapping)
-  (dotspacemacs/mac)
-  (dotspacemacs/modeline)
-  (dotspacemacs/indentation)
-  (global-company-mode)
-  (spacemacs/helm-gtags-define-keys-for-mode 'ruby-mode)
+  ; (dotspacemacs/mapping)
+  ; (dotspacemacs/mac)
+  ; (dotspacemacs/modeline)
+  ; (dotspacemacs/indentation)
+  ; (global-company-mode)
+  ; (spacemacs/helm-gtags-define-keys-for-mode 'ruby-mode)
 
-  (use-package rspec-mode
-    :ensure t
-    :config
-    (progn
-      (add-hook 'after-init-hook 'inf-ruby-switch-setup)
-      (setq
-       compilation-scroll-output t
-       rspec-use-rake-when-possible nil
-       rspec-use-bundler-when-possible t
-       rspec-use-spring-when-possible nil
-       rspec-spec-command "vssh bundle exec rspec"
-       )
-      ))
+  ; (use-package rspec-mode
+  ;   :ensure t
+  ;   :config
+  ;   (progn
+  ;     (add-hook 'after-init-hook 'inf-ruby-switch-setup)
+  ;     (setq
+  ;      compilation-scroll-output t
+  ;      rspec-use-rake-when-possible nil
+  ;      rspec-use-bundler-when-possible t
+  ;      rspec-use-spring-when-possible nil
+  ;      rspec-spec-command "vssh bundle exec rspec"
+  ;      )
+  ;     ))
 
-  (use-package inf-ruby
-    :ensure t
-    :config
-    (progn
-      (add-to-list 'inf-ruby-implementations
-                   '("vagrant-irb" . "vssh bundle exec irb"))
-      (add-to-list 'inf-ruby-implementations
-                   '("vagrant-pry" . "vssh bundle exec pry"))
+  ; (use-package inf-ruby
+  ;   :ensure t
+  ;   :config
+  ;   (progn
+  ;     (add-to-list 'inf-ruby-implementations
+  ;                  '("vagrant-irb" . "vssh bundle exec irb"))
+  ;     (add-to-list 'inf-ruby-implementations
+  ;                  '("vagrant-pry" . "vssh bundle exec pry"))
 
-      (setq inf-ruby-default-implementation "vagrant-irb")
-      )
+  ;     (setq inf-ruby-default-implementation "vagrant-irb")
+  ;     )
 
     ;; (defun inf-ruby-console-rails (dir)
     ;;   "Run Rails console in DIR."

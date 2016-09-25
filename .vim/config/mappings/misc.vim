@@ -14,9 +14,6 @@ nnoremap gsf <C-w>f
 " Backspace clears search highlighting
 nnoremap <silent><BS> :noh<CR>
 
-" Fuzzy find files
-noremap <C-p> :Files<CR>
-
 " Autocomplete / snippets
 " TAB:   v
 " S-TAB: ^

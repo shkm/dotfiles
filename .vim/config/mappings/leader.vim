@@ -1,99 +1,88 @@
 " ------------------------------------------------------------------------------
-" Leader mappings should mostly follow these conventions:
-"
-"   f*     Find
-"   b*     Buffers
-"   o*     Open files
-"   t*     Tags
-"   g*     Git
-"   s*     Specs
-"   r*     Rails
-"   l*     Lists
-"   ;*     Setting
-"   **     Special
+" Leader mappings have been replaced to use vim-leader-guide.
+" This gives us a more Emacs guide-key approach to leader commands, which I
+" find more useful.
 " ------------------------------------------------------------------------------
 
 let mapleader = "\<Space>"
 
-" -- f*  Find
-nnoremap <silent> <Leader>ff :BLines<CR>
-nnoremap <leader>fa :Ag 
-nnoremap <leader>fi :Ags 
+let g:all_key_map = {}
+let g:leader_key_map = {
+      \'name' : '<Space>',
+      \'<C-I>' : [':e #', 'Last buffer'],
+      \'/' : [':Ag', 'Search in files'],
+      \}
 
+let g:leader_key_map[';'] = {
+      \'name' : 'Settings',
+      \'sb' : [':set scrollbind', 'scrollbind'],
+      \}
 
-" -- b*  Buffers
-nnoremap <silent> <Leader>bb :Buffers<CR>
-nnoremap <leader>bd :bdelete<CR>
-nnoremap <leader>bk :bprev<CR>
-nnoremap <leader>bj :bnext<CR>
-nnoremap <leader>bo :Bonly<cr>
-nnoremap <leader><Tab> <C-^>
+let g:leader_key_map['b'] = {
+      \'name' : 'Buffer',
+      \'/' : [':BLines', 'Search in buffer'],
+      \'<C-I>' : [':e #', 'Last buffer'],
+      \'d' : [':bdelete', 'Delete buffer'],
+      \'j' : [':bnext', 'Next'],
+      \'k' : [':bprev', 'Previous buffer'],
+      \'O' : [':Bonly', 'Kill all other buffers'],
+      \'f' : [':Buffers', 'Find buffer'],
+      \}
 
-" -- o*  Open files
-nnoremap <leader>orc :e ~/.vimrc<CR>
+let g:leader_key_map['f'] = {
+      \'name' : 'File',
+      \'/' : [':Ag', 'Search in files'],
+      \'A' : [':A', 'Alternate file'],
+      \'f' : [':Files', 'Find file'],
+      \}
+let g:leader_key_map['f']['e'] = {
+      \'name' : 'Edit/list file(s)',
+      \'v' : [':Files $HOME/.vim/config', 'Vim'],
+      \'z' : [':Files $HOME/.zsh', 'Zsh'],
+      \}
 
-" -- t*  Tags
-nnoremap <silent> <leader>ta :Tags<CR>
-nnoremap <silent> <leader>tt :BTags<CR>
+let g:leader_key_map['g'] = {
+      \'name' : 'Git',
+      \'b' : [':Gblame', 'Blame'],
+      \'c' : [':Gcommit', 'Commit'],
+      \'C' : [':Commits', 'List commits'],
+      \'d' : [':Gvdiff', 'Diff'],
+      \'e' : [':Extradite', 'Extradite'],
+      \'s' : [':Gstatus', 'Status'],
+      \'S' : [':Magit', 'Magit'],
+      \}
 
-" -- g*  Git
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gC :Commits<CR>
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>ge :Extradite<CR>
+" Hopefully figure out how to bind this specifically
+" later on. For now, I mostly work with rails so this is ok.
+let g:leader_key_map['m'] = {
+      \'name' : 'Main',
+      \'c' : [':Econtroller', 'Controller'],
+      \'f' : [':Efactory', 'Factory'],
+      \'m' : [':Emodel', 'Model'],
+      \'p' : [':Epolicy', 'Policy'],
+      \'s' : [':Eservice', 'Service'],
+      \'t' : [':Espec', 'Spec'],
+      \'v' : [':Eview', 'View'],
+      \}
+let g:leader_key_map['m']['l'] = {
+      \'name' : 'List',
+      \'c' : [':Files "app/controllers/"', 'Controllers'],
+      \'f' : [':Files "spec/factories/"', 'Factories'],
+      \'m' : [':Files "app/models/"', 'Models'],
+      \'p' : [':Files "app/policies/"', 'Policies'],
+      \'s' : [':Files "app/services/"', 'Services'],
+      \'t' : [':Files "spec/"', 'Specs'],
+      \'v' : [':Files "app/views/"', 'Views'],
+      \}
 
-" -- s*  Specs
-nnoremap <leader>sf :call RunCurrentSpecFile()<CR>
-nnoremap <leader>ss :call RunNearestSpec()<CR>
-nnoremap <leader>sl :call RunLastSpec()<CR>
-nnoremap <leader>sa :call RunAllSpecs()<CR>
+let g:leader_key_map['t'] = {
+      \'name' : 'Tags',
+      \'f': [':Tags', 'Find tag'],
+      \'b': [':BTags', 'Buffer tags']
+      \}
 
-" -- r*  Rails
-nnoremap <leader>rm :Emodel
-nnoremap <leader>rv :Eview
-nnoremap <leader>rc :Econtroller
-nnoremap <leader>rs :Eservice
-nnoremap <leader>rp :Epolicy
-nnoremap <leader>rt :Espec
-nnoremap <leader>rf :Efactory
-
-" -- l*  Lists
-
-" --- lv   List vim
-nnoremap <leader>lv :Files $HOME/.vim/config<CR>
-" --- lz   List zsh
-nnoremap <leader>lz :Files $HOME/.zsh<CR>
-
-" --- lr*  List rails
-nnoremap <leader>lrm :Files "app/models/"<CR>
-nnoremap <leader>lrv :Files "app/views/"<CR>
-nnoremap <leader>lrc :Files "app/controllers/"<CR>
-nnoremap <leader>lrs :Files "spec/"<CR>
-nnoremap <leader>lrp :Files "app/policies/"<CR>
-nnoremap <leader>lrf :Files "spec/factories/"<CR>
-
-" --- lf List all files
-nnoremap <leader>lf :FZF
-
-" -- ;*  Settings
-nnoremap <leader>;sb :set scrollbind<CR>
-
-" -- **   Special
-" --- w     save
-nnoremap <leader>w :w<CR>
-
-" --- /     comment
-map <leader>/ gcc
-
-" --- `     nerdtree
-nnoremap <leader>` :NERDTreeToggle<CR>
-
-" --- ~     ranger
-nnoremap <leader>~ :call RangerExplorer()<CR>
-
-" --- y/p   copy/paste system clipboard
-nnoremap <leader>yy "+y
-nnoremap <leader>pp "+p
-nnoremap <leader>pP "+P
+let g:all_key_map['<Space>'] = g:leader_key_map
+let mapleader = ""
+call leaderGuide#register_prefix_descriptions("<Space>", "g:leader_key_map")
+nnoremap <silent> <Space> :<c-u>LeaderGuide '<Space>'<CR>
+vnoremap <silent> <Space> :<c-u>LeaderGuideVisual '<Space>'<CR>
