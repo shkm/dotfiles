@@ -8,6 +8,14 @@ These are my dotfiles. They were created using the [bare git repo method](https:
 
 - git
 
+## Installation
+
+There's a simple init script available for MacOS. I haven't had the chance to test this yet, but it should set up the basics.
+
+```
+curl -s https://raw.githubusercontent.com/shkm/dotfiles/master/scripts/init_mac.sh | bash -s
+```
+
 ## Additional thoughts
 
 - Consider writing a snippet to pull these down for the first time, as described in the article above.

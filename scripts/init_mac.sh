@@ -8,6 +8,7 @@ $(brew install \
   git\
   zsh\
   neovim/neovim/neovim\
+  getantibody/homebrew-antibody/antibody\
   shkm/brew/vssh\
   mas\
   diff-so-fancy\
