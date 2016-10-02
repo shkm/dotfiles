@@ -40,9 +40,6 @@ function _git_branch() {
   echo " %{${colour_command}${branch}%{$reset_color%}"
 }
 
-autoload -Uz colors && colors
-setopt prompt_subst
-
 PROMPT='\
 %{$fg[blue]%}%~%{$reset_color%}\
 $(_git_branch)$(_git_dirty)\

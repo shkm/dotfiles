@@ -1,4 +1,5 @@
 source $HOME/.zsh/init/exports.zsh
+source $HOME/.zsh/init/basics.zsh
 source $HOME/.zsh/init/antibody.zsh
 
 if [[ `uname` = 'Darwin' ]]; then source $HOME/.zsh/os/osx.zsh; fi
