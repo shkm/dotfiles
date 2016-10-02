@@ -1,6 +1,6 @@
 source $HOME/.zsh/init/exports.zsh
-source $HOME/.zsh/init/basics.zsh
 source $HOME/.zsh/init/antibody.zsh
+source $HOME/.zsh/init/basics.zsh
 
 if [[ `uname` = 'Darwin' ]]; then source $HOME/.zsh/os/osx.zsh; fi
 if [[ `uname` =  'Linux' ]]; then source $HOME/.zsh/os/linux.zsh; fi

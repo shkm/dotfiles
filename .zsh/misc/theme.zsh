@@ -1,20 +1,20 @@
-function _git_dirty() {
+function __git_dirty() {
   # changes
   if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
     echo ' 🌟 '
     return
   fi
   # untracked files
-  if [[ $(git status --porcelain 2>/dev/null| grep "^??") != "" ]]; then
+  if [[ $(git status --porcelain 2>/dev/null | grep "^??") != "" ]]; then
     echo ' ✨'
     return
   fi
 }
 
-function _git_branch() {
+function __git_branch() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 
-  [[ -z "${branch}" ]] && return
+  if [[ -z "${branch}" ]]; then return; fi
 
   local colour="black"
   local bold=true
@@ -42,7 +42,7 @@ function _git_branch() {
 
 PROMPT='\
 %{$fg[blue]%}%~%{$reset_color%}\
-$(_git_branch)$(_git_dirty)\
+$(__git_branch)$(__git_dirty)\
 %{$fg[cyan]%} › \
 %{$reset_color%}\
 '
