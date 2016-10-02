@@ -66,13 +66,18 @@ let g:leader_key_map['m'] = {
       \}
 let g:leader_key_map['m']['l'] = {
       \'name' : 'List',
-      \'c' : [':Files "app/controllers/"', 'Controllers'],
-      \'f' : [':Files "spec/factories/"', 'Factories'],
-      \'m' : [':Files "app/models/"', 'Models'],
-      \'p' : [':Files "app/policies/"', 'Policies'],
-      \'s' : [':Files "app/services/"', 'Services'],
-      \'t' : [':Files "spec/"', 'Specs'],
-      \'v' : [':Files "app/views/"', 'Views'],
+      \'c' : [':Files app/controllers/', 'Controllers'],
+      \'f' : [':Files spec/factories/', 'Factories'],
+      \'m' : [':Files app/models/', 'Models'],
+      \'p' : [':Files app/policies/', 'Policies'],
+      \'s' : [':Files app/services/', 'Services'],
+      \'t' : [':Files spec/', 'Specs'],
+      \'v' : [':Files app/views/', 'Views'],
+      \}
+let g:leader_key_map['m']['o'] = {
+      \'name' : 'Open',
+      \'s' : [':Eschema', 'Schema'],
+      \'r' : [':Einitializer', 'Routes'],
       \}
 
 let g:leader_key_map['t'] = {

@@ -1,6 +1,6 @@
 " Colors
 " set t_Co=256
-colorscheme dracula
+colorscheme nova
 set background=dark
 set t_ut= " Disable BCE for BG colour in tmux
 

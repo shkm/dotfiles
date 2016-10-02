@@ -47,6 +47,7 @@ Session.vim
 ##############
 .sass-cache
 .rubocop-https*yml
+.vagrant/
 tags
 TAGS
 

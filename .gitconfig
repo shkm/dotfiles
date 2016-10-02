@@ -2,19 +2,17 @@
   email = jamie@lico.nl
   name = Jamie Schembri
 [core]
-  excludesfile = $HOME/.gitignore_global
+  excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
   pager = diff-so-fancy | less --tabs=1,5 -R
 [color]
   ui = true
 [diff]
   tool = opendiff
-  tool = deltawalker
 #   tool = vimdiff
 [difftool]
   tool = opendiff
   prompt = false
-#   prompt = false
 [alias]
   a  = add
   aa = add -A
@@ -43,6 +41,7 @@
   ll = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   ls = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   mt = mergetool
+  pf = push --force-with-lease
   s = status -sbu
   r = rebase
   rc = rebase --continue
@@ -80,10 +79,10 @@
 [pull]
   ff = only
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gdiff\" \"$MERGED\"

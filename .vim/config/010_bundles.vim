@@ -122,6 +122,7 @@ Plug 'noahfrederick/vim-noctu'
 Plug 'whatyouhide/vim-gotham'
 Plug 'eddsteel/vim-vimbrant'
 Plug 'dracula/vim'
+Plug 'trevordmiller/nova-vim'
 
 " -- Color schemes }}}
 
