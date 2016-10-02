@@ -1,5 +1,5 @@
 source $HOME/.zsh/init/exports.zsh
-source $HOME/.zsh/init/oh-my-zsh.zsh
+source $HOME/.zsh/init/antibody.zsh
 
 if [[ `uname` = 'Darwin' ]]; then source $HOME/.zsh/os/osx.zsh; fi
 if [[ `uname` =  'Linux' ]]; then source $HOME/.zsh/os/linux.zsh; fi
@@ -20,3 +20,6 @@ source $HOME/.zsh/misc/aliases.zsh
 
 source $HOME/.zsh/work/development.zsh
 source $HOME/.zsh/work/deployment.zsh
+
+source $HOME/.zsh/misc/mappings.zsh
+source $HOME/.zsh/misc/theme.zsh
