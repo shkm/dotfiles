@@ -13,6 +13,8 @@ alias ag='ag --path-to-ignore=~/.agignore'
 alias ssh_key="cat ~/.ssh/id_rsa.pub | pbcopy; echo 'Copied SSH key to clipboard.'"
 alias ducks="du -cksh * | gsort -hr"
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias myip='curl ifconfig.co'
+
 
 # 'latest' will refer to the last modified file.
 #
