@@ -69,20 +69,16 @@
   rmsi = "!f() { git rebase -i milestones/"$1"; }; f"
 [push]
   # Push only the current branch
-  default = simple
+  default = current
 [merge]
-  tool = opendiff
-#   tool = fugitive
+  tool = fugitive
 [mergetool]
   keepBackup = false
   path = nvim
 [pull]
   ff = only
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
