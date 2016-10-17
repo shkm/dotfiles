@@ -3,6 +3,11 @@ if test -e $HOME/.secrets; and status --is-interactive
   source $HOME/.secrets
 end
 
+if test -e /usr/local/share/chruby/chruby.fish
+  source /usr/local/share/chruby/chruby.fish
+  source /usr/local/share/chruby/auto.fish
+end
+
 # Exports
 if test -d $HOME/go
   set -x GOPATH $HOME/go
@@ -26,3 +31,6 @@ set -x MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft man nomod nolist nonu nom
 
 # No greeting
 set --erase fish_greeting
+
+# Vi mode
+fish_vi_key_bindings
