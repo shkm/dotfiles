@@ -101,7 +101,7 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'indenthtml.vim', { 'for': 'html' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'PProvost/vim-ps1', { 'for': 'powershell' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'kchmck/vim-coffee-script'
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'irgeek/vim-puppet', { 'for': 'puppet' }
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -112,6 +112,7 @@ Plug 'freitass/todo.txt-vim', { 'for': 'todo' }
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }
 Plug 'tmux-plugins/vim-tmux'
 Plug 'rhysd/vim-crystal'
+Plug 'dag/vim-fish'
 
 " -- Language / Framework support }}}
 
@@ -130,7 +131,7 @@ Plug 'trevordmiller/nova-vim'
 
 Plug 'schickling/vim-bufonly', { 'on': 'Bonly' }
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
-Plug 'godlygeek/tabular', { 'on': 'Tab' }
+Plug 'godlygeek/tabular'
 Plug 'benmills/vimux'
 Plug 'Konfekt/FastFold'
 Plug 'Keithbsmiley/investigate.vim'

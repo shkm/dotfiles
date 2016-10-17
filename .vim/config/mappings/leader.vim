@@ -48,6 +48,7 @@ let g:leader_key_map['g'] = {
       \'C' : [':Commits', 'List commits'],
       \'d' : [':Gvdiff', 'Diff'],
       \'e' : [':Extradite', 'Extradite'],
+      \'l' : [':Gitv', 'Log'],
       \'s' : [':Gstatus', 'Status'],
       \'S' : [':Magit', 'Magit'],
       \}
