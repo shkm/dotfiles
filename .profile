@@ -26,6 +26,13 @@ if [ -d "$HOME/go" ]; then
   export PATH="$HOME/go/bin:$PATH"
 fi
 
+# Interactive only
+if [ -t "0" ]; then
+  if [ -f "$HOME/.secrets" ]; then
+    source $HOME/.secrets
+  fi
+fi
+
 # Locale
 export LC_ALL="en_GB.UTF-8"
 
