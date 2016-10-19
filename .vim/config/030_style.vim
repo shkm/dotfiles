@@ -39,13 +39,13 @@ endif
 
 " Statusline
 set laststatus=2
-hi StatusLine ctermbg=0 ctermfg=2
 set statusline=
-set statusline +=%n:\                                 " Buffer
+set statusline +=\ %n\                                " Buffer
 set statusline +=%<%m%r%h%w\ %f\%=                    " File
 set statusline +=%{fugitive#head()}\                  " Fugitive
-set statusline +=%y\                                  " FileType
-set statusline +=%{''.(&fenc!=''?&fenc:&enc).''}      " Encoding
-set statusline +=%{(&bomb?\",BOM\":\"\")}\            " Encoding2
-set statusline +=%{&ff}\                              " FileFormat (dos/unix..)
-set statusline +=\ %P\                                " Position
+set statusline +=%Y\                                  " FileType
+set statusline +=%p\                                  " Position
+
+" Hybrid colours
+highlight StatusLine gui=NONE guifg=white guibg=#27292D
+highlight StatusLineNC gui=NONE guifg=#27292D guibg=s:gui_background
