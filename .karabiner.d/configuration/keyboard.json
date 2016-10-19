@@ -1,0 +1,29 @@
+{
+  "profiles" : [
+    {
+      "fn_function_keys" : {
+        "f12" : "f12",
+        "f9" : "f9",
+        "f5" : "f5",
+        "f10" : "f10",
+        "f1" : "f1",
+        "f6" : "f6",
+        "f2" : "f2",
+        "f7" : "f7",
+        "f11" : "f11",
+        "f3" : "f3",
+        "f8" : "f8",
+        "f4" : "f4"
+      },
+      "name" : "Default profile",
+      "selected" : true,
+      "simple_modifications" : {
+        "left_command" : "left_option",
+        "right_control" : "fn",
+        "caps_lock" : "escape",
+        "fn" : "left_control",
+        "left_option" : "left_command"
+      }
+    }
+  ]
+}
