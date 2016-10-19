@@ -124,6 +124,7 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'eddsteel/vim-vimbrant'
 Plug 'dracula/vim'
 Plug 'trevordmiller/nova-vim'
+Plug 'w0ng/vim-hybrid'
 
 " -- Color schemes }}}
 

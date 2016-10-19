@@ -39,6 +39,7 @@ let g:leader_key_map['f']['e'] = {
       \'name' : 'Edit/list file(s)',
       \'v' : [':Files $HOME/.vim/config', 'Vim'],
       \'z' : [':Files $HOME/.zsh', 'Zsh'],
+      \'f' : [':Files $HOME/.config/fish', 'Fish'],
       \}
 
 let g:leader_key_map['g'] = {
@@ -51,6 +52,16 @@ let g:leader_key_map['g'] = {
       \'l' : [':Gitv', 'Log'],
       \'s' : [':Gstatus', 'Status'],
       \'S' : [':Magit', 'Magit'],
+      \}
+
+let g:leader_key_map['g']['h'] = {
+      \'name' : 'Hunk',
+      \'n' : [':GitGutterNextHunk', 'Next'],
+      \'p' : [':GitGutterPrevHunk', 'Previous'],
+      \'P' : [':GitGutterPreviewHunk', 'Preview'],
+      \'r' : [':GitGutterRevertHunk', 'Revert'],
+      \'s' : [':GitGutterStageHunk', 'Stage'],
+      \'u' : [':GitGutterUndoHunk', 'Undo'],
       \}
 
 " Hopefully figure out how to bind this specifically

@@ -1,6 +1,6 @@
 " Colors
 " set t_Co=256
-colorscheme nova
+colorscheme hybrid
 set background=dark
 set t_ut= " Disable BCE for BG colour in tmux
 
@@ -18,6 +18,9 @@ set nonumber
 
 " Whitespace characters
 set list listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
+
+" Vertical split separator should be full-height
+set fillchars+=fold:-,vert:│
 
 " Modify tab label to present:
 " 1 .vimrc +
