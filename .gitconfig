@@ -8,10 +8,9 @@
 [color]
   ui = true
 [diff]
-  tool = opendiff
-#   tool = vimdiff
+  tool = vimdiff
 [difftool]
-  tool = opendiff
+  tool = vimdiff
   prompt = false
 [alias]
   a  = add
@@ -72,6 +71,7 @@
   default = current
 [merge]
   tool = fugitive
+  conflictstyle = diff3
 [mergetool]
   keepBackup = false
   path = nvim
