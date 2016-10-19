@@ -3,11 +3,6 @@ if test -e $HOME/.secrets; and status --is-interactive
   source $HOME/.secrets
 end
 
-if test -e /usr/local/share/chruby/chruby.fish
-  source /usr/local/share/chruby/chruby.fish
-  source /usr/local/share/chruby/auto.fish
-end
-
 # Exports
 if test -d $HOME/go
   set -x GOPATH $HOME/go
@@ -34,3 +29,8 @@ set --erase fish_greeting
 
 # Vi mode
 fish_vi_key_bindings
+
+# No default vi-mode mode indicator
+function fish_mode_prompt; end
+
+source $HOME/.config/fish/conf.d/theme.fish

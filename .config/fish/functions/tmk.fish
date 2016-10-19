@@ -1,3 +1,3 @@
-function tmk
-	tmux kill-session -t $argv;
+function tmk -d "Kill a tmux session"
+  tmux kill-session -t $argv;
 end

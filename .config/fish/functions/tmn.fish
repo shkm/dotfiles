@@ -1,3 +1,3 @@
-function tmn
-	tmux new -s $argv;
+function tmn -d "New tmux session"
+  tmux new -s $argv;
 end

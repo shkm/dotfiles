@@ -1,3 +1,3 @@
 function sha256
-	shasum -a 256 $argv;
+  shasum -a 256 $argv;
 end

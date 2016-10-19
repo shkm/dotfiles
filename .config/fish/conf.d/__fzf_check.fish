@@ -1,0 +1,1 @@
+/Users/jamie/.config/fisherman/fzf/conf.d/__fzf_check.fish

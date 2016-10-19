@@ -1,3 +1,3 @@
-function tmks
-	tmux kill-server $argv;
+function tmks -d "Kill the tmux server"
+  tmux kill-server $argv;
 end
