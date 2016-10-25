@@ -9,6 +9,10 @@ if test -d $HOME/go
   set -gx PATH $GOPATH/bin $PATH
 end
 
+if test -d $HOME/.linuxbrew
+  set -gx PATH $HOME/.linuxbrew $PATH
+end
+
 if test -d $HOME/bin
   set -gx PATH $HOME/bin $PATH 
 end

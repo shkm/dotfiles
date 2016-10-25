@@ -23,7 +23,14 @@ end
 
 function fish_prompt
   echo -n -s (set_color blue) (_pwd)
-  echo -n -s (_vi_mode_color) ' ༄  '
+  set -l prefix
+
+  if [ (uname) = "Linux" ]
+    set prefix ' ◈ '
+  else
+    set prefix ' ༄  '
+  end
+  echo -n -s (_vi_mode_color) $prefix
 
   set_color normal
 end
