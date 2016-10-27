@@ -141,6 +141,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'thinca/vim-ref'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'metakirby5/codi.vim'
+Plug 'junegunn/vim-slash' " enhanced slash/* search
 
 " Snippets
 Plug 'Shougo/neosnippet.vim'
