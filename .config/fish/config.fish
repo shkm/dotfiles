@@ -26,7 +26,14 @@ set -x NAME "Jamie Schembri"
 set -x SMTPSERVER "smtp.gmail.com"
 
 # Misc
-set -x MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft man nomod nolist nonu noma' -\""
+# LESS colouring
+set -x LESS_TERMCAP_mb (printf "\033[01;31m")
+set -x LESS_TERMCAP_md (printf "\033[01;31m")
+set -x LESS_TERMCAP_me (printf "\033[0m")
+set -x LESS_TERMCAP_se (printf "\033[0m")
+set -x LESS_TERMCAP_so (printf "\033[01;44;33m")
+set -x LESS_TERMCAP_ue (printf "\033[0m")
+set -x LESS_TERMCAP_us (printf "\033[01;32m")
 
 # No greeting
 set --erase fish_greeting
