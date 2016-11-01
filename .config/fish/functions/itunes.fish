@@ -1,0 +1,1 @@
+/Users/jamie/.config/fisherman/osx/functions/itunes.fish
