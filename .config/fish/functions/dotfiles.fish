@@ -1,3 +1,3 @@
-function dotfiles
-	git --git-dir=/Users/jamie/.dotfiles/ --work-tree=/Users/jamie $argv;
+function dotfiles --wraps git
+  git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $argv;
 end

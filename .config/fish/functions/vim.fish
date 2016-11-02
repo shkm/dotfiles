@@ -1,3 +1,3 @@
-function vim
-  nvim  $argv;
+function vim --wraps nvim
+  nvim $argv;
 end
