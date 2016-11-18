@@ -3,28 +3,8 @@ setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " Don't match parameters. This was slowing vim down considerably.
 let loaded_matchparen = 1
 
-if exists(":Tabularize")
-  " Align hashes.
-  nmap <buffer> <leader>ah :Tabularize /\w:\zs/r0l1l0<CR>
-  vmap <buffer> <leader>ah :Tabularize /\w:\zs/r0l1l0<CR>
-
-  " Align symbols.
-  nmap <buffer> <leader>as :Tabularize /:\h\+,* */l0<CR>
-  vmap <buffer> <leader>as :Tabularize /:\h\+,* */l0<CR>
-endif
-
 " Compile/run ruby
 nmap <leader>cr :!ruby %<CR>
-
-" Run inline
-nmap <leader>cm <Plug>(xmpfilter-mark)
-nmap <leader>cc <Plug>(xmpfilter-run)
-xmap <leader>cm <Plug>(xmpfilter-mark)
-xmap <leader>cc <Plug>(xmpfilter-run)
-nmap <leader>ca <Plug>(xmpfilter-clean)
-xmap <leader>ca <Plug>(xmpfilter-clean)
-
-" Switch definitions
 
 " Switch ruby blocks: {...} <-> do...end, { |x| ... } <-> do |x| ... end
 let b:switch_custom_definitions =
@@ -41,3 +21,20 @@ let b:switch_custom_definitions =
 
 " We want conceals to work in ruby.
 setlocal conceallevel=2
+
+" ri lookup of local gems
+" Depends on the vri executable and AnsiEsc
+function! RubyRiLookup(term)
+  let output = system('vri --no-pager -f ansi ' . a:term)
+  new | put =output
+  nnoremap <buffer> q :bd<CR>
+
+  execute "normal! gg"
+  setlocal nonumber buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  \ nomodifiable statusline=ri nocursorline nofoldenable
+  AnsiEsc
+endfunction
+
+command! -nargs=1 RubyDoc call RubyRiLookup(<f-args>)
+setlocal keywordprg=:RubyDoc
+
