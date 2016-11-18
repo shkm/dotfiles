@@ -49,6 +49,7 @@ Session.vim
 .rubocop-https*yml
 .vagrant/
 tags
+gemtags
 TAGS
 
 # GNU global
@@ -67,3 +68,6 @@ Icon?
 thumbs.db
 Thumbs.db
 .dropbox
+
+# Gems
+.gems
