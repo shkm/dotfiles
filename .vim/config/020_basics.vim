@@ -96,3 +96,6 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 set viminfo^=%
+
+" Search various tags files in proper order
+set tags=./tags,tags,gemtags

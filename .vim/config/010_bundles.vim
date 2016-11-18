@@ -32,7 +32,7 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-commentary'
 
 " Searching
-Plug 'gabesoft/vim-ags', { 'on': 'Ags' }
+Plug 'gabesoft/vim-ags'
 
 " Leader menus
 Plug 'hecal3/vim-leader-guide'
@@ -46,6 +46,9 @@ Plug 'shougo/deoplete.nvim'
 
 " Better readline mappings
 Plug 'tpope/vim-rsi'
+
+" View registers
+Plug 'junegunn/vim-peekaboo'
 
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
@@ -78,8 +81,8 @@ Plug 'int3/vim-extradite'
 " -- Language / Framework support {{{
 
 " Ruby
-Plug 'osyo-manga/vim-monster'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }
@@ -89,13 +92,11 @@ Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': '
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
-Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-
-" PHP
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'slashmili/alchemist.vim'
 
 " Other languages
 Plug 'mattn/emmet-vim'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'indenthtml.vim', { 'for': 'html' }
@@ -130,18 +131,19 @@ Plug 'w0ng/vim-hybrid'
 
 " -- Misc {{{
 
-Plug 'schickling/vim-bufonly', { 'on': 'Bonly' }
-Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }
+Plug 'schickling/vim-bufonly' " kill other buffers
+Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' } " refactorings
 Plug 'godlygeek/tabular'
 Plug 'benmills/vimux'
-Plug 'Konfekt/FastFold'
+Plug 'Konfekt/FastFold' " faster folding
 Plug 'Keithbsmiley/investigate.vim'
 Plug 'gorkunov/smartpairs.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'thinca/vim-ref'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'metakirby5/codi.vim'
 Plug 'junegunn/vim-slash' " enhanced slash/* search
+Plug 'powerman/vim-plugin-AnsiEsc' " colorize ANSI escape sequences
+Plug 'tommcdo/vim-exchange' " exchange with cx
 
 " Snippets
 Plug 'Shougo/neosnippet.vim'
