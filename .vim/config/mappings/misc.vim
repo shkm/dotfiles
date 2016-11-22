@@ -14,21 +14,11 @@ nnoremap gsf <C-w>f
 " Backspace clears search highlighting
 nnoremap <silent><BS> :noh<CR>
 
-" Autocomplete / snippets
-" TAB:   v
-" S-TAB: ^
-" C-l:   expand snippet
-" inoremap <silent><expr> <Tab>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ deoplete#mappings#manual_complete()
-" imap <C-l> <Plug>(neosnippet_expand_or_jump)
-imap <Tab> <Plug>(neosnippet_expand_or_jump)
-
-" Open autocompletion, navigate up and down.
-inoremap <silent><expr> <C-j>
-      \ pumvisible() ? "\<C-n>" :
-      \ "<C-x><C-o>"
-inoremap <C-k> <C-p>
+" Expand snippets on tab
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " Center search results
 nnoremap n nzz

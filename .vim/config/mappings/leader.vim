@@ -76,6 +76,10 @@ let g:leader_key_map['m'] = {
       \'t' : [':Espec', 'Spec'],
       \'v' : [':Eview', 'View'],
       \}
+let g:leader_key_map['m']['r'] = {
+      \'name' : 'Refactor',
+      \'s' : [':Switch', 'Switch']
+      \}
 let g:leader_key_map['m']['l'] = {
       \'name' : 'List',
       \'c' : [':Files app/controllers/', 'Controllers'],
