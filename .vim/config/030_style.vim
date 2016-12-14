@@ -42,7 +42,7 @@ set laststatus=2
 set statusline=
 set statusline +=\ %n\                                " Buffer
 set statusline +=%<%m%r%h%w\ %f\%=                    " File
-set statusline +=%{fugitive#head()}\                  " Fugitive
+" set statusline +=%{fugitive#head()}\                  " Fugitive
 set statusline +=%Y\                                  " FileType
 set statusline +=%p\                                  " Position
 

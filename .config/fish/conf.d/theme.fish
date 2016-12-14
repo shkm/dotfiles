@@ -25,11 +25,13 @@ function fish_prompt
   echo -n -s (set_color blue) (_pwd)
   set -l prefix
 
-  if [ (uname) = "Linux" ]
-    set prefix ' ◈ '
-  else
-    set prefix ' ༄  '
-  end
+  set prefix ' <$> '
+  # Hyperterm doesn't like special stuff.
+  # if [ (uname) = "Linux" ]
+  #   set prefix ' ◈ '
+  # else
+  #   set prefix ' ༄  '
+  # end
   echo -n -s (_vi_mode_color) $prefix
 
   set_color normal

@@ -19,131 +19,76 @@ endfunction
 
 " -- Setup }}}
 
-" -- Essentials {{{
-
-" Fuzzy-finding
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' } " Fuzzy finding
 Plug 'junegunn/fzf.vim'
+Plug 'benekastah/neomake' " Build / linting
+Plug 'tpope/vim-commentary' " Comments
+Plug 'gabesoft/vim-ags' " Global AG with replace
+Plug 'hecal3/vim-leader-guide' " Menues for leader
+Plug 'justinmk/vim-dirvish' " Enhanced netrw
+" Plug 'tpope/vim-vinegar' " Further enhanced netrw
+Plug 'tpope/vim-rsi' " More readline-style mappings
+Plug 'junegunn/vim-peekaboo' " Show registers
+Plug 'tpope/vim-surround' " Surround stuff
+Plug 'wellle/targets.vim' " Various text objects
+Plug 'tpope/vim-endwise' " Auto do...end
+Plug 'tpope/vim-repeat' " Better repeat
+Plug 'tpope/vim-eunuch' " Sugar for UNIX commands
+Plug 'tpope/vim-unimpaired' " Various 'pair' mappings
+Plug 'tpope/vim-abolish' " Improved search/replace
+Plug 'pgdouyon/vim-evanesco' " Better slash search
+Plug 'matchit.zip' " Better pair matching (e.g. do...end)
+Plug 'AndrewRadev/splitjoin.vim' " Split and join various statements
+Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' } " Switch various statements
+Plug 'christoomey/vim-tmux-navigator' " Easier tmux/vim pane navigation (also see https://github.com/christoomey/vim-tmux-navigator/issues/61#issuecomment-87284887)
 
-" Build/linting
-Plug 'benekastah/neomake'
+Plug 'tpope/vim-fugitive' " Git
+Plug 'rhysd/committia.vim' " Show difs in fugitive commit
+Plug 'gregsexton/gitv' " Gitk for vim
+Plug 'jreybert/vimagit' " Git stage/commit
+Plug 'airblade/vim-gitgutter' " Show git changes in column
+Plug 'int3/vim-extradite' " Browse git commits for the current file
 
-" Commenting
-Plug 'tpope/vim-commentary'
+Plug 'janko-m/vim-test' " Run tests for various languages
 
-" Searching
-Plug 'gabesoft/vim-ags'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' } " Ruby syntax
+Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' } " RSpec syntax
+Plug 'tpope/vim-rails', { 'for': 'ruby' } " Rails-specific enhancements
+Plug 'tpope/vim-bundler', { 'for': 'ruby' } " Bundler/gem enhancements
+Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " Ruby block textobj
 
-" Leader menus
-Plug 'hecal3/vim-leader-guide'
+Plug 'elixir-lang/vim-elixir' " Elixir syntax
+Plug 'slashmili/alchemist.vim' " Elixir enhancements
 
-" File management
-Plug 'justinmk/vim-dirvish'
-Plug 'tpope/vim-vinegar'
+Plug 'mattn/emmet-vim' " Quick html/css editing
+Plug 'StanAngeloff/php.vim', { 'for': 'php' } " PHP syntax
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' } " Markdown enhancements
+Plug 'tpope/vim-haml', { 'for': 'haml' } " HAML/Sass/Scss syntax
+Plug 'indenthtml.vim', { 'for': 'html' } " Better HTML/CSS indentation
+Plug 'kchmck/vim-coffee-script' " Coffeescript syntax
+Plug 'chrisbra/csv.vim', { 'for': 'csv' } " CSV enhancements
+Plug 'irgeek/vim-puppet', { 'for': 'puppet' } " Puppet syntax
+Plug 'elzr/vim-json', { 'for': 'json' } " JSON syntax
+Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' } " YAML syntax
+Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' } " YAML helper functions
+Plug 'othree/yajs.vim', { 'for': 'javascript' } " ES6 JavaScript syntax
+Plug 'zaiste/tmux.vim', { 'for': 'tmux' } " Tmux syntax
+Plug 'rhysd/vim-crystal' " Crystal syntax
+Plug 'dag/vim-fish' " Fish syntax
 
-" Autocompletion
-Plug 'shougo/deoplete.nvim'
-
-" Better readline mappings
-Plug 'tpope/vim-rsi'
-
-" View registers
-Plug 'junegunn/vim-peekaboo'
-
-Plug 'tpope/vim-surround'
-Plug 'wellle/targets.vim'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-abolish'
-Plug 'matchit.zip'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-
-" Neovim requires extra steps for vim-tmux-navigator.
-" See https://github.com/christoomey/vim-tmux-navigator/issues/61#issuecomment-87284887
-Plug 'christoomey/vim-tmux-navigator'
-
-" -- Essentials }}}
-
-" -- Version control {{{
-
-Plug 'rhysd/committia.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'gregsexton/gitv'
-Plug 'jreybert/vimagit'
-Plug 'airblade/vim-gitgutter'
-Plug 'int3/vim-extradite'
-
-" -- Version control }}}
-
-" -- Language / Framework support {{{
-
-" Ruby
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
-Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
-
-" Elixir
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
-
-" Other languages
-Plug 'mattn/emmet-vim'
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'tpope/vim-haml', { 'for': 'haml' }
-Plug 'indenthtml.vim', { 'for': 'html' }
-Plug 'slim-template/vim-slim', { 'for': 'slim' }
-Plug 'PProvost/vim-ps1', { 'for': 'powershell' }
-Plug 'kchmck/vim-coffee-script'
-Plug 'chrisbra/csv.vim', { 'for': 'csv' }
-Plug 'irgeek/vim-puppet', { 'for': 'puppet' }
-Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }
-Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'freitass/todo.txt-vim', { 'for': 'todo' }
-Plug 'zaiste/tmux.vim', { 'for': 'tmux' }
-Plug 'tmux-plugins/vim-tmux'
-Plug 'rhysd/vim-crystal'
-Plug 'dag/vim-fish'
-
-" -- Language / Framework support }}}
-
-" -- Color schemes {{{
-
-Plug 'mhartington/oceanic-next'
-Plug 'noahfrederick/vim-noctu'
-Plug 'whatyouhide/vim-gotham'
-Plug 'eddsteel/vim-vimbrant'
-Plug 'dracula/vim'
-Plug 'trevordmiller/nova-vim'
-Plug 'w0ng/vim-hybrid'
+Plug 'w0ng/vim-hybrid' " Hybrid colour scheme
 
 " -- Color schemes }}}
 
 " -- Misc {{{
 
-Plug 'schickling/vim-bufonly' " kill other buffers
-Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' } " refactorings
-Plug 'godlygeek/tabular'
-Plug 'benmills/vimux'
-Plug 'Konfekt/FastFold' " faster folding
-Plug 'Keithbsmiley/investigate.vim'
-Plug 'gorkunov/smartpairs.vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'metakirby5/codi.vim'
-Plug 'junegunn/vim-slash' " enhanced slash/* search
+Plug 'schickling/vim-bufonly' " Kill other buffers
+Plug 'junegunn/vim-easy-align' " Alignment
+Plug 'Konfekt/FastFold' " Faster folding
+Plug 'Keithbsmiley/investigate.vim' " Documentation lookup
+Plug 'dhruvasagar/vim-table-mode' " Table mode for constructing ascii tables
+Plug 'metakirby5/codi.vim' " Repl
 Plug 'powerman/vim-plugin-AnsiEsc' " colorize ANSI escape sequences
-Plug 'tommcdo/vim-exchange' " exchange with cx
 
 " Snippets
 Plug 'Shougo/neosnippet.vim'

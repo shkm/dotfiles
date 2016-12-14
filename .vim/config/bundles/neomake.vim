@@ -8,3 +8,6 @@ let g:neomake_elixir_enabled_makers = ['elixir', 'credo']
 
 let g:neomake_warning_sign = { 'text': '◈', 'texthl': 'SignColumn' }
 let g:neomake_error_sign = { 'text': '✖', 'texthl': 'SignColumn' }
+
+" Default, but slows down vim scrolling
+let g:neomake_echo_current_error = 1
