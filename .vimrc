@@ -9,6 +9,10 @@ source $HOME/.vim/config/030_style.vim
 source $HOME/.vim/config/040_commands.vim
 source $HOME/.vim/config/050_languages.vim
 
+if has('nvim')
+  source $HOME/.vim/config/060_neovim.vim
+endif
+
 " Bundle settings
 call SourceDir("$HOME/.vim/config/bundles/")
 call SourceDir("$HOME/.vim/config/mappings/")

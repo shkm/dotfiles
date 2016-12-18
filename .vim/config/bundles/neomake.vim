@@ -1,4 +1,4 @@
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
 let g:neomake_rspec_enabled_makers = ['mri', 'rubocop']

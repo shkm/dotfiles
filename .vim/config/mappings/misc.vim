@@ -11,19 +11,12 @@ vnoremap ; :
 nnoremap gvf :vertical wincmd f<CR>
 nnoremap gsf <C-w>f
 
-" Backspace clears search highlighting
-nnoremap <silent><BS> :noh<CR>
+" Expand snippets on C-l
+imap <expr><C-l> "\<Plug>(neosnippet_expand_or_jump)"
 
-" Expand snippets on tab
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" Easy-align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
 
-" Center search results
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

@@ -9,3 +9,4 @@ app/assets/javascripts/vendor
 doc/
 private/
 _build/
+coverage/
