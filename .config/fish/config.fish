@@ -25,6 +25,9 @@ set -x EMAIL "jamie@schembri.me"
 set -x NAME "Jamie Schembri"
 set -x SMTPSERVER "smtp.gmail.com"
 
+# Preferences
+set -x EDITOR "nvim"
+
 # Misc
 # LESS colouring
 set -x LESS_TERMCAP_mb (printf "\033[01;31m")

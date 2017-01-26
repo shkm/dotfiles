@@ -20,7 +20,7 @@ set nonumber
 set list listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
 
 " Vertical split separator should be full-height
-set fillchars+=fold:-,vert:│
+" set fillchars+=fold:-,vert:│ # TODO: is this slowing down vim?
 
 " Modify tab label to present:
 " 1 .vimrc +
@@ -41,8 +41,9 @@ endif
 set laststatus=2
 set statusline=
 set statusline +=\ %n\                                " Buffer
-set statusline +=%<%m%r%h%w\ %f\%=                    " File
-" set statusline +=%{fugitive#head()}\                  " Fugitive
+set statusline +=%<%m%r%h%w\ %f\                      " File
+set statusline +=%=                                   " Right align
+" set statusline +=%{fugitive#head()}\                " Fugitive
 set statusline +=%Y\                                  " FileType
 set statusline +=%p\                                  " Position
 

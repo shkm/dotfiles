@@ -1,147 +1,77 @@
-" ------------------------------------------------------------------------------
-" Leader mappings have been replaced to use vim-leader-guide.
-" This gives us a more Emacs guide-key approach to leader commands, which I
-" find more useful.
-" ------------------------------------------------------------------------------
+let mapleader = " "
 
-let mapleader = "\<Space>"
+nnoremap <leader><TAB> <C-^>
+nnoremap <Leader>/ :Grepper -tool ag -grepprg ag -Q<CR>
+nnoremap <Leader>? :Ag<CR>
 
-let g:leader_key_dict = {
-      \'name':  '<Space>',
-      \'<C-I>': [':e #', 'Last buffer'],
-      \'/':     [':Grepper -tool ag', 'Find in files'],
-      \'?':     [':Ag', 'Find in files incrementally'],
-      \}
+" ; Settings
+nnoremap <Leader>;sb :set scrollbind<CR>
 
-" Settings
-let g:leader_key_dict[';'] = {
-      \'name':  'Setting',
-      \'sb':    [':set scrollbind', 'scrollbind'],
-      \}
+" b Buffers
+nnoremap <Leader>b/ :BLines<CR>
+nnoremap <Leader>b<C-I> :e #<CR>
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bj :bnext<CR>
+nnoremap <Leader>bk :bprev<CR>
+nnoremap <Leader>bO :Bonly<CR>
+nnoremap <Leader>bf :Buffers<CR>
 
-" Buffers
-let g:leader_key_dict['b'] = {
-      \'name':  'Buffer',
-      \'/':     [':BLines', 'Search in buffer'],
-      \'<C-I>': [':e #', 'Last buffer'],
-      \'d':     [':bdelete', 'Delete buffer'],
-      \'j':     [':bnext', 'Next'],
-      \'k':     [':bprev', 'Previous buffer'],
-      \'O':     [':Bonly', 'Kill all other buffers'],
-      \'f':     [':Buffers', 'Find buffer'],
-      \}
+" f Files
+nnoremap <Leader>f? :Ag<CR>
+nnoremap <Leader>fA :A<CR>
+nnoremap <Leader>ff :Files<CR>
+  " fe Find file in set place
+  nnoremap <Leader>fev :Files $HOME/.vim/config<CR>
+  nnoremap <Leader>fez :Files $HOME/.zsh<CR>
+  nnoremap <Leader>fef :Files $HOME/.config/fish<CR>
 
-" Files
-let g:leader_key_dict['f'] = {
-      \'name':  'File',
-      \'/':     [':Grepper --tool ag', 'Find in files'],
-      \'?':     [':Ag', 'Find in files incrementally'],
-      \'A':     [':A', 'Alternate file'],
-      \'f':     [':Files', 'Find file'],
-      \}
+" g Git
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gC :Commits<CR>
+nnoremap <Leader>gd :Gvdiff<CR>
+nnoremap <Leader>ge :Extradite<CR>
+nnoremap <Leader>gl :Gitv<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gS :Magit<CR>
 
-  let g:leader_key_dict['f']['e'] = {
-        \'name':  'Edit/list file(s)',
-        \'v':     [':Files $HOME/.vim/config', 'Vim'],
-        \'z':     [':Files $HOME/.zsh', 'Zsh'],
-        \'f':     [':Files $HOME/.config/fish', 'Fish'],
-        \}
+  " gh Hunks
+  nnoremap <Leader>ghn :GitGutterNextHunk<CR>
+  nnoremap <Leader>ghp :GitGutterPrevHunk<CR>
+  nnoremap <Leader>ghP :GitGutterPreviewHunk<CR>
+  nnoremap <Leader>ghr :GitGutterRevertHunk<CR>
+  nnoremap <Leader>ghs :GitGutterStageHunk<CR>
+  nnoremap <Leader>ghu :GitGutterUndoHunk<CR>
 
-  " Git
-let g:leader_key_dict['g'] = {
-      \'name':  'Git',
-      \'b':     [':Gblame', 'Blame'],
-      \'c':     [':Gcommit', 'Commit'],
-      \'C':     [':Commits', 'List commits'],
-      \'d':     [':Gvdiff', 'Diff'],
-      \'e':     [':Extradite', 'Extradite'],
-      \'l':     [':Gitv', 'Log'],
-      \'s':     [':Gstatus', 'Status'],
-      \'S':     [':Magit', 'Magit'],
-      \}
+" s Specs
+nnoremap <Leader>sf :TestFile<CR>
+nnoremap <Leader>ss :TestNearest<CR>
 
-  " Hunks
-  let g:leader_key_dict['g']['h'] = {
-        \'name':  'Hunk',
-        \'n':     [':GitGutterNextHunk', 'Next'],
-        \'p':     [':GitGutterPrevHunk', 'Previous'],
-        \'P':     [':GitGutterPreviewHunk', 'Preview'],
-        \'r':     [':GitGutterRevertHunk', 'Revert'],
-        \'s':     [':GitGutterStageHunk', 'Stage'],
-        \'u':     [':GitGutterUndoHunk', 'Undo'],
-        \}
+" t Tags
+nnoremap <Leader>tf :Tags<CR>
+nnoremap <Leader>tb :BTags<CR>
 
-" Specs
-let g:leader_key_dict['s'] = {
-      \'name':  'Spec',
-      \'f':     [':TestFile', 'File'],
-      \'s':     [':TestNearest', 'Nearest']
-      \}
+" m Major TODO: rails specific right now; find a way to specify
+nnoremap <Leader>mc :Econtroller<CR>
+nnoremap <Leader>mf :Efactory<CR>
+nnoremap <Leader>mm :Emodel<CR>
+nnoremap <Leader>mp :Epolicy<CR>
+nnoremap <Leader>ms :Eservice<CR>
+nnoremap <Leader>mt :Espec<CR>
+nnoremap <Leader>mv :Eview<CR>
 
-" Tags
-let g:leader_key_dict['t'] = {
-      \'name':  'Tags',
-      \'f':     [':Tags', 'Find tag'],
-      \'b':     [':BTags', 'Buffer tags']
-      \}
+  " mr Refactoring
+  nnoremap <Leader>mrs :Switch<CR>
 
-" ---------
-" Filetypes
-" ---------
+  " ml Lists
+  nnoremap <Leader>mlc :Files app/controllers/<CR>
+  nnoremap <Leader>mlf :Files spec/factories/<CR>
+  nnoremap <Leader>mlm :Files app/models/<CR>
+  nnoremap <Leader>mlp :Files app/policies/<CR>
+  nnoremap <Leader>mls :Files app/services/<CR>
+  nnoremap <Leader>mlt :Files spec/<CR>
+  nnoremap <Leader>mlv :Files app/views/<CR>
 
-" Rails
-
-let g:leader_rails_dict = {}
-let g:leader_rails_dict = {
-      \'name':  'Main',
-      \'c':     [':Econtroller', 'Controller'],
-      \'f':     [':Efactory', 'Factory'],
-      \'m':     [':Emodel', 'Model'],
-      \'p':     [':Epolicy', 'Policy'],
-      \'s':     [':Eservice', 'Service'],
-      \'t':     [':Espec', 'Spec'],
-      \'v':     [':Eview', 'View'],
-      \}
-
-  " Refactoring
-  let g:leader_rails_dict['r'] = {
-        \'name':  'Refactor',
-        \'s':     [':Switch', 'Switch']
-        \}
-
-  " Lists
-  let g:leader_rails_dict['l'] = {
-        \'name':  'List',
-        \'c':     [':Files app/controllers/', 'Controllers'],
-        \'f':     [':Files spec/factories/', 'Factories'],
-        \'m':     [':Files app/models/', 'Models'],
-        \'p':     [':Files app/policies/', 'Policies'],
-        \'s':     [':Files app/services/', 'Services'],
-        \'t':     [':Files spec/', 'Specs'],
-        \'v':     [':Files app/views/', 'Views'],
-        \}
-
-  " Open
-  let g:leader_rails_dict['o'] = {
-        \'name':  'Open',
-        \'s':     [':Eschema', 'Schema'],
-        \'r':     [':Einitializer', 'Routes'],
-        \}
-
-function! InitFiletypeLeaderMappings()
-  if &filetype ==# 'ruby'
-    let g:leader_key_dict['m'] = g:leader_rails_dict
-  else
-    if has_key(g:leader_key_dict, 'm')
-      call remove(g:leader_key_dict, 'm')
-    endif
-  endif
-endfunction
-
-autocmd! BufEnter * call InitFiletypeLeaderMappings()
-
-call leaderGuide#register_prefix_descriptions("<Space>", "g:leader_key_dict")
-
-let mapleader = ""
-nnoremap <silent> <Space> :<c-u>LeaderGuide '<Space>'<CR>
-vnoremap <silent> <Space> :<c-u>LeaderGuideVisual '<Space>'<CR>
+  " mo Open
+  nnoremap <Leader>mls :Eschema<CR>
+  nnoremap <Leader>mlr :Einitializer<CR>

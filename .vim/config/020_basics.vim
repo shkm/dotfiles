@@ -7,8 +7,8 @@ filetype plugin indent on
 " Hide abandoned buffers
 set hidden
 
-" Ensure that vim sources shelly stuff
-set shell=/bin/sh
+" Set shell
+set shell=fish
 
 " Syntax highlighting
 syntax on
@@ -33,6 +33,9 @@ set notimeout
 
 " A little optimization
 set scrolljump=5
+
+" Speed up rendering
+set lazyredraw
 
 " Avoid backup mess (.doc.swp, ~.doc) by moving backups tmp
 set backupcopy=yes

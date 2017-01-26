@@ -1,6 +1,6 @@
 [user]
-  email = jamie@lico.nl
-  name = Jamie Schembri
+	email = jamie@lico.nl
+	name = Jamie Schembri
 [core]
   excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
@@ -18,7 +18,8 @@
   ac = !git add -A && git commit
   acm = !git add -A && git commit -m
   b = branch
-  bd = branch -D
+  bd = branch -d
+  bD = branch -D
   c  = commit
   cm  = commit -m
   ca  = commit --amend
@@ -82,3 +83,5 @@
   trustExitCode = true
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+[tig]
+  diff-highlight = true
