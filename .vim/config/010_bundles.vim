@@ -39,6 +39,7 @@ Plug 'christoomey/vim-tmux-navigator'                                           
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
 Plug 'ajh17/VimCompletesMe'                                                             " Sleek autocompletion
+Plug 'zenbro/mirror.vim'                                                                " Easily edit projects over ssh
 
 Plug 'tpope/vim-fugitive'                                                               " Git
 " Plug 'rhysd/committia.vim'                                                              " Show difs in fugitive commit

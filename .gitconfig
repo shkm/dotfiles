@@ -20,6 +20,7 @@
   b = branch
   bd = branch -d
   bD = branch -D
+  bmv = branch -m
   c  = commit
   cm  = commit -m
   ca  = commit --amend
@@ -82,6 +83,6 @@
   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true
 [mergetool "fugitive"]
-  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+  cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [tig]
   diff-highlight = true
