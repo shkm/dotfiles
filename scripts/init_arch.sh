@@ -26,7 +26,7 @@ download_dotfiles() {
 }
 
 download_packages() {
-  with_sudo "pacman -S --noconfirm xclip neovim fish"
+  with_sudo "pacman -S --noconfirm xclip neovim fish tmux the_silver_searcher vagrant diff-so-fancy nfs-utils tig ripgrep"
 }
 
 current_shell() {
