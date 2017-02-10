@@ -17,6 +17,10 @@ if test -d $HOME/bin
   set -gx PATH $HOME/bin $PATH 
 end
 
+if test -d $HOME/.gem/ruby/2.4.0
+  set -gx PATH $HOME/.gem/ruby/2.4.0/bin $PATH
+end
+
 # Locale
 set -x LC_ALL "en_GB.UTF-8"
 
@@ -42,7 +46,7 @@ set -x LESS_TERMCAP_us (printf "\033[01;32m")
 set --erase fish_greeting
 
 # Vi mode
-fish_vi_key_bindings
+fish_hybrid_key_bindings
 
 # No default vi-mode mode indicator
 function fish_mode_prompt; end
