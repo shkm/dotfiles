@@ -1,6 +1,6 @@
 [user]
-	email = jamie@lico.nl
-	name = Jamie Schembri
+  email = jamie@lico.nl
+  name = Jamie Schembri
 [core]
   excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
@@ -84,5 +84,7 @@
   trustExitCode = true
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
+[mergetool "meld"]
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [tig]
   diff-highlight = true
