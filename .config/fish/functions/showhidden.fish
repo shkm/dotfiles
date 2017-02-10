@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/showhidden.fish
+/home/jamie/.config/fisherman/osx/functions/showhidden.fish

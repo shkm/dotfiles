@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/updatedb.fish
+/home/jamie/.config/fisherman/osx/functions/updatedb.fish

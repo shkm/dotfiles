@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/ql.fish
+/home/jamie/.config/fisherman/osx/functions/ql.fish

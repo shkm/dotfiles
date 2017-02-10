@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/trash.fish
+/home/jamie/.config/fisherman/osx/functions/trash.fish

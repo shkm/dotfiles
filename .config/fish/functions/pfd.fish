@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/pfd.fish
+/home/jamie/.config/fisherman/osx/functions/pfd.fish

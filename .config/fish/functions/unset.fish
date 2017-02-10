@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/unset.fish
+/home/jamie/.config/fisherman/osx/functions/unset.fish

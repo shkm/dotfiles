@@ -1,1 +1,1 @@
-/Users/jamie/.config/fisherman/osx/functions/manp.fish
+/home/jamie/.config/fisherman/osx/functions/manp.fish
