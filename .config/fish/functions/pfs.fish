@@ -1,1 +1,0 @@
-/home/jamie/.config/fisherman/osx/functions/pfs.fish
