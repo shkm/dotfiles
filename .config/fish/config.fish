@@ -3,11 +3,6 @@ fundle plugin 'shkm/vssh'
 
 fundle init
 
-# Sources
-if test -e $HOME/.secrets; and status --is-interactive
-  source $HOME/.secrets
-end
-
 # Exports
 if test -d $HOME/go
   set -x GOPATH $HOME/go
