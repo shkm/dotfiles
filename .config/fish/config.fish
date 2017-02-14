@@ -1,3 +1,8 @@
+# Bundles
+fundle plugin 'shkm/vssh'
+
+fundle init
+
 # Sources
 if test -e $HOME/.secrets; and status --is-interactive
   source $HOME/.secrets
