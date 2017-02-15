@@ -1,4 +1,4 @@
-function vim --wraps nvim
+function nvim --wraps nvim
   if set -q VIM
     echo 'VIMCEPTION'
   else
