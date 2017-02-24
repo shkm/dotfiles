@@ -71,7 +71,7 @@ Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }                                  
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }                                         " ES6 JavaScript syntax
 " Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 " Plug 'rhysd/vim-crystal'                                                                " Crystal syntax
-" Plug 'dag/vim-fish'                                                                     " Fish syntax
+Plug 'dag/vim-fish'                                                                     " Fish syntax
 
 Plug 'w0ng/vim-hybrid'                                                                  " Hybrid colour scheme
 
