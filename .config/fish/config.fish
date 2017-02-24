@@ -22,6 +22,11 @@ if test -d $HOME/.gem/ruby/2.4.0
   set -gx PATH $HOME/.gem/ruby/2.4.0/bin $PATH
 end
 
+if test -d $HOME/.cargo/bin
+  set -gx PATH $HOME/.cargo/bin $PATH
+end
+
+
 # Locale
 set -x LC_ALL "en_GB.UTF-8"
 
