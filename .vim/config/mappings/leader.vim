@@ -51,27 +51,5 @@ nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>tf :Tags<CR>
 nnoremap <Leader>tb :BTags<CR>
 
-" m Major TODO: rails specific right now; find a way to specify
-nnoremap <Leader>mc :Econtroller<CR>
-nnoremap <Leader>mf :Efactory<CR>
-nnoremap <Leader>mm :Emodel<CR>
-nnoremap <Leader>mp :Epolicy<CR>
-nnoremap <Leader>ms :Eservice<CR>
-nnoremap <Leader>mt :Espec<CR>
-nnoremap <Leader>mv :Eview<CR>
-
-  " mr Refactoring
-  nnoremap <Leader>mrs :Switch<CR>
-
-  " ml Lists
-  nnoremap <Leader>mlc :Files app/controllers/<CR>
-  nnoremap <Leader>mlf :Files spec/factories/<CR>
-  nnoremap <Leader>mlm :Files app/models/<CR>
-  nnoremap <Leader>mlp :Files app/policies/<CR>
-  nnoremap <Leader>mls :Files app/services/<CR>
-  nnoremap <Leader>mlt :Files spec/<CR>
-  nnoremap <Leader>mlv :Files app/views/<CR>
-
-  " mo Open
-  nnoremap <Leader>mls :Eschema<CR>
-  nnoremap <Leader>mlr :Einitializer<CR>
+" m Major: these should be filetype specific, so
+" add them to ftplugin files.
