@@ -1,7 +1,5 @@
 # Bundles
-fundle plugin 'shkm/vssh'
-
-fundle init
+source $HOME/.config/fish/bundles/init.fish
 
 # Exports
 if test -d $HOME/go
