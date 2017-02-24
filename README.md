@@ -10,14 +10,8 @@ These are my dotfiles. They were created using the [bare git repo method](https:
 
 ## Installation
 
-There's a simple init script available for MacOS. I haven't had the chance to test this yet, but it should set up the basics.
+There's a simple init script for Arch. It doesn't do everything, but it's a start.
 
 ```
-curl -s https://raw.githubusercontent.com/shkm/dotfiles/master/scripts/init_mac.sh | bash -s
+curl -s https://raw.githubusercontent.com/shkm/dotfiles/master/.setup/init_arch.sh | sh
 ```
-
-## Additional thoughts
-
-- Consider writing a snippet to pull these down for the first time, as described in the article above.
-- An init script can still be useful, particularly for default OS settings. Perhaps that's something for another repo, though?
-
