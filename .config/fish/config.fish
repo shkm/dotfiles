@@ -1,6 +1,9 @@
 # Bundles
 source $HOME/.config/fish/bundles/init.fish
 
+# Mappings
+source $HOME/.config/fish/mappings/fzf.fish
+
 # Exports
 if test -d $HOME/go
   set -x GOPATH $HOME/go
@@ -48,5 +51,3 @@ fish_hybrid_key_bindings
 
 # No default vi-mode mode indicator
 function fish_mode_prompt; end
-
-source $HOME/.config/fish/conf.d/theme.fish

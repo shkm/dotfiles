@@ -1,5 +1,5 @@
 fundle plugin 'shkm/vssh'
-fundle plugin 'fisherman/fzf'
+fundle plugin 'shkm/fish-vimple'
 
 [ (uname) = Darwin ]; and source $HOME/.config/fish/bundles/macos.fish
 
