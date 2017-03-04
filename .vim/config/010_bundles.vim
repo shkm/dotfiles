@@ -72,6 +72,7 @@ Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }                                  
 " Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 " Plug 'rhysd/vim-crystal'                                                                " Crystal syntax
 Plug 'dag/vim-fish'                                                                     " Fish syntax
+Plug 'posva/vim-vue', { 'for': 'vue' }
 
 Plug 'w0ng/vim-hybrid'                                                                  " Hybrid colour scheme
 
