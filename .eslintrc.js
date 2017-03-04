@@ -2,16 +2,18 @@ module.exports = {
     "env": {
         "browser": true,
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
+    "plugins": ["vue"],
     "parserOptions": {
         "sourceType": "module"
     },
     "rules": {
         "indent": [
             "error",
-            4
+            2
         ],
         "linebreak-style": [
             "error",
