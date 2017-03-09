@@ -6,3 +6,5 @@ endfunction
 
 let g:test#custom_transformations = {'vagrant': function('VagrantTransform')}
 let g:test#transformation = 'vagrant'
+let test#ruby#cucumber#executable = 'xvfb-run cucumber'
+let test#strategy = 'neovim'
