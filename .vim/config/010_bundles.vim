@@ -13,7 +13,6 @@ function! BuildComposer(info)
   endif
 endfunction
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }                      " Fuzzy finding
 Plug 'junegunn/fzf.vim'                                                                 " FZF vim enhancements
 
 Plug 'w0rp/ale'                                                                         " Build / linting
