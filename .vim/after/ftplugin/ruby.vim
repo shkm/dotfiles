@@ -6,6 +6,9 @@ let loaded_matchparen = 1
 " We want conceals to work in ruby.
 setlocal conceallevel=2
 
+" Better indentation style
+let g:ruby_indent_block_style = 'do'
+
 " ri lookup of local gems
 " Depends on the vri executable and AnsiEsc
 function! RubyRiLookup(term)
