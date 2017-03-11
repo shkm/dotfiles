@@ -67,6 +67,7 @@ Plug 'kchmck/vim-coffee-script'                                                 
 " Plug 'elzr/vim-json', { 'for': 'json' }                                                 " JSON syntax
 Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }                                          " YAML syntax
 " Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }                                    " YAML helper functions
+Plug 'pangloss/vim-javascript'                                                            " Better JavaScript syntax
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }                                         " ES6 JavaScript syntax
 " Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 " Plug 'rhysd/vim-crystal'                                                                " Crystal syntax
