@@ -1,5 +1,8 @@
-" TODO: check location, set rtp
-set rtp+=/usr/local/opt/fzf
+if isdirectory(expand("~/.fzf"))
+  set rtp+=~/.fzf
+elseif isdirectory("/usr/local/opt/fzf")
+  set rtp+=/usr/local/opt/fzf
+endif
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 
