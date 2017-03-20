@@ -1,8 +1,8 @@
 function l --wraps exa
   if command --search exa
-    exa --long --git
+    exa --long --git $argv
   else
-    ls -lsa
+    ls -lsa $argv
   end
 end
 
