@@ -30,6 +30,7 @@
   cob = checkout -b
   cp = cherry-pick
   d = diff
+  dc = diff --cached
   dh = diff HEAD
   d1 = diff HEAD^
   d2 = diff HEAD^^
@@ -44,6 +45,7 @@
   mt = mergetool
   pf = push --force-with-lease
   s = status -sbu
+  sh = show
   r = rebase
   rc = rebase --continue
   ra = rebase --abort
