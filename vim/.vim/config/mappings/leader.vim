@@ -47,6 +47,7 @@ nnoremap <Leader>gS :Magit<CR>
 nnoremap <Leader>sf :TestFile<CR>
 nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>sl :TestLast<CR>
+nnoremap <Leader>sv :TestVisit<CR>
 
 " t Tags
 nnoremap <Leader>tf :Tags<CR>
