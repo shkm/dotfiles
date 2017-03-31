@@ -26,6 +26,10 @@ if test -d $HOME/.cargo/bin
   set -gx PATH $HOME/.cargo/bin $PATH
 end
 
+if not set -q XDG_CONFIG
+  set -gx XDG_CONFIG $HOME/.config
+end
+
 
 # Locale
 set -x LC_ALL "en_GB.UTF-8"
