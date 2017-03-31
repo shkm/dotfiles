@@ -1,6 +1,6 @@
 function nvim --wraps nvim
   if set -q VIM
-    echo 'VIMCEPTION'
+    command nvr $argv
   else
     command nvim $argv
   end

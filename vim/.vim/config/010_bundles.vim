@@ -39,6 +39,7 @@ Plug 'janko-m/vim-test'                                                         
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
 Plug 'ajh17/VimCompletesMe'                                                             " Sleek autocompletion
 Plug 'zenbro/mirror.vim'                                                                " Easily edit projects over ssh
+Plug 'mhinz/neovim-remote'                                                              " Remote-control neovim
 
 Plug 'tpope/vim-fugitive'                                                               " Git
 " Plug 'rhysd/committia.vim'                                                              " Show difs in fugitive commit
