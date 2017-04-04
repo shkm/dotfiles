@@ -11,7 +11,7 @@ autocmd FileType fzf tnoremap <nowait><buffer> <esc> <c-g>
 
 command! -complete=dir Directories call fzf#run({
       \'source': 'find . -type d -not -path "." -not -path ".git/*"',
-      \'sink': 'e',
+      \'sink': 'Dirvish',
       \'down': '50%'
       \})
 
