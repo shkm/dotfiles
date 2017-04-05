@@ -10,9 +10,7 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 autocmd FileType fzf tnoremap <nowait><buffer> <esc> <c-g>
 
 command! -complete=dir Directories call fzf#run({
-      \'source': 'find . -type d -not -path "." -not -path ".git/*"',
+      \'source': 'find . -type d ! -path "." ! -path "./.git" ! -path "./.git/*" ! -path "./tmp" ! -path "./tmp/*"',
       \'sink': 'Dirvish',
       \'down': '50%'
       \})
-
-
