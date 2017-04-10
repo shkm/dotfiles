@@ -43,7 +43,7 @@ Plug 'jeetsukumaran/vim-indentwise'                                             
 
 Plug 'tpope/vim-fugitive'                                                               " Git
 Plug 'junegunn/gv.vim'                                                                  " Git commit browser
-Plug 'airblade/vim-gitgutter'                                                           " Show git changes in column
+Plug 'mhinz/vim-signify'                                                                " Show VCS changes in column
 Plug 'int3/vim-extradite'                                                               " Browse git commits for the current file
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }                                             " Ruby syntax

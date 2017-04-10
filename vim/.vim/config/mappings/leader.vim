@@ -37,14 +37,6 @@ nnoremap <Leader>gl :Gitv<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gS :Magit<CR>
 
-  " gh Hunks
-  nnoremap <Leader>ghn :GitGutterNextHunk<CR>
-  nnoremap <Leader>ghp :GitGutterPrevHunk<CR>
-  nnoremap <Leader>ghP :GitGutterPreviewHunk<CR>
-  nnoremap <Leader>ghr :GitGutterRevertHunk<CR>
-  nnoremap <Leader>ghs :GitGutterStageHunk<CR>
-  nnoremap <Leader>ghu :GitGutterUndoHunk<CR>
-
 " s Specs
 nnoremap <Leader>sf :TestFile<CR>
 nnoremap <Leader>ss :TestNearest<CR>
