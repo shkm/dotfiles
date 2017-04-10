@@ -18,11 +18,10 @@ Plug 'junegunn/fzf.vim'                                                         
 Plug 'w0rp/ale'                                                                         " Build / linting
 Plug 'sbdchd/neoformat'                                                                 " Format code with external formaters
 Plug 'tpope/vim-commentary'                                                             " Comments
-" Plug 'gabesoft/vim-ags'                                                                 " Global AG with replace
 Plug 'mhinz/vim-grepper'                                                                " Search for stuff
-Plug 'justinmk/vim-dirvish'                                                             " Enhanced netrw
+Plug 'justinmk/vim-dirvish'                                                             " Directory browser
 Plug 'tpope/vim-rsi'                                                                    " More readline-style mappings
-" Plug 'junegunn/vim-peekaboo'                                                            " Show registers
+Plug 'junegunn/vim-peekaboo'                                                            " Show registers
 Plug 'tpope/vim-surround'                                                               " Surround stuff
 Plug 'wellle/targets.vim'                                                               " Various text objects
 Plug 'tpope/vim-endwise'                                                                " Auto do...end
@@ -30,21 +29,20 @@ Plug 'tpope/vim-repeat'                                                         
 Plug 'tpope/vim-eunuch'                                                                 " Sugar for UNIX commands
 Plug 'tpope/vim-unimpaired'                                                             " Various 'pair' mappings
 Plug 'tpope/vim-abolish'                                                                " Improved search/replace
-Plug 'pgdouyon/vim-evanesco'                                                            " Better slash search
+Plug 'junegunn/vim-slash'                                                               " Better slash search
 Plug 'matchit.zip'                                                                      " Better pair matching (e.g. do...end)
 Plug 'AndrewRadev/splitjoin.vim'                                                        " Split and join various statements
-" Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
+Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
 Plug 'christoomey/vim-tmux-navigator'                                                   " Easier tmux/vim pane navigation (also see https://github.com/christoomey/vim-tmux-navigator/issues/61#issuecomment-87284887)
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
 Plug 'ajh17/VimCompletesMe'                                                             " Sleek autocompletion
 Plug 'zenbro/mirror.vim'                                                                " Easily edit projects over ssh
 Plug 'mhinz/neovim-remote'                                                              " Remote-control neovim
+Plug 'jeetsukumaran/vim-indentwise'                                                     " Indent-level movement - [- / ]+ / ]=
 
 Plug 'tpope/vim-fugitive'                                                               " Git
-" Plug 'rhysd/committia.vim'                                                              " Show difs in fugitive commit
-" Plug 'gregsexton/gitv'                                                                  " Gitk for vim
-" Plug 'jreybert/vimagit'                                                                 " Git stage/commit
+Plug 'junegunn/gv.vim'                                                                  " Git commit browser
 Plug 'airblade/vim-gitgutter'                                                           " Show git changes in column
 Plug 'int3/vim-extradite'                                                               " Browse git commits for the current file
 
@@ -70,19 +68,18 @@ Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }                                  
 " Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }                                    " YAML helper functions
 Plug 'pangloss/vim-javascript'                                                            " Better JavaScript syntax
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }                                         " ES6 JavaScript syntax
-" Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
-" Plug 'rhysd/vim-crystal'                                                                " Crystal syntax
+Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 Plug 'dag/vim-fish'                                                                     " Fish syntax
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 Plug 'w0ng/vim-hybrid'                                                                  " Hybrid colour scheme
 
 Plug 'schickling/vim-bufonly'                                                           " Kill other buffers
-" Plug 'junegunn/vim-easy-align'                                                          " Alignment
+Plug 'junegunn/vim-easy-align'                                                          " Alignment
 Plug 'Konfekt/FastFold'                                                                 " Faster folding
 Plug 'Keithbsmiley/investigate.vim'                                                     " Documentation lookup
 " Plug 'dhruvasagar/vim-table-mode'                                                       " Table mode for constructing ascii tables
-" Plug 'metakirby5/codi.vim'                                                              " Repl
+Plug 'metakirby5/codi.vim'                                                              " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'                                                      " colorize ANSI escape sequences
 
 Plug 'Shougo/neosnippet.vim'
