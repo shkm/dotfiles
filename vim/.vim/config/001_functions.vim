@@ -6,3 +6,7 @@ function! RangerExplorer()
   endif
   redraw!
 endfun
+
+function! DirvishRename(new_name)
+  execute '!mv ' . getline('.') . ' %'  . a:new_name
+endfunction
