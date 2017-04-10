@@ -1,8 +1,9 @@
 let mapleader = " "
 
-nnoremap <leader><TAB> <C-^>
-nnoremap <Leader>/ :Grepper -tool ag -grepprg ag -Q<CR>
+nnoremap <Leader><TAB> <C-^>
+nnoremap <Leader>/ :Grepper -tool rg<CR>
 nnoremap <Leader>? :Ag<CR>
+
 
 " ; Settings
 nnoremap <Leader>;sb :set scrollbind<CR>

@@ -16,7 +16,11 @@ imap <expr><C-l> "\<Plug>(neosnippet_expand_or_jump)"
 
 " Easy-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-" vmap <Enter> <Plug>(EasyAlign)
+vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Search with grepper in visual/normal mode
+nmap gs <plug>(GrepperOperator)
+vmap gs <plug>(GrepperOperator)
