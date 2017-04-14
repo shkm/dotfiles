@@ -26,6 +26,10 @@ if test -d $HOME/.cargo/bin
   set -gx PATH $HOME/.cargo/bin $PATH
 end
 
+if test -d $HOME/.fzf/bin
+  set -gx PATH $HOME/.fzf/bin $PATH
+end
+
 if not set -q XDG_CONFIG
   set -gx XDG_CONFIG $HOME/.config
 end
