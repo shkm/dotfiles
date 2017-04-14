@@ -9,9 +9,6 @@ setlocal conceallevel=2
 " Better indentation style
 let g:ruby_indent_block_style = 'do'
 
-" Make ruby faster still
-let ruby_no_expensive = 1
-
 " ri lookup of local gems
 " Depends on the vri executable and AnsiEsc
 function! RubyRiLookup(term)
