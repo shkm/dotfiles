@@ -1,6 +1,6 @@
 " Colors
 " set t_Co=256
-colorscheme hybrid
+colorscheme one
 set background=dark
 set t_ut= " Disable BCE for BG colour in tmux
 
@@ -49,8 +49,9 @@ set statusline +=%Y\                                  " FileType
 set statusline +=%p\                                  " Position
 
 " Hybrid colours
-highlight StatusLine gui=NONE guifg=white guibg=#27292D
-highlight StatusLineNC gui=NONE guifg=#27292D guibg=s:gui_background
+highlight StatusLine gui=NONE guifg=white guibg=s:gui_background
+highlight StatusLineNC gui=NONE guifg=grey guibg=s:gui_background
+"s:gui_background
 
 " Hybrid for neovim terminal
 let g:terminal_color_0  = '#2d3c46'
