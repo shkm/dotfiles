@@ -1,9 +1,12 @@
+# Temp fix for https://github.com/fish-shell/fish-shell/issues/3876
+# Change when upgrading to fish 2.6+
+set -q XTERM_VERSION; or set -gx XTERM_VERSION 0
+
 # Bundles
 source $HOME/.config/fish/bundles/init.fish
 
 # Mappings
 source $HOME/.config/fish/mappings/fzf.fish
-
 # Exports
 if test -d $HOME/go
   set -x GOPATH $HOME/go
