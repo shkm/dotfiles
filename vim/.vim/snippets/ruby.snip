@@ -21,9 +21,15 @@ abbr ActiveSupport::Concern
   end
 
 snippet alias
-abbr alias:
+abbr alias
   alias ${1:alias_name} ${2:method_name}${0}
 
 snippet add_column
 abbr add_column
   add_column :${1:table_name}, :${2:column_name}, :${3:type}
+
+snippet scope
+abbr scope
+  scope :${1:scope_name}, -> { ${0} }
+
+scope :ordered, -> { order('name ASC, email ASC') }
