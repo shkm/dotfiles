@@ -72,8 +72,7 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                       
 Plug 'dag/vim-fish'                                                                     " Fish syntax
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
-Plug 'w0ng/vim-hybrid'                                                                  " Hybrid colour scheme
-Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
 
 Plug 'schickling/vim-bufonly'                                                           " Kill other buffers
 Plug 'junegunn/vim-easy-align'                                                          " Alignment

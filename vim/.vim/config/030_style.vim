@@ -1,6 +1,7 @@
 " Colors
 " set t_Co=256
-colorscheme one
+colorscheme ayu
+let ayucolor="dark"
 set background=dark
 set t_ut= " Disable BCE for BG colour in tmux
 
