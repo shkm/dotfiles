@@ -12,6 +12,8 @@
 [difftool]
   tool = vimdiff
   prompt = false
+[commit]
+  gpgSign = true
 [alias]
   a  = add
   aa = add -A
@@ -44,8 +46,10 @@
   ls = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   mt = mergetool
   pf = push --force-with-lease
+  prune = fetch --prune
   s = status -sbu
   sh = show
+  stash-all = stash save --include-untracked
   r = rebase
   rc = rebase --continue
   ra = rebase --abort
@@ -76,6 +80,7 @@
 [merge]
   tool = vimdiff
   conflictstyle = diff3
+  ff = only
 [mergetool]
   keepBackup = false
   prompt = false
