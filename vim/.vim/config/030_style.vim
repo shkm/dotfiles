@@ -11,10 +11,6 @@ set t_ut= " Disable BCE for BG colour in tmux
 "   autocmd! WinLeave * hi SignColor guibg=#333333 ctermbg=235
 " augroup END
 
-" Relative line numbers
-" Unfortunately this slows vim down to a crawl.
-" Regular or no numbering does not.
-" set relativenumber
 set nonumber
 
 " Whitespace characters
@@ -48,27 +44,3 @@ set statusline +=%=                                   " Right align
 " set statusline +=%{fugitive#head()}\                " Fugitive
 set statusline +=%Y\                                  " FileType
 set statusline +=%p\                                  " Position
-
-" Hybrid colours
-highlight StatusLine gui=NONE guifg=white guibg=s:gui_background
-highlight StatusLineNC gui=NONE guifg=grey guibg=s:gui_background
-"s:gui_background
-
-" Hybrid for neovim terminal
-let g:terminal_color_0  = '#2d3c46'
-let g:terminal_color_1  = '#a54242'
-let g:terminal_color_2  = '#8c9440'
-let g:terminal_color_3  = '#de935f'
-let g:terminal_color_4  = '#5f819d'
-let g:terminal_color_5  = '#85678f'
-let g:terminal_color_6  = '#5e8d87'
-let g:terminal_color_7  = '#6c7a80'
-let g:terminal_color_8  = '#425059'
-let g:terminal_color_9  = '#cc6666'
-let g:terminal_color_10 = '#b5bd68'
-let g:terminal_color_11 = '#f0c674'
-let g:terminal_color_12 = '#81a2be'
-let g:terminal_color_13 = '#b294bb'
-let g:terminal_color_14 = '#8abeb7'
-let g:terminal_color_15 = '#c5c8c6'
-
