@@ -23,6 +23,7 @@ nnoremap <Leader>fA :A<CR>
 nnoremap <Leader>ff :Files<CR>
 nnoremap <leader>fd :Directories<CR>
   " fe Find file in set place
+  nnoremap <Leader>fed :HFiles $HOME/dotfiles<CR>
   nnoremap <Leader>fev :Files $HOME/.vim/config<CR>
   nnoremap <Leader>fez :Files $HOME/.zsh<CR>
   nnoremap <Leader>fef :Files $HOME/.config/fish<CR>

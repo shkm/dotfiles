@@ -14,3 +14,9 @@ command! -complete=dir Directories call fzf#run({
       \'sink': 'Dirvish',
       \'down': '50%'
       \})
+
+command! -nargs=1 -complete=dir HFiles call fzf#run(
+      \fzf#wrap({
+      \'source': 'rg --files --follow --hidden --glob "!.git/*" <q-args>'
+      \})
+      \)
