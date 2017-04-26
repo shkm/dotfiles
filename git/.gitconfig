@@ -13,7 +13,7 @@
   tool = vimdiff
   prompt = false
 [commit]
-  gpgSign = true
+  # gpgSign = true
 [alias]
   a  = add
   aa = add -A
