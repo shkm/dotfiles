@@ -70,3 +70,6 @@ fish_hybrid_key_bindings
 
 # No default vi-mode mode indicator
 function fish_mode_prompt; end
+
+# Docker
+eval (docker-machine env) ^ /dev/null
