@@ -7,7 +7,16 @@ source $HOME/.config/fish/bundles/init.fish
 
 # Mappings
 source $HOME/.config/fish/mappings/fzf.fish
+
 # Exports
+if test -d $HOME/bin
+  set -gx PATH $HOME/bin $PATH 
+end
+
+if test -d $HOME/scripts
+  set -gx PATH $HOME/scripts $PATH
+end
+
 if test -d $HOME/go
   set -x GOPATH $HOME/go
   set -gx PATH $GOPATH/bin $PATH
@@ -15,14 +24,6 @@ end
 
 if test -d $HOME/.linuxbrew
   set -gx PATH $HOME/.linuxbrew $PATH
-end
-
-if test -d $HOME/bin
-  set -gx PATH $HOME/bin $PATH 
-end
-
-if test -d $HOME/.gem/ruby/2.4.0
-  set -gx PATH $HOME/.gem/ruby/2.4.0/bin $PATH
 end
 
 if test -d $HOME/.cargo/bin
