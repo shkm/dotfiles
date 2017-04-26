@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Opens the current git repository in the browser.
+
+if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
+  url=$(git config remote.origin.url | sed -E "s~[^@]*@(.*):(.*)*\..*~https://\1/\2~")
+  open $url
+else
+  echo "Not in a git repository."
+fi
