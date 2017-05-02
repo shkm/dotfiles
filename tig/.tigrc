@@ -1,6 +1,11 @@
 set line-graphics = utf-8
 set tab-size = 2
 
+set main-view = line-number:no date:relative-compact id:yes author:abbreviated commit-title:yes,graph:v2,refs,overflow=no
+
+
+bind generic	;	prompt			# Open the prompt
+
 color "---"			blue	default
 color "diff --"			yellow	default
 color "--- "			yellow	default
