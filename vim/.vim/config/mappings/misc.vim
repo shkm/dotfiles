@@ -24,3 +24,9 @@ nmap ga <Plug>(EasyAlign)
 " Search with grepper in visual/normal mode
 nmap gs <plug>(GrepperOperator)
 vmap gs <plug>(GrepperOperator)
+
+" Tmux / vim window navigation
+nnoremap <silent> <c-h> :call TmuxPane('h')<CR>
+nnoremap <silent> <c-j> :call TmuxPane('j')<CR>
+nnoremap <silent> <c-k> :call TmuxPane('k')<CR>
+nnoremap <silent> <c-l> :call TmuxPane('l')<CR>

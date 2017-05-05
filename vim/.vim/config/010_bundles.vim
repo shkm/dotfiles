@@ -33,7 +33,6 @@ Plug 'junegunn/vim-slash'                                                       
 Plug 'matchit.zip'                                                                      " Better pair matching (e.g. do...end)
 Plug 'AndrewRadev/splitjoin.vim'                                                        " Split and join various statements
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
-Plug 'christoomey/vim-tmux-navigator'                                                   " Easier tmux/vim pane navigation (also see https://github.com/christoomey/vim-tmux-navigator/issues/61#issuecomment-87284887)
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
 Plug 'ajh17/VimCompletesMe'                                                             " Sleek autocompletion
