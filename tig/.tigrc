@@ -6,6 +6,8 @@ set main-view = line-number:no date:relative-compact id:yes author:abbreviated c
 
 bind generic	;	prompt			# Open the prompt
 
+bind main YC !@sh -c "echo %(commit) | pbcopy"  # Copy hash
+
 color "---"			blue	default
 color "diff --"			yellow	default
 color "--- "			yellow	default
