@@ -50,9 +50,6 @@ set -x SMTPSERVER "smtp.gmail.com"
 # Preferences
 set -x EDITOR "nvim"
 
-# GPG agent
-set -x GPG_TTY (tty)
-
 # Misc
 # LESS colouring
 set -x LESS_TERMCAP_mb (printf "\033[01;31m")
