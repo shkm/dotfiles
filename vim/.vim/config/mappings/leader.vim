@@ -48,5 +48,8 @@ nnoremap <Leader>sv :TestVisit<CR>
 nnoremap <Leader>tf :Tags<CR>
 nnoremap <Leader>tb :BTags<CR>
 
+" l Lint
+nnoremap <Leader>ld :ALEDetail<CR>
+
 " m Major: these should be filetype specific, so
 " add them to ftplugin files.
