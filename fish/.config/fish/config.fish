@@ -69,5 +69,6 @@ fish_hybrid_key_bindings
 # No default vi-mode mode indicator
 function fish_mode_prompt; end
 
-# rbenv
-status --is-interactive; and source (rbenv init -|psub)
+# rvm.
+# This really slows startup time, so I should look into this later.
+rvm default
