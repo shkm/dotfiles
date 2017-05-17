@@ -9,10 +9,9 @@ setlocal conceallevel=2
 " Better indentation style
 let g:ruby_indent_block_style = 'do'
 
-" ri lookup of local gems
-" Depends on the vri executable and AnsiEsc
+" Better ri lookup
 function! RubyRiLookup(term)
-  let output = system('vri --no-pager -f ansi ' . a:term)
+  let output = system('ri --no-pager -f ansi ' . a:term)
   new | put =output
   nnoremap <buffer> q :bd<CR>
 
