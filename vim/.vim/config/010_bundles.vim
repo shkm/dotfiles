@@ -19,6 +19,7 @@ Plug 'w0rp/ale'                                                                 
 Plug 'sbdchd/neoformat'                                                                 " Format code with external formaters
 Plug 'tpope/vim-commentary'                                                             " Comments
 Plug 'mhinz/vim-grepper'                                                                " Search for stuff
+Plug 'gabesoft/vim-ags'                                                                 " Useful for interactive project find/replace
 Plug 'justinmk/vim-dirvish'                                                             " Directory browser
 Plug 'tpope/vim-rsi'                                                                    " More readline-style mappings
 Plug 'junegunn/vim-peekaboo'                                                            " Show registers
