@@ -1,9 +1,14 @@
-# vim: foldmethod=marker:
-
-# --- Aliases {{{
 alias tm="tmux"
-alias tma="tmux attach -t "
-alias tmk="tmux kill-session -t "
-alias tmn="tmux new -s "
 alias tmks="tmux kill-server"
-# }}}
+
+function tmn() {
+  tmux new -s "$*"
+}
+
+function tma() {
+  tmux attach-session -t "$*"
+}
+
+function tmks() {
+  tmux kill-session -t "$*"
+}

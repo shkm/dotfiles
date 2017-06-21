@@ -14,7 +14,8 @@ alias ssh_key="cat ~/.ssh/id_rsa.pub | pbcopy; echo 'Copied SSH key to clipboard
 alias ducks="du -cksh * | gsort -hr"
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias myip='curl ifconfig.co'
-
+alias mux='tmuxinator'
+alias docker-eval='eval "$(docker-machine env)"'
 
 # 'latest' will refer to the last modified file.
 #

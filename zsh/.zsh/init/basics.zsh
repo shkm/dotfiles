@@ -14,3 +14,5 @@ compinit
 
 # Matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'

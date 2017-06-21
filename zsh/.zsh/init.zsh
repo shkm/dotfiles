@@ -5,6 +5,7 @@ source $HOME/.zsh/init/basics.zsh
 if [[ `uname` = 'Darwin' ]]; then source $HOME/.zsh/os/osx.zsh; fi
 if [[ `uname` =  'Linux' ]]; then source $HOME/.zsh/os/linux.zsh; fi
 
+source $HOME/.zsh/software/rvm.zsh
 source $HOME/.zsh/language/ruby.zsh
 
 source $HOME/.zsh/software/iterm2.zsh
@@ -12,7 +13,6 @@ source $HOME/.zsh/software/tmux.zsh
 source $HOME/.zsh/software/emacs.zsh
 source $HOME/.zsh/software/vim.zsh
 source $HOME/.zsh/software/git.zsh
-source $HOME/.zsh/software/homebrew.zsh
 source $HOME/.zsh/software/vagrant.zsh
 source $HOME/.zsh/software/fzf.zsh
 source $HOME/.zsh/software/mpc.zsh

@@ -8,7 +8,7 @@ filetype plugin indent on
 set hidden
 
 " Set shell
-set shell=fish
+set shell=zsh
 
 " Syntax highlighting
 syntax on

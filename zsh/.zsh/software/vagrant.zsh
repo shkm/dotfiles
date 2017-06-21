@@ -1,5 +1,3 @@
-# vim: foldmethod=marker:
-
 # Functions {{{
 # Execute vagrant sub-commands as normal.
 # Any other commands are passed onto the box with `vssh`.
@@ -28,7 +26,4 @@ vhall() {
   VBoxManage list runningvms | sed -r "s/.*\{(.*)\}/\1/" | xargs -L1 -I {} VBoxManage controlvm {} poweroff
 }
 
-# Alias some stuff to have it run under vssh
-alias bundle='vssh bundle'
-alias rake='vssh rake'
 # }}}

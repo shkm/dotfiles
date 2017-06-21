@@ -1,6 +1,3 @@
-# vim: foldmethod=marker:
-
-# --- Functions {{{
 # Search and play.
 # `mpc_search_play type query`
 mpc_search_play() {
@@ -15,12 +12,8 @@ mpc_search_play() {
     mpc play
   fi
 }
-# }}}
 
-# --- Aliases {{{
 alias mas="mpc search albumartist"
 alias ma="mpc_search_play albumartist"
 alias mr="mpc search album"
 alias mrs="mpc_search_play album"
-# }}}
-
