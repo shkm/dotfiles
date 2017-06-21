@@ -71,3 +71,6 @@ Thumbs.db
 
 # Gems
 .gems
+
+# VSCode
+tasks.json
