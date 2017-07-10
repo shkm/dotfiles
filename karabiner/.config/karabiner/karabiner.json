@@ -1,22 +1,18 @@
 {
     "global": {
         "check_for_updates_on_startup": true,
-        "show_in_menu_bar": false,
+        "show_in_menu_bar": true,
         "show_profile_name_in_menu_bar": false
     },
     "profiles": [
         {
-            "devices": [
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 32,
-                        "vendor_id": 9494
-                    },
-                    "ignore": true
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
                 },
+                "rules": []
+            },
+            "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "identifiers": {
@@ -36,6 +32,26 @@
                         "vendor_id": 1452
                     },
                     "ignore": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 65535,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 32,
+                        "vendor_id": 9494
+                    },
+                    "ignore": true
                 }
             ],
             "fn_function_keys": {
@@ -52,13 +68,12 @@
                 "f8": "play_or_pause",
                 "f9": "fastforward"
             },
-            "name": "New profile",
+            "name": "Default profile",
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "escape",
                 "fn": "left_control",
-                "non_us_backslash": "grave_accent_and_tilde",
-                "right_option": "fn"
+                "non_us_backslash": "grave_accent_and_tilde"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
