@@ -38,30 +38,12 @@ local function pushWindowRight()
   grid.set(window.focusedWindow(), '1,0 1x1')
 end
 
-local function pushWindowScreenLeft()
-  grid.pushWindowPrevScreen()
-  pushWindowLeft()
-end
-
-local function pushWindowScreenRight()
-  grid.pushWindowNextScreen()
-  pushWindowRight()
-end
-
 hotkey.bind({"ctrl", "shift"}, "H", pushWindowLeft)
 hotkey.bind({"ctrl", "shift"}, "L", pushWindowRight)
 hotkey.bind({"ctrl", "shift"}, "K", grid.maximizeWindow)
-hotkey.bind({"ctrl", "shift", "cmd"}, "H", pushWindowScreenLeft)
-hotkey.bind({"ctrl", "shift", "cmd"}, "H", pushWindowScreenRight)
+hotkey.bind({"ctrl", "shift", "alt"}, "H", grid.pushWindowNextScreen)
+hotkey.bind({"ctrl", "shift", "alt"}, "L", grid.pushWindowPrevScreen)
 
 -- Weather
 local weather = require "hs-weather"
 weather.start()
-
--- Remapping
-local remap = require 'foundation_remapping'
-local remapper = remap.new()
-
-remapper
-  :remap('§', '`') -- Stupid int'l grave sign
-  :register()
