@@ -36,7 +36,11 @@ Plug 'AndrewRadev/splitjoin.vim'                                                
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
-Plug 'ajh17/VimCompletesMe'                                                             " Sleek autocompletion
+
+Plug 'Shougo/deoplete.nvim'                                                             " Autocompletion
+Plug 'Shougo/deoplete-rct'                                                              " Deoplete ruby
+Plug 'Shougo/echodoc.vim'                                                               " Echo documentation
+
 Plug 'zenbro/mirror.vim'                                                                " Easily edit projects over ssh
 Plug 'mhinz/neovim-remote'                                                              " Remote-control neovim
 Plug 'jeetsukumaran/vim-indentwise'                                                     " Indent-level movement - [- / ]+ / ]=
@@ -50,22 +54,22 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }                                     
 Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }                                        " RSpec syntax
 Plug 'tpope/vim-rails', { 'for': 'ruby' }                                               " Rails-specific enhancements
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " Ruby block textobj
+Plug 'tpope/vim-bundler'                                                                " Bundler enhancements
 
 Plug 'elixir-lang/vim-elixir'                                                           " Elixir syntax
-" Plug 'slashmili/alchemist.vim'                                                          " Elixir enhancements
+Plug 'slashmili/alchemist.vim'                                                          " Elixir enhancements
 
-" Plug 'mattn/emmet-vim'                                                                  " Quick html/css editing
-" Plug 'StanAngeloff/php.vim', { 'for': 'php' }                                           " PHP syntax
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }                                   " Markdown enhancements
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }                                           " PHP syntax
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }                                   " Markdown enhancements
 Plug 'tpope/vim-haml', { 'for': 'haml' }                                                " HAML/Sass/Scss syntax
-" Plug 'indenthtml.vim', { 'for': 'html' }                                                " Better HTML/CSS indentation
+Plug 'indenthtml.vim', { 'for': 'html' }                                                " Better HTML/CSS indentation
 Plug 'kchmck/vim-coffee-script'                                                         " Coffeescript syntax
-" Plug 'chrisbra/csv.vim', { 'for': 'csv' }                                               " CSV enhancements
-" Plug 'irgeek/vim-puppet', { 'for': 'puppet' }                                           " Puppet syntax
-" Plug 'elzr/vim-json', { 'for': 'json' }                                                 " JSON syntax
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }                                               " CSV enhancements
+Plug 'irgeek/vim-puppet', { 'for': 'puppet' }                                           " Puppet syntax
+Plug 'elzr/vim-json', { 'for': 'json' }                                                 " JSON syntax
 Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }                                          " YAML syntax
-" Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }                                    " YAML helper functions
-Plug 'pangloss/vim-javascript'                                                            " Better JavaScript syntax
+Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }                                    " YAML helper functions
+Plug 'pangloss/vim-javascript'                                                          " Better JavaScript syntax
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }                                         " ES6 JavaScript syntax
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 Plug 'dag/vim-fish'                                                                     " Fish syntax

@@ -3,7 +3,6 @@
 colorscheme ayu
 let ayucolor="dark"
 set background=dark
-set t_ut= " Disable BCE for BG colour in tmux
 
 " Make the current split more obvious
 " augroup BgHighlight

@@ -1,6 +1,9 @@
 " Let's not be silly.
 set nocompatible
 
+" Don't show mode at bottom
+set noshowmode
+
 " Filetype detection
 filetype plugin indent on
 

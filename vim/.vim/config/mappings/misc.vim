@@ -16,7 +16,7 @@ imap <expr><C-l> "\<Plug>(neosnippet_expand_or_jump)"
 
 " Easy-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
+map g= <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
