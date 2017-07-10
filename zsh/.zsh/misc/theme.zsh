@@ -1,12 +1,12 @@
 function __git_dirty() {
   # changes
   if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
-    echo ' 🌟 '
+    echo '*'
     return
   fi
   # untracked files
   if [[ $(git status --porcelain 2>/dev/null | grep "^??") != "" ]]; then
-    echo ' ✨'
+    echo '⁂'
     return
   fi
 }

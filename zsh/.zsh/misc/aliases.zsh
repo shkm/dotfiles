@@ -3,7 +3,7 @@
 alias c="clear"
 alias pcp="rsync --progress -ah"
 alias tailf="less +F -R"
-alias ll="ls -lsah"
+alias ll="exa -lga"
 alias lsd="ls -lsah | lolcat"
 alias sha256="shasum -a 256"
 alias sha1="openssl sha1"
