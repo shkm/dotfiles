@@ -2,6 +2,7 @@ set line-graphics = utf-8
 set tab-size = 2
 
 set main-view = line-number:no date:relative-compact id:yes author:abbreviated commit-title:yes,graph:v2,refs,overflow=no
+set main-options = --all
 
 
 bind generic	;	prompt			# Open the prompt
