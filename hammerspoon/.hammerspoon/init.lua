@@ -17,17 +17,6 @@ hotkey.bind({"ctrl", "cmd"}, "F12", function()
   hs.reload()
 end)
 
--- ctrl+n / ctrl+p to arrow key equivalents (more compatible in some apps)
-hotkey.bind({"ctrl"}, "N", function()
-  eventtap.event.newKeyEvent({}, "down", true):post()
-  eventtap.event.newKeyEvent({}, "down", false):post()
-end)
-
-hotkey.bind({"ctrl"}, "P", function()
-  eventtap.event.newKeyEvent({}, "up", true):post()
-  eventtap.event.newKeyEvent({}, "up", false):post()
-end)
-
 -- Window movement
 
 local function pushWindowLeft()
