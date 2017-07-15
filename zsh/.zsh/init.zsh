@@ -1,4 +1,5 @@
 source $HOME/.zsh/init/exports.zsh
+source $HOME/.zsh/misc/mappings.zsh
 source $HOME/.zsh/init/antibody.zsh
 source $HOME/.zsh/init/basics.zsh
 source $HOME/.zsh/init/title.zsh
@@ -23,5 +24,4 @@ source $HOME/.zsh/misc/aliases.zsh
 source $HOME/.zsh/work/development.zsh
 source $HOME/.zsh/work/deployment.zsh
 
-source $HOME/.zsh/misc/mappings.zsh
 source $HOME/.zsh/misc/theme.zsh
