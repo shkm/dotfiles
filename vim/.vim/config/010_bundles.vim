@@ -37,9 +37,12 @@ Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                               
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
 
-Plug 'Shougo/deoplete.nvim'                                                             " Autocompletion
-Plug 'Shougo/deoplete-rct'                                                              " Deoplete ruby
 Plug 'Shougo/echodoc.vim'                                                               " Echo documentation
+
+Plug 'roxma/nvim-completion-manager'                                                    " Completion
+Plug 'roxma/ncm-rct-complete'                                                           " Completion
+Plug 'Shougo/neco-vim'                                                                  " Vim completion
+
 
 Plug 'zenbro/mirror.vim'                                                                " Easily edit projects over ssh
 Plug 'mhinz/neovim-remote'                                                              " Remote-control neovim
