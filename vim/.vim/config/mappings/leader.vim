@@ -27,6 +27,8 @@ nnoremap <leader>fd :Directories<CR>
   nnoremap <Leader>fev :Files $HOME/.vim/config<CR>
   nnoremap <Leader>fez :Files $HOME/.zsh<CR>
   nnoremap <Leader>fef :Files $HOME/.config/fish<CR>
+  " fo Open file in set place
+  nnoremap <leader>fos :e /tmp/scratch<CR>
 
 " g Git
 nnoremap <Leader>gb :Gblame<CR>
