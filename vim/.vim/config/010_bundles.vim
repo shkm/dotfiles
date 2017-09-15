@@ -73,7 +73,6 @@ Plug 'elzr/vim-json', { 'for': 'json' }                                         
 Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }                                          " YAML syntax
 Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }                                    " YAML helper functions
 Plug 'pangloss/vim-javascript'                                                          " Better JavaScript syntax
-" Plug 'othree/yajs.vim', { 'for': 'javascript' }                                         " ES6 JavaScript syntax
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 Plug 'dag/vim-fish'                                                                     " Fish syntax
 Plug 'posva/vim-vue', { 'for': 'vue' }
