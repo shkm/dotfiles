@@ -71,6 +71,10 @@ set backspace=indent,eol,start
 " Always use unix as default file format
 set ffs=unix,dos,mac
 
+
+" Do not include newlines in selection
+set selection=exclusive
+
 " Disable comments carrying over to new lines
 autocmd FileType * setlocal formatoptions-=cro
 
@@ -83,8 +87,8 @@ set smartcase
 set noincsearch
 
 " Temporarily disable search highlighting when in insert mode.
-" autocmd InsertEnter * :setlocal nohlsearch
-" autocmd InsertLeave * :setlocal hlsearch
+autocmd InsertEnter * :setlocal nohlsearch
+autocmd InsertLeave * :setlocal hlsearch
 
 " Enable mouse for other users
 set mouse=a
