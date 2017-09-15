@@ -43,6 +43,7 @@ nnoremap <Leader>sf :TestFile<CR>
 nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>sl :TestLast<CR>
 nnoremap <Leader>sv :TestVisit<CR>
+nnoremap <Leader>sa :TestSuite<CR>
 
 " t Tags
 nnoremap <Leader>tf :Tags<CR>
