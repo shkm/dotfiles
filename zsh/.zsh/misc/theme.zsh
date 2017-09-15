@@ -42,7 +42,7 @@ function __git_branch() {
 
 PROMPT='\
 %{$fg[blue]%}%~%{$reset_color%}\
-$(__git_branch)$(__git_dirty)\
-%{$fg[cyan]%} › \
+$(__git_branch)$(__git_dirty)
+%{$fg[cyan]%}> \
 %{$reset_color%}\
 '
