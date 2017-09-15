@@ -82,7 +82,7 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'junegunn/vim-easy-align'                                                          " Alignment
 Plug 'Konfekt/FastFold'                                                                 " Faster folding
 Plug 'Keithbsmiley/investigate.vim'                                                     " Documentation lookup
-" Plug 'dhruvasagar/vim-table-mode'                                                       " Table mode for constructing ascii tables
+Plug 'dhruvasagar/vim-table-mode'                                                       " Table mode for constructing ascii tables
 Plug 'metakirby5/codi.vim'                                                              " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'                                                      " colorize ANSI escape sequences
 
