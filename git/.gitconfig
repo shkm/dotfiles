@@ -8,11 +8,6 @@
   commentChar = ~
 [color]
   ui = true
-[diff]
-  tool = vimdiff
-[difftool]
-  tool = vimdiff
-  prompt = false
 [commit]
   # gpgSign = true
 [alias]
@@ -81,23 +76,31 @@
   followTags = true
 [status]
   showUntrackedFiles = all
-[merge]
-  tool = vimdiff
-  conflictstyle = diff3
-  ; ff = only
-[mergetool]
-  keepBackup = false
-  prompt = false
 [pull]
   ff = only
-[mergetool "vimdiff"]
-  path = nvim
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
-[mergetool "fugitive"]
-  cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
-[mergetool "meld"]
-  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+; [mergetool "vimdiff"]
+;   path = nvim
+; [mergetool "sourcetree"]
+;   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+;   trustExitCode = true
+; [mergetool "fugitive"]
+;   cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
+; [mergetool "meld"]
+;   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [tig]
   diff-highlight = true
+[merge]
+  tool = meld
+[difftool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args \"$LOCAL\" \"$PWD/$REMOTE\"
+[difftool]
+  prompt = false
+[mergetool]
+  prompt = false
+[diff]
+  tool = meld
+[mergetool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+
