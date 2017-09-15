@@ -1,7 +1,7 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -31,7 +31,7 @@ Plug 'tpope/vim-eunuch'                                                         
 Plug 'tpope/vim-unimpaired'                                                             " Various 'pair' mappings
 Plug 'tpope/vim-abolish'                                                                " Improved search/replace
 Plug 'junegunn/vim-slash'                                                               " Better slash search
-Plug 'matchit.zip'                                                                      " Better pair matching (e.g. do...end)
+Plug 'vim-scripts/matchit.zip'                                                                      " Better pair matching (e.g. do...end)
 Plug 'AndrewRadev/splitjoin.vim'                                                        " Split and join various statements
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
@@ -65,7 +65,7 @@ Plug 'slashmili/alchemist.vim'                                                  
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }                                           " PHP syntax
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }                                   " Markdown enhancements
 Plug 'tpope/vim-haml', { 'for': 'haml' }                                                " HAML/Sass/Scss syntax
-Plug 'indenthtml.vim', { 'for': 'html' }                                                " Better HTML/CSS indentation
+Plug 'vim-scripts/indenthtml.vim', { 'for': 'html' }                                                " Better HTML/CSS indentation
 Plug 'kchmck/vim-coffee-script'                                                         " Coffeescript syntax
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }                                               " CSV enhancements
 Plug 'irgeek/vim-puppet', { 'for': 'puppet' }                                           " Puppet syntax
