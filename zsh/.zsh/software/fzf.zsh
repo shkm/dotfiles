@@ -6,7 +6,7 @@
 
 
 # --- Exports {{{
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 # export FZF_DEFAULT_OPTS='
 # --color fg:4,bg:0,hl:6,fg+:6,bg+:10,hl+:9
 # --color info:13,prompt:11,spinner:2,pointer:1,marker:7
