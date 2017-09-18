@@ -13,7 +13,8 @@ function! BuildComposer(info)
   endif
 endfunction
 
-Plug 'junegunn/fzf.vim'                                                                 " FZF vim enhancements
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 Plug 'w0rp/ale'                                                                         " Build / linting
 Plug 'sbdchd/neoformat'                                                                 " Format code with external formaters
