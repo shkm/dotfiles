@@ -4,7 +4,7 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = nvim
-  pager = diff-so-fancy | less --tabs=1,5 -R
+  pager = diff-so-fancy | less --tabs=1,5 -RFX
   commentChar = ~
 [color]
   ui = true
@@ -87,8 +87,6 @@
 ;   cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 ; [mergetool "meld"]
 ;   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-[tig]
-  diff-highlight = true
 [merge]
   tool = meld
 [difftool "meld"]
