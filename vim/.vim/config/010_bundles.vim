@@ -78,7 +78,7 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                       
 Plug 'dag/vim-fish'                                                                     " Fish syntax
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
-Plug 'ayu-theme/ayu-vim'
+Plug 'tyrannicaltoucan/vim-quantum'
 
 Plug 'junegunn/vim-easy-align'                                                          " Alignment
 Plug 'Konfekt/FastFold'                                                                 " Faster folding

@@ -1,8 +1,7 @@
 " Colors
 " set t_Co=256
-colorscheme ayu
-let ayucolor="dark"
 set background=dark
+colorscheme quantum
 
 " Make the current split more obvious
 " augroup BgHighlight
