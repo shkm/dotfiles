@@ -37,6 +37,7 @@ Plug 'AndrewRadev/splitjoin.vim'                                                
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
+Plug 'rhysd/clever-f.vim'
 
 Plug 'Shougo/echodoc.vim'                                                               " Echo documentation
 
