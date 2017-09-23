@@ -8,6 +8,7 @@ if [[ `uname` = 'Darwin' ]]; then source $HOME/.zsh/os/osx.zsh; fi
 if [[ `uname` =  'Linux' ]]; then source $HOME/.zsh/os/linux.zsh; fi
 
 source $HOME/.zsh/software/rvm.zsh
+source $HOME/.zsh/software/chruby.zsh
 source $HOME/.zsh/language/ruby.zsh
 
 source $HOME/.zsh/software/iterm2.zsh
