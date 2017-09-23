@@ -66,8 +66,9 @@ Plug 'slashmili/alchemist.vim'                                                  
 
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }                                           " PHP syntax
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }                                   " Markdown enhancements
+Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }                               " Live markdown preview
 Plug 'tpope/vim-haml', { 'for': 'haml' }                                                " HAML/Sass/Scss syntax
-Plug 'vim-scripts/indenthtml.vim', { 'for': 'html' }                                                " Better HTML/CSS indentation
+Plug 'vim-scripts/indenthtml.vim', { 'for': 'html' }                                    " Better HTML/CSS indentation
 Plug 'kchmck/vim-coffee-script'                                                         " Coffeescript syntax
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }                                               " CSV enhancements
 Plug 'irgeek/vim-puppet', { 'for': 'puppet' }                                           " Puppet syntax
@@ -77,6 +78,7 @@ Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' }                            
 Plug 'pangloss/vim-javascript'                                                          " Better JavaScript syntax
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }                                               " Tmux syntax
 Plug 'dag/vim-fish'                                                                     " Fish syntax
+Plug 'vim-scripts/txt.vim'                                                              " General-purpose highlighting
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 Plug 'tyrannicaltoucan/vim-quantum'
