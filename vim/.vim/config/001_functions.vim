@@ -31,3 +31,9 @@ function! TmuxPane(direction)
     call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
   end
 endfunction
+
+function! Strip()
+  let l:save = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:save)
+endfunction
