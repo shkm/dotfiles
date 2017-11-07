@@ -1,7 +1,7 @@
 let mapleader = " "
 
 nnoremap <Leader><TAB> <C-^>
-nnoremap <Leader>/ :Grepper -tool rg<CR>
+nnoremap <Leader>/ :Grepper<CR>
 nnoremap <Leader>? :Ag<CR>
 
 
