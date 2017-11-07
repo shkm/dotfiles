@@ -51,6 +51,7 @@ Plug 'mhinz/neovim-remote'                                                      
 Plug 'jeetsukumaran/vim-indentwise'                                                     " Indent-level movement - [- / ]+ / ]=
 
 Plug 'tpope/vim-fugitive'                                                               " Git
+Plug 'lambdalisue/gina.vim'                                                             " Git manager
 Plug 'junegunn/gv.vim'                                                                  " Git commit browser
 Plug 'mhinz/vim-signify'                                                                " Show VCS changes in column
 Plug 'int3/vim-extradite'                                                               " Browse git commits for the current file
