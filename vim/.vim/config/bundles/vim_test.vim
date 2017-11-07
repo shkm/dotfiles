@@ -6,6 +6,9 @@ function! VagrantTransform(cmd) abort
   endif
 endfunction
 
-let g:test#custom_transformations = {'vagrant': function('VagrantTransform')}
+let g:test#custom_transformations = {
+      \'vagrant': function('VagrantTransform'),
+      \}
 let g:test#transformation = 'vagrant'
 let test#strategy = 'neovim'
+let test#ruby#use_binstubs = 0
