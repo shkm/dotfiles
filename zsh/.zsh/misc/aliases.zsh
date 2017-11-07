@@ -19,6 +19,7 @@ alias docker-eval='eval "$(docker-machine env)"'
 alias gbd="git branch | grep -v \* | xargs -I {} git branch -d {} ; git branch"
 alias gbD="git branch | grep -v \* | xargs -I {} git branch -D {} ; git branch"
 alias vms="vboxmanage list runningvms"
+alias lico="licommander"
 
 
 # 'latest' will refer to the last modified file.
