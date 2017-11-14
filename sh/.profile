@@ -29,6 +29,10 @@ if [ -d "$HOME/.cargo" ] ; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -d "$HOME/.dobbin/bin" ] ; then
+  export PATH="$HOME/.dobbin/bin:$PATH"
+fi
+
 # Interactive only
 if [ -t "0" ]; then
   if [ -f "$HOME/.secrets" ]; then
