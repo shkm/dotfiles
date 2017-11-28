@@ -1,30 +1,31 @@
 {
-    "usageCount": 2, 
+    "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "Zeal", 
+    "description": "!review", 
     "abbreviation": {
         "wordChars": "[\\w]", 
-        "abbreviations": [], 
-        "immediate": false, 
+        "abbreviations": [
+            "!review"
+        ], 
+        "immediate": true, 
         "ignoreCase": false, 
         "backspace": true, 
         "triggerInside": false
     }, 
     "hotkey": {
-        "hotKey": " ", 
-        "modifiers": [
-            "<super>"
-        ]
+        "hotKey": null, 
+        "modifiers": []
     }, 
     "modes": [
-        3
+        1
     ], 
     "showInTrayMenu": false, 
+    "matchCase": false, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
-    "type": "script", 
-    "store": {}
+    "type": "phrase", 
+    "sendMode": "kb"
 }

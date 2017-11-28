@@ -1,8 +1,5 @@
 {
-    "usageCount": 2, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "Zeal", 
+    "usageCount": 0, 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -11,20 +8,16 @@
         "backspace": true, 
         "triggerInside": false
     }, 
+    "modes": [], 
+    "title": "GitLab", 
     "hotkey": {
-        "hotKey": " ", 
-        "modifiers": [
-            "<super>"
-        ]
+        "hotKey": null, 
+        "modifiers": []
     }, 
-    "modes": [
-        3
-    ], 
-    "showInTrayMenu": false, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
-    "type": "script", 
-    "store": {}
+    "type": "folder", 
+    "showInTrayMenu": false
 }

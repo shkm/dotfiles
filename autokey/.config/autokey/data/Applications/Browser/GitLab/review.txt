@@ -1,0 +1,3 @@
+/unlabel ~development
+
+/label ~review

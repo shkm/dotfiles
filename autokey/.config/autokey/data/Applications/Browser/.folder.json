@@ -1,0 +1,25 @@
+{
+    "usageCount": 0, 
+    "abbreviation": {
+        "wordChars": "[\\w]", 
+        "abbreviations": [
+            "!develop"
+        ], 
+        "immediate": false, 
+        "ignoreCase": false, 
+        "backspace": true, 
+        "triggerInside": false
+    }, 
+    "modes": [], 
+    "title": "Browser", 
+    "hotkey": {
+        "hotKey": null, 
+        "modifiers": []
+    }, 
+    "filter": {
+        "regex": "Firefox", 
+        "isRecursive": false
+    }, 
+    "type": "folder", 
+    "showInTrayMenu": false
+}
