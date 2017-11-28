@@ -78,10 +78,12 @@
   showUntrackedFiles = all
 [pull]
   ff = only
-
 [diff]
-	tool = opendiff
+  tool = kompare
 [difftool]
-	prompt = false
+  prompt = false
 [merge]
-	tool = opendiff
+  tool = meld
+[mergetool "meld"]
+  cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+  keepBackup = false
