@@ -6,8 +6,9 @@ set main-options = --all
 
 bind generic ; prompt   # Open the prompt
 
-bind main YC !@sh -c "echo %(commit) | pbcopy"  # Copy hash
+bind main YC !@sh -c "echo %(commit) | xclip -i -selection clipboard"  # Copy hash
 bind main b ?git checkout %(branch)
+bind status D !@?rm %(file)
 
 color "---"   blue default
 color "diff --"   yellow default
