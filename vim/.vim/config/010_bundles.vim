@@ -24,7 +24,8 @@ Plug 'gabesoft/vim-ags'                                                         
 Plug 'justinmk/vim-dirvish'                                                             " Directory browser
 Plug 'tpope/vim-rsi'                                                                    " More readline-style mappings
 Plug 'junegunn/vim-peekaboo'                                                            " Show registers
-Plug 'tpope/vim-surround'                                                               " Surround stuff
+
+Plug 'tpope/vim-ragtag'                                                                 " Surround mappings for tags
 Plug 'wellle/targets.vim'                                                               " Various text objects
 Plug 'tpope/vim-endwise'                                                                " Auto do...end
 Plug 'tpope/vim-repeat'                                                                 " Better repeat
@@ -60,6 +61,7 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }                                     
 Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }                                        " RSpec syntax
 Plug 'tpope/vim-rails', { 'for': 'ruby' }                                               " Rails-specific enhancements
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " Ruby block textobj
+Plug 'whatyouhide/vim-textobj-erb'
 Plug 'tpope/vim-bundler'                                                                " Bundler enhancements
 
 Plug 'elixir-lang/vim-elixir'                                                           " Elixir syntax
