@@ -30,3 +30,6 @@ nnoremap <silent> <c-h> :call TmuxPane('h')<CR>
 nnoremap <silent> <c-j> :call TmuxPane('j')<CR>
 nnoremap <silent> <c-k> :call TmuxPane('k')<CR>
 nnoremap <silent> <c-l> :call TmuxPane('l')<CR>
+
+" List tags if more than one on jump
+nnoremap <C-]> g<C-]>
