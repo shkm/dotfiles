@@ -6,6 +6,11 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
+# Nix package manager
+if [ -d "$HOME/.nix-profile" ] ; then
+  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
 # Ensure local/bin (homebrew stuff) is in path.
 if [ -d "/usr/local/bin" ] ; then
   export PATH="/usr/local/bin:$PATH"
