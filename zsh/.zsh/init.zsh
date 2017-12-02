@@ -11,7 +11,6 @@ source $HOME/.zsh/software/rvm.zsh
 source $HOME/.zsh/software/chruby.zsh
 source $HOME/.zsh/language/ruby.zsh
 
-source $HOME/.zsh/software/iterm2.zsh
 source $HOME/.zsh/software/tmux.zsh
 source $HOME/.zsh/software/emacs.zsh
 source $HOME/.zsh/software/vim.zsh
