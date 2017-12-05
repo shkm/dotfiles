@@ -7,9 +7,9 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # Nix package manager
-if [ -d "$HOME/.nix-profile" ] ; then
-  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
+# if [ -d "$HOME/.nix-profile" ] ; then
+#   source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+# fi
 
 # Ensure local/bin (homebrew stuff) is in path.
 if [ -d "/usr/local/bin" ] ; then
@@ -62,3 +62,7 @@ export LESS_TERMCAP_se=$(printf "\033[0m")
 export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
+
+# RVM
+[ -f /usr/share/rvm/scripts/rvm ] && source /usr/share/rvm/scripts/rvm
+[ -f ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
