@@ -10,8 +10,11 @@ Command=/bin/zsh
 Name=Default
 Parent=FALLBACK/
 
+[Interaction Options]
+UnderlineLinksEnabled=false
+
 [Scrolling]
 ScrollBarPosition=2
 
 [Terminal Features]
-UrlHintsModifiers=67108864
+UrlHintsModifiers=201326592
