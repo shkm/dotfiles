@@ -1,10 +1,5 @@
 #~ vim: foldmethod=marker:
 
-# --- Sources {{{
-export PATH="$HOME/.fzf/bin:$PATH"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# }}}
-
 
 # --- Exports {{{
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

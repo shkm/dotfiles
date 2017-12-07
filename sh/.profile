@@ -1,10 +1,10 @@
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
-  fi
-fi
+# if [ -n "$BASH_VERSION" ]; then
+#   # include .bashrc if it exists
+#   if [ -f "$HOME/.bashrc" ]; then
+#     source "$HOME/.bashrc"
+#   fi
+# fi
 
 # Nix package manager
 # if [ -d "$HOME/.nix-profile" ] ; then
@@ -63,6 +63,11 @@ export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
-# RVM
-[ -f /usr/share/rvm/scripts/rvm ] && source /usr/share/rvm/scripts/rvm
+export PATH="$HOME/.fzf/bin:$PATH"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# # RVM
 [ -f ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
