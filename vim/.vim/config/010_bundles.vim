@@ -84,7 +84,10 @@ Plug 'dag/vim-fish'                                                             
 Plug 'vim-scripts/txt.vim'                                                              " General-purpose highlighting
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
-Plug 'tyrannicaltoucan/vim-quantum'
+" Colour scheme
+" Plug 'tyrannicaltoucan/vim-quantum'
+" Plug 'yuttie/hydrangea-vim'
+Plug 'cocopon/iceberg.vim'
 
 Plug 'junegunn/vim-easy-align'                                                          " Alignment
 Plug 'Konfekt/FastFold'                                                                 " Faster folding
