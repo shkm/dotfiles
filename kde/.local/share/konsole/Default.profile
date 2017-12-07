@@ -1,12 +1,12 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Quantum
+ColorScheme=Iceberg
 Font=Monoid,11,-1,0,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]
-Command=/bin/zsh
+Command=/bin/zsh --login
 Name=Default
 Parent=FALLBACK/
 
