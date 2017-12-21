@@ -79,11 +79,23 @@
 [pull]
   ff = only
 [diff]
-  tool = kompare
+  tool = vimdiff
 [difftool]
   prompt = false
 [merge]
-  tool = meld
-[mergetool "meld"]
-  cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+  tool = p4merge
   keepBackup = false
+  conflictstyle = merge
+[mergetool]
+  prompt  = false
+[mergetool "p4merge"]
+  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
+[mergetool "vimdiff"]
+  cmd = nvim -d -u ~/.vim/init.vim "$LOCAL" "$MERGED" "$REMOTE"
+[mergetool "fugitive"]
+  cmd = nvim -d -u ~/.vim/init.vim -f "+Gvdiff" "$MERGED"
+[include]
+  path = .gitconfig.d/gitlab
