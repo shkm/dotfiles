@@ -16,33 +16,35 @@ if [ -d "/usr/local/bin" ] ; then
   export PATH="/usr/local/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
+# Misc bins
 if [ -d "$HOME/bin" ] ; then
   export PATH="$HOME/bin:$PATH"
 fi
 
+# Version-controlled scripts
 if [ -d "$HOME/scripts" ] ; then
   export PATH="$HOME/scripts:$PATH"
 fi
 
+# Go
 if [ -d "$HOME/go" ]; then
   export GOPATH="$HOME/go"
   export PATH="$HOME/go/bin:$PATH"
 fi
 
+# Rust
 if [ -d "$HOME/.cargo" ] ; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# Dobbin
 if [ -d "$HOME/.dobbin/bin" ] ; then
   export PATH="$HOME/.dobbin/bin:$PATH"
 fi
 
-# Interactive only
-if [ -t "0" ]; then
-  if [ -f "$HOME/.secrets" ]; then
-    source $HOME/.secrets
-  fi
+# FZF
+if [ -d "$HOME/.fzf/bin" ] ; then
+  export PATH="$HOME/.fzf/bin:$PATH"
 fi
 
 # Locale
@@ -54,6 +56,11 @@ export NAME="Jamie Schembri"
 export SMTPSERVER="smtp.gmail.com"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# KDE
+if [ "$DESKTOP_SESSION" = "/usr/share/xsessions/plasma" ]; then
+  export SSH_ASKPASS="/usr/bin/ksshaskpass"
+fi
+
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
 export LESS_TERMCAP_md=$(printf "\033[01;31m")
@@ -63,11 +70,3 @@ export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
-export PATH="$HOME/.fzf/bin:$PATH"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# # RVM
-[ -f ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
