@@ -17,15 +17,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'w0rp/ale'                                                                         " Build / linting
-Plug 'sbdchd/neoformat'                                                                 " Format code with external formaters
 Plug 'tpope/vim-commentary'                                                             " Comments
 Plug 'mhinz/vim-grepper'                                                                " Search for stuff
-Plug 'gabesoft/vim-ags'                                                                 " Useful for interactive project find/replace
 Plug 'justinmk/vim-dirvish'                                                             " Directory browser
 Plug 'tpope/vim-rsi'                                                                    " More readline-style mappings
-Plug 'junegunn/vim-peekaboo'                                                            " Show registers
+" Plug 'junegunn/vim-peekaboo'                                                            " Show registers
 
-Plug 'tpope/vim-ragtag'                                                                 " Surround mappings for tags
 Plug 'wellle/targets.vim'                                                               " Various text objects
 Plug 'tpope/vim-endwise'                                                                " Auto do...end
 Plug 'tpope/vim-repeat'                                                                 " Better repeat
@@ -33,12 +30,11 @@ Plug 'tpope/vim-eunuch'                                                         
 Plug 'tpope/vim-unimpaired'                                                             " Various 'pair' mappings
 Plug 'tpope/vim-abolish'                                                                " Improved search/replace
 Plug 'junegunn/vim-slash'                                                               " Better slash search
-Plug 'vim-scripts/matchit.zip'                                                                      " Better pair matching (e.g. do...end)
+Plug 'vim-scripts/matchit.zip'                                                          " Better pair matching (e.g. do...end)
 Plug 'AndrewRadev/splitjoin.vim'                                                        " Split and join various statements
 Plug 'AndrewRadev/switch.vim', { 'on': 'Switch' }                                       " Switch various statements
 Plug 'janko-m/vim-test'                                                                 " Run tests for various languages
 Plug 'kassio/neoterm'                                                                   " Run things in the neovim terminal
-Plug 'rhysd/clever-f.vim'
 
 Plug 'Shougo/echodoc.vim'                                                               " Echo documentation
 
