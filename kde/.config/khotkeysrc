@@ -5,7 +5,7 @@ DataCount=4
 Comment=KMenuEdit Global Shortcuts
 DataCount=1
 Enabled=true
-ImportId=defaults
+ImportId[$d]
 Name=KMenuEdit
 SystemGroup=1
 Type=ACTION_DATA_GROUP
@@ -982,7 +982,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_4_4Triggers0]
-Key=Meta+Shift+Print
+Key=Alt+$
 Type=SHORTCUT
 Uuid={5e6a3ac6-f7be-4152-848d-16583290fa17}
 
@@ -1004,6 +1004,10 @@ toolBarFont[$d]
 Disabled=true
 MouseButton=2
 Timeout=300
+
+[GesturesExclude]
+Comment=
+WindowsCount=0
 
 [Icons]
 Theme[$d]
