@@ -9,7 +9,7 @@ go get github.com/getantibody/antibody
 if [ ! -e ~/dotfiles ]; then
   git clone https://github.com/shkm/dotfiles.git ~/dotfiles
   rm .profile ~/.bash_profile ~/.Xresources 2>/dev/null # probably already exists, so remove before stowing
-  stow -d ~/dotfiles ag alacritty autokey bash eslint git scripts tig tmux vim zsh kde x autokey sh
+  stow -d ~/dotfiles ag alacritty autokey bash eslint git scripts tig tmux vim zsh kde x autokey sh ruby
 fi
 
 if ! command -v diff-highlight > /dev/null; then
