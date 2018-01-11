@@ -39,7 +39,8 @@ Plug 'kassio/neoterm'                                                           
 Plug 'Shougo/echodoc.vim'                                                               " Echo documentation
 
 Plug 'roxma/nvim-completion-manager'                                                    " Completion
-Plug 'roxma/ncm-rct-complete'                                                           " Completion
+" Plug 'roxma/ncm-rct-complete'                                                           " Completion
+Plug 'natebosch/vim-lsc'                                                                " Langauge server
 Plug 'Shougo/neco-vim'                                                                  " Vim completion
 
 
@@ -55,7 +56,7 @@ Plug 'int3/vim-extradite'                                                       
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }                                             " Ruby syntax
 Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }                                        " RSpec syntax
-Plug 'tpope/vim-rails', { 'for': 'ruby' }                                               " Rails-specific enhancements
+Plug 'tpope/vim-rails'                                                                  " Rails-specific enhancements
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " Ruby block textobj
 Plug 'whatyouhide/vim-textobj-erb'
 Plug 'tpope/vim-bundler'                                                                " Bundler enhancements
@@ -96,3 +97,5 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
+
+let g:lsc_auto_map = v:true " Use defaults
