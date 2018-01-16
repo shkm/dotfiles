@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Iceberg
-Font=Monoid,11,-1,0,50,0,0,0,0,0
+Font=Fira Code,11,-1,5,50,0,0,0,0,0,Regular
 UseFontLineChararacters=true
 
 [General]
