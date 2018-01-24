@@ -23,6 +23,7 @@ Plug 'justinmk/vim-dirvish'                                                     
 Plug 'tpope/vim-rsi'                                                                    " More readline-style mappings
 " Plug 'junegunn/vim-peekaboo'                                                            " Show registers
 
+Plug 'tpope/vim-surround'                                                               " Surround stuff
 Plug 'wellle/targets.vim'                                                               " Various text objects
 Plug 'tpope/vim-endwise'                                                                " Auto do...end
 Plug 'tpope/vim-repeat'                                                                 " Better repeat
