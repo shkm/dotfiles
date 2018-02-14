@@ -6,6 +6,8 @@ FILENAME=`basename "$0"`
 declare -A PATTERNS;
 PATTERNS['^[<>|=]{4,}']="Conflict markers";
 PATTERNS['FIXME']="FIXME";
+PATTERNS['binding.pry']="binding.pry";
+PATTERNS['debugger']="debugger";
 
 # Declare empty errors array
 declare -a errors;
