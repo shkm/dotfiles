@@ -33,11 +33,21 @@ if has('gui_running')
   endif
 endif
 
+" Status line section for language specific stuff
+function! StatusLineModal()
+  if &ft == 'yaml'
+    return execute('YamlDisplayFullPath')
+  else
+    return ''
+  endif
+endfunction
+
 " Statusline
 set laststatus=2
 set statusline=
 set statusline +=\ %n\                                " Buffer
 set statusline +=%<%m%r%h%w\ %f\                      " File
+set statusline +=%{StatusLineModal()}
 set statusline +=%=                                   " Right align
 " set statusline +=%{fugitive#head()}\                " Fugitive
 set statusline +=%Y\                                  " FileType
