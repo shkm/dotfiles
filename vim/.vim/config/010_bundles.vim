@@ -91,8 +91,10 @@ Plug 'junegunn/vim-easy-align'                                                  
 Plug 'Konfekt/FastFold'                                                                 " Faster folding
 Plug 'Keithbsmiley/investigate.vim'                                                     " Documentation lookup
 Plug 'dhruvasagar/vim-table-mode'                                                       " Table mode for constructing ascii tables
+Plug 'chrisbra/Colorizer'                                                               " Colorize hex colours
 Plug 'metakirby5/codi.vim'                                                              " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'                                                      " colorize ANSI escape sequences
+
 
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
