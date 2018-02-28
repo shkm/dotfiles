@@ -13,6 +13,8 @@ if has('nvim')
   source $HOME/.vim/config/060_neovim.vim
 endif
 
+source $HOME/.vim/config/070_autocmd.vim
+
 " Bundle settings
 call SourceDir("$HOME/.vim/config/bundles/")
 call SourceDir("$HOME/.vim/config/mappings/")
