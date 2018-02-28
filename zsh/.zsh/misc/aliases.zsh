@@ -21,6 +21,7 @@ alias gbD="git branch | grep -v \* | xargs -I {} git branch -D {} ; git branch"
 alias vms="vboxmanage list runningvms"
 alias lico="licommander"
 alias scratch="vim /tmp/scratch.md"
+alias genpass="openssl rand -base64 24"
 
 
 # 'latest' will refer to the last modified file.
