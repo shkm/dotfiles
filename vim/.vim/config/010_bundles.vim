@@ -56,6 +56,8 @@ Plug 'mhinz/vim-signify'                                                        
 Plug 'int3/vim-extradite'                                                               " Browse git commits for the current file
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }                                             " Ruby syntax
+Plug 'ngmy/vim-rubocop'                                                                 " Rubocop linter with additional functionality
+
 Plug 'Keithbsmiley/rspec.vim', { 'for': 'ruby' }                                        " RSpec syntax
 Plug 'tpope/vim-rails'                                                                  " Rails-specific enhancements
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' } " Ruby block textobj
