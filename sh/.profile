@@ -47,6 +47,11 @@ if [ -d "$HOME/.fzf/bin" ] ; then
   export PATH="$HOME/.fzf/bin:$PATH"
 fi
 
+# Yarn
+if [ -d "$HOME/.yarn/bin" ] ; then
+  export PATH="$HOME/.yarn/bin:$PATH"
+fi
+
 # Locale
 export LC_ALL="en_GB.UTF-8"
 
