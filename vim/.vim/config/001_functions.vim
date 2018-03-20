@@ -8,7 +8,15 @@ function! RangerExplorer()
 endfunction
 
 function! DirvishRename(new_name)
-  execute '!mv ' . getline('.') . ' %'  . a:new_name
+  execute '!mv ' . getline('.') . ' %' . a:new_name
+endfunction
+
+function! DirvishTrash()
+  execute '!trash ' . getline('.')
+endfunction
+
+function! Trash()
+  execute '!trash ' . expand('%p')
 endfunction
 
 function! ProfileStart()

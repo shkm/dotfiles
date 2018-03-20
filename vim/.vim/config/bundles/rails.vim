@@ -6,11 +6,11 @@ let g:rails_gem_projections = {
       \      "template": "class %SPolicy < ApplicationPolicy\nend"
       \    }
       \  },
-      \  "factory_girl_rails": {
+      \  "factory_bot_rails": {
       \    "spec/factories/*.rb": {
       \      "command": "factory",
       \      "affinity": "model",
-      \      "template": "FactoryGirl.define do\n  factory :%s do\n  end\nend"
+      \      "template": "FactoryBot.define do\n  factory :%s do\n  end\nend"
       \    }
       \  },
       \  "reform": {
