@@ -11,17 +11,19 @@ alias download="curl -LO#"
 alias sz="source ~/.zshrc"
 alias ag='ag --path-to-ignore=~/.agignore'
 alias ssh_key="cat ~/.ssh/id_rsa.pub | pbcopy; echo 'Copied SSH key to clipboard.'"
-alias ducks="du -cksh * | gsort -hr"
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias ducks="du -cksh * | sort -hr"
 alias myip='curl ifconfig.co'
-alias mux='tmuxinator'
 alias docker-eval='eval "$(docker-machine env)"'
 alias gbd="git branch | grep -v \* | xargs -I {} git branch -d {} ; git branch"
 alias gbD="git branch | grep -v \* | xargs -I {} git branch -D {} ; git branch"
 alias vms="vboxmanage list runningvms"
 alias lico="licommander"
-alias scratch="vim /tmp/scratch.md"
 alias genpass="openssl rand -base64 24"
+alias scratch="vim $(mktemp --suffix _scratch.md)"
+
+# REPLs with Codi
+alias rrepl="vim $(mktemp --suffix _codi.rb) +Codi ruby +cd ."
+alias jrepl="vim $(mktemp --suffix _codi.js) +Codi javascript +cd ."
 
 
 # 'latest' will refer to the last modified file.
