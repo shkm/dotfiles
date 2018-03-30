@@ -1,7 +1,7 @@
-def _copy(input)
+def pbcopy
   command = system('which pbcopy > /dev/null 2>&1') ? 'pbcopy' : 'xsel -ib'
 
-  input.tap do
-    system("echo #{input} | #{command}")
+  self.tap do
+    system %(echo "#{self.to_s}" | #{command})
   end
 end
