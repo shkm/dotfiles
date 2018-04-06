@@ -2,11 +2,11 @@
   email = jamie@lico.nl
   name = Jamie Schembri
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
   pager = diff-so-fancy | less --tabs=1,5 -RFX
   commentChar = ~
-  hooksPath = ~/.git_hooks
+  # hooksPath = ~/.git_hooks # disabled for now because it no likey macos
 [color]
   ui = true
 [commit]
@@ -79,25 +79,27 @@
   showUntrackedFiles = all
 [pull]
   ff = only
+  rebase = true
 [diff]
   tool = vimdiff
 [difftool]
   prompt = false
 [merge]
-  tool = meld
-  ; tool = p4merge
+  tool = opendiff
   keepBackup = false
   conflictstyle = merge
 [mergetool]
   prompt  = false
-[mergetool "p4merge"]
-  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  keepTemporaries = false
-  trustExitCode = false
-  keepBackup = false
 [mergetool "vimdiff"]
   cmd = nvim -d -u ~/.vim/init.vim "$LOCAL" "$MERGED" "$REMOTE"
 [mergetool "fugitive"]
   cmd = nvim -d -u ~/.vim/init.vim -f "+Gvdiff" "$MERGED"
 [include]
   path = .gitconfig.d/gitlab
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[commit]
+  template = /Users/jamie/.stCommitMsg
