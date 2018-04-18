@@ -19,11 +19,11 @@ alias gbD="git branch | grep -v \* | xargs -I {} git branch -D {} ; git branch"
 alias vms="vboxmanage list runningvms"
 alias lico="licommander"
 alias genpass="openssl rand -base64 24"
-alias scratch="vim $(mktemp --suffix _scratch.md)"
+alias scratch="vim $(mktemp -t scratch)"
 
 # REPLs with Codi
-alias rrepl="vim $(mktemp --suffix _codi.rb) +Codi ruby +cd ."
-alias jrepl="vim $(mktemp --suffix _codi.js) +Codi javascript +cd ."
+alias rrepl='vim -c "set bt=nofile ls=0 noru nonu nornu ft=ruby | Codi ruby"'
+alias jrepl='vim -c "set bt=nofile ls=0 noru nonu nornu | Codi javascript" $(mktemp -t codi.js) +cd .'
 
 
 # 'latest' will refer to the last modified file.
