@@ -1,2 +1,2 @@
-alias ql='qlmanage -p 2>/dev/null'
+alias ql='qlmanage -p > /dev/null 2>&1'
 

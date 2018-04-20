@@ -63,4 +63,13 @@ fssh() {
 
   ssh $host $command
 }
+
+# TODO
+frsssh() {
+  fssh "bash -ic 'cd rails/current && bundle exec rails console -e staging'"
+}
+
+frpssh() {
+  fssh "bash -ic 'cd rails/current && bundle exec rails console -e production'"
+}
 # }}}
