@@ -5,7 +5,7 @@ set main-view = line-number:no date:relative-compact id:yes author:abbreviated c
 
 bind generic ; prompt   # Open the prompt
 
-bind main YC !@sh -c "echo %(commit) | xclip -i -selection clipboard"  # Copy hash
+bind main YC !@sh -c "echo %(commit) | pbcopy"  # Copy hash
 bind main b ?git checkout %(branch)
 bind status D !@?rm %(file)
 
