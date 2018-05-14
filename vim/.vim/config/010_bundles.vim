@@ -16,6 +16,7 @@ endfunction
 " --------------------------------------------------
 " Basics
 " --------------------------------------------------
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'        " Fuzzy finder
 Plug 'Konfekt/FastFold'        " Faster folding
 Plug 'junegunn/vim-slash'      " Better slash search
