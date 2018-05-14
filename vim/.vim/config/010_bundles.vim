@@ -60,7 +60,7 @@ Plug 'Keithbsmiley/rspec.vim'          " RSpec syntax
 Plug 'kana/vim-textobj-user'           " Dependency
 Plug 'nelstrom/vim-textobj-rubyblock'  " Ruby block textobj
 Plug 'ngmy/vim-rubocop'                " Rubocop linter with additional functionality
-Plug 'roxma/ncm-rct-complete'          " Ruby autocompletion
+" Plug 'roxma/ncm-rct-complete'          " Ruby autocompletion
 Plug 'tpope/vim-bundler'               " Bundler enhancements
 Plug 'tpope/vim-rails'                 " Rails-specific enhancements
 Plug 'vim-ruby/vim-ruby',              " Ruby syntax
@@ -69,7 +69,9 @@ Plug 'whatyouhide/vim-textobj-erb'     " ERB textobj
 " --------------------------------------------------
 " Terminal
 " --------------------------------------------------
-Plug 'kassio/neoterm' " Run things in the neovim terminal
+if has('nvim')
+  Plug 'kassio/neoterm' " Run things in the neovim terminal
+endif
 
 " --------------------------------------------------
 " Testing
@@ -82,17 +84,21 @@ Plug 'janko-m/vim-test' " Run tests for various languages
 Plug 'Keithbsmiley/investigate.vim'  " Documentation lookup
 Plug 'Shougo/echodoc.vim'            " Echo documentation
 Plug 'Shougo/neco-vim'               " Vim completion
-Plug 'Shougo/neosnippet-snippets'    " Actual snippets for use with neosnippet
-Plug 'Shougo/neosnippet.vim'         " Snippets
-Plug 'roxma/nvim-completion-manager' " Completion
+if has('nvim')
+  Plug 'Shougo/neosnippet-snippets'    " Actual snippets for use with neosnippet
+  Plug 'Shougo/neosnippet.vim'         " Snippets
+  Plug 'roxma/nvim-completion-manager' " Completion
+endif
 
 " --------------------------------------------------
 " Tools
 " --------------------------------------------------
 Plug 'chrisbra/Colorizer'      " Colorize hex colours
 Plug 'junegunn/vim-easy-align' " Alignment
-Plug 'mhinz/neovim-remote'     " Remote-control neovim
 Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
+if has('nvim')
+  Plug 'mhinz/neovim-remote'     " Remote-control neovim
+endif
 
 " --------------------------------------------------
 " Elixir
@@ -144,14 +150,15 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 " --------------------------------------------------
 " Plug 'tyrannicaltoucan/vim-quantum'
 " Plug 'yuttie/hydrangea-vim'
-Plug 'cocopon/iceberg.vim'
+Plug 'arcticicestudio/nord-vim'
 
 " --------------------------------------------------
 " Misc
 " --------------------------------------------------
-Plug 'dhruvasagar/vim-table-mode'  " Table mode for constructing ascii tables
-Plug 'metakirby5/codi.vim'         " Repl
-Plug 'powerman/vim-plugin-AnsiEsc' " colorize ANSI escape sequences
-Plug 'kshenoy/vim-signature'       " show marks
+Plug 'dhruvasagar/vim-table-mode'   " Table mode for constructing ascii tables
+Plug 'metakirby5/codi.vim'          " Repl
+Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
+Plug 'kshenoy/vim-signature'        " show marks
+Plug 'thiagoalessio/rainbow_levels.vim' " Colorisation for indent levels
 
 call plug#end()

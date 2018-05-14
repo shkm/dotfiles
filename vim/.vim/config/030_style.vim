@@ -1,7 +1,7 @@
 " Colors
 " set t_Co=256
 set background=dark
-colorscheme iceberg
+colorscheme nord
 
 " Make the current split more obvious
 " augroup BgHighlight
@@ -25,7 +25,7 @@ set guitablabel=%N\ %t\ %M
 if has('gui_running')
   " Font should be different depending on platform.
   if IsMacvim()
-    set gfn=Fira\ Mono\ for\ Powerline:h14
+    set gfn=Iosevka:h18
   elseif IsWinGui()
     set gfn=Droid\ Sans\ Mono\ for\ Powerline:h11:cANSI
   else
