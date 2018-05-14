@@ -20,6 +20,7 @@ alias vms="vboxmanage list runningvms"
 alias lico="licommander"
 alias genpass="openssl rand -base64 24"
 alias scratch="vim $(mktemp -t scratch)"
+alias ls="ls -lshaG"
 
 # REPLs with Codi
 alias rrepl='vim -c "set bt=nofile ls=0 noru nonu nornu ft=ruby | Codi ruby"'
