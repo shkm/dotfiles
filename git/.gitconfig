@@ -1,6 +1,7 @@
 [user]
   email = jamie@lico.nl
   name = Jamie Schembri
+  signingkey = D432A7DF
 [core]
   excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
@@ -97,9 +98,13 @@
 [include]
   path = .gitconfig.d/gitlab
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [commit]
   template = /Users/jamie/.stCommitMsg
+  gpgsign = true
+[gpg]
+  program = /usr/local/MacGPG2/bin/gpg2
