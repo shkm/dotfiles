@@ -1,4 +1,4 @@
-## shkm's dotfiles
+## :godmode: shkm's dotfiles
 
 These are my dotfiles. They're managed using [GNU stow](https://www.gnu.org/software/stow/).
 
