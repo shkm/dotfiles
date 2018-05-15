@@ -9,7 +9,7 @@ set -o pipefail
 
 readonly PACKAGES=( ag alacritty bash eslint git ruby scripts sh tig tmux vim zsh )
 readonly MACOS_PACKAGES=( macos )
-readonly LINUX_PACKAGES=( linux cautokey )
+readonly LINUX_PACKAGES=( linux autokey )
 
 
 install () {
