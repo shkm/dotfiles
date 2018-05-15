@@ -8,8 +8,8 @@ set -o errexit
 set -o pipefail
 
 readonly PACKAGES=( ag alacritty bash eslint git ruby scripts sh tig tmux vim zsh )
-readonly MACOS_PACKAGES=()
-readonly LINUX_PACKAGES=( autokey )
+readonly MACOS_PACKAGES=( macos )
+readonly LINUX_PACKAGES=( linux cautokey )
 
 
 install () {

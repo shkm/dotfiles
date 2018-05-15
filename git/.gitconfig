@@ -1,5 +1,5 @@
 [include]
-  # path = ~/.gitconfig.d
+ path = ~/.gitconfig.local
 [user]
   email = jamie@lico.nl
   name = Jamie Schembri
