@@ -35,7 +35,7 @@ macos () {
 }
 
 linux () {
-  if [ "$(uname)" != 'Linux' ]; then
+  if [ "$(uname)" = 'Linux' ]; then
     install "Linux" LINUX_PACKAGES[@]
   fi
 }
