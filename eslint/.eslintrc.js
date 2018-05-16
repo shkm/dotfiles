@@ -1,4 +1,11 @@
 module.exports = {
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "browser": true,
     "commonjs": true,
@@ -10,12 +17,6 @@ module.exports = {
     "plugin:react/recommended"
   ],
   "plugins": ["react"],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
   "rules": {
     "indent": [
       "error",
