@@ -1,1 +1,1 @@
-setlocal omnifunc=xmlcomplete#CompleteTags
+" setlocal omnifunc=xmlcomplete#CompleteTags

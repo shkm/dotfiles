@@ -48,7 +48,7 @@ endfunction
 " Optionally only sources files with the given extension
 function! SourceDir(dir, ...)
   let extension = (a:0 > 0)? '.' . a:1 : ''
-  
+
   for f in split(globpath(a:dir,  '*' . extension), '\n')
     " Check if it's a readable file (and not a dir)
     if filereadable(f)

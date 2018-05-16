@@ -1,1 +1,1 @@
-setlocal omnifunc=csscomplete#CompleteCSS
+" setlocal omnifunc=csscomplete#CompleteCSS

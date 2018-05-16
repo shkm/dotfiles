@@ -1,5 +1,3 @@
-setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
 " Don't match parameters. This was slowing vim down considerably.
 let loaded_matchparen = 1
 
@@ -48,7 +46,3 @@ nnoremap <buffer> <Leader>mv :Eview<CR>
   " mo Open
   nnoremap <buffer> <Leader>mls :Eschema<CR>
   nnoremap <buffer> <Leader>mlr :Einitializer<CR>
-
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1

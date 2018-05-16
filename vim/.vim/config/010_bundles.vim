@@ -1,21 +1,8 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.vim/plugged')
 
-function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    !cargo build --release
-    UpdateRemotePlugins
-  endif
-endfunction
-
-" --------------------------------------------------
-" Basics
-" --------------------------------------------------
+" " --------------------------------------------------
+" " Basics
+" " --------------------------------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'        " Fuzzy finder
 Plug 'Konfekt/FastFold'        " Faster folding
@@ -61,7 +48,6 @@ Plug 'Keithbsmiley/rspec.vim'          " RSpec syntax
 Plug 'kana/vim-textobj-user'           " Dependency
 Plug 'nelstrom/vim-textobj-rubyblock'  " Ruby block textobj
 Plug 'ngmy/vim-rubocop'                " Rubocop linter with additional functionality
-" Plug 'roxma/ncm-rct-complete'          " Ruby autocompletion
 Plug 'tpope/vim-bundler'               " Bundler enhancements
 Plug 'tpope/vim-rails'                 " Rails-specific enhancements
 Plug 'vim-ruby/vim-ruby',              " Ruby syntax
@@ -82,14 +68,23 @@ Plug 'janko-m/vim-test' " Run tests for various languages
 " --------------------------------------------------
 " Documentation
 " --------------------------------------------------
-Plug 'Keithbsmiley/investigate.vim'  " Documentation lookup
-Plug 'Shougo/echodoc.vim'            " Echo documentation
-Plug 'Shougo/neco-vim'               " Vim completion
+" Plug 'Keithbsmiley/investigate.vim'  " Documentation lookup
+" Plug 'Shougo/echodoc.vim'            " Echo documentation
+" Plug 'Shougo/neco-vim'               " Vim completion
 if has('nvim')
-  Plug 'Shougo/neosnippet-snippets'    " Actual snippets for use with neosnippet
-  Plug 'Shougo/neosnippet.vim'         " Snippets
-  Plug 'roxma/nvim-completion-manager' " Completion
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'shkm/LanguageClient-neovim', {
+			  \ 'branch': 'next',
+			  \ 'do': 'bash install.sh',
+			  \ }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'Shougo/neosnippet.vim' " Snippets
+Plug 'Shougo/neosnippet-snippets'    " Actual snippets for use with neosnippet
 
 " --------------------------------------------------
 " Tools
@@ -122,14 +117,19 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }     " Markdown enhancement
 " HTML
 " --------------------------------------------------
 Plug 'vim-scripts/indenthtml.vim', { 'for': 'html' } " Better HTML/CSS indentation
+Plug 'mattn/emmet-vim'                               " HTMl expansion
 
 " --------------------------------------------------
 " Coffeescript
 " --------------------------------------------------
 Plug 'kchmck/vim-coffee-script' " Coffeescript syntax
+
 " --------------------------------------------------
 " JavaScript
 " --------------------------------------------------
+Plug 'mxw/vim-jsx'              " JSX support
+Plug 'pangloss/vim-javascript'  " Better JavaScript syntax
+Plug 'carlitux/deoplete-ternjs' " Deoplete source
 
 " --------------------------------------------------
 " Misc language support
@@ -138,8 +138,6 @@ Plug 'chrisbra/csv.vim', { 'for': 'csv' }            " CSV enhancements
 Plug 'elzr/vim-json', { 'for': 'json' }              " JSON syntax
 Plug 'irgeek/vim-puppet', { 'for': 'puppet' }        " Puppet syntax
 Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' } " YAML helper functions
-Plug 'mxw/vim-jsx'                                   " JSX support
-Plug 'pangloss/vim-javascript'                       " Better JavaScript syntax
 Plug 'posva/vim-vue', { 'for': 'vue' }               " Vue
 Plug 'tpope/vim-haml', { 'for': 'haml' }             " HAML/Sass/Scss syntax
 Plug 'vim-scripts/txt.vim'                           " General-purpose highlighting
@@ -147,10 +145,8 @@ Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }       " YAML syntax
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 
 " --------------------------------------------------
-" Theming
+" Styles
 " --------------------------------------------------
-" Plug 'tyrannicaltoucan/vim-quantum'
-" Plug 'yuttie/hydrangea-vim'
 Plug 'arcticicestudio/nord-vim'
 
 " --------------------------------------------------
@@ -160,6 +156,7 @@ Plug 'dhruvasagar/vim-table-mode'   " Table mode for constructing ascii tables
 Plug 'metakirby5/codi.vim'          " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
 Plug 'kshenoy/vim-signature'        " show marks
-Plug 'thiagoalessio/rainbow_levels.vim' " Colorisation for indent levels
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Completion
 
 call plug#end()

@@ -1,1 +1,1 @@
-setlocal omnifunc=pythoncomplete#Complete
+" setlocal omnifunc=pythoncomplete#Complete

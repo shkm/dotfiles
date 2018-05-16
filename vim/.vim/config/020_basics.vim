@@ -1,14 +1,8 @@
-" Let's not be silly.
-set nocompatible
-
-" Don't show mode at bottom
+" Don't show current mode at bottom
 set noshowmode
 
-" Filetype detection
-filetype plugin indent on
-
 " Hide abandoned buffers
-set hidden
+" set hidden
 
 " Set shell
 set shell=zsh
@@ -25,11 +19,8 @@ set wildmenu
 " Ignore various file types
 set wildignore+=*.scssc,.DS_Store
 
-" Get in on that UTF-8 goodness
-" set encoding=utf-8
-
 " Show autocompletion even if there's only one item
-set completeopt=menu,menuone,preview,longest
+" set completeopt=menu,menuone,preview,longest
 
 " Disable timeout on mappings. Very useful for leader stuff.
 set notimeout
@@ -42,8 +33,8 @@ set lazyredraw
 
 " Avoid backup mess (.doc.swp, ~.doc) by moving backups tmp
 set backupcopy=yes
-set backupdir=~/.tmp
-set directory=~/.tmp
+set backupdir=$HOME/.tmp
+set directory=$HOME~/.tmp
 
 " Don't warn when there's an existing swap file.
 set shortmess+=A
@@ -60,7 +51,7 @@ set softtabstop=2
 set expandtab
 
 " Max columns
-" set colorcolumn=80
+set colorcolumn=80
 
 " Don't insert line breaks after 80 columns. PLEASE.
 set textwidth=0
@@ -71,10 +62,6 @@ set backspace=indent,eol,start
 " Always use unix as default file format
 set ffs=unix,dos,mac
 
-
-" Do not include newlines in selection
-set selection=exclusive
-
 " Disable comments carrying over to new lines
 autocmd FileType * setlocal formatoptions-=cro
 
@@ -84,7 +71,7 @@ set ignorecase
 set smartcase
 
 " incsearch is slow.
-set noincsearch
+" set noincsearch
 
 " Temporarily disable search highlighting when in insert mode.
 autocmd InsertEnter * :setlocal nohlsearch
@@ -96,9 +83,6 @@ set mouse=a
 " Open new splits to right and bottom
 set splitbelow
 set splitright
-
-" Auto-source vimrc on save
-autocmd! BufWritePost .vimrc source ~/.vimrc
 
 " Retain last edit position
 autocmd BufReadPost *
