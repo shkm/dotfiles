@@ -10,7 +10,7 @@ Plug 'junegunn/vim-slash'      " Better slash search
 Plug 'justinmk/vim-dirvish'    " Directory browser
 Plug 'mhinz/vim-grepper'       " Project-wide search
 Plug 'tpope/vim-commentary'    " Comments
-Plug 'tpope/vim-endwise'       " Auto do...end
+Plug 'cohama/lexima.vim'       " Automatic pairs
 Plug 'tpope/vim-eunuch'        " Sugar for UNIX commands
 Plug 'tpope/vim-repeat'        " Better repeat
 Plug 'tpope/vim-rsi'           " Readline mappings
