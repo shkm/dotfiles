@@ -2,7 +2,7 @@
 autoload -Uz colors && colors
 
 setopt prompt_subst
-setopt autocd             # . / ..
+# setopt autocd             # . / ..
 setopt printexitvalue     # for non-zero exits
 setopt histignorealldups  # filter dupes from history
 setopt sharehistory       # share history across all shells
