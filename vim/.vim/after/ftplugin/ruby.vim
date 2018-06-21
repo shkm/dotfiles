@@ -19,6 +19,10 @@ function! RubyRiLookup(term)
   AnsiEsc
 endfunction
 
+function! RubocopAutocorrect()
+  execute "!rubocop -a " . bufname("%")
+endfunction
+
 command! -nargs=1 RubyDoc call RubyRiLookup(<f-args>)
 setlocal keywordprg=:RubyDoc
 
@@ -33,6 +37,7 @@ nnoremap <buffer> <Leader>mv :Eview<CR>
 
   " mr Refactoring
   nnoremap <buffer> <Leader>mrs :Switch<CR>
+  nnoremap <buffer> <Leader>mrr :call RubocopAutocorrect()<CR>
 
   " ml Lists
   nnoremap <buffer> <Leader>mlc :Files app/controllers/<CR>
