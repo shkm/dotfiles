@@ -35,7 +35,7 @@ endif
 
 " Status line section for language specific stuff
 function! StatusLineModal()
-  if &ft == 'yaml'
+  if &ft == 'yaml' || &ft == 'eruby.yaml'
     return execute('YamlDisplayFullPath')
   else
     return ''
