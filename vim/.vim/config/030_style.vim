@@ -1,7 +1,7 @@
 " Colors
 " set t_Co=256
 set background=dark
-colorscheme nord
+colorscheme snazzy
 
 " Make the current split more obvious
 " augroup BgHighlight

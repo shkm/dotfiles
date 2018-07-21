@@ -54,6 +54,11 @@ Plug 'vim-ruby/vim-ruby',              " Ruby syntax
 Plug 'whatyouhide/vim-textobj-erb'     " ERB textobj
 
 " --------------------------------------------------
+" Go
+" --------------------------------------------------
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" --------------------------------------------------
 " Terminal
 " --------------------------------------------------
 if has('nvim')
@@ -148,6 +153,7 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 " Styles
 " --------------------------------------------------
 Plug 'arcticicestudio/nord-vim'
+Plug 'connorholyday/vim-snazzy'
 
 " --------------------------------------------------
 " Misc
