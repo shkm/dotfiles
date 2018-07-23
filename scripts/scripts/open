@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Simple wrapper for `open` which delegates
+# to xdg-open if it does not exist.
+
+if command -v -p "open" > /dev/null; then
+  command -p "open $@"
+else
+  $(xdg-open $@)
+fi
+
+
