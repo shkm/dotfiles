@@ -1,6 +1,7 @@
 # vim: foldmethod=marker:
 
 alias c="clear"
+# alias -="cd -"
 alias pcp="rsync --progress -ah"
 alias tailf="less +F -R"
 alias ll="exa -lga"

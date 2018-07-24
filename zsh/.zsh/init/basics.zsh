@@ -1,6 +1,11 @@
 # Reasonable prompt
 autoload -Uz colors && colors
 
+# Edit command in $EDITOR with C-\
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^\\' edit-command-line
+
 setopt prompt_subst
 # setopt autocd             # . / ..
 setopt printexitvalue     # for non-zero exits
@@ -13,8 +18,7 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
 # Make completion:
 # - Case-insensitive.
@@ -25,4 +29,4 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
