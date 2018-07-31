@@ -3,7 +3,7 @@
 # to xdg-open if it does not exist.
 
 if command -v -p "open" > /dev/null; then
-  command -p "open $@"
+  command -p open $@
 else
   $(xdg-open $@)
 fi
