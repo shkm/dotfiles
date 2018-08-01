@@ -162,7 +162,6 @@ Plug 'dhruvasagar/vim-table-mode'   " Table mode for constructing ascii tables
 Plug 'metakirby5/codi.vim'          " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
 Plug 'kshenoy/vim-signature'        " show marks
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Completion
+Plug 'christoomey/vim-tmux-runner'  " run commands in tmux
 
 call plug#end()
