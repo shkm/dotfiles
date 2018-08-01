@@ -5,3 +5,10 @@ def pbcopy
     system %(echo "#{self.to_s}" | #{command})
   end
 end
+
+class User
+  def fix_password
+    update!(password: 'password')
+    email.pbcopy
+  end
+end
