@@ -51,7 +51,7 @@ set softtabstop=2
 set expandtab
 
 " Max columns
-set colorcolumn=80
+set colorcolumn=120
 
 " Don't insert line breaks after 80 columns. PLEASE.
 set textwidth=0
