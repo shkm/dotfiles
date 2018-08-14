@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Runs exa -T if it exists, or falls
+# back to `tree` otherwise.
+if command -v "exa" > /dev/null; then
+  exa -T $@
+else
+  command -p tree $@
+fi
+
+
