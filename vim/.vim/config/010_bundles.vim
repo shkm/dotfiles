@@ -152,8 +152,7 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 " --------------------------------------------------
 " Styles
 " --------------------------------------------------
-Plug 'arcticicestudio/nord-vim'
-Plug 'connorholyday/vim-snazzy'
+Plug 'haishanh/night-owl.vim'
 
 " --------------------------------------------------
 " Misc
