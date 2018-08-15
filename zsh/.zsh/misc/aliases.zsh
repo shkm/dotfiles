@@ -21,6 +21,7 @@ alias lico="licommander"
 alias genpass="openssl rand -base64 24"
 alias scratch="vim $(mktemp -t scratch.XXX.md)"
 alias ls="ls -lshaG"
+alias lg="lazygit"
 
 # 'latest' will refer to the last modified file.
 #
