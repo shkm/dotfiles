@@ -52,6 +52,7 @@ Session.vim
 tags
 gemtags
 TAGS
+node_modules
 
 # GNU global
 GPATH
