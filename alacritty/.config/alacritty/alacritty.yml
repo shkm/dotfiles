@@ -25,30 +25,30 @@ dpi:
   y: 96.0
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 4
+tabspaces: 2
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
   normal:
-    family: "Iosevka" # should be "Menlo" or something on macOS.
+    family: "LigaFantasqueSansMono" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: "Iosevka" # should be "Menlo" or something on macOS.
+    family: "LigaFantasqueSansMono" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    style: Regular
+    style: Bold
 
   # The italic font face
   italic:
-    family: "Iosevka" # should be "Menlo" or something on macOS.
+    family: "LigaFantasqueSansMono" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    # style: Italic
+    style: Italic
 
   # Point size of the font
   size: 18.0
@@ -70,33 +70,34 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: true
 
-# Snazzy
+# Night owl
 colors:
+  # Default colors
   primary:
-    background: '0x282a36'
-    foreground: '0xeff0eb'
-  cursor:
-    text: '0x2E3440'
-    cursor: '0xD8DEE9'
-  normal:
-    black: '0x282a36'
-    red: '0xff5c57'
-    green: '0x5af78e'
-    yellow: '0xf3f99d'
-    blue: '0x57c7ff'
-    magenta: '0xff6ac1'
-    cyan: '0x9aedfe'
-    white: '0xf1f1f0'
-  bright:
-    black: '0x686868'
-    red: '0xff5c57'
-    green: '0x5af78e'
-    yellow: '0xf3f99d'
-    blue: '0x57c7ff'
-    magenta: '0xff6ac1'
-    cyan: '0x9aedfe'
-    white: '0xeff0eb'
+    background: '0x011627'
+    foreground: '0xd6deeb'
 
+  # Normal colors
+  normal:
+    black:   '0x011627'
+    red:     '0xef5350'
+    green:   '0x22da6e'
+    yellow:  '0xaddb67'
+    blue:    '0x82aaff'
+    magenta: '0xc792ea'
+    cyan:    '0x21c7a8'
+    white:   '0xffffff'
+
+  # Bright colors
+  bright:
+    black:   '0x575656'
+    red:     '0xef5350'
+    green:   '0x22da6e'
+    yellow:  '0xffeb95'
+    blue:    '0x82aaff'
+    magenta: '0xc792ea'
+    cyan:    '0x7fdbca'
+    white:   '0xffffff'
 
 # Visual Bell
 #
