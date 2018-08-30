@@ -10,8 +10,8 @@ set shell=zsh
 " Syntax highlighting
 syntax on
 
-" Spelling definitions are British OED
-set spelllang=en-oed
+" The One True English
+set spelllang=en_gb
 
 " Better command-line completion
 set wildmenu
