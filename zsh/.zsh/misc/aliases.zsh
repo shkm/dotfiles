@@ -4,7 +4,7 @@ alias c="clear"
 # alias -="cd -"
 alias pcp="rsync --progress -ah"
 alias tailf="less +F -R"
-alias ll="exa -lga"
+alias ll="exa -lga --group-directories-first"
 alias sha256="shasum -a 256"
 alias sha1="openssl sha1"
 alias download="curl -LO#"
@@ -22,6 +22,7 @@ alias genpass="openssl rand -base64 24"
 alias scratch="vim $(mktemp -t scratch.XXX.md)"
 alias ls="ls -lshaG"
 alias lg="lazygit"
+alias cat="bat"
 
 # 'latest' will refer to the last modified file.
 #
