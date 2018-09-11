@@ -16,7 +16,7 @@ function __git_branch() {
 
   if [[ -z "${branch}" ]]; then return; fi
 
-  local colour="black"
+  local colour="green"
   local bold=true
 
   case $branch in
