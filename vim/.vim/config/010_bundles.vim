@@ -17,6 +17,8 @@ Plug 'tpope/vim-rsi'           " Readline mappings
 Plug 'tpope/vim-unimpaired'    " Various 'pair' mappings
 Plug 'vim-scripts/matchit.zip' " Better pair matching (e.g. do...end)
 Plug 'w0rp/ale'                " Linter
+Plug 'romainl/vim-cool'        " :nohl when searching is done
+
 
 " --------------------------------------------------
 " Refactoring
