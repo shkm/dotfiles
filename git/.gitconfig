@@ -1,9 +1,9 @@
 [include]
   path = ~/.gitconfig.local
 [user]
-  email = jamie@lico.nl
+  email = jamie@schembri.me
   name = Jamie Schembri
-  signingkey = D432A7DF
+  signingkey = C3B452D2
 [core]
   excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
