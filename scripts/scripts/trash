@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # Safely remove files
-if [ -x "$(command -v trash)" ]; then
-  `gio trash "${@}"`
+if [ -f /usr/local/bin/trash ]; then
+  `/usr/local/bin/trash "${@}"`
 else
-  `trash "${@}"`
+  `gio trash "${@}"`
 fi
