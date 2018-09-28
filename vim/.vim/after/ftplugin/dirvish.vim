@@ -4,4 +4,4 @@ nnoremap <buffer> <Leader>mf :e %
 nnoremap <buffer> <Leader>mt :!touch %
 nnoremap <buffer> <Leader>mO :Open %<CR>
 nnoremap <buffer> <Leader>mr :DirvishRename
-nnoremap <buffer> <Leader>mT :DirvishTrash
+nnoremap <buffer> <Leader>mT :DirvishTrash<CR>
