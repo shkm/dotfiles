@@ -10,6 +10,10 @@ function! Trash()
   execute '!trash "' . expand('%p') . '"'
 endfunction
 
+function! DirvishQuickLook()
+  execute '!qlmanage "' . getline('.') . '" -p > /dev/null 2>&1'
+endfunction
+
 function! ProfileStart()
   profile start /tmp/vim_profile.log
   profile func *
