@@ -66,6 +66,10 @@ if [ "$DESKTOP_SESSION" = "/usr/share/xsessions/plasma" ]; then
   export SSH_ASKPASS="/usr/bin/ksshaskpass"
 fi
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
 export LESS_TERMCAP_md=$(printf "\033[01;31m")
