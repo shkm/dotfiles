@@ -9,6 +9,7 @@ if [[ `uname` =  'Linux' ]]; then source $HOME/.zsh/os/linux.zsh; fi
 
 source $HOME/.zsh/software/chruby.zsh
 source $HOME/.zsh/software/rvm.zsh
+source $HOME/.zsh/software/zip.zsh
 source $HOME/.zsh/language/ruby.zsh
 
 source $HOME/.zsh/software/tmux.zsh
