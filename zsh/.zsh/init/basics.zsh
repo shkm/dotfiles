@@ -4,7 +4,7 @@ autoload -Uz colors && colors
 # Edit command in $EDITOR with C-\
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^\\' edit-command-line
+bindkey '^xe' edit-command-line
 
 setopt prompt_subst
 # setopt autocd             # . / ..
