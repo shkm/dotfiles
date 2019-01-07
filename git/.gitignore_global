@@ -53,6 +53,7 @@ tags
 gemtags
 TAGS
 node_modules
+coverage/
 
 # GNU global
 GPATH
