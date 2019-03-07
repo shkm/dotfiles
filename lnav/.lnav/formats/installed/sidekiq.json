@@ -1,0 +1,35 @@
+{
+  "sidekiq_log": {
+    "title": "Sidekiq log",
+    "description": "Standard log in sidekiq",
+    "regex": {
+      "basic": {
+        "pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z) (?<pid>\\d+) TID-(?<opid>\\w+) (?<class>\\w+) JID-(?<job_id>\\w+) (?<level>\\w+): (?<body>.*)$"
+      }
+    },
+    "value": {
+      "pid": {
+        "kind" : "integer",
+        "identifier" : true,
+        "foreign-key" : true,
+        "description" : "The ID of the process that generated the message"
+      },
+      "class": {
+        "kind": "string",
+        "identifier": true,
+        "description": "The name of the class that generated the message"
+      },
+      "job_id": {
+        "kind": "string",
+        "identifier": true,
+        "foreign-key": true,
+        "description": "The ID of the job that generated the message"
+      }
+    },
+    "sample": [
+      {
+        "line": "2019-03-07T15:24:31.193Z 13677 TID-go8k31wz1 OptimizeImageWorker JID-a57f542532104b5eeae14d56 INFO: Uploading image. image=285734"
+      }
+    ]
+  }
+}
