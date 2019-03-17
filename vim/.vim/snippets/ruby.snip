@@ -32,6 +32,12 @@ snippet add_index
 abbr add_index
   add_index :${1:table_name}, :${2:column_name}
 
+snippet change_table
+abbr change_table
+  change_table :${1:table_name} do |t|
+    ${0}
+  end
+
 snippet scope
 abbr scope
   scope :${1:scope_name}, -> { ${0} }
