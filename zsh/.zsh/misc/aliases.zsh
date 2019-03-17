@@ -23,6 +23,7 @@ alias scratch="vim $(mktemp -t scratch.XXX.md)"
 alias ls="ls -lshaG"
 alias lg="lazygit"
 alias cat="bat"
+alias ssh-fingerprint="ssh-keygen -E md5 -lf"
 
 # 'latest' will refer to the last modified file.
 #
