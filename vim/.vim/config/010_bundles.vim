@@ -72,20 +72,7 @@ Plug 'janko-m/vim-test' " Run tests for various languages
 " --------------------------------------------------
 " Documentation
 " --------------------------------------------------
-" Plug 'Keithbsmiley/investigate.vim'  " Documentation lookup
-" Plug 'Shougo/echodoc.vim'            " Echo documentation
-" Plug 'Shougo/neco-vim'               " Vim completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'shkm/LanguageClient-neovim', {
-			  \ 'branch': 'next',
-			  \ 'do': 'bash install.sh',
-			  \ }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'Shougo/neosnippet.vim' " Snippets
 Plug 'Shougo/neosnippet-snippets'    " Actual snippets for use with neosnippet
