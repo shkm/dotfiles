@@ -1,5 +1,5 @@
-" Fix up ruby/rails/rspec filetypes
 autocmd BufNewFile,BufRead *_spec.rb set ft=ruby.rspec
+autocmd BufNewFile,BufRead *.mmd set ft=markdown
 
 " Better HTML indentation
 let g:html_indent_inctags = "html,body,head,p,tbody"

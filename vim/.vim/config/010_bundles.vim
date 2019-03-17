@@ -101,8 +101,8 @@ Plug 'StanAngeloff/php.vim', { 'for': 'php' } " PHP syntax
 " --------------------------------------------------
 " Markdown
 " --------------------------------------------------
-Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' } " Live markdown preview
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }     " Markdown enhancements
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Live markdown preview
+Plug 'plasticboy/vim-markdown'    " Markdown enhancements
 
 " --------------------------------------------------
 " HTML
