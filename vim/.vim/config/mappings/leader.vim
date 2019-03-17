@@ -4,7 +4,6 @@ nnoremap <Leader><TAB> <C-^>
 nnoremap <Leader>/ :Grepper<CR>
 nnoremap <Leader>? :Ag<CR>
 
-
 " ; Settings
 nnoremap <Leader>;sb :set scrollbind<CR>
 
