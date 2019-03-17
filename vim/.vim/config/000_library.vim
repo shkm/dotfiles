@@ -1,21 +1,3 @@
-" Return the index of the needle in the haystack.
-" Optionally start at a given index.
-" If index is not found, returns -1.
-function! GetIndexOf(needle, haystack, ...)
-  " if another arg is defined (start), set i to it, else default to 0
-  let i = (a:0 > 0)? a:1 : 0
-
-  while (i < len(a:haystack))
-    if (a:haystack[i] == a:needle)
-      return i
-    endif
-    let i = i + 1
-  endwhile
-
-  " needle isn't in haystack
-  return -1
-endfunction
-
 " Return true if editor is Macvim
 function! IsMacvim()
   return has('gui_running') && has('gui_macvim')
