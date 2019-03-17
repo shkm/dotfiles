@@ -44,11 +44,12 @@ endfunction
 
 " Statusline
 set laststatus=2
-set statusline=
-set statusline +=\ %n\                     " Buffer
-set statusline +=%<%m%r%h%w\ %f\           " File
-set statusline +=%{StatusLineModal()}      " Specific stuff
-set statusline +=%=                        " Right align
-set statusline +=%{fugitive#statusline()}\ " Fugitive
-set statusline +=%Y\                       " FileType
-set statusline +=%p\                       " Position
+" set statusline=
+" set statusline +=\ %n\                     " Buffer
+" set statusline +=%<%m%r%h%w\ %f\           " File
+" set statusline +=%{StatusLineModal()}      " Specific stuff
+" set statusline +=%=                        " Right align
+" " set statusline +=%{fugitive#statusline()}\ " Fugitive
+" set statusline +=%{coc#status()}
+" set statusline +=%Y\                       " FileType
+" " set statusline +=%c×%l/%L\                 " Position
