@@ -127,6 +127,7 @@ Plug 'carlitux/deoplete-ternjs' " Deoplete source
 " --------------------------------------------------
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }            " CSV enhancements
 Plug 'elzr/vim-json', { 'for': 'json' }              " JSON syntax
+Plug 'mogelbrod/vim-jsonpath', { 'for': 'json' }     " JSON path information
 Plug 'irgeek/vim-puppet', { 'for': 'puppet' }        " Puppet syntax
 Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' } " YAML helper functions
 Plug 'posva/vim-vue', { 'for': 'vue' }               " Vue
