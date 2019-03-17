@@ -41,6 +41,10 @@ function! Strip()
   call winrestview(l:save)
 endfunction
 
+function! ClearMultipleReturns()
+  g/^\_$\n\_^$/d
+endfunction
+
 function! StripColours()
   %!sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
 endfunction
