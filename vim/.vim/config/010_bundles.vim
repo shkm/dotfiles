@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 " " --------------------------------------------------
 Plug 'srstevenson/vim-picker', { 'on': [] } " Fuzzy finding
 Plug 'Konfekt/FastFold'        " Faster folding
-Plug 'junegunn/vim-slash'      " Better slash search
 Plug 'justinmk/vim-dirvish'    " Directory browser
 Plug 'mhinz/vim-grepper'       " Project-wide search
 Plug 'tpope/vim-commentary'    " Comments
@@ -17,7 +16,6 @@ Plug 'tpope/vim-unimpaired'    " Various 'pair' mappings
 Plug 'vim-scripts/matchit.zip' " Better pair matching (e.g. do...end)
 Plug 'w0rp/ale'                " Linter
 Plug 'romainl/vim-cool'        " :nohl when searching is done
-
 Plug 'itchyny/lightline.vim'
 
 " --------------------------------------------------
@@ -39,7 +37,6 @@ Plug 'wellle/targets.vim' " Various text objects
 " --------------------------------------------------
 Plug 'int3/vim-extradite'   " Browse git commits for the current file
 Plug 'junegunn/gv.vim'      " Git commit browser
-Plug 'lambdalisue/gina.vim' " Git manager
 Plug 'mhinz/vim-signify'    " Show VCS changes in column
 Plug 'tpope/vim-fugitive'   " Git
 
