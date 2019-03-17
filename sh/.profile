@@ -42,6 +42,11 @@ if [ -d "$HOME/.dobbin/bin" ] ; then
   export PATH="$HOME/.dobbin/bin:$PATH"
 fi
 
+# Basher
+if [ -d "$HOME/.basher/bin" ] ; then
+  export PATH="$HOME/.basher/bin:$HOME/.basher/cellar/bin:$PATH"
+fi
+
 # FZF
 if [ -d "$HOME/.fzf/bin" ] ; then
   export PATH="$HOME/.fzf/bin:$PATH"
