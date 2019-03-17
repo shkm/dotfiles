@@ -54,6 +54,7 @@ gemtags
 TAGS
 node_modules
 coverage/
+.yardoc/
 
 # GNU global
 GPATH
