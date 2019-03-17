@@ -15,25 +15,24 @@ nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bj :bnext<CR>
 nnoremap <Leader>bk :bprev<CR>
 nnoremap <Leader>bO :Bonly<CR>
-nnoremap <Leader>bf :Buffers<CR>
+nnoremap <Leader>bf :PickerBuffer<CR>
 
 " f Files
 nnoremap <Leader>f? :Ag<CR>
 nnoremap <Leader>fA :A<CR>
-nnoremap <Leader>ff :Files<CR>
-nnoremap <leader>fd :Directories<CR>
+nnoremap <Leader>ff :PickerEdit<CR>
+nnoremap <Leader>fd :call picker#Execute("directories")<CR>
   " fe Find file in set place
-  nnoremap <Leader>fed :HFiles $HOME/dotfiles<CR>
-  nnoremap <Leader>fev :Files $HOME/.vim/config<CR>
-  nnoremap <Leader>fez :Files $HOME/.zsh<CR>
-  nnoremap <Leader>fef :Files $HOME/.config/fish<CR>
+  nnoremap <Leader>fed :call picker#Execute("dotfiles")<CR>
+  nnoremap <Leader>fev :call picker#Execute("vim")<CR>
+  nnoremap <Leader>fez :call picker#Execute("zsh")<CR>
   " fo Open file in set place
   nnoremap <leader>fos :e /tmp/scratch<CR>
 
 " g Git
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gC :Commits<CR>
+" nnoremap <Leader>gC :Commits<CR>
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>ge :Extradite<CR>
 nnoremap <Leader>gl :Gitv<CR>
@@ -48,8 +47,8 @@ nnoremap <Leader>sv :TestVisit<CR>
 nnoremap <Leader>sa :TestSuite<CR>
 
 " t Tags
-nnoremap <Leader>tf :Tags<CR>
-nnoremap <Leader>tb :BTags<CR>
+nnoremap <Leader>tf :PickerTag<CR>
+nnoremap <Leader>tb :PickerBufferTag<CR>
 
 " l Lint
 nnoremap <Leader>ld :ALEDetail<CR>

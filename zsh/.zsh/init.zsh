@@ -16,7 +16,7 @@ source $HOME/.zsh/language/ruby.zsh
 source $HOME/.zsh/software/tmux.zsh
 source $HOME/.zsh/software/vim.zsh
 source $HOME/.zsh/software/git.zsh
-source $HOME/.zsh/software/fzf.zsh
+source $HOME/.zsh/software/fzy.zsh
 source $HOME/.zsh/software/z.zsh
 
 source $HOME/.zsh/misc/aliases.zsh

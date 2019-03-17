@@ -3,8 +3,7 @@ call plug#begin('~/.vim/plugged')
 " " --------------------------------------------------
 " " Basics
 " " --------------------------------------------------
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'        " Fuzzy finder
+Plug 'srstevenson/vim-picker', { 'on': [] } " Fuzzy finding
 Plug 'Konfekt/FastFold'        " Faster folding
 Plug 'junegunn/vim-slash'      " Better slash search
 Plug 'justinmk/vim-dirvish'    " Directory browser

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Uses fzf to switch session
+tmux split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzy | xargs tmux switch-client -t"
