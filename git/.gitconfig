@@ -53,6 +53,7 @@
   r = rebase
   rc = rebase --continue
   ra = rebase --abort
+  rev = rev-parse HEAD
   rs   = reset
   rs1  = reset HEAD^
   rs2  = reset HEAD^^
