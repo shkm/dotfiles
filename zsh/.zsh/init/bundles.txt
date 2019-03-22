@@ -1,3 +1,4 @@
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
 djui/alias-tips
+aperezdc/zsh-fzy

@@ -37,3 +37,5 @@ frsssh() {
 frpssh() {
   fssh '"${SHELL}" -l -c "bundle exec rails c -e production"'
 }
+
+bindkey '^R'  fzy-history-widget
