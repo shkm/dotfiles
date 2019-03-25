@@ -38,4 +38,7 @@ frpssh() {
   fssh '"${SHELL}" -l -c "bundle exec rails c -e production"'
 }
 
+zstyle :fzy:file command rg --files
+
 bindkey '^R'  fzy-history-widget
+bindkey '^T'  fzy-file-widget
