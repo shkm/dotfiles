@@ -37,7 +37,7 @@ function __git_branch() {
     colour_command="$fg[${colour}]"
   fi
 
-  echo " %{${colour_command}${branch}%{$reset_color%}"
+  echo " %{${colour_command}%}${branch}%{${reset_color}%}"
 }
 
 PROMPT='\
