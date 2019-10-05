@@ -122,6 +122,10 @@ Plug 'mxw/vim-jsx'              " JSX support
 Plug 'pangloss/vim-javascript'  " Better JavaScript syntax
 
 " --------------------------------------------------
+" TypeScript
+" --------------------------------------------------
+Plug 'leafgarland/typescript-vim' " Syntax
+" --------------------------------------------------
 " Misc language support
 " --------------------------------------------------
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }            " CSV enhancements
