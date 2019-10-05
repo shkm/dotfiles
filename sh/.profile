@@ -6,6 +6,10 @@
 #   fi
 # fi
 
+if [ -f "$HOME/.secrets" ] ; then
+  source "$HOME/.secrets"
+fi
+
 # Nix package manager
 # if [ -d "$HOME/.nix-profile" ] ; then
 #   source "$HOME/.nix-profile/etc/profile.d/nix.sh"
@@ -83,4 +87,3 @@ export LESS_TERMCAP_se=$(printf "\033[0m")
 export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
-
