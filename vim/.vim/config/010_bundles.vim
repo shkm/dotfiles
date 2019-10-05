@@ -64,7 +64,7 @@ Plug 'fatih/vim-go'
 " Terminal
 " --------------------------------------------------
 if has('nvim')
-  Plug 'kassio/neoterm' " Run things in the neovim terminal
+  " Plug 'kassio/neoterm' " Run things in the neovim terminal
 endif
 
 " --------------------------------------------------
@@ -158,5 +158,4 @@ Plug 'metakirby5/codi.vim'          " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
 Plug 'kshenoy/vim-signature'        " show marks
 Plug 'christoomey/vim-tmux-runner'  " run commands in tmux
-
 call plug#end()

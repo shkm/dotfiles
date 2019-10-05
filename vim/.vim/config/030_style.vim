@@ -23,17 +23,6 @@ set fillchars+=fold:-,vert:│
 " 1 .vimrc +
 set guitablabel=%N\ %t\ %M
 
-if has('gui_running')
-  " Font should be different depending on platform.
-  if IsMacvim()
-    set gfn=Iosevka:h18
-  elseif IsWinGui()
-    set gfn=Droid\ Sans\ Mono\ for\ Powerline:h11:cANSI
-  else
-    set gfn=Fira\ Mono\ 11
-  endif
-endif
-
 " Status line section for language specific stuff
 function! StatusLineModal()
   if &ft == 'yaml' || &ft == 'eruby.yaml'
@@ -42,15 +31,3 @@ function! StatusLineModal()
     return ''
   endif
 endfunction
-
-" Statusline
-set laststatus=2
-" set statusline=
-" set statusline +=\ %n\                     " Buffer
-" set statusline +=%<%m%r%h%w\ %f\           " File
-" set statusline +=%{StatusLineModal()}      " Specific stuff
-" set statusline +=%=                        " Right align
-" " set statusline +=%{fugitive#statusline()}\ " Fugitive
-" set statusline +=%{coc#status()}
-" set statusline +=%Y\                       " FileType
-" " set statusline +=%c×%l/%L\                 " Position
