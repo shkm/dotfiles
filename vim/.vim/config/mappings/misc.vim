@@ -11,9 +11,7 @@ vnoremap ; :
 nnoremap gvf :vertical wincmd f<CR>
 nnoremap gsf <C-w>f
 
-" Expand snippets on C-l
-" imap <expr><C-l> "\<Plug>(neosnippet_expand_or_jump)"
-
+" Supertab
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -24,9 +22,13 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
+
+"Keep lexima working but don't accept suggestions with <cr>
+inoremap <expr> <CR>
+      \ pumvisible() ? "\<C-g>u\<CR>" :
+      \ '<CR>'
 
 " Easy-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
