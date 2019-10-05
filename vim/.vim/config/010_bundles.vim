@@ -110,6 +110,7 @@ Plug 'plasticboy/vim-markdown'    " Markdown enhancements
 " --------------------------------------------------
 Plug 'vim-scripts/indenthtml.vim', { 'for': 'html' } " Better HTML/CSS indentation
 Plug 'mattn/emmet-vim'                               " HTMl expansion
+Plug 'AndrewRadev/tagalong.vim'                      " Easier changing tags
 
 " --------------------------------------------------
 " Coffeescript
