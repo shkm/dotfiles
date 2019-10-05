@@ -20,12 +20,12 @@ nnoremap <Leader>bf :PickerBuffer<CR>
 nnoremap <Leader>f? :Ag<CR>
 nnoremap <Leader>fA :A<CR>
 nnoremap <Leader>ff :PickerEdit<CR>
-nnoremap <Leader>fd :call picker#Execute("directories")<CR>
+nnoremap <Leader>fd :call picker#File('fd -t d', 'e')<CR>
   " fe Find file in set place
-  nnoremap <Leader>fed :call picker#Execute("dotfiles")<CR>
-  nnoremap <Leader>fev :call picker#Execute("vim")<CR>
-  nnoremap <Leader>fez :call picker#Execute("zsh")<CR>
-  nnoremap <Leader>fes :call picker#Execute("snippets")<CR>
+  nnoremap <Leader>fed :call picker#File('fd . $HOME/dotfiles -H', 'e')<CR>
+  nnoremap <Leader>fev :call picker#File('fd . --extension .vim $HOME/.vim', 'e')<CR>
+  nnoremap <Leader>fez :call picker#File('fd . $HOME/.zsh', 'e')<CR>
+  nnoremap <Leader>fes :call picker#File('fd . $HOME/.vim/snippets', 'e')<CR>
   " fo Open file in set place
   nnoremap <leader>fos :e /tmp/scratch<CR>
 
