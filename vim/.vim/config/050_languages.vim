@@ -1,5 +1,6 @@
 autocmd BufNewFile,BufRead *_spec.rb set ft=ruby.rspec
 autocmd BufNewFile,BufRead *.mmd set ft=markdown
+autocmd BufNewFile,BufRead *.tsx set ft=typescript.tsx
 autocmd BufNewFile,BufRead *.snippets set ft=snippets
 
 " Better HTML indentation
