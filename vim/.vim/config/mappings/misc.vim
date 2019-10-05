@@ -25,11 +25,6 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
-"Keep lexima working but don't accept suggestions with <cr>
-inoremap <expr> <CR>
-      \ pumvisible() ? "\<C-g>u\<CR>" :
-      \ '<CR>'
-
 " Easy-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 map g= <Plug>(EasyAlign)
