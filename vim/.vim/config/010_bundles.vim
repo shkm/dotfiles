@@ -18,6 +18,7 @@ Plug 'w0rp/ale'                " Linter
 Plug 'romainl/vim-cool'        " :nohl when searching is done
 Plug 'itchyny/lightline.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'ciaranm/securemodelines'
 
 " --------------------------------------------------
 " Refactoring
