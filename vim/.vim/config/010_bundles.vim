@@ -120,7 +120,6 @@ Plug 'kchmck/vim-coffee-script' " Coffeescript syntax
 " --------------------------------------------------
 Plug 'mxw/vim-jsx'              " JSX support
 Plug 'pangloss/vim-javascript'  " Better JavaScript syntax
-Plug 'carlitux/deoplete-ternjs' " Deoplete source
 
 " --------------------------------------------------
 " Misc language support
