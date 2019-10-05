@@ -26,6 +26,7 @@ Plug 'ciaranm/securemodelines'
 Plug 'AndrewRadev/sideways.vim'  " Move stuff sideways
 Plug 'AndrewRadev/splitjoin.vim' " Split and join various statements
 Plug 'AndrewRadev/switch.vim'    " Switch various statements
+Plug 'AndrewRadev/writable_search.vim' " Write-able search buffer
 Plug 'tpope/vim-abolish'         " Improved search/replace
 
 " --------------------------------------------------
