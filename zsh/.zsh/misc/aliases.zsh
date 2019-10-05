@@ -26,10 +26,10 @@ alias ls="ls -lshaG"
 alias lg="lazygit"
 alias cat="bat"
 alias ssh-fingerprint="ssh-keygen -E md5 -lf"
+alias serve="python -m SimpleHTTPServer"
 
 # 'latest' will refer to the last modified file.
 #
 # e.g. `open latest`
 #        `rm latest`
 alias -g latest='*(om[1])'
-
