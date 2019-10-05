@@ -1,11 +1,11 @@
 [include]
   path = ~/.gitconfig.local
 [user]
-  email = jamie@schembri.me
-  name = Jamie Schembri
-  signingkey = C3B452D2
+	email = jamie@schembri.me
+	name = Jamie Schembri
+	signingKey = 020DE21E3ECDCFE91B829BA65C963E21C3B452D2
 [core]
-  excludesfile = /Users/jamie/.gitignore_global
+	excludesfile = /Users/jamie/.gitignore_global
   editor = nvim
   pager = diff-so-fancy | less --tabs=1,5 -RFX
   commentChar = ~
@@ -38,6 +38,8 @@
   do = "!f() { git remote set-head origin -a && git diff origin/HEAD; }; f"
   dt = difftool
   i  = init
+  ld = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log origin/$BRANCH..$BRANCH --oneline; }; f"
+
   lf = log -u
   lg = log --stat --color
   lt = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -63,18 +65,8 @@
 
   # Linting
   lr = "!f() { rubocop-git; }; f"
+  uncommit = reset --soft HEAD^
 
-  # Workflow
-  ms = "!f() { git checkout milestones/"$1"; }; f"
-  msb = "!f() { git checkout -b milestones/"$1"; }; f"
-  msbd = "!f() { git branch -D milestones/"$1"; }; f"
-
-  is = "!f() { git checkout issues/"$1"; }; f"
-  isb = "!f() { git checkout -b issues/"$1"; }; f"
-  isbd = "!f() { git branch -D issues/"$1"; }; f"
-
-  rms = "!f() { git rebase milestones/"$1"; }; f"
-  rmsi = "!f() { git rebase -i milestones/"$1"; }; f"
 [push]
   # Push only the current branch
   default = current
@@ -94,3 +86,16 @@
   cmd = nvim -d -u ~/.vim/init.vim "$LOCAL" "$MERGED" "$REMOTE"
 [mergetool "fugitive"]
   cmd = nvim -d -u ~/.vim/init.vim -f "+Gvdiff" "$MERGED"
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/jamie/.stCommitMsg
