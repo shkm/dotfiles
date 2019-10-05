@@ -1,6 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
-
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
@@ -39,14 +38,14 @@ tabspaces: 2
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Input"
+    family: "Cascadia Code"
     style: Regular
   bold:
-    family: "Input"
-    style: Bold
+    family: "Cascadia Code"
+    style: Regular
   italic:
-    family: "Input"
-    style: Italic
+    family: "Cascadia Code"
+    style: Regular
   size: 16.0
   offset:
     x: 0
