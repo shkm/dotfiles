@@ -130,6 +130,7 @@ Plug 'irgeek/vim-puppet', { 'for': 'puppet' }        " Puppet syntax
 Plug 'lmeijvogel/vim-yaml-helper', { 'for': 'yaml' } " YAML helper functions
 Plug 'posva/vim-vue', { 'for': 'vue' }               " Vue
 Plug 'tpope/vim-haml', { 'for': 'haml' }             " HAML/Sass/Scss syntax
+Plug 'slim-template/vim-slim', { 'for': 'slim' }     " Slim syntax
 Plug 'vim-scripts/txt.vim'                           " General-purpose highlighting
 Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }       " YAML syntax
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
