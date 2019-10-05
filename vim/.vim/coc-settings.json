@@ -5,5 +5,15 @@
     "ruby": ["rails"],
     "javascriptreact": ["javascript"]
   },
-  "snippets.userSnippetsDirectory": "~/.vim/snippets"
+  "snippets.userSnippetsDirectory": "~/.vim/snippets",
+  "solargraph.diagnostics": true,
+  "solargraph.hover": true,
+  "suggest.enablePreview": true,
+  "diagnostic.messageDelay": 0,
+  "diagnostic.virtualText": true,
+  "diagnostic.errorSign": "x",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextPrefix": "⁂ ",
+  "diagnostic.virtualTextLines": 1,
+  "diagnostic.warningSign": "*"
 }
