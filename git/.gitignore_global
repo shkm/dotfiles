@@ -55,6 +55,7 @@ TAGS
 node_modules
 coverage/
 .yardoc/
+.tool-versions
 
 # GNU global
 GPATH
