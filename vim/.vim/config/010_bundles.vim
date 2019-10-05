@@ -57,7 +57,7 @@ Plug 'whatyouhide/vim-textobj-erb'     " ERB textobj
 " --------------------------------------------------
 " Go
 " --------------------------------------------------
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go'
 
 " --------------------------------------------------
 " Terminal
