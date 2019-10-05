@@ -141,6 +141,8 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 " --------------------------------------------------
 " Plug 'haishanh/night-owl.vim'
 Plug 'rakr/vim-one'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'ayu-theme/ayu-vim'
 
 " --------------------------------------------------
 " Misc

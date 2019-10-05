@@ -60,65 +60,60 @@ render_timer: false
 persistent_logging: false
 draw_bold_text_with_bright_colors: false
 
-# Colors (One Dark)
 colors:
   # Default colors
   primary:
-    background: '0x282c34'
-    foreground: '0xabb2bf'
+    background: '0xfafafa'
+    foreground: '0x6c7680'
 
   # Normal colors
   normal:
-    # NOTE: Use '0x131613' for the `black` color if you'd like to see
-    # black text on the background.
-    black:   '0x282c34'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xabb2bf'
+    black:   '0x000000'
+    red:     '0xf07171'
+    green:   '0x86b300'
+    yellow:  '0xf2ae49'
+    blue:    '0x399ee6'
+    magenta: '0xa37acc'
+    cyan:    '0x4cbf99'
+    white:   '0xc7c7c7'
 
   # Bright colors
   bright:
-    black:   '0x5c6370'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xffffff'
+    black:   '0x686868'
+    red:     '0xf07171'
+    green:   '0x86b300'
+    yellow:  '0xf2ae49'
+    blue:    '0x399ee6'
+    magenta: '0xa37acc'
+    cyan:    '0x4cbf99'
+    white:   '0xd1d1d1'
 
-# # Night owl
+# # Colors (Pencil Light)
 # colors:
-#   # Default colors
-#   primary:
-#     background: '0x011627'
-#     foreground: '0xd6deeb'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x011627'
-#     red:     '0xef5350'
-#     green:   '0x22da6e'
-#     yellow:  '0xaddb67'
-#     blue:    '0x82aaff'
-#     magenta: '0xc792ea'
-#     cyan:    '0x21c7a8'
-#     white:   '0xffffff'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x575656'
-#     red:     '0xef5350'
-#     green:   '0x22da6e'
-#     yellow:  '0xffeb95'
-#     blue:    '0x82aaff'
-#     magenta: '0xc792ea'
-#     cyan:    '0x7fdbca'
-#     white:   '0xffffff'
+#  # Default Colors
+#  primary:
+#    background: '0xf1f1f1'
+#    foreground: '0x424242'
+#  # Normal colors
+#  normal:
+#    black:   '0x212121'
+#    red:     '0xc30771'
+#    green:   '0x10a778'
+#    yellow:  '0xa89c14'
+#    blue:    '0x008ec4'
+#    magenta: '0x523c79'
+#    cyan:    '0x20a5ba'
+#    white:   '0xe0e0e0'
+#  # Bright colors
+#  bright:
+#    black:   '0x212121'
+#    red:     '0xfb007a'
+#    green:   '0x5fd7af'
+#    yellow:  '0xf3e430'
+#    blue:    '0x20bbfc'
+#    magenta: '0x6855de'
+#    cyan:    '0x4fb8cc'
+#    white:   '0xf1f1f1'
 
 visual_bell:
   animation: EaseOutExpo
