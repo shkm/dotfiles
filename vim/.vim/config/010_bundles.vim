@@ -73,9 +73,7 @@ Plug 'janko-m/vim-test' " Run tests for various languages
 " Documentation
 " --------------------------------------------------
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-
-Plug 'Shougo/neosnippet.vim' " Snippets
-Plug 'Shougo/neosnippet-snippets'    " Actual snippets for use with neosnippet
+Plug 'honza/vim-snippets'
 
 " --------------------------------------------------
 " Tools

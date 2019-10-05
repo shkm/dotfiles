@@ -1,0 +1,4 @@
+snippet concern
+module ${1:`substitute(expand('%:t:r:r:r'), '\v%(^(.)|_(.))', '\u\1\u\2', 'g')`}
+  extend ActiveSupport::Concern
+end

@@ -25,6 +25,7 @@ nnoremap <Leader>fd :call picker#Execute("directories")<CR>
   nnoremap <Leader>fed :call picker#Execute("dotfiles")<CR>
   nnoremap <Leader>fev :call picker#Execute("vim")<CR>
   nnoremap <Leader>fez :call picker#Execute("zsh")<CR>
+  nnoremap <Leader>fes :call picker#Execute("snippets")<CR>
   " fo Open file in set place
   nnoremap <leader>fos :e /tmp/scratch<CR>
 

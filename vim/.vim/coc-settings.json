@@ -1,0 +1,9 @@
+{
+  // make vim select first item on completion
+  "suggest.noselect": false,
+  "snippets.extends": {
+    "ruby": ["rails"],
+    "javascriptreact": ["javascript"]
+  },
+  "snippets.userSnippetsDirectory": "~/.vim/snippets"
+}
