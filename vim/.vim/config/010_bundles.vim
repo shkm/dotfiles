@@ -81,7 +81,7 @@ Plug 'honza/vim-snippets'
 " --------------------------------------------------
 " Tools
 " --------------------------------------------------
-Plug 'chrisbra/Colorizer'      " Colorize hex colours
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'junegunn/vim-easy-align' " Alignment
 Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
 if has('nvim')
