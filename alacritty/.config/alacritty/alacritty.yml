@@ -24,7 +24,6 @@ window:
 
   dynamic_padding: false
   decorations: full
-  start_maximized: false
 
 scrolling:
   history: 10000
@@ -38,15 +37,18 @@ tabspaces: 2
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Cascadia Code"
+    family: "Input Mono"
     style: Regular
   bold:
-    family: "Cascadia Code"
-    style: Regular
+    family: "Input Mono"
+    style: Bold
   italic:
-    family: "Cascadia Code"
-    style: Regular
-  size: 16.0
+    family: "Input Mono"
+    style: Italic
+  bold_italic:
+    family: "Input Mono"
+    style: Bold Italic
+  size: 14.0
   offset:
     x: 0
     y: 0
@@ -55,37 +57,69 @@ font:
     y: 0
   use_thin_strokes: true
 
-render_timer: false
-persistent_logging: false
 draw_bold_text_with_bright_colors: false
 
+# Rigel
 colors:
   # Default colors
   primary:
-    background: '0xfafafa'
-    foreground: '0x6c7680'
+    background: '0x002635'
+    foreground: '0xe6e6dc'
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xf07171'
-    green:   '0x86b300'
-    yellow:  '0xf2ae49'
-    blue:    '0x399ee6'
-    magenta: '0xa37acc'
-    cyan:    '0x4cbf99'
-    white:   '0xc7c7c7'
+    black:   '0x00384d'
+    red:     '0xc43061'
+    green:   '0x7fc06e'
+    yellow:  '0xf08e48'
+    blue:    '0x1c8db2'
+    magenta: '0xc694ff'
+    cyan:    '0x00cccc'
+    white:   '0x77929e'
 
   # Bright colors
   bright:
-    black:   '0x686868'
-    red:     '0xf07171'
-    green:   '0x86b300'
-    yellow:  '0xf2ae49'
-    blue:    '0x399ee6'
-    magenta: '0xa37acc'
-    cyan:    '0x4cbf99'
-    white:   '0xd1d1d1'
+    black:   '0x517f8d'
+    red:     '0xff5a67'
+    green:   '0x9cf087'
+    yellow:  '0xffcc1b'
+    blue:    '0x7eb2dd'
+    magenta: '0xfb94ff'
+    cyan:    '0x00ffff'
+    white:   '0xb7cff9'
+
+  cursor:
+    text: "0x002635"
+    cursor: "0xffcc1b"
+
+# Ayu Light
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0xfafafa'
+#     foreground: '0x6c7680'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x000000'
+#     red:     '0xf07171'
+#     green:   '0x86b300'
+#     yellow:  '0xf2ae49'
+#     blue:    '0x399ee6'
+#     magenta: '0xa37acc'
+#     cyan:    '0x4cbf99'
+#     white:   '0xc7c7c7'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x686868'
+#     red:     '0xf07171'
+#     green:   '0x86b300'
+#     yellow:  '0xf2ae49'
+#     blue:    '0x399ee6'
+#     magenta: '0xa37acc'
+#     cyan:    '0x4cbf99'
+#     white:   '0xd1d1d1'
 
 # # Colors (Pencil Light)
 # colors:
@@ -200,6 +234,7 @@ key_bindings:
   - { key: C,        mods: Command, action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
+  - { key: F,        mods: Command|Shift, action: ToggleSimpleFullscreen }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }

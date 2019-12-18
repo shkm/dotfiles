@@ -1,8 +1,7 @@
 " Colors
 " set t_Co=256
-set background=light
-let ayucolor="light"  " for light version of theme
-colorscheme ayu
+" set background=dark
+colorscheme rigel
 
 " Make the current split more obvious
 " augroup BgHighlight

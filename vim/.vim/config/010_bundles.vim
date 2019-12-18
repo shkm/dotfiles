@@ -148,6 +148,7 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 Plug 'rakr/vim-one'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'ayu-theme/ayu-vim'
+Plug 'Rigellute/rigel'
 
 " --------------------------------------------------
 " Misc
