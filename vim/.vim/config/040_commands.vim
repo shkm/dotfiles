@@ -1,5 +1,6 @@
 command! PrettyJson :%!python -m json.tool
 command! PrettyHtml :%!tidy -q -i --show-errors 0 --raw
+command! PrettyXml :%!tidy -q -i -xml --show-errors 0 --raw
 command! OpenPwd :!open `pwd`
 command! OpenLocate :!open -R %
 command! -nargs=1 Open :!open <q-args>
