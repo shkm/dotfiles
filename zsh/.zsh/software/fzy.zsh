@@ -42,3 +42,4 @@ zstyle :fzy:file command rg --files
 
 bindkey '^R'  fzy-history-widget
 bindkey '^T'  fzy-file-widget
+bindkey '\ec' fzy-cd-widget
