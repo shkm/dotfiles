@@ -16,6 +16,9 @@ nnoremap <Leader>bk :bprev<CR>
 nnoremap <Leader>bO :Bonly<CR>
 nnoremap <Leader>bf :PickerBuffer<CR>
 
+" y Yank
+nnoremap <Leader>yP :let @+=expand("%:p")<CR>
+
 " f Files
 nnoremap <Leader>f? :Ag<CR>
 nnoremap <Leader>fA :A<CR>
