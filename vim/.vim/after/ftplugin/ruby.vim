@@ -24,7 +24,8 @@ function! RubocopAutocorrect()
 endfunction
 
 command! -nargs=1 RubyDoc call RubyRiLookup(<f-args>)
-setlocal keywordprg=:RubyDoc
+" setlocal keywordprg=:RubyDoc
+setlocal keywordprg=:call\ <SID>show_documentation()
 
 " Mappings
 nnoremap <buffer> <Leader>mc :Econtroller<CR>
