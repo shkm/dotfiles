@@ -7,7 +7,7 @@
 set -o errexit
 set -o pipefail
 
-readonly PACKAGES=( ag alacritty bash eslint git ruby scripts sh tig tmux vim zsh ctagslnav )
+readonly PACKAGES=( ag alacritty bash eslint git ruby scripts sh tig tmux vim zsh ctags lnav )
 readonly MACOS_PACKAGES=( macos )
 readonly LINUX_PACKAGES=( linux )
 
