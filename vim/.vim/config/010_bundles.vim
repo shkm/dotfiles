@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 " " --------------------------------------------------
 " " Basics
 " " --------------------------------------------------
-Plug 'srstevenson/vim-picker', { 'on': [] } " Fuzzy finding
+Plug 'srstevenson/vim-picker'  " Fuzzy finding
 Plug 'Konfekt/FastFold'        " Faster folding
 Plug 'justinmk/vim-dirvish'    " Directory browser
 Plug 'mhinz/vim-grepper'       " Project-wide search
