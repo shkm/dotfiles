@@ -17,7 +17,6 @@ alias docker-eval='eval "$(docker-machine env)"'
 alias gbd="git branch | grep -v \* | xargs -I {} git branch -d {} ; git branch"
 alias gbD="git branch | grep -v \* | xargs -I {} git branch -D {} ; git branch"
 alias vms="vboxmanage list runningvms"
-alias lico="licommander"
 alias genpass="openssl rand -base64 24"
 alias scratch="vim $(mktemp -t scratch.XXX.md)"
 alias v="vim"
