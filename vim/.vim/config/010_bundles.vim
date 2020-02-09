@@ -145,10 +145,11 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 " Styles
 " --------------------------------------------------
 " Plug 'haishanh/night-owl.vim'
-Plug 'rakr/vim-one'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'ayu-theme/ayu-vim'
-Plug 'Rigellute/rigel'
+" Plug 'rakr/vim-one'
+" Plug 'sonph/onehalf', {'rtp': 'vim/'}
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'Rigellute/rigel'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " --------------------------------------------------
 " Misc

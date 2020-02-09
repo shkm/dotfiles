@@ -36,16 +36,16 @@ tabspaces: 2
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Input Mono"
+    family: "Jetbrains Mono"
     style: Regular
   bold:
-    family: "Input Mono"
+    family: "Jetbrains Mono"
     style: Bold
   italic:
-    family: "Input Mono"
+    family: "Jetbrains Mono"
     style: Italic
   bold_italic:
-    family: "Input Mono"
+    family: "Jetbrains Mono"
     style: Bold Italic
   size: 14.0
   offset:
@@ -58,38 +58,67 @@ font:
 
 draw_bold_text_with_bright_colors: false
 
-# Rigel
+# Colors (Dracula)
 colors:
   # Default colors
   primary:
-    background: '0x002635'
-    foreground: '0xe6e6dc'
+    background: '0x282a36'
+    foreground: '0xf8f8f2'
 
   # Normal colors
   normal:
-    black:   '0x00384d'
-    red:     '0xc43061'
-    green:   '0x7fc06e'
-    yellow:  '0xf08e48'
-    blue:    '0x1c8db2'
-    magenta: '0xc694ff'
-    cyan:    '0x00cccc'
-    white:   '0x77929e'
+    black:   '0x000000'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xcaa9fa'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xbfbfbf'
 
   # Bright colors
   bright:
-    black:   '0x517f8d'
-    red:     '0xff5a67'
-    green:   '0x9cf087'
-    yellow:  '0xffcc1b'
-    blue:    '0x7eb2dd'
-    magenta: '0xfb94ff'
-    cyan:    '0x00ffff'
-    white:   '0xb7cff9'
+    black:   '0x575b70'
+    red:     '0xff6e67'
+    green:   '0x5af78e'
+    yellow:  '0xf4f99d'
+    blue:    '0xcaa9fa'
+    magenta: '0xff92d0'
+    cyan:    '0x9aedfe'
+    white:   '0xe6e6e6'
 
-  cursor:
-    text: "0x002635"
-    cursor: "0xffcc1b"
+# # Rigel
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x002635'
+#     foreground: '0xe6e6dc'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x00384d'
+#     red:     '0xc43061'
+#     green:   '0x7fc06e'
+#     yellow:  '0xf08e48'
+#     blue:    '0x1c8db2'
+#     magenta: '0xc694ff'
+#     cyan:    '0x00cccc'
+#     white:   '0x77929e'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x517f8d'
+#     red:     '0xff5a67'
+#     green:   '0x9cf087'
+#     yellow:  '0xffcc1b'
+#     blue:    '0x7eb2dd'
+#     magenta: '0xfb94ff'
+#     cyan:    '0x00ffff'
+#     white:   '0xb7cff9'
+
+#   cursor:
+#     text: "0x002635"
+#     cursor: "0xffcc1b"
 
 # Ayu Light
 # colors:

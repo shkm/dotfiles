@@ -1,3 +1,3 @@
 let g:lightline = {
-      \ 'colorscheme': 'rigel',
+      \ 'colorscheme': 'dracula',
       \ }
