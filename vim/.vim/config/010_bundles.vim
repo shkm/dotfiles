@@ -77,6 +77,7 @@ Plug 'janko-m/vim-test' " Run tests for various languages
 " --------------------------------------------------
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'honza/vim-snippets'
+" Plug 'dense-analysis/ale'
 
 " --------------------------------------------------
 " Tools
