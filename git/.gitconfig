@@ -38,6 +38,8 @@
   do = "!f() { git remote set-head origin -a && git diff origin/HEAD; }; f"
   dt = difftool
   i  = init
+  is = "!f() { git checkout issues/$1; }; f"
+  isb = "!f() { git checkout -b issues/$1; }; f"
   ld = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log origin/$BRANCH..$BRANCH --oneline; }; f"
 
   lf = log -u
