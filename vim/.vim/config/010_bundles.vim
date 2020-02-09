@@ -160,4 +160,5 @@ Plug 'metakirby5/codi.vim'          " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
 Plug 'kshenoy/vim-signature'        " show marks
 Plug 'christoomey/vim-tmux-runner'  " run commands in tmux
+Plug 'TaDaa/vimade'
 call plug#end()
