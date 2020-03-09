@@ -32,3 +32,7 @@ alias serve="python -m SimpleHTTPServer"
 # e.g. `open latest`
 #        `rm latest`
 alias -g latest='*(om[1])'
+
+cdd() {
+  cd $(dirname $1)
+}
