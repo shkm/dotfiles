@@ -31,6 +31,8 @@ alias ssh-add-token="ssh-add -e /usr/lib/ssh-keychain.dylib 2>/dev/null ; ssh-ad
 alias csdp="SKIP_DATA_SYNC_CONFIRM=true cap staging db:pull"
 alias cpdp="SKIP_DATA_SYNC_CONFIRM=true cap production db:pull"
 
+alias dex="docker exec -it"
+
 # 'latest' will refer to the last modified file.
 #
 # e.g. `open latest`
