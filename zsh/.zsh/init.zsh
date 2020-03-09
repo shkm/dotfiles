@@ -18,6 +18,7 @@ source $HOME/.zsh/software/vim.zsh
 source $HOME/.zsh/software/git.zsh
 source $HOME/.zsh/software/fzy.zsh
 source $HOME/.zsh/software/z.zsh
+source $HOME/.zsh/software/docker.zsh
 
 source $HOME/.zsh/misc/aliases.zsh
 
