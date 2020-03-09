@@ -26,6 +26,8 @@ alias lg="lazygit"
 alias cat="bat"
 alias ssh-fingerprint="ssh-keygen -E md5 -lf"
 alias serve="python -m SimpleHTTPServer"
+alias csdp="SKIP_DATA_SYNC_CONFIRM=true cap staging db:pull"
+alias cpdp="SKIP_DATA_SYNC_CONFIRM=true cap production db:pull"
 
 # 'latest' will refer to the last modified file.
 #
