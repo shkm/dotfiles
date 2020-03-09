@@ -26,6 +26,8 @@ alias lg="lazygit"
 alias cat="bat"
 alias ssh-fingerprint="ssh-keygen -E md5 -lf"
 alias serve="python -m SimpleHTTPServer"
+alias ssh-add-token="ssh-add -e /usr/lib/ssh-keychain.dylib 2>/dev/null ; ssh-add -s /usr/lib/ssh-keychain.dylib -t 8h"
+
 alias csdp="SKIP_DATA_SYNC_CONFIRM=true cap staging db:pull"
 alias cpdp="SKIP_DATA_SYNC_CONFIRM=true cap production db:pull"
 
