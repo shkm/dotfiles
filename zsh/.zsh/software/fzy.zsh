@@ -27,7 +27,11 @@ fssh() {
   echo "Connecting to ${host}"
   [ -n $command ] && echo "Command: ${command}"
 
-  ssh $host $command
+  ssh -t $host $command
+}
+
+fsshr() {
+  fssh '/bin/bash -l -c "cd rails/current && bundle exec rails console"'
 }
 
 frsssh() {
