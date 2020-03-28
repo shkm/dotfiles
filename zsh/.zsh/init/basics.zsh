@@ -14,6 +14,7 @@ setopt sharehistory       # share history across all shells
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
+LISTMAX=1000 # auto-show completion possibilities, higher number
 
 # Use modern completion system
 autoload -Uz compinit && compinit
