@@ -47,7 +47,7 @@ font:
   bold_italic:
     family: "Jetbrains Mono"
     style: Bold Italic
-  size: 14.0
+  size: 10.0
   offset:
     x: 0
     y: 0
@@ -223,7 +223,7 @@ cursor:
 live_config_reload: true
 
 shell:
-  program: /usr/local/bin/zsh
+  program: /usr/bin/zsh
   args:
     - --login
 

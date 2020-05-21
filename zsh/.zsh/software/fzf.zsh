@@ -1,4 +1,5 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $XDG_CONFIG_HOME/fzf/zsh.zsh ] && source $XDG_CONFIG_HOME/fzf/zsh.zsh
 
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^X^O' fzf-completion
