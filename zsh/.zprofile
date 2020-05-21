@@ -1,1 +1,1 @@
-source ~/.profile
+. "$HOME/.profile"
