@@ -17,8 +17,6 @@ HISTFILE=~/.zsh_history
 LISTMAX=1000 # auto-show completion possibilities, higher number
 
 # Use modern completion system
-autoload -Uz compinit && compinit
-
 # Make completion:
 # - Case-insensitive.
 # - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
@@ -28,4 +26,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
 
+autoload -Uz compinit
+compinit
+autoload -Uz bashcompinit
+bashcompinit
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
