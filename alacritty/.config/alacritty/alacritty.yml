@@ -36,18 +36,10 @@ tabspaces: 2
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Jetbrains Mono"
-    style: Regular
+    family: "ProFontIIX Nerd Font"
+    style: Book
   bold:
-    family: "Jetbrains Mono"
-    style: Bold
-  italic:
-    family: "Jetbrains Mono"
-    style: Italic
-  bold_italic:
-    family: "Jetbrains Mono"
-    style: Bold Italic
-  size: 10.0
+    style: Book
   offset:
     x: 0
     y: 0
@@ -55,7 +47,7 @@ font:
     x: 0
     y: 0
   use_thin_strokes: true
-
+  size: 7
 draw_bold_text_with_bright_colors: false
 
 # Colors (Dracula)
@@ -181,7 +173,7 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-background_opacity: 1.0
+background_opacity: 0.8
 
 mouse:
   # Click settings
