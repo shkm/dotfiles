@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# OS-generic clipboard copy command
+# Pipe stdin into this or provide a filename
+FILE=$1
+
+if [[ $(command -v -p "pbcopy") ]]; then
+  if [[ -z $FILE ]]; then
+    pbcopy
+  else
+    cat "$FILE" | pbcopy
+  fi
+elif [[ $(command -v "xclip") ]]; then
+  if [[ -z $FILE ]]; then
+    xclip -in -selection clipboard
+  else
+    xclip -in -selection clipboard "$FILE"
+  fi
+else
+  echo "No clipboard command found. Consider installing xclip."
+fi
