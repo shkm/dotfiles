@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Quick looks current file.
+# Built-in on MacOS, falls back to `sushi` for linux.
+set -o nounset
+set -o errexit
+
+if [ -x "$(command -v qlmanage)" ]; then
+  qlmanage -p > "$1"
+else
+  sushi "$1"
+fi
