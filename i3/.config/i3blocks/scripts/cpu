@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -o nounset
+set -o errexit
+set -o pipefail
+
+WARNING_THRESHOLD="50.0"
+CRITICAL_THRESHOLD="80.0"
+
+USAGE=$(mpstat | grep -A 5 "%idle" | tail -n 1 | awk -F " " '{print 100 -  $ 12}')
+
+if (( $(echo "$USAGE > $CRITICAL_THRESHOLD" |bc -l) )); then
+  COLOR="#FF0000\n"
+elif (( $(echo "$USAGE > $WARNING_THRESHOLD" |bc -l) )); then
+  COLOR="#FFFC00\n"
+else
+  COLOR="#FFFFFF"
+fi
+
+echo "$USAGE%"
+echo "$USAGE%"
+echo "$COLOR"
