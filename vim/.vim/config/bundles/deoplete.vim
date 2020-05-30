@@ -1,7 +1,7 @@
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1 " 2
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#auto_complete_delay = 0
+" let g:deoplete#auto_complete_start_length = 1 " 2
 
 " TODO: tern
 " let g:deoplete#sources#ternjs#types = 1

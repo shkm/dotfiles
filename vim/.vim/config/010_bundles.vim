@@ -26,7 +26,7 @@ Plug 'evanleck/vim-svelte'
 Plug 'AndrewRadev/sideways.vim'  " Move stuff sideways
 Plug 'AndrewRadev/splitjoin.vim' " Split and join various statements
 Plug 'AndrewRadev/switch.vim'    " Switch various statements
-Plug 'AndrewRadev/writable_search.vim' " Write-able search buffer
+" Plug 'AndrewRadev/writable_search.vim' " Write-able search buffer
 Plug 'tpope/vim-abolish'         " Improved search/replace
 
 " --------------------------------------------------
@@ -38,8 +38,8 @@ Plug 'wellle/targets.vim' " Various text objects
 " --------------------------------------------------
 " VCS
 " --------------------------------------------------
-Plug 'int3/vim-extradite'   " Browse git commits for the current file
-Plug 'junegunn/gv.vim'      " Git commit browser
+" Plug 'int3/vim-extradite'   " Browse git commits for the current file
+" Plug 'junegunn/gv.vim'      " Git commit browser
 Plug 'mhinz/vim-signify'    " Show VCS changes in column
 Plug 'tpope/vim-fugitive'   " Git
 
@@ -49,8 +49,8 @@ Plug 'tpope/vim-fugitive'   " Git
 Plug 'Keithbsmiley/rspec.vim'          " RSpec syntax
 Plug 'kana/vim-textobj-user'           " Dependency
 Plug 'nelstrom/vim-textobj-rubyblock'  " Ruby block textobj
-Plug 'ngmy/vim-rubocop'                " Rubocop linter with additional functionality
-Plug 'tpope/vim-bundler'               " Bundler enhancements
+" Plug 'ngmy/vim-rubocop'                " Rubocop linter with additional functionality
+" Plug 'tpope/vim-bundler'               " Bundler enhancements
 Plug 'tpope/vim-rails'                 " Rails-specific enhancements
 Plug 'vim-ruby/vim-ruby',              " Ruby syntax
 Plug 'whatyouhide/vim-textobj-erb'     " ERB textobj
@@ -63,9 +63,9 @@ Plug 'fatih/vim-go'
 " --------------------------------------------------
 " Terminal
 " --------------------------------------------------
-if has('nvim')
+" if has('nvim')
   " Plug 'kassio/neoterm' " Run things in the neovim terminal
-endif
+" endif
 
 " --------------------------------------------------
 " Testing
@@ -75,19 +75,30 @@ Plug 'janko-m/vim-test' " Run tests for various languages
 " --------------------------------------------------
 " Documentation
 " --------------------------------------------------
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'Shougo/neco-vim'
+" Plug 'Shougo/neosnippet.vim'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Plug 'dense-analysis/ale'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'prabirshrestha/asyncomplete-necosyntax.vim'
+Plug 'prabirshrestha/asyncomplete-necovim.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+
+Plug 'dense-analysis/ale'
 
 " --------------------------------------------------
 " Tools
 " --------------------------------------------------
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'junegunn/vim-easy-align' " Alignment
-Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
-if has('nvim')
-  Plug 'mhinz/neovim-remote'     " Remote-control neovim
-endif
+" Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
+" if has('nvim')
+"   Plug 'mhinz/neovim-remote'     " Remote-control neovim
+" endif
 
 " --------------------------------------------------
 " Elixir
@@ -128,6 +139,7 @@ Plug 'pangloss/vim-javascript'  " Better JavaScript syntax
 " TypeScript
 " --------------------------------------------------
 Plug 'leafgarland/typescript-vim' " Syntax
+
 " --------------------------------------------------
 " Misc language support
 " --------------------------------------------------
@@ -146,20 +158,15 @@ Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
 " --------------------------------------------------
 " Styles
 " --------------------------------------------------
-" Plug 'haishanh/night-owl.vim'
-" Plug 'rakr/vim-one'
-" Plug 'sonph/onehalf', {'rtp': 'vim/'}
-" Plug 'ayu-theme/ayu-vim'
-" Plug 'Rigellute/rigel'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 " --------------------------------------------------
 " Misc
 " --------------------------------------------------
 Plug 'dhruvasagar/vim-table-mode'   " Table mode for constructing ascii tables
-Plug 'metakirby5/codi.vim'          " Repl
+" Plug 'metakirby5/codi.vim'          " Repl
 Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
-Plug 'kshenoy/vim-signature'        " show marks
+" Plug 'kshenoy/vim-signature'        " show marks
 Plug 'christoomey/vim-tmux-runner'  " run commands in tmux
-Plug 'TaDaa/vimade'
+Plug 'TaDaa/vimade'                  " Fade inactive buffers
 call plug#end()

@@ -3,11 +3,8 @@
 " set background=dark
 colorscheme dracula
 
-" Make the current split more obvious
-" augroup BgHighlight
-"   autocmd! WinEnter * hi clear SignColor
-"   autocmd! WinLeave * hi SignColor guibg=#333333 ctermbg=235
-" augroup END
+" Use a transparent background
+hi Normal guibg=NONE
 
 set nonumber
 
