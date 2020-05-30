@@ -26,13 +26,6 @@ HISTFILE="$HOME/.zsh_history"
  # auto-show up to 1000 completion possibilities
 LISTMAX=1000
 
-# Use modern completion system
-# Make completion:
-# - Case-insensitive.
-# - Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
-# - Substring complete (ie. bar -> foobar).
-# zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*' list-colors ''
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
@@ -44,15 +37,13 @@ bindkey -e
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
-# -- Misc --
+# -- Sources --
 
+source "$HOME/.zshrc.d/fzf.zsh"
 source "$HOME/.zshrc.d/antibody.zsh"
 source "$HOME/.zshrc.d/aliases.zsh"
 source "$HOME/.zshrc.d/functions.zsh"
-source "$HOME/.zshrc.d/fzf.zsh"
 source "$HOME/.zshrc.d/theme.zsh"
-
-# RVM
-if [ -f $HOME/.rvm/scripts/rvm ]; then; source "$HOME/.rvm/scripts/rvm"; fi
+source "$HOME/.zshrc.d/asdf.zsh"
 
 # zprof # profiling

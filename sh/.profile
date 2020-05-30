@@ -41,6 +41,11 @@ if [ -d "$HOME/.yarn/bin" ] ; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
+# Nix
+if [ -d "$HOME/.nix-profile" ] ; then
+  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
 # Locale
 export LC_ALL="en_GB.UTF-8"
 
@@ -61,6 +66,3 @@ export LESS_TERMCAP_se=$(printf "\033[0m")
 export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
