@@ -41,11 +41,6 @@ if [ -d "$HOME/.yarn/bin" ] ; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-# Nix
-if [ -d "$HOME/.nix-profile" ] ; then
-  source "$HOME/.nix-profile/etc/profile.d/nix.sh"
-fi
-
 # Locale
 export LC_ALL="en_GB.UTF-8"
 
