@@ -1,5 +1,11 @@
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f $XDG_CONFIG_HOME/fzf/zsh.zsh ] && source $XDG_CONFIG_HOME/fzf/zsh.zsh
+if [ -d /usr/share/fzf ]; then
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+elif [ -f ~/.fzf.zsh ]; then 
+  source ~/.fzf.zsh
+elif [ -f $XDG_CONFIG_HOME/fzf/zsh.zsh ]; then 
+  source $XDG_CONFIG_HOME/fzf/zsh.zsh
+fi
 
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^X^O' fzf-completion
