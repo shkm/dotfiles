@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+wget --no-check-certificate -O $HOME/Pictures/wallpaper.jpg http://source.unsplash.com/1920x1080/?nature
+feh --bg-scale $HOME/Pictures/wallpaper.jpg
