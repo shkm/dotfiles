@@ -3,7 +3,8 @@ call plug#begin('~/.vim/plugged')
 " " --------------------------------------------------
 " " Basics
 " " --------------------------------------------------
-Plug 'srstevenson/vim-picker'  " Fuzzy finding
+" Plug 'srstevenson/vim-picker'  " Fuzzy finding
+Plug 'junegunn/fzf.vim'        " Fuzzy finding
 Plug 'Konfekt/FastFold'        " Faster folding
 Plug 'justinmk/vim-dirvish'    " Directory browser
 Plug 'mhinz/vim-grepper'       " Project-wide search
@@ -154,6 +155,7 @@ Plug 'slim-template/vim-slim', { 'for': 'slim' }     " Slim syntax
 Plug 'vim-scripts/txt.vim'                           " General-purpose highlighting
 Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }       " YAML syntax
 Plug 'zaiste/tmux.vim', { 'for': 'tmux' }            " Tmux syntax
+Plug 'mboughaba/i3config.vim'                        " i3 config syntax
 
 " --------------------------------------------------
 " Styles
@@ -168,5 +170,5 @@ Plug 'dhruvasagar/vim-table-mode'   " Table mode for constructing ascii tables
 Plug 'powerman/vim-plugin-AnsiEsc'  " colorize ANSI escape sequences
 " Plug 'kshenoy/vim-signature'        " show marks
 Plug 'christoomey/vim-tmux-runner'  " run commands in tmux
-Plug 'TaDaa/vimade'                  " Fade inactive buffers
+" Plug 'TaDaa/vimade'                  " Fade inactive buffers
 call plug#end()

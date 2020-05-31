@@ -33,8 +33,8 @@ set lazyredraw
 
 " Avoid backup mess (.doc.swp, ~.doc) by moving backups tmp
 set backupcopy=yes
-set backupdir=$HOME/.tmp
-set directory=$HOME~/.tmp
+set backupdir=/tmp
+set directory=/tmp
 
 " Don't warn when there's an existing swap file.
 set shortmess+=A

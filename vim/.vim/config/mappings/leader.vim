@@ -2,7 +2,7 @@ let mapleader = " "
 
 nnoremap <Leader><TAB> <C-^>
 nnoremap <Leader>/ :Grepper<CR>
-nnoremap <Leader>? :Ag<CR>
+nnoremap <Leader>? :Rg<CR>
 
 " ; Settings
 nnoremap <Leader>;sb :set scrollbind<CR>
@@ -14,21 +14,20 @@ nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bj :bnext<CR>
 nnoremap <Leader>bk :bprev<CR>
 nnoremap <Leader>bO :Bonly<CR>
-nnoremap <Leader>bf :PickerBuffer<CR>
+nnoremap <Leader>bf :Buffers<CR>
 
 " y Yank
 nnoremap <Leader>yP :let @+=expand("%:p")<CR>
 
-" f Files
-nnoremap <Leader>f? :Ag<CR>
+" f Files/Find
+nnoremap <Leader>f? :Rg<CR>
 nnoremap <Leader>fA :A<CR>
-nnoremap <Leader>ff :PickerEdit<CR>
-nnoremap <Leader>fd :call picker#File('fd -t d', 'e')<CR>
+nnoremap <Leader>ff :Files<CR>
   " fe Find file in set place
-  nnoremap <Leader>fed :call picker#File('fd . $HOME/dotfiles -H', 'e')<CR>
-  nnoremap <Leader>fev :call picker#File('fd . --extension .vim $HOME/.vim', 'e')<CR>
-  nnoremap <Leader>fez :call picker#File('fd . $HOME/.zsh', 'e')<CR>
-  nnoremap <Leader>fes :call picker#File('fd . $HOME/.vim/snippets', 'e')<CR>
+  nnoremap <Leader>fed :Files $HOME/dotfiles<CR>
+  nnoremap <Leader>fev :Files $HOME/.vim<CR>
+  nnoremap <Leader>fes :Files $HOME/.vim/snippets<CR>
+
   " fo Open file in set place
   nnoremap <leader>fos :e /tmp/scratch<CR>
 
@@ -50,8 +49,8 @@ nnoremap <Leader>sv :TestVisit<CR>
 nnoremap <Leader>sa :TestSuite<CR>
 
 " t Tags
-nnoremap <Leader>tf :PickerTag<CR>
-nnoremap <Leader>tb :PickerBufferTag<CR>
+" nnoremap <Leader>tf :PickerTag<CR>
+" nnoremap <Leader>tb :PickerBufferTag<CR>
 
 " l Lint
 nnoremap <Leader>ld :ALEDetail<CR>
