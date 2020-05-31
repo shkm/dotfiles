@@ -28,18 +28,14 @@ window:
 scrolling:
   history: 10000
   multiplier: 3
-  auto_scroll: false
-
-# Display tabs using this many cells (changes require restart)
-tabspaces: 2
 
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "ProFontIIX Nerd Font"
-    style: Book
+    family: "CozetteVector"
+    style: Medium
   bold:
-    style: Book
+    style: Medium
   offset:
     x: 0
     y: 0
@@ -47,7 +43,7 @@ font:
     x: 0
     y: 0
   use_thin_strokes: true
-  size: 7
+  size: 9
 draw_bold_text_with_bright_colors: false
 
 # Colors (Dracula)
@@ -173,7 +169,7 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-background_opacity: 0.8
+background_opacity: 0.9
 
 mouse:
   # Click settings
