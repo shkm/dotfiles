@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+firefox --class=firefox_work -new-instance -P work & disown
