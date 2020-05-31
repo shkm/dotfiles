@@ -1,12 +1,12 @@
 function __git_dirty() {
   # changes
   if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]; then
-    echo '*'
+    echo ''
     return
   fi
   # untracked files
   if [[ $(git status --porcelain 2>/dev/null | grep "^??") != "" ]]; then
-    echo '⁂'
+    echo ''
     return
   fi
 }
@@ -37,12 +37,12 @@ function __git_branch() {
     colour_command="$fg[${colour}]"
   fi
 
-  echo " %{${colour_command}%}${branch}%{${reset_color}%}"
+  echo " %{${colour_command}%} ${branch}%{${reset_color}%}"
 }
 
 PROMPT='\
 %{$fg[blue]%}%~%{$reset_color%}\
 $(__git_branch)$(__git_dirty)
-%{$fg[cyan]%}> \
+%{$fg[cyan]%} \
 %{$reset_color%}\
 '
