@@ -33,15 +33,15 @@ markup=none
 # The first parameter sets the step (and units to display)
 # The second parameter overrides the mixer selection
 # See the script for details.
-[volume]
-label=VOL
-instance=Master
-#instance=PCM
-interval=once
-signal=10
+# [volume]
+# label=VOL
+# instance=Master
+# instance=PCM
+# interval=once
+# signal=10
 
 [cpu]
-label=CPU
+label= 
 interval=10
 #min_width=100.00%
 separator=true
@@ -53,12 +53,12 @@ separator=true
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+label= 
 separator=false
 interval=30
 
 [memory]
-label=SWP
+label=⮂ 
 instance=swap
 interval=30
 
@@ -68,6 +68,7 @@ interval=30
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [temperature]
+label= 
 interval=30
 
 # Disk usage
@@ -89,28 +90,26 @@ interval=30
 #interval=10
 #separator=false
 
-[wifi]
+#[wifi]
 #instance=wlp3s0
-interval=10
-separator=false
+#interval=10
+#separator=false
 
 [bandwidth]
-#instance=eth0
 interval=5
 
 # Battery indicator
 #
 # The battery instance defaults to 0.
-#[battery]
-#label=BAT
-#label=⚡
-#instance=1
-#interval=30
+[battery]
+instance=1
+interval=30
 
 # Date Time
 #
 [time]
-command=date '+%Y-%m-%d %H:%M '
+label= 
+command=date '+%a %d %b %H:%M '
 interval=5
 
 # Generic media player support
