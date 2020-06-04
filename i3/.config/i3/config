@@ -35,6 +35,7 @@ for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [class="Xsane"] floating enable
 for_window [class="Gimp"] floating enable
+for_window [class="Meld"] floating enable
 
 # Steam
 for_window [class="^Steam$" title="^Friends$"] floating enable
