@@ -6,3 +6,5 @@
   tool = meld
 [mergetool "meld"]
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+[alias]
+  dg = git difftool --t meld
