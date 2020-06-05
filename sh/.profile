@@ -41,6 +41,14 @@ if [ -d "$HOME/.yarn/bin" ] ; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
+# # SSH Agent
+# export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
 # Locale
 export LC_ALL="en_GB.UTF-8"
 
