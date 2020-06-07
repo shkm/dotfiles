@@ -35,6 +35,7 @@
   d2 = diff HEAD^^
   do = "!f() { git remote set-head origin -a && git diff origin/HEAD; }; f"
   dt = difftool
+  dta = difftool --dir-diff
   i  = init
   is = "!f() { git checkout issues/$1; }; f"
   isb = "!f() { git checkout -b issues/$1; }; f"
