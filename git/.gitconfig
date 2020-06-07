@@ -1,5 +1,3 @@
-[include]
-  path = ~/.gitconfig.local
 [user]
 	email = jamie@schembri.me
 	name = Jamie Schembri
@@ -80,28 +78,22 @@
 [pull]
   ff = only
   rebase = true
-[diff]
-  tool = vimdiff
-[difftool]
-  prompt = false
-[mergetool]
-  prompt  = false
-[mergetool "vimdiff"]
-  cmd = nvim -d -u ~/.vim/init.vim "$LOCAL" "$MERGED" "$REMOTE"
-[mergetool "fugitive"]
-  cmd = nvim -d -u ~/.vim/init.vim -f "+Gvdiff" "$MERGED"
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-[merge]
-    tool = vscode
-[mergetool "vscode"]
-    cmd = code --wait $MERGED
+[difftool]
+  prompt = false
+[difftool "difftool"]
+  cmd = difftool "$LOCAL" "$REMOTE"
 [diff]
-    tool = vscode
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-[credential]
-	helper = osxkeychain
+  tool = difftool
+[mergetool]
+  prompt  = false
+[mergetool "mergetool"]
+  cmd = mergetool "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+[mergetool "vimdiff"]
+  cmd = vimdiff "$LOCAL" "$MERGED" "$REMOTE"
+[merge]
+  tool = mergetool

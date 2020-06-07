@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Wraps difftool for git use. Conditionally determined appropriate difftool.
+LOCAL="$1"
+REMOTE="$2"
+
+if [[ $(command -v "meld") ]]; then
+  meld "$LOCAL" "$REMOTE"
+elif [[ $(command -v "vimdiff") ]]; then
+  vimdiff "$LOCAL" "$REMOTE"
+else
+  echo "No difftool found."
+fi

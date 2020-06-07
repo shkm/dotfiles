@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Wraps difftool for git use. Conditionally determined appropriate difftool.
+BASE="$1"
+LOCAL="$2"
+REMOTE="$3"
+MERGED="$4"
+
+if [[ $(command -v "meld") ]]; then
+  meld --diff "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+elif [[ $(command -v "vimdiff") ]]; then
+  vimdiff "$LOCAL" "$MERGED" "$REMOTE"
+else
+  echo "No mergetool found."
+fi
