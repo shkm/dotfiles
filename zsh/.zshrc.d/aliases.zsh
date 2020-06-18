@@ -53,4 +53,4 @@ alias g='git'
 alias gcd='cd $(git rev-parse --show-toplevel)'
 
 alias dex="docker exec -it"
-alias rg="rg --ignore-file --ignore-file $HOME/.ignore"
+alias rg="rg --ignore-file $HOME/.ignore"
