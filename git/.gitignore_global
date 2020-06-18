@@ -30,6 +30,7 @@
 ######################
 *.log
 *.sql
+!db/views/*.sql
 *.sqlite
 
 # IDE files #
@@ -57,6 +58,7 @@ coverage/
 .yardoc/
 .tool-versions
 .solargraph-rails
+*.orig
 
 # GNU global
 GPATH
