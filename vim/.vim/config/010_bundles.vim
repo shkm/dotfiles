@@ -94,8 +94,8 @@ Plug 'dense-analysis/ale'
 " --------------------------------------------------
 " Tools
 " --------------------------------------------------
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'junegunn/vim-easy-align' " Alignment
+Plug 'chrisbra/Colorizer'        " Hex colors
 " Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
 " if has('nvim')
 "   Plug 'mhinz/neovim-remote'     " Remote-control neovim
