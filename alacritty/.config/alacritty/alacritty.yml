@@ -32,10 +32,8 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "CozetteVector"
-    style: Medium
-  bold:
-    style: Medium
+    family: "FantasqueSansMono Nerd Font"
+    style: Regular
   offset:
     x: 0
     y: 0
@@ -43,7 +41,7 @@ font:
     x: 0
     y: 0
   use_thin_strokes: true
-  size: 9
+  size: 8
 draw_bold_text_with_bright_colors: false
 
 # Colors (Dracula)
