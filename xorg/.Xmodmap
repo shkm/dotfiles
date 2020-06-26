@@ -1,0 +1,22 @@
+clear mod1
+clear mod4
+keycode 64 = Super_L
+keycode 133 = Alt_L
+add mod4 = Super_L
+add mod1 = Alt_L
+
+clear Lock
+keycode 0x42 = Escape
+
+! Compose key on right control
+keycode 105 = Multi_key
+
+! Make right alt special
+clear Mod5
+keycode 108 = Mode_switch
+add Mod5 = Mode_switch
+! j
+keycode 43 = h H Left Left
+keycode 44 = j J Down Down
+keycode 45 = k K Up Up
+keycode 46 = l L Right Right
