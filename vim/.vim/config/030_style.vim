@@ -13,7 +13,7 @@ set list listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
 
 " Vertical split separator should be full-height
 " # TODO: is this slowing down vim?
-set fillchars+=fold:-,vert:│
+set fillchars+=fold:-,vert:┃
 
 " Modify tab label to present:
 " 1 .vimrc +
