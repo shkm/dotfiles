@@ -1,4 +1,7 @@
-if [ -d /usr/share/fzf ]; then
+if [ -d /usr/share/fzf/shell ]; then
+  source /usr/share/zsh/site-functions/fzf
+  source /usr/share/fzf/shell/key-bindings.zsh
+elif [ -d /usr/share/fzf ]; then
   source /usr/share/fzf/key-bindings.zsh
   source /usr/share/fzf/completion.zsh
 elif [ -f ~/.fzf.zsh ]; then 
