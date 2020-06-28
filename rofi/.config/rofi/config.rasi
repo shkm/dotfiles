@@ -9,7 +9,7 @@ configuration {
 }
 
 * {
-    font: "CozetteVector 9";
+    font: "FantasqueSansMono Nerd Font 12";
     foreground: #f8f8f2;
     background-color: #282a36;
     active-background: #6272a4;
