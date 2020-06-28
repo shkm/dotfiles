@@ -35,4 +35,6 @@ nm-applet &
 $HOME/.fehbg
 picom &
 
+xrdb ~/.Xresources
+
 exec $HOME/scripts/startdwm
