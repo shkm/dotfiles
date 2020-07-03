@@ -39,8 +39,10 @@ export SSH_AUTH_SOCK
 dunst &
 nm-applet &
 $HOME/.fehbg
+polybar top &
 picom &
 
 xrdb ~/.Xresources
 
-exec $HOME/scripts/startdwm
+sxhkd &
+exec bspwm
