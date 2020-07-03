@@ -9,6 +9,9 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+# Fix Gnome Apps Slow  Start due to failing services
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 fi
