@@ -28,6 +28,9 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
+# Fix default pointer being an X
+xsetroot -cursor_name left_ptr
+
 xautolock -time 10 -locker slock &
 
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
