@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Auto-clicker. Requires xdotool.
+# Run to start auto-clicker, run again to stop it.
+
+PIDFILE="/tmp/autoclick.pid"
+
+if [ -f "$PIDFILE" ]; then
+  kill $(cat "$PIDFILE")
+  exit 0
+fi
+
+echo "$BASHPID" > "$PIDFILE"
+
+function remove_pid() {
+  rm "$PIDFILE"
+  exit 0
+}
+
+trap remove_pid TERM HUP INT
+
+while :
+do
+  echo "click"
+  xdotool click 1
+  sleep 0.03
+  done
