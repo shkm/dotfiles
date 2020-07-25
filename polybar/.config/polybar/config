@@ -33,7 +33,7 @@ modules-center = bspwm
 modules-right = pulseaudio cpu memory wlan battery date
 
 offset-x = 8
-offset-y = 2
+offset-y = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -45,6 +45,7 @@ radius = 0
 
 border-size = 2
 border-color = #44475a
+border-top-size = 0
 
 padding-left = 1
 padding-right = 1
