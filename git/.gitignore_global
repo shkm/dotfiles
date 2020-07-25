@@ -59,6 +59,8 @@ coverage/
 .tool-versions
 .solargraph-rails
 *.orig
+.irb_history
+.byebug_history
 
 # GNU global
 GPATH
