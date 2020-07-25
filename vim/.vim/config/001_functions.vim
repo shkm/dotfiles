@@ -46,5 +46,5 @@ function! ClearMultipleReturns()
 endfunction
 
 function! StripColours()
-  %!sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"
+  %!sed -r "s/\x1B\[([0-9]{1,2}([;:][0-9]{1,3}){0,3})?[mGK]//g"
 endfunction
