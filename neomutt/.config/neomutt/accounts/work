@@ -1,0 +1,30 @@
+set from = "jamie@lico.nl"
+set sendmail = "msmtp -a work"
+
+# Set folders
+set spoolfile = "+work/Inbox"
+set mbox = "+work/Archive"
+set postponed = "+work/Drafts"
+set record = "+work/Sent"
+set trash = "+work/Trash"
+
+# custom signaure
+set signature = $XDG_CONFIG_HOME/neomutt/signatures/work
+
+color status cyan default
+
+macro index o "<shell-escape>mbsync work<enter>" "run mbsync to sync mail for this account"
+
+# macro index,pager J \
+  # "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
+  # <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
+  # <save-message>+work/Junk<enter>" \
+  # "mark as read and move to junk folder"
+
+macro index,pager A \
+  "<save-message>+work/Archive<enter>"  \
+  "move message to the archive"
+
+macro index,pager I \
+  "<save-message>+work/Inbox<enter>"  \
+  "move message to the inbox"

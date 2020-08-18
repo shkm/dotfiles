@@ -1,0 +1,40 @@
+Expunge Both
+Create Both
+
+IMAPAccount work
+Host $MAIL_WORK_IMAP_HOST
+User $MAIL_WORK_USERNAME
+Pass $MAIL_WORK_PASSWORD
+
+IMAPStore work-remote
+Account work
+
+MaildirStore work-local
+Subfolders Verbatim
+Path $HOME/Mail/work/
+Inbox $HOME/Mail/work/Inbox
+
+Channel work
+Master :work-remote:
+Slave :work-local:
+Patterns *
+SyncState *
+
+IMAPAccount personal
+Host $MAIL_PERSONAL_IMAP_HOST
+User $MAIL_PERSONAL_USERNAME
+Pass $MAIL_PERSONAL_PASSWORD
+
+IMAPStore personal-remote
+Account personal
+
+MaildirStore personal-local
+Subfolders Verbatim
+Path $HOME/Mail/personal/
+Inbox $HOME/Mail/personal/Inbox
+
+Channel personal
+Master :personal-remote:
+Slave :personal-local:
+Patterns *
+SyncState *

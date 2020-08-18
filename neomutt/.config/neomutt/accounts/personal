@@ -1,0 +1,30 @@
+set from = "jamie@schembri.me"
+set sendmail = "msmtp -a personal"
+
+# Set folders
+set spoolfile = "+personal/Inbox"
+set mbox = "+personal/Archives"
+set postponed = "+personal/Drafts"
+set record = "+personal/Sent Mail"
+set trash = "+personal/Trash"
+
+# custom signaure
+set signature = $XDG_CONFIG_HOME/neomutt/signatures/personal
+
+color status cyan default
+
+macro index o "<shell-escape>mbsync personal<enter>" "run mbsync to sync mail for this account"
+
+# macro index,pager J \
+  # "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
+  # <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
+  # <save-message>+personal/Spam<enter>" \
+  # "mark as read and move to junk folder"
+
+macro index,pager A \
+  "<save-message>+personal/Archives<enter>"  \
+  "move message to the archive"
+
+macro index,pager I \
+  "<save-message>+personal/INBOX<enter>"  \
+  "move message to the inbox"

@@ -1,0 +1,68 @@
+# vim: set filetype=config
+
+[general]
+status_path = "$HOME/.local/share/vdirsyncer/status/"
+
+# Contacts
+
+[pair contacts]
+a = "contacts_local"
+b = "contacts_remote"
+
+collections = ["from a", "from b"]
+metadata = ["displayname"]
+
+# To resolve a conflict the following values are possible:
+#   `null` - abort when collisions occur (default)
+#   `"a wins"` - assume a's items to be more up-to-date
+#   `"b wins"` - assume b's items to be more up-to-date
+#conflict_resolution = null
+
+[storage contacts_local]
+type = "filesystem"
+path = "$HOME/Contacts/personal"
+fileext = ".vcf"
+
+[storage contacts_remote]
+type = "carddav"
+url = "$PERSONAL_CONTACTS_URL"
+username = "$PERSONAL_CONTACTS_USERNAME"
+password = "$PERSONAL_CONTACTS_PASSWORD"
+
+# Calendars
+
+[pair personal_calendar]
+a = "personal_calendar_local"
+b = "personal_calendar_remote"
+collections = ["from a", "from b"]
+
+metadata = ["displayname", "color"]
+
+[storage personal_calendar_local]
+type = "filesystem"
+path = "$HOME/Calendars/personal/"
+fileext = ".ics"
+
+[storage personal_calendar_remote]
+type = "caldav"
+url = "$PERSONAL_CALENDAR_URL"
+username = "$PERSONAL_CALENDAR_USERNAME"
+password = "$PERSONAL_CALENDAR_PASSWORD"
+
+[pair spouse_calendar]
+a = "spouse_calendar_local"
+b = "spouse_calendar_remote"
+collections = ["from a", "from b"]
+
+metadata = ["displayname", "color"]
+
+[storage spouse_calendar_local]
+type = "filesystem"
+path = "$HOME/Calendars/spouse/"
+fileext = ".ics"
+
+[storage spouse_calendar_remote]
+type = "caldav"
+url = "$SPOUSE_CALENDAR_URL"
+username = "$SPOUSE_CALENDAR_USERNAME"
+password = "$SPOUSE_CALENDAR_PASSWORD"

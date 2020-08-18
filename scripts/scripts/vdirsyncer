@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source pimenv
+
+/usr/bin/vdirsyncer -c <(envsubst < "$XDG_CONFIG_HOME/vdirsyncer/config") "$@"
