@@ -1,0 +1,6 @@
+# vim: set filetype=neomuttrc
+
+# When replying to a mail, check the current mail's tags
+# to set up our environment
+reply-hook '~Y mailbox-personal' "source $XDG_CONFIG_HOME/neomutt/accounts/personal"
+reply-hook '~Y mailbox-work' "source $XDG_CONFIG_HOME/neomutt/accounts/work"

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Tags mail with notmuch. Can be run as a hook after fetching mail.
+notmuch tag --batch --input="$XDG_CONFIG_HOME/notmuch/tagmail"

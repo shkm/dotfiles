@@ -1,0 +1,74 @@
+# vim: set filetype=neomuttrc
+
+###########
+# General #
+###########
+bind generic \: tag-prefix
+bind generic \; enter-command
+bind index,pager K previous-entry
+bind index,pager J next-entry
+bind index,pager g noop
+bind index,pager \Cu half-up
+bind index,pager \Cd half-down
+bind index,pager @ compose-to-sender
+bind index,pager R group-reply
+bind index,pager D purge-message
+bind index,pager m noop
+
+# Sidebar Navigation
+bind index,pager \CJ sidebar-next
+bind index,pager \CK sidebar-prev
+bind index,pager \CL sidebar-open
+
+# Composing
+macro index,pager mcp "<enter-command>source $XDG_CONFIG_HOME/neomutt/accounts/personal<enter><mail>"
+macro index,pager mcw "<enter-command>source $XDG_CONFIG_HOME/neomutt/accounts/work<enter><mail>"
+
+# Tagging
+macro index,pager ma  "<modify-labels>-new -inbox +archive<enter>"  "Move to archive"
+macro index,pager mi "<modify-labels>+inbox<enter>"  "Move to inbox"
+macro index,pager mj "<modify-labels>-new -inbox +spam<enter>"  "Move to junk"
+
+# Deletion
+macro index,pager d "<delete-message><modify-labels-then-hide>+killed<enter><previous-entry>"  "Delete"
+macro index,pager u "<undelete-message><modify-labels-then-hide>-killed<enter><previous-entry>"  "Undelete"
+
+# Moving
+macro index,pager gi "<change-folder>Inbox<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>Archive<enter>" "Go to archive"
+macro index,pager gf "<change-folder>Flagged<enter>" "Go to flagged"
+macro index,pager gd "<change-folder>Drafts<enter>" "Go to drafts"
+macro index,pager gs "<change-folder>Sent<enter>" "Go to sent"
+macro index,pager gj "<change-folder>Junk<enter>" "Go to junk"
+macro index,pager gt "<change-folder>Trash<enter>" "Go to trash"
+macro index,pager gk "<change-folder>Killed<enter>" "Go to killed"
+
+#########
+# Index #
+#########
+bind index gg first-entry
+bind index G last-entry
+bind index k previous-entry
+bind index j next-entry
+bind index <tab> sync-mailbox
+bind index <space> collapse-thread
+
+#########
+# Pager #
+#########
+bind pager j next-line
+bind pager k previous-line
+bind pager gg top
+bind pager G bottom
+
+##########
+# Editor #
+##########
+bind editor <Tab> complete-query
+
+# Save all attachments
+macro pager S "<pipe-message> ripmime -i - -d $HOME/Downloads && rm $HOME/Downloads/textfile*" "Save all non-text attachments using ripmime"
+# opening urls with urlscan
+macro pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+# Sync all email
+macro index,pager O "<shell-escape>sync-mail -a<enter>" "Sync all mail"

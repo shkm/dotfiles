@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
   # include .bashrc if it exists
@@ -48,6 +50,8 @@ if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
 fi
+# Notmuch
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
 
 # Locale
 export LC_ALL="en_GB.UTF-8"
