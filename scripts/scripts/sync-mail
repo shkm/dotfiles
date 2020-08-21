@@ -1,12 +1,27 @@
 #!/usr/bin/env sh
-# Script to fetch and index mail
-echo -e "\033[36mSyncing mail...\033[0m"
-mbsync $@
+# Script to fetch and index mail, notifying user
+# if new mail found.
+source $HOME/scripts/pimenv
 
-echo -e "\n\033[36mIndexing personal mail...\033[0m"
-mu personal index
+function index_mail() {
+  local mailbox="$1"
+  output=$(mu "$mailbox" index)
+  num_new_mails=$(echo "$output" | grep -Po "updated/new: \K([0-9]+)" | tail -1)
 
-echo -e "\n\033[36mIndexing work mail...\033[0m"
-mu work index
+  [ "$num_new_mails" -gt "0" ] && notify-send "You've got mail!" "$num_new_mails new mail(s) @ $mailbox."
+}
 
-echo -e "\n\033[32mDone!\033[0m"
+function main() {
+  echo -e "\033[36mSyncing mail...\033[0m"
+  mbsync $@
+
+  echo -e "\n\033[36mIndexing personal mail...\033[0m"
+  index_mail "personal"
+
+  echo -e "\n\033[36mIndexing work mail...\033[0m"
+  index_mail "work"
+
+  echo -e "\n\033[32mDone!\033[0m"
+}
+
+main $@
