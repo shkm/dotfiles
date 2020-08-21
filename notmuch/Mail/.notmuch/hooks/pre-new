@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-# Delete killed files
-notmuch search --output=files --format=text0 tag:killed | xargs -r0 rm
