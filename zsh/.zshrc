@@ -47,3 +47,4 @@ source "$HOME/.zshrc.d/theme.zsh"
 source "$HOME/.zshrc.d/asdf.zsh"
 
 # zprof # profiling
+if [ -e /home/jamie/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jamie/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

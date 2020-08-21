@@ -27,6 +27,7 @@ nnoremap <Leader>ff :Files<CR>
   nnoremap <Leader>fed :Files $HOME/dotfiles<CR>
   nnoremap <Leader>fev :Files $HOME/.vim<CR>
   nnoremap <Leader>fes :Files $HOME/.vim/snippets<CR>
+  nnoremap <Leader>fez :call neuron#edit_zettel_select()<CR>
 
   " fo Open file in set place
   nnoremap <leader>fos :e /tmp/scratch<CR>
@@ -57,3 +58,7 @@ nnoremap <Leader>ld :ALEDetail<CR>
 
 " m Major: these should be filetype specific, so
 " add them to ftplugin files.
+
+" z zettelkasten
+nnoremap <Leader>zn :call neuron#edit_zettel_new()<CR>
+nnoremap <Leader>zr :call neuron#refresh_cache()<CR>
