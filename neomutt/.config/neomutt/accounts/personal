@@ -1,7 +1,8 @@
 # vim: set filetype=neomuttrc
 
+set my_mailbox = "personal"
 set from = "$MAIL_PERSONAL_USERNAME"
-set sendmail = "msmtp -a personal"
 
-# custom signaure
-set signature = $XDG_CONFIG_HOME/neomutt/signatures/personal
+source $my_config_dir/init-mailbox
+
+mailboxes =personal/Inbox =personal/Sent =personal/Junk =personal/Archive =personal/Flagged =personal/Trash

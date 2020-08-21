@@ -1,14 +1,17 @@
 # vim: set filetype=neomuttrc
 
+# User variables
+set my_config_dir="$XDG_CONFIG_HOME/neomutt"
+
 # Basics
-set nohelp # hide top bar
+set nohelp                                        # hide top bar
 set folder = $HOME/Mail
 set header_cache = $HOME/.local/share/mutt/cache/headers
 set message_cachedir = $HOME/.local/share/mutt/cache/bodies
-set mailcap_path = $XDG_CONFIG_HOME/neomutt/mailcap
+set mailcap_path = $my_config_dir/mailcap
 set tmpdir = $HOME/.local/share/mutt/tmp
 
-# Writing mail
+                                                  # Writing mail
 set realname = "Jamie Schembri"
 set edit_headers                                  # show headers when composing
 set fast_reply                                    # skip to compose when replying
@@ -61,36 +64,13 @@ auto_view text/html
 
 # Sidebar
 set sidebar_visible
+set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_width = 14
+set sidebar_width
 set sidebar_divider_char = ' ║ '
 set sidebar_format = "%D %* %?N?%N"
-# set sidebar_short_path
-# set sidebar_delim_chars="/"
-# set sidebar_folder_indent
-# set sidebar_indent_string = "  "
-# set sidebar_next_new_wrap = yes
 
-#Mailboxes to show in the sidebar.
-#mailboxes =personal/Inbox =personal/Sent =personal/Spam =personal/Archive =personal/Starred =personal/Trash
-# mailboxes =work/Inbox =work/Sent =work/Spam =work/Archive
-set nm_default_url = "notmuch://$HOME/Mail"
-set virtual_spoolfile=yes
-virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
-virtual-mailboxes "Flagged" "notmuch://?query=tag:flagged"
-virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
-virtual-mailboxes "Drafts" "notmuch://?query=tag:draft"
-virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
-virtual-mailboxes "Junk" "notmuch://?query=tag:spam"
-virtual-mailboxes "Trash" "notmuch://?query=tag:trash"
-
-source $XDG_CONFIG_HOME/neomutt/colors/dracula.muttrc
-source $XDG_CONFIG_HOME/neomutt/bindings
-source $XDG_CONFIG_HOME/neomutt/hooks
-
-# by default, use personal
-# source $XDG_CONFIG_HOME/neomutt/accounts/personal
-
-# when changing into other mailboxes, use different adresses etc.
-# folder-hook personal/* source $XDG_CONFIG_HOME/neomutt/accounts/personal
-# folder-hook work/* source $XDG_CONFIG_HOME/neomutt/accounts/work
+source $my_config_dir/colors/dracula.muttrc
+source $my_config_dir/bindings
+source $my_config_dir/accounts/personal # Default to personal account

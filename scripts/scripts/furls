@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+url=$(cat <&0 | rg -o "(http|https)://[a-zA-Z0-9./?=_%:-]*" | sort -u | fzf)
+
+[[ -z $url && return ]]
+
+xdg-open $url

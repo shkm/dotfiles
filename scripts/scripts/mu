@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# mu wrapper for a specific mailbox.
+# Pass the mailbox name along with other mu args.
+
+MAILBOX=$1
+COMMAND=$2
+
+function print_usage() {
+  echo "Usage: mu <work|personal> <command> [args]"
+  exit 1
+}
+
+case "$MAILBOX" in
+  work|personal)
+    [ -z $COMMAND ] && print_usage
+
+    /usr/bin/mu "$COMMAND" --muhome="$HOME/.local/share/mu/$MAILBOX" "${@:3}"
+    ;;
+  *)
+    print_usage
+    ;;
+esac

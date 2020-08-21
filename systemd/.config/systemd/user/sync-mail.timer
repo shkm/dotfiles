@@ -1,0 +1,9 @@
+[Unit]
+Description=Mailbox synchronization timer
+
+[Timer]
+OnUnitActiveSec=1m
+Unit=sync-mail.service
+
+[Install]
+WantedBy=timers.target

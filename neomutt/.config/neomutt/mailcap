@@ -1,4 +1,5 @@
-text/html; w3m -o auto_image=TRUE %s -T text/html; nametemplate=%s.html; copiousoutput
+text/html; firefox %s
+text/html; w3m  %s -T text/html; nametemplate=%s.html; copiousoutput
 
 application/ics; khal import -a logistics %s
 text/calendar; khal import -a logistics %s

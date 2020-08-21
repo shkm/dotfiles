@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 source pimenv
 
-/usr/bin/neomutt "$@"
+/usr/bin/neomutt $@

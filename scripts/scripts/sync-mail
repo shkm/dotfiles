@@ -3,7 +3,10 @@
 echo -e "\033[36mSyncing mail...\033[0m"
 mbsync $@
 
-echo -e "\n\033[36mTagging mail...\033[0m"
-notmuch new 2&>/dev/null && tagmail
+echo -e "\n\033[36mIndexing personal mail...\033[0m"
+mu personal index
+
+echo -e "\n\033[36mIndexing work mail...\033[0m"
+mu work index
 
 echo -e "\n\033[32mDone!\033[0m"

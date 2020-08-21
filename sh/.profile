@@ -50,8 +50,8 @@ if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start)
     export SSH_AUTH_SOCK
 fi
-# Notmuch
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
+# Mblaze
+export MBLAZE="$XDG_CONFIG_HOME/mblaze/profile"
 
 # Locale
 export LC_ALL="en_GB.UTF-8"
