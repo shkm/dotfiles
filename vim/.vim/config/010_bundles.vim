@@ -160,7 +160,7 @@ Plug 'mboughaba/i3config.vim'                        " i3 config syntax
 " --------------------------------------------------
 " Styles
 " --------------------------------------------------
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arcticicestudio/nord-vim'
 
 " --------------------------------------------------
 " Misc

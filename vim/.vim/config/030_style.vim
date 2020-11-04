@@ -1,7 +1,7 @@
 " Colors
 " set t_Co=256
 " set background=dark
-colorscheme dracula
+colorscheme nord
 
 " Use a transparent background
 hi Normal guibg=NONE
