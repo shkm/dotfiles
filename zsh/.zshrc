@@ -43,8 +43,9 @@ source "$HOME/.zshrc.d/fzf.zsh"
 source "$HOME/.zshrc.d/antibody.zsh"
 source "$HOME/.zshrc.d/aliases.zsh"
 source "$HOME/.zshrc.d/functions.zsh"
-source "$HOME/.zshrc.d/theme.zsh"
 source "$HOME/.zshrc.d/asdf.zsh"
+
+eval "$(starship init zsh)"
 
 # zprof # profiling
 if [ -e /home/jamie/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jamie/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
