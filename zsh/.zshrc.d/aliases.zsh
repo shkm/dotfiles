@@ -17,6 +17,7 @@ alias cat="bat"
 alias ca="cat"
 alias ssh-fingerprint="ssh-keygen -E md5 -lf"
 alias serve="python -m SimpleHTTPServer"
+alias ssh="TERM=xterm ssh" # kitty has issues
 
 # Ruby/Rails
 alias c="clear"
