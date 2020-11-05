@@ -11,7 +11,11 @@ if executable('solargraph')
 function! s:on_lsp_buffer_enabled() abort
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> gR <plug>(lsp-rename)
+    nmap <buffer> <leader>ih <plug>(lsp-hover)
+    nmap <buffer> <leader>id <plug>(lsp-peek-definition)
+    nmap <buffer> <Leader>ft <plug>(lsp-workspace-symbol)
     ALEDisable
     echo "Loaded LSP."
 endfunction
@@ -25,6 +29,9 @@ let g:lsp_signs_warning = {'text': ''}
 let g:lsp_signs_error = {'text': ''}
 let g:lsp_signs_hint = {'text': ''}
 let g:lsp_signs_information = {'text': ''}
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = '/tmp/vim-lsp.log'
 
 highlight link LspError DraculaError
 highlight link LspErrorText DraculaError

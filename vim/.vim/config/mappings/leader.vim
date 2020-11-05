@@ -49,10 +49,6 @@ nnoremap <Leader>sl :TestLast<CR>
 nnoremap <Leader>sv :TestVisit<CR>
 nnoremap <Leader>sa :TestSuite<CR>
 
-" t Tags
-" nnoremap <Leader>tf :PickerTag<CR>
-" nnoremap <Leader>tb :PickerBufferTag<CR>
-
 " l Lint
 nnoremap <Leader>ld :ALEDetail<CR>
 
@@ -62,3 +58,4 @@ nnoremap <Leader>ld :ALEDetail<CR>
 " z zettelkasten
 nnoremap <Leader>zn :call neuron#edit_zettel_new()<CR>
 nnoremap <Leader>zr :call neuron#refresh_cache()<CR>
+nnoremap <Leader>zf <Plug>EditZettelSelect
