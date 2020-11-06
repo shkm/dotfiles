@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -22,6 +23,11 @@ if [ -d "$HOME/bin" ] ; then
   export PATH="$HOME/bin:$PATH"
 fi
 
+# Dasht
+if [ -d "$HOME/repos/dasht" ] ; then
+  export PATH="$HOME/repos/dasht/bin:$PATH"
+fi
+
 # Version-controlled scripts
 if [ -d "$HOME/scripts" ] ; then
   export PATH="$HOME/scripts:$PATH"
@@ -43,27 +49,17 @@ if [ -d "$HOME/.yarn/bin" ] ; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-# # SSH Agent
-# export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
 # Mblaze
 export MBLAZE="$XDG_CONFIG_HOME/mblaze/profile"
+
+# Scripts
+export SCRIPT_PATH="$HOME/scripts"
 
 # Locale
 export LC_ALL="en_GB.UTF-8"
 
 # EDITOR
 export EDITOR='nvim'
-
-# Personal
-export EMAIL="jamie@schembri.me"
-export NAME="Jamie Schembri"
-export SMTPSERVER="smtp.gmail.com"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
