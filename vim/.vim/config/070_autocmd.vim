@@ -24,3 +24,6 @@ endfun
 
 autocmd! BufWritePre * call BufWritePreStrip()
 autocmd! BufWritePre * call BufWritePreClearMultipleReturns()
+
+" Resize splits when host window resized
+autocmd! VimResized * wincmd =
