@@ -7,25 +7,9 @@ setlocal conceallevel=2
 " Better indentation style
 let g:ruby_indent_block_style = 'do'
 
-" Better ri lookup
-function! RubyRiLookup(term)
-  let output = system('ri --no-pager -f ansi ' . a:term)
-  new | put =output
-  nnoremap <buffer> q :bd<CR>
-
-  execute "normal! gg"
-  setlocal nonumber buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  \ nomodifiable statusline=ri nocursorline nofoldenable
-  AnsiEsc
-endfunction
-
 function! RubocopAutocorrect()
   execute "!rubocop -a " . bufname("%")
 endfunction
-
-command! -nargs=1 RubyDoc call RubyRiLookup(<f-args>)
-" setlocal keywordprg=:RubyDoc
-setlocal keywordprg=:call\ <SID>show_documentation()
 
 " Mappings
 nnoremap <buffer> <Leader>mc :Econtroller<CR>
