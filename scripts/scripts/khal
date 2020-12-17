@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-source pimenv
-
-/usr/bin/khal -c <(envsubst < "$XDG_CONFIG_HOME/khal/config") "$@"

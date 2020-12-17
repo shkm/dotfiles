@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-MAILS=$($HOME/scripts/mu personal find '' -f "l d m s" --sortfield=date --reverse)
-echo -e "$MAILS" | fzf --ansi --nth=3.. --with-nth=3.. --header="<Enter>: view | <C-x>: open in Firefox"\
-  --preview "MBLAZE_PAGER='bat' mshow -N -h 'from:subject:date' {1}" \
-  --bind "enter:execute(MBLAZE_PAGER='less -R' mshow {1})" \
-  --bind "ctrl-x:execute-silent(firefox {1} &)"

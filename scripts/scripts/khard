@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-source pimenv
-
-/usr/local/bin/khard --config <(envsubst < "$XDG_CONFIG_HOME/khard/khard.conf") "$@"

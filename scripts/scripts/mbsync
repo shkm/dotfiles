@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-source pimenv
-
-/usr/bin/mbsync -c <(envsubst < "$XDG_CONFIG_HOME/mbsync/config") "$@"

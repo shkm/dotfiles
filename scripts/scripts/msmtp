@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-source pimenv
-
-config=$(envsubst < "$XDG_CONFIG_HOME/msmtp/config")
-/usr/bin/msmtp -C <(echo "$config") $@
