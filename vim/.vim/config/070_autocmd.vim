@@ -19,11 +19,21 @@ fun! BufWritePreClearMultipleReturns()
   if (lines > 1000)
     return
   endif
+
+  " Don't strip on these filetypes
+  if &ft =~ 'python'
+    return
+  endif
+
   silent! call ClearMultipleReturns()
 endfun
 
-autocmd! BufWritePre * call BufWritePreStrip()
-autocmd! BufWritePre * call BufWritePreClearMultipleReturns()
+fun! BufWritePreAutocmd()
+  call BufWritePreStrip()
+  call BufWritePreClearMultipleReturns()
+endfun
+
+autocmd! BufWritePre * call BufWritePreAutocmd()
 
 " Resize splits when host window resized
 autocmd! VimResized * wincmd =
