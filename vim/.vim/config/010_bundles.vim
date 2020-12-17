@@ -81,7 +81,7 @@ Plug 'dense-analysis/ale'
 " --------------------------------------------------
 Plug 'junegunn/vim-easy-align' " Alignment
 Plug 'chrisbra/Colorizer'        " Hex colors
-" Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
+Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
 
 " --------------------------------------------------
 " PHP
