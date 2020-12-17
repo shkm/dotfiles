@@ -5,7 +5,5 @@
 if command -v -p "open" > /dev/null; then
   command -p open $@
 else
-  $(xdg-open $@)
+  $(xdg-open $@ > /dev/null 2>&1)
 fi
-
-
