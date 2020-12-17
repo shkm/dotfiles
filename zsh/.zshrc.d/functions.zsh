@@ -6,6 +6,10 @@ function cdd() {
   cd $(dirname $1)
 }
 
+function dopen() {
+  open $(dirname $1)
+}
+
 function zipdir() {
   zip -r "$1.zip" $1
 }
