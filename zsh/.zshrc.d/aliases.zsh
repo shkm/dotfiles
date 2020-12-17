@@ -16,7 +16,7 @@ alias lg="lazygit"
 alias cat="bat"
 alias ca="cat"
 alias ssh-fingerprint="ssh-keygen -E md5 -lf"
-alias serve="python -m SimpleHTTPServer"
+alias serve="python -m http.server"
 alias ssh="TERM=xterm ssh" # kitty has issues
 
 # Ruby/Rails
