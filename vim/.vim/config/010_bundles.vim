@@ -91,7 +91,7 @@ Plug 'zenbro/mirror.vim'       " Easily edit projects over ssh
 " --------------------------------------------------
 " Markdown
 " --------------------------------------------------
-" Plug 'plasticboy/vim-markdown'    " Markdown enhancements
+Plug 'plasticboy/vim-markdown'    " Markdown enhancements
 
 " --------------------------------------------------
 " HTML
