@@ -74,3 +74,9 @@ export LESS_TERMCAP_se=$(printf "\033[0m")
 export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
+
+# Bat
+if command -v bat &> /dev/null; then
+  export BAT_THEME="Nord"
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
