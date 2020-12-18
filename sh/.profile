@@ -60,9 +60,6 @@ export MBLAZE="$XDG_CONFIG_HOME/mblaze/profile"
 # Scripts
 export SCRIPT_PATH="$HOME/scripts"
 
-# Locale
-export LC_ALL="en_GB.UTF-8"
-
 # EDITOR
 export EDITOR='nvim'
 
