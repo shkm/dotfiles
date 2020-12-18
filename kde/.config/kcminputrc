@@ -1,0 +1,13 @@
+[$Version]
+update_info=delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize
+
+[Keyboard]
+KeyboardRepeating=0
+NumLock=2
+RepeatDelay=180
+RepeatRate=50
+
+[Mouse]
+XLbInptAccelProfileFlat=true
+XLbInptPointerAcceleration=0.4
+cursorTheme=breeze_cursors

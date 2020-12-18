@@ -1,0 +1,13 @@
+[Layout]
+DisplayNames=
+LayoutList=us
+LayoutLoopCount=-1
+Model=pc86
+Options=altwin:swap_lalt_lwin,terminate:ctrl_alt_bksp,compose:prsc,mod_led:compose,caps:escape
+ResetOldOptions=true
+ShowFlag=false
+ShowLabel=true
+ShowLayoutIndicator=false
+ShowSingle=false
+SwitchMode=Global
+Use=true
