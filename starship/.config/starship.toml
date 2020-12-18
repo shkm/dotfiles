@@ -5,3 +5,15 @@ vicmd_symbol = "[](bold yellow)"
 
 [ruby]
 symbol = "◆ "
+
+[nodejs]
+disabled = true
+
+[battery]
+disabled = true
+
+[package]
+disabled = true
+
+[node]
+symbol = ''
