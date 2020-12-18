@@ -25,13 +25,13 @@ function! ProfileStop()
   noautocmd qall!
 endfunction
 
-function! TmuxPane(direction)
+function! KonsolePane(direction, key)
   let wnr = winnr()
   silent! execute 'wincmd ' . a:direction
 
   " If the winnr is still the same after we moved, it is the last pane
   if wnr == winnr()
-    call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
+    call system('xdotool key "ctrl+shift+' . a:key . '"')
   end
 endfunction
 

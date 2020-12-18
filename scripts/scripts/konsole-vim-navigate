@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Navigates between panes in vim and konsole
+# Depends on xdotool.
+command=$1
+
+function is_vim {
+  local windowName=$(xdotool getwindowfocus getwindowname)
+
+  [[ "$windowName" =~ n?vim\ —\ Konsole$ ]] && echo 1
+}
+
+function left {
+  if [[ $(is_vim) == 1 ]]; then
+    xdotool key "ctrl+h"
+  else
+    xdotool key "ctrl+shift+Left"
+  fi
+}
+
+function right {
+  if [[ $(is_vim) == 1 ]]; then
+    xdotool key "ctrl+l"
+  else
+    xdotool key "ctrl+shift+Right"
+  fi
+}
+
+function down {
+  if [[ $(is_vim) == 1 ]]; then
+    xdotool key "ctrl+j"
+  else
+    xdotool key "ctrl+shift+Down"
+  fi
+}
+
+function up {
+  if [[ $(is_vim) == 1 ]]; then
+    xdotool key "ctrl+k"
+  else
+    xdotool key "ctrl+shift+Up"
+  fi
+}
+
+function command_not_found {
+  echo 'Usage: konsole-vim-navigate [up|down|left|right]'
+  exit 1
+}
+
+case "${command}" in
+  left) left;;
+  right) right;;
+  up) up;;
+  down) down;;
+  *)
+    command_not_found
+esac

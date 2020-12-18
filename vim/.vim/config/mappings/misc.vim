@@ -21,11 +21,11 @@ nmap ga <Plug>(EasyAlign)
 nmap gs <plug>(GrepperOperator)
 vmap gs <plug>(GrepperOperator)
 
-" Tmux / vim window navigation
-nnoremap <silent> <c-h> :call TmuxPane('h')<CR>
-nnoremap <silent> <c-j> :call TmuxPane('j')<CR>
-nnoremap <silent> <c-k> :call TmuxPane('k')<CR>
-nnoremap <silent> <c-l> :call TmuxPane('l')<CR>
+" Konsole / vim window navigation
+nnoremap <silent> <c-h> :call KonsolePane('h', 'Left')<CR>
+nnoremap <silent> <c-j> :call KonsolePane('j', 'Down')<CR>
+nnoremap <silent> <c-k> :call KonsolePane('k', 'Up')<CR>
+nnoremap <silent> <c-l> :call KonsolePane('l', 'Right')<CR>
 
 " List tags if more than one on jump
 nnoremap <C-]> g<C-]>
