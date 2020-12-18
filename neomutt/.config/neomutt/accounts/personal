@@ -1,8 +1,0 @@
-# vim: set filetype=neomuttrc
-
-set my_mailbox = "personal"
-set from = "$MAIL_PERSONAL_USERNAME"
-
-source $my_config_dir/init-mailbox
-
-mailboxes =personal/Inbox =personal/Sent =personal/Junk =personal/Archive =personal/Flagged =personal/Trash
