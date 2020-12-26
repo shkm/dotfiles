@@ -24,6 +24,7 @@ display=Display,Display\tMeta+P,Switch Display
 
 [khotkeys]
 _k_friendly_name=Custom Shortcuts Service
+{485f87c7-17bf-4a39-b8a6-200f69f6689b}=Ctrl+Shift+Esc,none,kSysGuard
 {582ade66-1d2d-492e-bbff-8b4157e7f373}=Ctrl+Alt+T,none,Launch Konsole
 {ac3e7625-fbcb-4d12-b71d-f840ebf98dbd}=Meta+=,none,Flameshot
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
@@ -216,6 +217,10 @@ stopmedia=Media Stop,Media Stop,Stop media playback
 [org.kde.dolphin.desktop]
 _k_friendly_name=Dolphin
 _launch=Meta+E,Meta+E,Dolphin
+
+[org.kde.ksysguard.desktop]
+_k_friendly_name=KSysGuard
+_launch=,,KSysGuard
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
