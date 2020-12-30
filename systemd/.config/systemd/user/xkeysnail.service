@@ -3,7 +3,7 @@ Description=xkeysnail
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/xkeysnail
+ExecStart=/usr/bin/xkeysnail --watch
 Restart=always
 Environment=DISPLAY=:0
 
