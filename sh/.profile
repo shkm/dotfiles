@@ -63,6 +63,9 @@ export SCRIPT_PATH="$HOME/scripts"
 # EDITOR
 export EDITOR='nvim'
 
+# Not a fan
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
 export LESS_TERMCAP_md=$(printf "\033[01;31m")
