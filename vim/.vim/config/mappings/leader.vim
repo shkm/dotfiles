@@ -54,8 +54,3 @@ nnoremap <Leader>ld :ALEDetail<CR>
 
 " m Major: these should be filetype specific, so
 " add them to ftplugin files.
-
-" z zettelkasten
-nnoremap <Leader>zn :call neuron#edit_zettel_new()<CR>
-nnoremap <Leader>zr :call neuron#refresh_cache()<CR>
-nnoremap <Leader>zf <Plug>EditZettelSelect
