@@ -44,6 +44,7 @@ source "$HOME/.zshrc.d/antibody.zsh"
 source "$HOME/.zshrc.d/aliases.zsh"
 source "$HOME/.zshrc.d/functions.zsh"
 source "$HOME/.zshrc.d/asdf.zsh"
+source "$HOME/.zshrc.d/completions.zsh"
 
 eval "$(starship init zsh)"
 
