@@ -80,3 +80,9 @@ if command -v bat &> /dev/null; then
   export BAT_THEME="Nord"
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
+
+# ssh / gnome keyring
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
