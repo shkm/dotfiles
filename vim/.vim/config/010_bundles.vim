@@ -136,7 +136,7 @@ Plug 'vim-scripts/yaml.vim', { 'for': 'yaml' }       " YAML syntax
 " --------------------------------------------------
 " Styles
 " --------------------------------------------------
-Plug 'arcticicestudio/nord-vim'
+Plug 'bluz71/vim-nightfly-guicolors'
 
 " --------------------------------------------------
 " C-Sharp

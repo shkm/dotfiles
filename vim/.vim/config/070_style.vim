@@ -1,7 +1,7 @@
 " Colors
 " set t_Co=256
 " set background=dark
-colorscheme nord
+colorscheme nightfly
 
 " Use a transparent background
 hi Normal guibg=NONE
