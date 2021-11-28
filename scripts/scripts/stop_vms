@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-vboxmanage list runningvms | grep -o '".\+"' | xargs -I {} sh -c "vboxmanage controlvm {} poweroff soft"

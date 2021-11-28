@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-URL="$1"
-
-pat='^https:\/\/jitsi\.lico.nl'
-if [[ $URL =~ $pat ]]; then
-  chromium-browser $URL
-else
-  firefox $URL
-fi
