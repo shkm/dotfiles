@@ -65,15 +65,6 @@ fi
 # EDITOR
 export EDITOR='nvim'
 
-# LESS colouring
-export LESS_TERMCAP_mb=$(printf "\033[01;31m")
-export LESS_TERMCAP_md=$(printf "\033[01;31m")
-export LESS_TERMCAP_me=$(printf "\033[0m")
-export LESS_TERMCAP_se=$(printf "\033[0m")
-export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
-export LESS_TERMCAP_ue=$(printf "\033[0m")
-export LESS_TERMCAP_us=$(printf "\033[01;32m")
-
 # Rootless docker
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
@@ -87,3 +78,36 @@ if [ -n "$DESKTOP_SESSION" ];then
   eval $(gnome-keyring-daemon --start)
   export SSH_AUTH_SOCK
 fi
+
+# LESS colouring
+export LESS_TERMCAP_mb=$(printf "\033[01;31m")
+export LESS_TERMCAP_md=$(printf "\033[01;31m")
+export LESS_TERMCAP_me=$(printf "\033[0m")
+export LESS_TERMCAP_se=$(printf "\033[0m")
+export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
+export LESS_TERMCAP_ue=$(printf "\033[0m")
+export LESS_TERMCAP_us=$(printf "\033[01;32m")
+
+# FZF colours (Material Palenight)
+# Material Palenight
+color00='#292D3E'
+color01='#444267'
+color02='#32374D'
+color03='#676E95'
+color04='#8796B0'
+color05='#959DCB'
+color06='#959DCB'
+color07='#FFFFFF'
+color08='#F07178'
+color09='#F78C6C'
+color0A='#FFCB6B'
+color0B='#C3E88D'
+color0C='#89DDFF'
+color0D='#82AAFF'
+color0E='#C792EA'
+color0F='#FF5370'
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
+" --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
+" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
+" --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"

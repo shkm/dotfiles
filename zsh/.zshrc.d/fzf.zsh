@@ -1,18 +1,11 @@
-if [ -d /usr/share/fzf/shell ]; then
-  source /usr/share/zsh/site-functions/fzf
-  source /usr/share/fzf/shell/key-bindings.zsh
-elif [ -d /usr/share/fzf ]; then
-  source /usr/share/fzf/key-bindings.zsh
-  source /usr/share/fzf/completion.zsh
-elif [ -f ~/.fzf.zsh ]; then
-  source ~/.fzf.zsh
-elif [ -f $XDG_CONFIG_HOME/fzf/zsh.zsh ]; then
-  source $XDG_CONFIG_HOME/fzf/zsh.zsh
-fi
+# if [ -d /usr/share/doc/fzf ]; then
+#   source /usr/share/doc/fzf/examples/key-bindings.zsh
+#   source /usr/share/doc/fzf/examples/completion.zsh
+# fi
 
 export FZF_COMPLETION_TRIGGER=''
-bindkey '^X^O' fzf-completion
-bindkey '^I' $fzf_default_completion
+# bindkey '^X^O' fzf-completion
+# bindkey '^I' $fzf_default_completion
 
 # Nord
 # export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -22,11 +15,11 @@ bindkey '^I' $fzf_default_completion
 #     --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 
 # Night Owl
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-    --color=fg:#a1aab8,bg:#011627,hl:#f78c6c
-    --color=fg+:#d6deeb,bg+:#0e293f,hl+:#f78c6c
-    --color=info:#ecc48d,border:#2c3043,prompt:#82aaff,pointer:#ff5874
-    --color=marker:#f78c6c,spinner:#21c7a8,header:#092236'
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+#     --color=fg:#a1aab8,bg:#011627,hl:#f78c6c
+#     --color=fg+:#d6deeb,bg+:#0e293f,hl+:#f78c6c
+#     --color=info:#ecc48d,border:#2c3043,prompt:#82aaff,pointer:#ff5874
+#     --color=marker:#f78c6c,spinner:#21c7a8,header:#092236'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 

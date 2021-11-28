@@ -9,12 +9,3 @@ function cdd() {
 function dopen() {
   open $(dirname $1)
 }
-
-function zipdir() {
-  zip -r "$1.zip" $1
-}
-compdef _dirs zipdir
-
-function unzipall() {
-  for x in *.zip; do unar -d $x; rm $x; done
-}

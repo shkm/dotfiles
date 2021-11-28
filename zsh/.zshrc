@@ -4,8 +4,6 @@
 
 autoload -Uz colors && colors
 autoload -Uz edit-command-line && zle -N edit-command-line
-autoload -Uz compinit && compinit
-autoload -Uz bashcompinit && bashcompinit
 
 setopt prompt_subst
 setopt autocd             # change dir without cd
@@ -18,17 +16,13 @@ setopt extended_history   # add timestamps and other info to history
 setopt inc_append_history # add to history after every command
 setopt hist_verify        # show substituted history command before executing
 
-# Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
-HISTFILE="$HOME/.zsh_history"
+# # Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
+# HISTSIZE=10000
+# SAVEHIST=$HISTSIZE
+# HISTFILE="$HOME/.zsh_history"
 
  # auto-show up to 1000 completion possibilities
 LISTMAX=1000
-
-# Colorize completions using default `ls` colors.
-zstyle ':completion:*' list-colors ''
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
 # -- Mappings --
 
@@ -44,9 +38,12 @@ source "$HOME/.zshrc.d/antibody.zsh"
 source "$HOME/.zshrc.d/aliases.zsh"
 source "$HOME/.zshrc.d/functions.zsh"
 source "$HOME/.zshrc.d/asdf.zsh"
-source "$HOME/.zshrc.d/completions.zsh"
+
+# Autocompletion
+
+fpath=($HOME/.zshrc.d/completions $fpath)
+if [ -x "$(command -v aws_completer)" ]; then
+  complete -C 'aws_completer' aws
+fi
 
 eval "$(starship init zsh)"
-
-# zprof # profiling
-if [ -e /home/jamie/.nix-profile/etc/profile.d/nix.sh ]; then . /home/jamie/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

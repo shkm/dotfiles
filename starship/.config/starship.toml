@@ -15,8 +15,8 @@ disabled = true
 [package]
 disabled = true
 
-[node]
-symbol = ''
-
 [dotnet]
 format = "[$symbol($version )(-> $tfm )]($style)"
+
+[aws]
+disabled =true

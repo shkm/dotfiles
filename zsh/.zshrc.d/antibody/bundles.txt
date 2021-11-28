@@ -1,5 +1,6 @@
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
 djui/alias-tips
 rupa/z
+zpm-zsh/autoenv
+marlonrichert/zsh-autocomplete
