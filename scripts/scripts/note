@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Opens today's note file
+#
+# Usage:
+#
+# note
+
+set -o errexit      # Exit on most errors (see the manual)
+set -o errtrace
+set -o nounset      # Disallow expansion of unset variables
+set -o pipefail     # Use last non-zero exit code in a pipeline
+
+NOTES_DIR="$HOME/Documents/Notes"
+FULL_PATH="$NOTES_DIR/$(date -u +%Y/%m/%d).md"
+
+mkdir -p $(dirname "$FULL_PATH")
+$EDITOR $FULL_PATH
