@@ -9,10 +9,6 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 
-if [ -f "$HOME/.secrets" ] ; then
-  source "$HOME/.secrets"
-fi
-
 # Ensure local/bin is in path.
 if [ -d "/usr/local/bin" ] ; then
   export PATH="/usr/local/bin:$PATH"
@@ -28,14 +24,10 @@ if [ -d "$HOME/bin" ] ; then
   export PATH="$HOME/bin:$PATH"
 fi
 
-# Dasht
-if [ -d "$HOME/repos/dasht" ] ; then
-  export PATH="$HOME/repos/dasht/bin:$PATH"
-fi
-
 # Version-controlled scripts
-if [ -d "$HOME/scripts" ] ; then
-  export PATH="$HOME/scripts:$PATH"
+export SCRIPT_PATH="$HOME/scripts"
+if [ -d "$SCRIPT_PATH" ] ; then
+  export PATH="$SCRIPT_PATH:$PATH"
 fi
 
 # Go
@@ -54,17 +46,24 @@ if [ -d "$HOME/.yarn/bin" ] ; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
-# Mblaze
-export MBLAZE="$XDG_CONFIG_HOME/mblaze/profile"
+# NPM
+NPM_PACKAGES="${HOME}/.npm-packages"
+if [ -d "$NPM_PACKAGES" ] ; then
+  export PATH="$PATH:$NPM_PACKAGES/bin"
+  export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+fi
 
-# Scripts
-export SCRIPT_PATH="$HOME/scripts"
+# Dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+DOTNET_ROOT="$HOME/.dotnet"
+if [ -d "$DOTNET_ROOT" ] ; then
+  export DOTNET_ROOT
+  export PATH="$DOTNET_ROOT:$PATH"
+  export PATH="$DOTNET_ROOT/tools:$PATH"
+fi
 
 # EDITOR
 export EDITOR='nvim'
-
-# Not a fan
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
@@ -75,14 +74,16 @@ export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
+# Rootless docker
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
 # Bat
 if command -v bat &> /dev/null; then
-  export BAT_THEME="Nord"
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
 # ssh / gnome keyring
 if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
+  eval $(gnome-keyring-daemon --start)
+  export SSH_AUTH_SOCK
 fi
