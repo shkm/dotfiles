@@ -8,6 +8,7 @@
   pager = "delta"
   commentChar = ~
   ignorecase = false
+	autocrlf = input
   # hooksPath = ~/.git_hooks # disabled for now because it no likey macos
 [color]
   ui = true
@@ -100,3 +101,7 @@
 [delta]
   side-by-side = true
   syntax-theme = Nord
+[init]
+	defaultBranch = main
+[credential]
+	helper = store

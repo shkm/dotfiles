@@ -1,8 +1,8 @@
 # Sensitive files #
 ###################
-.env
 .secrets
 *.gpg
+.in
 
 # Compiled source #
 ###################
@@ -29,8 +29,8 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
 !db/views/*.sql
+*.sql
 *.sqlite
 
 # IDE files #
