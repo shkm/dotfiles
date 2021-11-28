@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# Wrapper around xdg-open to open stuff
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+}
+
+usage() {
+  local exit_code="${1:-1}"
+
+  echo "Usage: open <thing>"
+
+  exit $exit_code
+}
+
+main() {
+  local arg1="${1:-}"
+  if [[ -z "$arg1" ]]; then usage; fi
+
+  xdg-open "$arg1" &> /dev/null &
+}
+
+main "$@"
