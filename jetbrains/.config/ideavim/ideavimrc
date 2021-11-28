@@ -1,0 +1,59 @@
+set hlsearch
+set surround
+set argtextobj
+set highlightedyank
+set ideajoin
+set which-key
+set notimeout
+set commentary
+
+let mapleader = "\<Space>"
+
+nnoremap <Leader><TAB> <C-S-6>
+
+" Remap 0 to ^ (first char in line)
+nnoremap 0 ^
+
+" Switch ;/: for easier command entry.
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
+nnoremap <silent> <C-h> <C-w><C-h>
+nnoremap <silent> <C-j> <C-w><C-j>
+nnoremap <silent> <C-k> <C-w><C-k>
+nnoremap <silent> <C-l> <C-w><C-l>
+nnoremap <C-p> :action SearchEverywhere<CR>
+
+nnoremap <leader>/ :action FindInPath<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+
+nnoremap <leader>gb :action Annotate<CR>
+
+nnoremap <leader>bf :action Switcher<CR>
+
+nnoremap <leader>xd :action Debug<CR>
+nnoremap <leader>xr :action Run<CR>
+nnoremap <leader>X :action Rerun<CR>
+
+nnoremap <leader>dp :action ToggleLineBreakpoint<CR>
+
+nnoremap <leader>rq :action Refactorings.QuickListPopupAction<CR>
+vnoremap <leader>rq :action Refactorings.QuickListPopupAction<CR>
+
+nnoremap <leader>rr :action RenameElement<CR>
+vnoremap <leader>rr :action RenameElement<CR>
+
+nnoremap ]m :action MethodDown<CR>
+nnoremap [m :action MethodUp<CR>
+vnoremap ]m :action MethodDown<CR>
+vnoremap [m :action MethodUp<CR>
+
+nnoremap - :action ActivateProjectToolWindow<CR>
+
+" nnoremap % :action EditorMatchBrace<CR>
+" vnoremap % :action EditorMatchBrace<CR>
+
+nnoremap gh :action ShowErrorDescription<CR>
+vnoremap gh :action ShowErrorDescription<CR>
