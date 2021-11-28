@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Tries to open a shell in the main docker container (e.g.  it ends in 'app' or 'api')
+# Given a param, uses that as a pattern to look for at the end of the container name.
+#
+# Usage:
+#
+# dcsh [container_pattern]
+
+set -o errexit      # Exit on most errors (see the manual)
+set -o errtrace
+set -o nounset      # Disallow expansion of unset variables
+set -o pipefail     # Use last non-zero exit code in a pipeline
+
+PATTERN="${1:-ap[pi]}"
+
+container=$(docker-compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}_[0-9]\+" | sed 's/.*_\(.*\)_.*/\1/')
+
+echo "Container: $container"
+docker-compose exec $container sh -c "command -v bash >/dev/null 2>&1 && bash || sh"
