@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# Zips a directory.
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+}
+
+usage() {
+  local exit_code="${1:-1}"
+
+  echo "Usage: zipdir <directory>"
+
+  exit $exit_code
+}
+
+main() {
+  local dir="${1:-}"
+
+  if [[ -z "$dir" ]]; then usage; fi
+  if [[ "$dir" = "--help" ]]; then usage 0; fi
+
+  zip -r "$dir.zip" "$dir"
+}
+
+main "$@"
