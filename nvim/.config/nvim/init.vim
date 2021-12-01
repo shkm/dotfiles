@@ -41,9 +41,9 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 set viminfo^=%
-"
-" Use a transparent background
-hi Normal guibg=NONE
+
+" Transparent background
+autocmd ColorScheme * hi Normal guibg='NONE'
 
 " Whitespace characters
 set listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
