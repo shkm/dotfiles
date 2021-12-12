@@ -10,11 +10,16 @@ return require('packer').startup(function()
   use 'janko-m/vim-test'
   use 'vim-scripts/matchit.zip'
   use 'AndrewRadev/splitjoin.vim'
-  use 'plasticboy/vim-markdown'
   use 'pangloss/vim-javascript'
   use 'elzr/vim-json'
   use 'vim-scripts/txt.vim'
   use 'vim-scripts/yaml.vim'
+
+  vim.api.nvim_set_var('vim_markdown_folding_disabled', 1)
+  vim.api.nvim_set_var('vim_markdown_new_list_item_indent', 0)
+  use {
+    'plasticboy/vim-markdown'
+  }
 
   use {
     'nvim-lualine/lualine.nvim',
