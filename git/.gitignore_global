@@ -84,3 +84,5 @@ Thumbs.db
 
 # VSCode
 tasks.json
+
+docker-compose.override.yml
