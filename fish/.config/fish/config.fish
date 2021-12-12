@@ -1,5 +1,11 @@
 fenv source "$HOME/.profile"
 
+# Disable greeting
+set -U fish_greeting
+
+# Tide
+set -U tide_character_icon '🮲🮳'
+
 # FZF's legacy keybindings conflict with Fish
 set -U FZF_LEGACY_KEYBINDINGS 0
 
