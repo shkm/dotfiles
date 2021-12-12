@@ -13,6 +13,13 @@ set -o nounset      # Disallow expansion of unset variables
 set -o pipefail     # Use last non-zero exit code in a pipeline
 
 PATTERN="${1:-ap[pi]}"
+ROOT=$(git rev-parse --show-toplevel)
+
+if [[ -d "${ROOT}/.devcontainer" ]]; then
+  cd "${ROOT}/.devcontainer"
+else
+  cd "${ROOT}"
+fi
 
 container=$(docker-compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}_[0-9]\+" | sed 's/.*_\(.*\)_.*/\1/')
 
