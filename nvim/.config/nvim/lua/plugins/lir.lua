@@ -70,6 +70,3 @@ vim.cmd [[augroup lir-settings]]
 vim.cmd [[  autocmd!]]
 vim.cmd [[  autocmd Filetype lir :lua LirSettings()]]
 vim.cmd [[augroup END]]
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1

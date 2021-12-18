@@ -49,6 +49,10 @@ autocmd ColorScheme * hi Normal guibg='NONE'
 set listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
 set list
 
+" Disable netrw; we need to do this earlier than plugin config.
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
 " -- Mappings --
 
 " Remap 0 to ^ (first char in line)
