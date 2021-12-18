@@ -1,8 +1,9 @@
 local actions = require'lir.actions'
 local mark_actions = require 'lir.mark.actions'
 local clipboard_actions = require'lir.clipboard.actions'
+local lir = require 'lir'
 
-require'lir'.setup {
+lir.setup {
 	show_hidden_files = true,
 	devicons_enable = true,
 	mappings = {
@@ -11,22 +12,38 @@ require'lir'.setup {
 		['<C-s>'] = actions.split,
 		['<C-v>'] = actions.vsplit,
 		['<C-t>'] = actions.tabedit,
+		['<C-r>'] = actions.reload,
 
 		['h']     = actions.up,
 		['-']     = actions.up,
 		['q']     = actions.quit,
 
 		['K']     = actions.mkdir,
-		['N']     = actions.newfile,
+		['N']     = actions.newfile ,
 		['R']     = actions.rename,
 		['@']     = actions.cd,
 		['Y']     = actions.yank_path,
 		['.']     = actions.toggle_show_hidden,
-		['D']     = actions.delete,
+    ['D'] = function()
+      local ctx = lir.get_context()
+      local name = ctx:current_value()
+      local Path = require("plenary.path")
 
+      if vim.fn.confirm("Trash?: " .. name, "&Yes\n&No", 1) ~= 1 then
+        return
+      end
+
+      local path = Path:new(ctx.dir .. name):absolute()
+      vim.cmd('silent !$HOME/scripts/trash "' .. path .. '"')
+      vim.cmd('silent edit') -- we don't use actions.reload because it returns a message
+    end,
+    ['O'] = function()
+      local ctx = lir.get_context()
+      io.popen('$HOME/scripts/open ' .. ctx.dir)
+    end,
 		['J'] = function()
 			mark_actions.toggle_mark()
-			vim.cmd('normal! j')
+			-- vim.cmd('normal! j')
 		end,
 		['C'] = clipboard_actions.copy,
 		['X'] = clipboard_actions.cut,
