@@ -14,6 +14,7 @@ return require('packer').startup(function()
   use 'elzr/vim-json'
   use 'vim-scripts/txt.vim'
   use 'vim-scripts/yaml.vim'
+  use 'rafcamlet/nvim-luapad'
 
   vim.api.nvim_set_var('vim_markdown_folding_disabled', 1)
   vim.api.nvim_set_var('vim_markdown_new_list_item_indent', 0)
