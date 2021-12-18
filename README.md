@@ -11,3 +11,11 @@ Current setup involves this software amongst others:
 - IntelliJ IDEs
 - [Neovim](https://neovim.io/)
 - [Fish](https://fishshell.com/)
+
+## Bootstrapping Fish
+
+I use `fisher` as my shell plugin manager, which itself is written in fish. Since fisher requires a list of bundles in my config, but running fish with my config and without fisher bundles causes it to epxlode, bootstrapping is a little tricky. This is what seems to work:
+
+```
+fish -c 'curl -sL https://git.io/fisher | source && fisher update'
+```
