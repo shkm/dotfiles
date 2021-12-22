@@ -13,7 +13,7 @@ set -o nounset      # Disallow expansion of unset variables
 set -o pipefail     # Use last non-zero exit code in a pipeline
 
 PATTERN="${1:-ap[pi]}"
-ROOT=$(git rev-parse --show-toplevel)
+ROOT=$(git rev-parse --show-toplevel 2> /dev/null || echo ".")
 
 if [[ -d "${ROOT}/.devcontainer" ]]; then
   cd "${ROOT}/.devcontainer"
