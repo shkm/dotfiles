@@ -33,8 +33,7 @@ main() {
     exit 2
   fi
 
-  # TODO
-  vim "$full_path" -c "read $TEMPLATE_PATH | set ft=sh"
+  nvim "$full_path" -c "read $TEMPLATE_PATH | set ft=sh"
 }
 
 main "$@"
