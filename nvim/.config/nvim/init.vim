@@ -101,9 +101,9 @@ nnoremap <Leader>ff <cmd>Telescope find_files<CR>
   nnoremap <Leader>fed <cmd>Telescope find_files cwd=$HOME/dotfiles<CR>
 
 " g Git
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gc :Git commit<CR>
+nnoremap <Leader>gs :Git status<CR>
 
 " s Specs
 nnoremap <Leader>sf :TestFile<CR>
