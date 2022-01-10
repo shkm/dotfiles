@@ -14,6 +14,7 @@ set -o pipefail     # Use last non-zero exit code in a pipeline
 
 PATTERN="${1:-ap[pi]}"
 ROOT=$(git rev-parse --show-toplevel 2> /dev/null || echo ".")
+COMMAND="${2:-command -v bash >/dev/null 2>&1 && bash || sh}"
 
 if [[ -d "${ROOT}/.devcontainer" ]]; then
   cd "${ROOT}/.devcontainer"
@@ -24,4 +25,4 @@ fi
 container=$(docker-compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}_[0-9]\+" | sed 's/.*_\(.*\)_.*/\1/')
 
 echo "Container: $container"
-docker-compose exec $container sh -c "command -v bash >/dev/null 2>&1 && bash || sh"
+docker-compose exec $container sh -c "$COMMAND"
