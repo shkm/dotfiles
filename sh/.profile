@@ -66,9 +66,9 @@ fi
 export EDITOR='nvim'
 
 # Rootless docker
-if [ -f "${XDG_RUNTIME_DIR}/docker.sock" ]; then
+#if [ -f "${XDG_RUNTIME_DIR}/docker.sock" ]; then
   export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
-fi
+#fi
 
 # Bat
 if command -v bat &> /dev/null; then
