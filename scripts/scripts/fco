@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Git branch fuzzy picker
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+}
+
+usage() {
+  local exit_code="${1:-1}"
+
+  echo "Usage: fco"
+
+  exit $exit_code
+}
+
+main() {
+  local arg1="${1:-}"
+  if [[ "$arg1" = "--help" ]]; then usage 0; fi
+
+  local branch="$(git branch -a -vv --color=always | grep -v '/HEAD\s' | \
+    fzf --height 40% --ansi --multi --tac | sed 's/^..//' | \
+    awk '{print $1}' | sed 's#^remotes/[^/]*/##')"
+
+  git checkout "$branch"
+}
+
+main "$@"
+
