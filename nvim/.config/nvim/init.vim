@@ -85,6 +85,10 @@ let mapleader = " "
 nnoremap <Leader><TAB> <C-^>
 nnoremap <Leader>/ <cmd>Telescope live_grep<CR>
 
+" Sideways
+nnoremap <s-h> :SidewaysLeft<cr>
+nnoremap <s-l> :SidewaysRight<cr>
+
 " ; Settings
 nnoremap <Leader>;sb :set scrollbind<CR>
 
