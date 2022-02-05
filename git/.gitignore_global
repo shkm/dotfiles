@@ -29,9 +29,9 @@
 # Logs and databases #
 ######################
 *.log
-!db/views/*.sql
 *.sql
 *.sqlite
+!db/views/*.sql
 
 # IDE files #
 #############
