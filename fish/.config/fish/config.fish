@@ -4,7 +4,16 @@ fenv source "$HOME/.profile"
 set -U fish_greeting
 
 # Tide
-set -U tide_character_icon '🮲🮳'
+set -U hydro_symbol_prompt '>'
+set -U hydro_multiline true
+set -U hydro_symbol_git_dirty '*'
+set -U hydro_symbol_git_ahead '↑'
+set -U hydro_symbol_git_behind '↓'
+set -U hydro_color_pwd grey
+set -U hydro_color_git green
+set -U hydro_color_error red
+set -U hydro_color_prompt cyan
+set -U hydro_color_duration grey
 
 # FZF's legacy keybindings conflict with Fish
 set -U FZF_LEGACY_KEYBINDINGS 0
