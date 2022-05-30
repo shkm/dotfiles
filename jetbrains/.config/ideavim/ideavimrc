@@ -6,10 +6,14 @@ set ideajoin
 set which-key
 set notimeout
 set commentary
+set matchit
+set NERDTree
+set exchange
 
 let mapleader = "\<Space>"
 
 nnoremap <Leader><TAB> <C-S-6>
+nnoremap - :NERDTree<CR>
 
 " Remap 0 to ^ (first char in line)
 nnoremap 0 ^
@@ -25,6 +29,7 @@ nnoremap <silent> <C-j> <C-w><C-j>
 nnoremap <silent> <C-k> <C-w><C-k>
 nnoremap <silent> <C-l> <C-w><C-l>
 nnoremap <C-p> :action SearchEverywhere<CR>
+vnoremap <C-p> :action SearchEverywhere<CR>
 
 nnoremap <leader>/ :action FindInPath<CR>
 nnoremap <leader>ff :action GotoFile<CR>
@@ -49,8 +54,6 @@ nnoremap ]m :action MethodDown<CR>
 nnoremap [m :action MethodUp<CR>
 vnoremap ]m :action MethodDown<CR>
 vnoremap [m :action MethodUp<CR>
-
-nnoremap - :action ActivateProjectToolWindow<CR>
 
 " nnoremap % :action EditorMatchBrace<CR>
 " vnoremap % :action EditorMatchBrace<CR>
