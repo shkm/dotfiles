@@ -63,6 +63,7 @@
   prune = fetch --prune
   s = status -sbu
   sh = show
+  staged = diff --name-only --cached
   stash-all = stash save --include-untracked
   r = rebase
   rc = rebase --continue
