@@ -116,3 +116,5 @@
   templateDir = "$HOME/.git-templates"
 [credential]
 	helper = store
+[rerere]
+	enabled = true
