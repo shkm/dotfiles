@@ -23,7 +23,7 @@ set -l asdfPath "$HOME/.asdf/asdf.fish"
 test -f $asdfPath; and source $asdfPath
 
 abbr cat bat
-abbr dc docker-compose
+abbr dc docker compose
 abbr dka "docker kill (docker ps -q)"
 abbr ducks "du -cksh * | sort -hr"
 abbr g git

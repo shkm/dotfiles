@@ -22,8 +22,8 @@ else
   cd "${ROOT}"
 fi
 
-container=$(docker-compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}_[0-9]\+" | sed 's/.*_\(.*\)_.*/\1/')
-container=$(docker-compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}\(_[0-9]\+\)\?\$" | sed 's/.*_\(.*\)_.*/\1/')
+container=$(docker compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}_[0-9]\+" | sed 's/.*_\(.*\)_.*/\1/')
+container=$(docker compose ps | tail -n +3 | cut -d' ' -f1 | grep "${PATTERN}\(_[0-9]\+\)\?\$" | sed 's/.*_\(.*\)_.*/\1/')
 
 echo "Container: $container"
 docker-compose exec $container sh -c "$COMMAND"
