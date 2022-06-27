@@ -28,35 +28,35 @@ nnoremap <silent> <C-h> <C-w><C-h>
 nnoremap <silent> <C-j> <C-w><C-j>
 nnoremap <silent> <C-k> <C-w><C-k>
 nnoremap <silent> <C-l> <C-w><C-l>
-nnoremap <C-p> :action SearchEverywhere<CR>
-vnoremap <C-p> :action SearchEverywhere<CR>
+nmap <C-p> <Action>(SearchEverywhere)
+vmap <C-p> <Action>(SearchEverywhere)
 
-nnoremap <leader>/ :action FindInPath<CR>
-nnoremap <leader>ff :action GotoFile<CR>
+nmap <leader>/ <Action>(FindInPath)
+nmap <leader>ff <Action>(GotoFile)
 
-nnoremap <leader>gb :action Annotate<CR>
+nmap <leader>gb <Action>(Annotate)
 
-nnoremap <leader>bf :action Switcher<CR>
+nmap <leader>bf <Action>(Switcher)
 
-nnoremap <leader>xd :action Debug<CR>
-nnoremap <leader>xr :action Run<CR>
-nnoremap <leader>X :action Rerun<CR>
+nmap <leader>xd <Action>(Debug)
+nmap <leader>xr <Action>(Run)
+nmap <leader>X <Action>(Rerun)
 
-nnoremap <leader>dp :action ToggleLineBreakpoint<CR>
+nmap <leader>dp <Action>(ToggleLineBreakpoint)
 
-nnoremap <leader>rq :action Refactorings.QuickListPopupAction<CR>
-vnoremap <leader>rq :action Refactorings.QuickListPopupAction<CR>
+nmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
+vmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
 
-nnoremap <leader>rr :action RenameElement<CR>
-vnoremap <leader>rr :action RenameElement<CR>
+nmap <leader>rr <Action>(RenameElement)
+vmap <leader>rr <Action>(RenameElement)
 
-nnoremap ]m :action MethodDown<CR>
-nnoremap [m :action MethodUp<CR>
-vnoremap ]m :action MethodDown<CR>
-vnoremap [m :action MethodUp<CR>
+vmap ]m <Action>(MethodDown)
+vmap [m <Action>(MethodUp)
+vmap ]m <Action>(MethodDown)
+vmap [m <Action>(MethodUp)
 
-" nnoremap % :action EditorMatchBrace<CR>
-" vnoremap % :action EditorMatchBrace<CR>
+" nnoremap % <Action>EditorMatchBrace
+" vnoremap % <Action>EditorMatchBrace
 
-nnoremap gh :action ShowErrorDescription<CR>
-vnoremap gh :action ShowErrorDescription<CR>
+map gh <Action>(ShowErrorDescription)
+vmap gh <Action>(ShowErrorDescription)
