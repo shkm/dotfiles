@@ -5,9 +5,9 @@ LOCAL="$2"
 REMOTE="$3"
 MERGED="$4"
 
-if [[ $(command -v "smerge") ]]; then
-  smerge "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
-elif [[ $(command -v "meld") ]]; then
+#if [[ $(command -v "smerge") ]]; then
+  #smerge "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+if [[ $(command -v "meld") ]]; then
   meld --diff "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 elif [[ $(command -v "vimdiff") ]]; then
   vimdiff "$LOCAL" "$MERGED" "$REMOTE"
