@@ -54,7 +54,6 @@ if [ -d "$NPM_PACKAGES" ] ; then
 fi
 
 # Dotnet
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 DOTNET_ROOT="$HOME/.dotnet"
 if [ -d "$DOTNET_ROOT" ] ; then
   export DOTNET_ROOT
@@ -80,6 +79,11 @@ if [ -n "$DESKTOP_SESSION" ];then
   eval $(gnome-keyring-daemon --start)
   export SSH_AUTH_SOCK
 fi
+
+# Various telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Dotnet
+export CHECKPOINT_DISABLE=1 # Prisma
+export NEXT_TELEMETRY_DISABLED=1 # Next.js
 
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
