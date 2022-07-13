@@ -9,7 +9,6 @@
   commentChar = ~
   ignorecase = false
 	autocrlf = input
-  hooksPath = ~/.git-hooks
 [color]
   ui = true
 [alias]
