@@ -53,6 +53,14 @@ if [ -d "$NPM_PACKAGES" ] ; then
   export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 fi
 
+DENO_INSTALL="${HOME}/.deno"
+if [ -d "$DENO_INSTALL" ]; then
+  export DENO_INSTALL
+  export PATH="$PATH:$DENO_INSTALL/bin"
+fi
+
+
+
 # Dotnet
 DOTNET_ROOT="$HOME/.dotnet"
 if [ -d "$DOTNET_ROOT" ] ; then
