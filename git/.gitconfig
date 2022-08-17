@@ -83,6 +83,7 @@
   # Push only the current branch
   default = current
   followTags = true
+	autoSetupRemote = true
 [status]
   showUntrackedFiles = all
 [pull]
@@ -98,7 +99,7 @@
 [difftool "difftool"]
   cmd = difftool "$LOCAL" "$REMOTE"
 [diff]
-  tool = difftool
+	tool = difftool
 [mergetool]
   prompt  = false
 [mergetool "mergetool"]
@@ -106,7 +107,7 @@
 [mergetool "vimdiff"]
   cmd = vimdiff "$LOCAL" "$MERGED" "$REMOTE"
 [merge]
-  tool = mergetool
+	tool = mergetool
 [delta]
   side-by-side = true
   syntax-theme = Nord
@@ -117,3 +118,5 @@
 	helper = store
 [rerere]
 	enabled = true
+[gui]
+[global]
