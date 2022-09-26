@@ -9,6 +9,8 @@ set commentary
 set matchit
 set NERDTree
 set exchange
+set relativenumber
+set number
 
 let mapleader = "\<Space>"
 
