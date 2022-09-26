@@ -1,6 +1,7 @@
 lua require('plugins')
 
 " -- Basics --
+set termguicolors
 
 " Indentation
 set autoindent
