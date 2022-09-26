@@ -1,14 +1,14 @@
 [user]
-	email = jamie@schembri.me
-	name = Jamie Schembri
-	signingKey = 020DE21E3ECDCFE91B829BA65C963E21C3B452D2
+  email = jamie@schembri.me
+  name = Jamie Schembri
+  signingKey = 020DE21E3ECDCFE91B829BA65C963E21C3B452D2
 [core]
-	excludesfile = /home/jamie/.gitignore_global
+  excludesfile = /home/jamie/.gitignore_global
   editor = nvim
   pager = "delta"
   commentChar = ~
   ignorecase = false
-	autocrlf = input
+  autocrlf = input
 [color]
   ui = true
 [alias]
@@ -83,23 +83,24 @@
   # Push only the current branch
   default = current
   followTags = true
-	autoSetupRemote = true
+  autoSetupRemote = true
 [status]
   showUntrackedFiles = all
 [pull]
+  default = current
   ff = only
   rebase = true
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
 [difftool]
   prompt = false
 [difftool "difftool"]
   cmd = difftool "$LOCAL" "$REMOTE"
 [diff]
-	tool = difftool
+  tool = difftool
 [mergetool]
   prompt  = false
 [mergetool "mergetool"]
@@ -107,16 +108,16 @@
 [mergetool "vimdiff"]
   cmd = vimdiff "$LOCAL" "$MERGED" "$REMOTE"
 [merge]
-	tool = mergetool
+  tool = mergetool
 [delta]
   side-by-side = true
   syntax-theme = Nord
 [init]
-	defaultBranch = main
+  defaultBranch = main
   templateDir = "$HOME/.git-templates"
 [credential]
-	helper = store
+  helper = store
 [rerere]
-	enabled = true
+  enabled = true
 [gui]
 [global]
