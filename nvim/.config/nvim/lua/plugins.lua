@@ -26,24 +26,24 @@ return require('packer').startup(function()
   }
 
   use {
+    'haishanh/night-owl.vim',
+    config = function()
+      vim.cmd 'colorscheme night-owl'
+    end
+  }
+
+  use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'material-nvim'
+          theme = 'nightowl'
         }
       }
     end
   }
 
-  use {
-    'marko-cerovac/material.nvim',
-    config = function()
-      vim.g.material_style = "palenight"
-      vim.cmd 'colorscheme material'
-    end
-  }
 
   use {
     'nvim-treesitter/nvim-treesitter',
