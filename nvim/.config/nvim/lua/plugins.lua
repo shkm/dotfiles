@@ -16,8 +16,9 @@ return require('packer').startup(function()
   use 'vim-scripts/yaml.vim'
   use 'rafcamlet/nvim-luapad'
   use 'AndrewRadev/sideways.vim'
-  use 'tommcdo/vim-indent-object'
+  --use 'tommcdo/vim-indent-object'
   use 'rust-lang/rust.vim'
+  use 'kyazdani42/nvim-web-devicons'
 
   vim.api.nvim_set_var('vim_markdown_folding_disabled', 1)
   vim.api.nvim_set_var('vim_markdown_new_list_item_indent', 0)
@@ -26,9 +27,9 @@ return require('packer').startup(function()
   }
 
   use {
-    'haishanh/night-owl.vim',
+    'tanvirtin/monokai.nvim',
     config = function()
-      vim.cmd 'colorscheme night-owl'
+      require('monokai').setup {}
     end
   }
 
@@ -38,7 +39,7 @@ return require('packer').startup(function()
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'nightowl'
+          theme = 'molokai'
         }
       }
     end
