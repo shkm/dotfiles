@@ -114,7 +114,6 @@
   syntax-theme = Nord
 [init]
   defaultBranch = main
-  templateDir = "$HOME/.git-templates"
 [credential]
   helper = store
 [rerere]
