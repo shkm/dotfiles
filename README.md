@@ -14,7 +14,7 @@ Current setup involves this software amongst others:
 
 ## Bootstrapping
 ```
-curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/setup.sh | bash
+curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/setup.sh | bash -s -- --bootstrap
 ```
 
 ## Bootstrapping Fish

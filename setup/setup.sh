@@ -27,11 +27,10 @@ function dotfiles() {
 # If this script is executed "remotely" (piped into bash) we want to make sure we
 # exit at this point and re-execute the local version
 function execLocalSetup() {
-  if [[ ! "$(pwd)" = "$HOME/dotfiles" ]]; then
-    cd "$HOME/dotfiles"
-    setup/setup.sh
-    exit
-  fi
+  printf "\n\n--> Switching to local setup script"
+  cd "$HOME/dotfiles"
+  setup/setup.sh --bootstrapped
+  exit
 }
 
 function stowDotfiles() {
@@ -46,14 +45,13 @@ function fonts() {
     git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git $HOME/repos/nerd-fonts
   fi
 
-  echo $(pwd)
   $(cd $HOME/repos/nerd-fonts && git sparse-checkout add patched-fonts/$MONOSPACE_FONT)
   $($HOME/repos/nerd-fonts/install.sh -q $MONOSPACE_FONT)
 }
 
 function gsettings() {
   printf "\n\n--> Modifying gsettings\n"
-  ./gsettings.sh
+  $HOME/dotfiles/setup/gsettings.sh
 }
 
 function neovim() {
@@ -147,18 +145,32 @@ function finished() {
   echo "  - Logout and in"
 }
 
-packages
-dotfiles
-execLocalSetup
-fonts
-gsettings
-stowDotfiles
-neovim
-neovimPackages
-asdf
-npmPackages
-flathub
-flatpakPackages
-changeShell
-bootstrapFish
-finished
+function main() {
+  # Special switches for bootstrap (remote) setup.
+  if [[ "$1" = "--bootstrap" ]]; then
+    packages
+    dotfiles
+    execLocalSetup
+
+    exit
+  elif [[ ! "$1" = "--bootstrapped" ]]; then
+    packages
+    dotfiles
+  fi
+
+  fonts
+  gsettings
+  stowDotfiles
+  neovim
+  neovimPackages
+  asdf
+  npmPackages
+  flathub
+  flatpakPackages
+  changeShell
+  bootstrapFish
+  finished
+}
+
+
+main "$@"
