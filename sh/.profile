@@ -1,14 +1,6 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-  # include .bashrc if it exists
-  if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
-  fi
-fi
-
 # Ensure local/bin is in path.
 if [ -d "/usr/local/bin" ] ; then
   export PATH="/usr/local/bin:$PATH"
@@ -73,9 +65,9 @@ fi
 export EDITOR='nvim'
 
 # Rootless docker
-#if [ -f "${XDG_RUNTIME_DIR}/docker.sock" ]; then
+if [ -f "${XDG_RUNTIME_DIR}/docker.sock" ]; then
   export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
-#fi
+fi
 
 # Bat
 if command -v bat &> /dev/null; then
