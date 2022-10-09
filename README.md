@@ -7,10 +7,13 @@ Over the years I've used some pretty esoteric setups; nowadays I'm more focused 
 
 Current setup involves this software amongst others:
 
-- PopOS
+- Fedora, Debian, PopOS
 - IntelliJ IDEs
 - [Neovim](https://neovim.io/)
 - [Fish](https://fishshell.com/)
+
+## Bootstrapping
+TODO
 
 ## Bootstrapping Fish
 
