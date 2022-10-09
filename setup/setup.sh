@@ -27,7 +27,7 @@ function dotfiles() {
 # If this script is executed "remotely" (piped into bash) we want to make sure we
 # exit at this point and re-execute the local version
 function execLocalSetup() {
-  if [ ! $(pwd) = "$HOME/dotfiles" ]; then
+  if [[ ! "$(pwd)" = "$HOME/dotfiles" ]]; then
     cd "$HOME/dotfiles"
     setup/setup.sh
     exit
