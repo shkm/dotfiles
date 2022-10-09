@@ -13,7 +13,9 @@ Current setup involves this software amongst others:
 - [Fish](https://fishshell.com/)
 
 ## Bootstrapping
-TODO
+```
+curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/setup.sh | bash
+```
 
 ## Bootstrapping Fish
 
