@@ -22,11 +22,15 @@ if [ -d "$SCRIPT_PATH" ] ; then
   export PATH="$SCRIPT_PATH:$PATH"
 fi
 
-# Go
+#Go
+if [ -d "usr/local/go/bin" ]; then
+  export PATH="/usr/local/go/bin:$PATH"
+fi
 if [ -d "$HOME/go" ]; then
   export GOPATH="$HOME/go"
   export PATH="$HOME/go/bin:$PATH"
 fi
+
 
 # Rust
 if [ -d "$HOME/.cargo" ] ; then
