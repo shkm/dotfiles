@@ -19,6 +19,8 @@ return require('packer').startup(function()
   --use 'tommcdo/vim-indent-object'
   use 'rust-lang/rust.vim'
   use 'kyazdani42/nvim-web-devicons'
+  use 'dhruvasagar/vim-table-mode'
+  use 'vim-crystal/vim-crystal'
 
   vim.api.nvim_set_var('vim_markdown_folding_disabled', 1)
   vim.api.nvim_set_var('vim_markdown_new_list_item_indent', 0)
@@ -29,7 +31,8 @@ return require('packer').startup(function()
   use {
     'tanvirtin/monokai.nvim',
     config = function()
-      require('monokai').setup {}
+      require('monokai').setup { }
+      vim.colorscheme = 'monokai'
     end
   }
 
@@ -74,22 +77,12 @@ return require('packer').startup(function()
     end
   }
 
-  use 'L3MON4D3/LuaSnip'
-
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'neovim/nvim-lspconfig',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind-nvim'
-    },
-    config = function()
-      require('plugins/nvim-cmp')
-    end
-  }
+use {
+     'ms-jpq/coq_nvim',
+     branch = 'coq',
+     event = "VimEnter",
+     config = 'vim.cmd[[COQnow]]'
+}
+use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 end)
 
