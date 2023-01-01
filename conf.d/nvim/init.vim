@@ -1,4 +1,4 @@
-lua require('plugins')
+" lua require('plugins')
 
 " -- Basics --
 set termguicolors
@@ -103,8 +103,7 @@ nnoremap <Leader>bf <cmd>Telescope buffers<CR>
 nnoremap <Leader>f? <cmd>Telescope live_grep<CR>
 nnoremap <Leader>ff <cmd>Telescope find_files<CR>
   " fe Find file in set place
-  nnoremap <Leader>fed <cmd>Telescope find_files cwd=$HOME/dotfiles<CR>
-  nnoremap <Leader>fev <cmd>Telescope find_files cwd=$HOME/.config/nvim<CR>
+  nnoremap <Leader>fen <cmd>Telescope find_files cwd=$HOME/.config/nixpkgs<CR>
 
 " g Git
 nnoremap <Leader>gb :Git blame<CR>

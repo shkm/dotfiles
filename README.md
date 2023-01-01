@@ -1,26 +1,12 @@
 # :godmode: shkm's dotfiles
 
-These are my dotfiles, managed using [GNU stow](https://www.gnu.org/software/stow/). They're designed for me and subject to change at any time, but feel free to take bits and pieces.
+These are my dotfiles, managed using [home-manager](https://github.com/nix-community/home-manager). They're designed for me and subject to change at any time, but feel free to take bits and pieces.
 
-Over the years I've used some pretty esoteric setups; nowadays I'm more focused on Getting Shit Done, and as a result my dotfiles are becoming more spartan.
+Previously I used GNU Stow to manage these.
 
 
-Current setup involves this software amongst others:
-
-- Fedora, Debian, PopOS
-- IntelliJ IDEs
-- [Neovim](https://neovim.io/)
-- [Fish](https://fishshell.com/)
-
-## Bootstrapping
+## Setup
 ```
-curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/setup.sh | bash -s -- --bootstrap
-```
-
-## Bootstrapping Fish
-
-I use `fisher` as my shell plugin manager, which itself is written in fish. Since fisher requires a list of bundles in my config, but running fish with my config and without fisher bundles causes it to epxlode, bootstrapping is a little tricky. This is what seems to work:
-
-```
-fish -c 'curl -sL https://git.io/fisher | source && fisher update'
+git clone git@github.com:shkm/dotfiles.git ~/.config/nixpkgs
+home-manager switch
 ```

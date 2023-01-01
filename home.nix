@@ -1,0 +1,88 @@
+{ pkgs, ... }:
+let
+  name = "jamie";
+in
+{
+
+  targets.genericLinux.enable = true;
+  home = {
+    stateVersion = "22.11";
+
+    username = "${name}";
+    homeDirectory = "/home/${name}";
+
+    sessionPath = [
+      "$HOME/bin"
+      "$HOME/scripts"
+    ];
+    sessionVariables = {
+      EDITOR = "nvim";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    };
+    file = {
+      scripts = {
+        source = ./conf.d/scripts;
+      };
+    };
+    packages = with pkgs; [
+      nixfmt
+      ripgrep
+      exa
+      fd
+      httpie
+      html-tidy
+      (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+    ];
+  };
+
+  xdg.configFile = {
+    ideavim = {
+      source = ./conf.d/ideavim/ideavimrc;
+      target = "ideavim/ideavimrc";
+    };
+    tig = {
+      source = ./conf.d/tig/config;
+      target = "tig/config";
+    };
+  };
+
+  programs = {
+    tealdeer.enable = true;
+    gh.enable = true;
+    jq.enable = true;
+    starship.enable = true;
+    home-manager.enable = true;
+    bat = {
+      enable = true;
+      config = {
+        theme = "Dracula";
+      };
+    };
+    fzf = {
+      enable = true;
+      colors = {
+        fg = "#f8f8f2";
+        "fg+" = "#f8f8f2";
+        bg = "#282a36";
+        "bg+" = "#44475a";
+        hl = "#bd93f9";
+        "hl+" = "#bd93f9";
+        info = "#ffb86c";
+        prompt = "#50fa7b";
+        pointer = "#ff79c6";
+        marker = "#ff79c6";
+        spinner = "#ffb86c";
+        header = "#6272a4";
+      };
+    };
+  };
+
+
+  imports = [
+    ./conf.d/nvim.nix
+    ./conf.d/fish.nix
+    ./conf.d/git.nix
+    ./conf.d/gnome.nix
+    ./conf.d/terminator.nix
+  ];
+}
