@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  username = "\${USER}";
+  username = "$USER";
 in
 {
   targets.genericLinux.enable = true;
