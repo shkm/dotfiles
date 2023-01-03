@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   dconf.settings = {
     "org/gnome/shell" = {
@@ -45,8 +46,8 @@
       tap-to-click = true;
     };
     "org/gnome/desktop/peripherals/keyboard" = {
-      delay = "uint32 150";
-      repeat-interval = "uint32 10";
+      delay = lib.hm.gvariant.mkUint32 150;
+      repeat-interval = lib.hm.gvariant.mkUint32 10;
     };
     "org/gnome/shell/extensions/sp-tray" = {
       display-format = "{artist} - {track}";
