@@ -28,9 +28,11 @@
       };
       profiles = {
         default = {
+          use_system_font = false;
+          font = "JetBrainsMonoNL Nerd Font Mono 10";
+
           scrollbar_position = "hidden";
 
-          # Monokai
           background_color = "#282a36";
           foreground_color = "#f8f8f2";
           background_image = "None";
