@@ -2,6 +2,9 @@
 {
   programs.fish = {
     enable = true;
+    plugins = [
+      { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env; }
+    ];
     shellAbbrs = {
       cat = "bat";
       dc = "docker compose";
@@ -20,6 +23,13 @@
       # Workaround issue with editor not getting set right
       set -gx EDITOR nvim
       set -gx SUDOEDITOR nvim
+
+      # https://github.com/NixOS/nix/issues/2033
+      set --prepend fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d
+      fenv source ${./export-nix-path}
+
+      # shh
+      set -U fish_greeting
     '';
   };
 }
