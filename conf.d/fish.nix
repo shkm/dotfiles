@@ -30,6 +30,10 @@
 
       # shh
       set -U fish_greeting
+
+      # asdf
+      source ${pkgs.asdf-vm}/share/asdf-vm/asdf.fish
+      source ${pkgs.asdf-vm}/share/fish/vendor_completions.d/asdf.fish
     '';
   };
 }

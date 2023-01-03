@@ -21,6 +21,11 @@ in
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     };
     file = {
+      ".asdfrc" = {
+        source = ./conf.d/asdf/asdfrc;
+      };
+    };
+    file = {
       scripts = {
         source = ./conf.d/scripts;
       };
@@ -33,6 +38,7 @@ in
       httpie
       html-tidy
       procs
+      asdf-vm
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
     ];
   };
