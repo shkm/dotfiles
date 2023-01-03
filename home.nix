@@ -32,6 +32,7 @@ in
       fd
       httpie
       html-tidy
+      procs
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
     ];
   };
