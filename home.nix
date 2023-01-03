@@ -1,15 +1,14 @@
 { pkgs, ... }:
 let
-  name = "jamie";
+  username = "\${USER}";
 in
 {
-
   targets.genericLinux.enable = true;
   home = {
     stateVersion = "22.11";
 
-    username = "${name}";
-    homeDirectory = "/home/${name}";
+    username = username;
+    homeDirectory = "/home/${username}";
 
     sessionPath = [
       "$HOME/bin"
