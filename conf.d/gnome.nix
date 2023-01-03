@@ -38,7 +38,7 @@
     "org/gnome/desktop/peripherals/mouse" = {
       natural-scroll = false;
       accelprofile = "flat";
-      speed = 0.6;
+      speed = 0.0;
     };
     "org/gnome/desktop/peripherals/touchpad" = {
       natural-scroll = false;
