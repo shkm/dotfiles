@@ -149,6 +149,7 @@
       ".gems"
       "tasks.json"
       "docker-compose.override.yml"
+      ".direnv/"
     ];
   };
 

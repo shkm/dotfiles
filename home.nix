@@ -51,6 +51,10 @@ in
   fonts.fontconfig.enable = true;
 
   programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     tealdeer.enable = true;
     gh.enable = true;
     jq.enable = true;
