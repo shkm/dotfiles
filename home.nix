@@ -45,6 +45,8 @@ in
     };
   };
 
+  fonts.fontconfig.enable = true;
+
   programs = {
     tealdeer.enable = true;
     gh.enable = true;
