@@ -55,6 +55,7 @@ in
       enable = true;
       nix-direnv.enable = true;
     };
+    zoxide.enable = true;
     tealdeer.enable = true;
     gh.enable = true;
     jq.enable = true;
