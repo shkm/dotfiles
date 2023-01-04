@@ -59,6 +59,11 @@ in
       delay = lib.hm.gvariant.mkUint32 150;
       repeat-interval = lib.hm.gvariant.mkUint32 10;
     };
+    "org/gnome/shell/extensions/trayIconsReloaded" = {
+      icon-margin-horizontal = 4;
+      icon-size = 18;
+      icon-saturation = 70;
+    };
     "org/gnome/shell/extensions/spotifylabel" = {
       left-padding = 0;
       right-padding = 0;
