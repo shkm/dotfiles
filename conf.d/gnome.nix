@@ -1,4 +1,8 @@
 { lib, ... }:
+let
+  defaultFont = "Inter Regular 11";
+  monospaceFont = "JetBrainsMonoNL Nerd Font Mono 10";
+in
 {
   dconf.settings = {
     "org/gnome/shell" = {
@@ -26,7 +30,9 @@
     };
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      monospace-font-name = "JetBrainsMonoNL Nerd Font Mono 10";
+      font-name = defaultFont;
+      document-font-name = defaultFont;
+      monospace-font-name = monospaceFont;
       gtk-enable-primary-paste = false; # Disable middle-click paste
       gtk-key-theme = "Emacs";
       clock-show-weekday = true;

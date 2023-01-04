@@ -39,6 +39,7 @@ in
       html-tidy
       procs
       asdf-vm
+
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
     ];
   };
@@ -55,6 +56,14 @@ in
   };
 
   fonts.fontconfig.enable = true;
+
+  gtk = {
+    enable = true;
+    font = {
+      name = "Inter Regular 11";
+      package = pkgs.inter;
+    };
+  };
 
   programs = {
     direnv = {
