@@ -18,6 +18,7 @@ in
       button-layout = "appmenu:minimize,maximize,close";
       resize-with-right-button = true;
       mouse-button-modifier = ["<Super>"];
+      audible-bell = false;
     };
     "org/gnome/desktop/wm/keybindings" = {
       switch-input-source = [];
