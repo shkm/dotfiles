@@ -7,7 +7,7 @@ in
   dconf.settings = {
     "org/gnome/shell" = {
       enabled-extensions = [
-        "sp-tray@sp-tray.esenliyim.github.com"
+        "gnomespotifylabel@mheine.github.com"
         "trayIconsReloaded@selfmade.pl"
         "places-menu@gnome-shell-extensions.gcampax.github.com"
         "no_activities@yaya.cout"
@@ -55,13 +55,15 @@ in
       delay = lib.hm.gvariant.mkUint32 150;
       repeat-interval = lib.hm.gvariant.mkUint32 10;
     };
-    "org/gnome/shell/extensions/sp-tray" = {
-      display-format = "{artist} - {track}";
-      podcast-format = "{album} - {track}";
-      position = 0;
-      logo-position = 0;
-      paused = "⏸";
-      stopped = "⏹";
+    "org/gnome/shell/extensions/spotifylabel" = {
+      left-padding = 0;
+      right-padding = 0;
+      max-string-length = 40;
+      friendly-greeting = false;
+      artist-first = true;
+      extension-place = "left";
+      extension-index = 0;
+      toggle-window = true;
     };
   };
 }
