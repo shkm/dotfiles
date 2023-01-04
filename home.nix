@@ -39,6 +39,7 @@ in
       html-tidy
       procs
       asdf-vm
+      tig
 
       (nerdfonts.override { fonts = ["JetBrainsMono"]; })
     ];
