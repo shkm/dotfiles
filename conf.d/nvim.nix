@@ -34,6 +34,7 @@
       }
       nvim-treesitter
       telescope-nvim
+      nvim-web-devicons
       {
         plugin = lir-nvim;
         config = ''
