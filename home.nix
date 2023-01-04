@@ -63,6 +63,10 @@ in
       name = "Inter Regular 11";
       package = pkgs.inter;
     };
+    iconTheme = {
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme;
+    };
   };
 
   programs = {
