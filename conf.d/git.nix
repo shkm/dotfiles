@@ -11,6 +11,7 @@
     extraConfig = {
       core = {
         ignorecase = false;
+        filemode = false;
       };
       status = {
         showUntrackedFiles = "all";
