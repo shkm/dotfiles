@@ -68,6 +68,10 @@ in
       name = "Papirus";
       package = pkgs.papirus-icon-theme;
     };
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
   };
 
   programs = {
