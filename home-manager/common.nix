@@ -1,35 +1,27 @@
-{ pkgs, ... }:
-let
-  username = "$USER";
-in
-{
-  targets.genericLinux.enable = true;
-  nixpkgs.config.allowUnfree = true;
+# This is your home-manager configuration file
+# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+
+{ inputs, outputs, lib, config, pkgs, ... }: {
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = (_: true);
+    };
+  };
 
   home = {
-    stateVersion = "22.11";
+    username = "jamie";
+    homeDirectory = "/home/jamie";
 
-    username = username;
-    homeDirectory = "/home/${username}";
-
-    sessionPath = [
-      "$HOME/bin"
-      "$HOME/scripts"
-    ];
+    sessionPath = [ "$HOME/bin" "$HOME/scripts" ];
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     };
-    file = {
-      ".asdfrc" = {
-        source = ./conf.d/asdf/asdfrc;
-      };
-    };
-    file = {
-      scripts = {
-        source = ./conf.d/scripts;
-      };
-    };
+    file = { ".asdfrc" = { source = ./conf.d/asdf/asdfrc; }; };
+    file = { scripts = { source = ./conf.d/scripts; }; };
+
     packages = with pkgs; [
       nixfmt
       ripgrep
@@ -40,8 +32,9 @@ in
       procs
       asdf-vm
       tig
+      wget
 
-      (nerdfonts.override { fonts = ["JetBrainsMono"]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 
@@ -87,9 +80,7 @@ in
     home-manager.enable = true;
     bat = {
       enable = true;
-      config = {
-        theme = "Dracula";
-      };
+      config = { theme = "Dracula"; };
     };
     fzf = {
       enable = true;
@@ -110,12 +101,26 @@ in
     };
   };
 
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "22.11";
 
   imports = [
+    # If you want to use modules your own flake exports (from modules/home-manager):
+    # outputs.homeManagerModules.example
+
+    # Or modules exported from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModules.default
+
+    # You can also split up your configuration and import pieces of it here:
+    # ./nvim.nix
     ./conf.d/nvim.nix
     ./conf.d/fish.nix
     ./conf.d/git.nix
     ./conf.d/gnome.nix
     ./conf.d/terminator.nix
   ];
+
 }

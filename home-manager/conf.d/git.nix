@@ -1,10 +1,7 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   programs.git = {
     enable = true;
-    delta = {
-      enable = true;
-    };
+    delta = { enable = true; };
 
     userEmail = "jamie@schembri.me";
     userName = "Jamie Schembri";
@@ -13,9 +10,7 @@
         ignorecase = false;
         filemode = false;
       };
-      status = {
-        showUntrackedFiles = "all";
-      };
+      status = { showUntrackedFiles = "all"; };
       push = {
         default = "current";
         followTags = "true";
@@ -26,35 +21,32 @@
         ff = "only";
         rebase = true;
       };
-      init = {
-        defaultBranch = "main";
-      };
-      rerere = {
-        enabled = true;
-      };
+      init = { defaultBranch = "main"; };
+      rerere = { enabled = true; };
     };
     aliases = {
       a = "add";
       aa = "add -A";
       ac = "!git add -A && git commit";
       acm = "!git add -A && git commit -m";
-      b = "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
+      b =
+        "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'";
       bd = "branch -d";
       bD = "branch -D";
       bmv = "branch -m";
       c = "commit";
-      cm  = "commit -m";
-      ca  = "commit --amend";
-      can  = "commit --amend --no-edit";
+      cm = "commit -m";
+      ca = "commit --amend";
+      can = "commit --amend --no-edit";
       cl = "clone";
       co = "checkout";
       cob = "checkout -b";
-      cobf = "!f() { git checkout -b \"feature/$1\"; }; f";
-      cobc = "!f() { git checkout -b \"chore/$1\"; }; f";
-      cobb = "!f() { git checkout -b \"bug/$1\"; }; f";
-      cf = "!f() { git checkout \"feature/$1\"; }; f";
-      cc = "!f() { git checkout \"chore/$1\"; }; f";
-      cb = "!f() { git checkout \"bug/$1\"; }; f";
+      cobf = ''!f() { git checkout -b "feature/$1"; }; f'';
+      cobc = ''!f() { git checkout -b "chore/$1"; }; f'';
+      cobb = ''!f() { git checkout -b "bug/$1"; }; f'';
+      cf = ''!f() { git checkout "feature/$1"; }; f'';
+      cc = ''!f() { git checkout "chore/$1"; }; f'';
+      cb = ''!f() { git checkout "bug/$1"; }; f'';
       cp = "cherry-pick";
       d = "diff";
       dc = "diff --cached";
@@ -64,13 +56,16 @@
       do = "!f() { git remote set-head origin -a && git diff origin/HEAD; }; f";
       dt = "difftool";
       dta = "difftool --dir-diff";
-      i  = "init";
-      ld = "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log origin/$BRANCH..$BRANCH --oneline; }; f";
+      i = "init";
+      ld =
+        "!f() { BRANCH=$(git rev-parse --abbrev-ref HEAD); git log origin/$BRANCH..$BRANCH --oneline; }; f";
       lf = "log -u";
       lg = "log --stat --color";
       lt = "log --graph --decorate --pretty=oneline --abbrev-commit";
-      ll = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
-      ls = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
+      ll =
+        "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
+      ls =
+        "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
       mt = "mergetool";
       mc = "merge --continue";
       ma = "merge --abort";
@@ -85,10 +80,10 @@
       rc = "rebase --continue";
       ra = "rebase --abort";
       rev = "rev-parse HEAD";
-      rs   = "reset";
-      rs1  = "reset HEAD^";
-      rs2  = "reset HEAD^^";
-      rsh  = "reset --hard";
+      rs = "reset";
+      rs1 = "reset HEAD^";
+      rs2 = "reset HEAD^^";
+      rsh = "reset --hard";
       rsh1 = "reset HEAD^ --hard";
       rsh2 = "reset HEAD^^ --hard";
       uncommit = "reset --soft HEAD^";

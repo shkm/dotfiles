@@ -1,16 +1,16 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   programs.fish = {
     enable = true;
-    plugins = [
-      { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env; }
-    ];
+    plugins = [{
+      name = "foreign-env";
+      src = pkgs.fishPlugins.foreign-env;
+    }];
     shellAbbrs = {
       cat = "bat";
       dc = "docker compose";
       dka = "docker kill (docker ps -q)";
       ducks = "du -cksh * | sort -hr";
-      g  = "git";
+      g = "git";
       gcd = "cd (git rev-parse --show-toplevel)";
       ll = "exa -lga --group-directories-first";
       ls = "ll";

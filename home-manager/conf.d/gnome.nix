@@ -2,35 +2,33 @@
 let
   defaultFont = "Inter Regular 11";
   monospaceFont = "JetBrainsMonoNL Nerd Font Mono 10";
-in
-{
+in {
   dconf.settings = {
     "org/gnome/shell" = {
       enabled-extensions = [
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
         "gnomespotifylabel@mheine.github.com"
         "trayIconsReloaded@selfmade.pl"
         "places-menu@gnome-shell-extensions.gcampax.github.com"
-        "no_activities@yaya.cout"
-        "sound-output-device-chooser@kgshank.net"
-        "hide-activities-button@gnome-shell-extensions.bookmarkd.xyz"
         "tiling-assistant@leleat-on-github"
       ];
+      disabled-extensions = [ ];
     };
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
       resize-with-right-button = true;
-      mouse-button-modifier = ["<Super>"];
+      mouse-button-modifier = [ "<Super>" ];
       titlebar-font = defaultFont;
       audible-bell = false;
     };
     "org/gnome/desktop/wm/keybindings" = {
-      switch-input-source = [];
-      switch-input-source-backward = [];
-      close = ["<Super>w"];
-      maximize = ["<Super>k"];
-      minimize = ["<Super>j"];
-      toggle-tiled-left = ["<Super>h"];
-      toggle-tiled-right = ["<Super>l"];
+      switch-input-source = [ ];
+      switch-input-source-backward = [ ];
+      close = [ "<Super>w" ];
+      maximize = [ "<Super>k" ];
+      minimize = [ "<Super>j" ];
+      toggle-tiled-left = [ "<Super>h" ];
+      toggle-tiled-right = [ "<Super>l" ];
     };
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -44,7 +42,7 @@ in
       enable-hot-corners = false;
     };
     "org/gnome/desktop/input-sources" = {
-      xkb-options = ["caps:escape" "compose:rctrl"];
+      xkb-options = [ "caps:escape" "compose:rctrl" ];
     };
     "org/gnome/desktop/peripherals/mouse" = {
       natural-scroll = false;

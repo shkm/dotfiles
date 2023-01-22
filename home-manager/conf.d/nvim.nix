@@ -1,5 +1,4 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   programs.neovim = {
     enable = true;
     extraConfig = lib.fileContents ./nvim/init.vim;
