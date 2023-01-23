@@ -12,10 +12,10 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
-" Avoid backup mess (.doc.swp, ~.doc) by moving backups tmp
-set backupcopy=yes
-set backupdir=/tmp
-set directory=/tmp
+" Avoid mess
+set backupdir=$HOME/.vim/backup//
+set directory=$HOME/.vim/swap//
+set undodir=$HOME/.vim/undo//
 
 " Automatically reload file when it's changed externally
 set autoread
