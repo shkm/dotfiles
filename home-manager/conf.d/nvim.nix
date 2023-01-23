@@ -16,7 +16,10 @@
       vim-nix
       {
         plugin = vim-polyglot;
-        config = "let g:vim_markdown_folding_disabled = 1";
+        config = ''
+          autocmd FileType json5 setlocal commentstring=//\ %s
+          let g:vim_markdown_folding_disabled = 1
+        '';
       }
       {
         plugin = dracula-vim;
