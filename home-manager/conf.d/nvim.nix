@@ -14,7 +14,10 @@
       matchit-zip
       splitjoin-vim
       vim-nix
-      vim-markdown
+      {
+        plugin = vim-markdown;
+        config = "let g:vim_markdown_folding_disabled = 1";
+      }
       {
         plugin = dracula-vim;
         config = "colorscheme dracula";
