@@ -71,6 +71,14 @@
           END
         '';
       }
+      {
+        plugin = which-key-nvim;
+        config = ''
+          lua << END
+            require("which-key").setup {}
+          END
+        '';
+      }
     ];
   };
 }
