@@ -15,7 +15,7 @@
       splitjoin-vim
       vim-nix
       {
-        plugin = vim-markdown;
+        plugin = vim-polyglot;
         config = "let g:vim_markdown_folding_disabled = 1";
       }
       {
