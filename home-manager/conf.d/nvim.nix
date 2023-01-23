@@ -6,6 +6,7 @@
     vimAlias = true;
 
     plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
       vim-surround
       vim-commentary
       vim-unimpaired
