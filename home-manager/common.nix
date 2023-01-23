@@ -11,9 +11,6 @@
   };
 
   home = {
-    username = "jamie";
-    homeDirectory = "/home/jamie";
-
     sessionPath = [ "$HOME/bin" "$HOME/scripts" ];
     sessionVariables = {
       EDITOR = "nvim";
