@@ -38,13 +38,36 @@
         '';
       }
       nvim-treesitter
-      telescope-nvim
       nvim-web-devicons
       {
         plugin = lir-nvim;
         config = ''
           lua << END
             ${lib.fileContents ./nvim/lir.lua}
+          END
+        '';
+      }
+      {
+        plugin = trouble-nvim;
+        config = ''
+          lua << END
+            require("trouble").setup {}
+          END
+        '';
+      }
+      {
+        plugin = telescope-nvim;
+        config = ''
+          lua << END
+            local trouble = require("trouble.providers.telescope")
+            require("telescope").setup {
+              defaults = {
+                mappings = {
+                  i = { ["<c-t>"] = trouble.open_with_trouble },
+                  n = { ["<c-t>"] = trouble.open_with_trouble },
+                }
+              }
+            }
           END
         '';
       }

@@ -128,3 +128,11 @@ nnoremap <Leader>qq :cclose<CR>
 command! PrettyJson :%!python -m json.tool
 command! PrettyHtml :%!tidy -q -i --show-errors 0 --raw
 command! PrettyXml :%!tidy -q -i -xml --show-errors 0 --raw
+
+" -- Trouble
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
