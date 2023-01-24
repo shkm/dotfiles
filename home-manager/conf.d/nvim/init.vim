@@ -32,6 +32,19 @@ set inccommand=split
 set splitbelow
 set splitright
 
+" Whitespace characters
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
+set list
+
+" Disable netrw; we need to do this earlier than plugin config.
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+" Time out from sequences immediately.
+set timeoutlen=0
+
+" -- Autocmds --
+
 " Temporarily disable search highlighting when in insert mode.
 autocmd InsertEnter * :setlocal nohlsearch
 autocmd InsertLeave * :setlocal hlsearch
@@ -45,14 +58,6 @@ set viminfo^=%
 
 " Transparent background
 autocmd ColorScheme * hi Normal guibg='NONE'
-
-" Whitespace characters
-set listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
-set list
-
-" Disable netrw; we need to do this earlier than plugin config.
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
 
 " -- Mappings --
 
@@ -125,11 +130,14 @@ nnoremap <Leader>qo :copen<CR>
 nnoremap <Leader>qq :cclose<CR>
 
 " -- Commands --
+
 command! PrettyJson :%!python -m json.tool
 command! PrettyHtml :%!tidy -q -i --show-errors 0 --raw
 command! PrettyXml :%!tidy -q -i -xml --show-errors 0 --raw
 
-" -- Trouble
+" -- Plugin config (TODO move) -- 
+
+" Trouble
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
 nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
