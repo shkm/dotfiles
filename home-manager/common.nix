@@ -31,6 +31,10 @@
       tig
       wget
       ruby
+      go
+
+      # LSPs
+      gopls
 
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
