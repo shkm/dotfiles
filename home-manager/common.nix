@@ -30,6 +30,7 @@
       asdf-vm
       tig
       wget
+      ruby
 
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
