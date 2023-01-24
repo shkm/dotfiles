@@ -84,7 +84,13 @@
         plugin = which-key-nvim;
         config = ''
           lua << END
-            require("which-key").setup {}
+            require("which-key").setup {
+              plugins = {
+                spelling = {
+                  enabled = true
+                }
+              }
+            }
           END
         '';
       }
