@@ -49,6 +49,14 @@
         '';
       }
       {
+        plugin = nvim-lspconfig;
+        config = ''
+          lua << END
+            ${lib.fileContents ./nvim/lspconfig.lua}
+          END
+        '';
+      }
+      {
         plugin = trouble-nvim;
         config = ''
           lua << END
@@ -77,6 +85,31 @@
         config = ''
           lua << END
             require("which-key").setup {}
+          END
+        '';
+      }
+      {
+        plugin = formatter-nvim;
+        config = ''
+          lua << END
+            local util = require "formatter.util"
+
+            require("formatter").setup {
+              logging = true;
+              filetype = {
+                ruby = {
+                  function()
+                    return {
+                      exec = "rubyfmt",
+                      args = {
+                        "--",
+                        util.escape_path(util.get_current_buffer_file_path())
+                      }
+                    }
+                  end
+                }
+              }
+            }
           END
         '';
       }
