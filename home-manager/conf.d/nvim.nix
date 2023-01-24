@@ -92,6 +92,11 @@
               }
             }
           END
+
+          augroup FormatAutogroup
+          autocmd!
+          autocmd BufWritePost * FormatWrite
+          augroup END
         '';
       }
       {
@@ -113,6 +118,9 @@
                       }
                     }
                   end
+                },
+                go = {
+                  require("formatter.filetypes.go").gofmt
                 }
               }
             }
