@@ -96,6 +96,7 @@ let mapleader = " "
 
 nnoremap <Leader><TAB> <C-^>
 nnoremap <Leader>/ <cmd>Telescope live_grep<CR>
+vnoremap <Leader>/ <cmd>Telescope grep_string<CR>
 
 " Sideways
 nnoremap <s-h> :SidewaysLeft<cr>
