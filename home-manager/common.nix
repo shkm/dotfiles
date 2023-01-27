@@ -32,6 +32,7 @@
       wget
       ruby
       go
+      glow
 
       # LSPs
       gopls
