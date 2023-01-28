@@ -83,6 +83,8 @@
     neovim
     procs
     wl-clipboard
+    bind
+    whois
   ];
 
   services = {
