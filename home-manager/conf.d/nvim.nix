@@ -14,6 +14,7 @@
       vim-fugitive
       matchit-zip
       splitjoin-vim
+      glow-nvim
       vim-nix
       {
         plugin = vim-polyglot;

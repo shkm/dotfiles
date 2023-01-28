@@ -32,6 +32,8 @@
       wget
       ruby
       go
+      glow
+      lefthook
 
       # LSPs
       gopls
