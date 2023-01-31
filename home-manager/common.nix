@@ -42,6 +42,23 @@
     ];
   };
 
+  services = {
+    espanso = {
+      enable = true;
+      settings = {
+        matches = [
+          {
+            trigger = "rials";
+            replace = "rails";
+            word = true;
+            propagate_case = true;
+          }
+        ];
+      };
+    };
+  };
+
+
   xdg.configFile = {
     ideavim = {
       source = ./conf.d/ideavim/ideavimrc;
