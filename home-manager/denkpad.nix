@@ -1,5 +1,11 @@
 { inputs, pkgs, ... }: {
   imports = [ ./common.nix ./conf.d/firefox.nix ];
+  nixpkgs.config = {
+    permittedInsecurePackages = [
+      "electron-18.1.0" # for obsidian
+    ];
+  };
+
   home = {
     username = "jamie";
     homeDirectory = "/home/jamie";
