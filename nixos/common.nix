@@ -87,11 +87,15 @@
     whois
   ];
 
+  security.pam.services.gdm.enableGnomeKeyring = true;
   services = {
     openssh = {
       enable = true;
       permitRootLogin = "no";
       passwordAuthentication = false;
+    };
+    gnome = {
+      gnome-keyring.enable = true;
     };
     xserver = {
       enable = true;
