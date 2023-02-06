@@ -35,6 +35,7 @@
       glow
       lefthook
       aria2
+      meld
 
       # LSPs
       gopls
