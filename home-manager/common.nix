@@ -36,6 +36,7 @@
       lefthook
       aria2
       meld
+      navi
 
       # LSPs
       gopls
