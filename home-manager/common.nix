@@ -34,6 +34,7 @@
       go
       glow
       lefthook
+      aria2
 
       # LSPs
       gopls
