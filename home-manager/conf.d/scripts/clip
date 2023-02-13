@@ -9,6 +9,12 @@ if [[ $(command -v -p "pbcopy") ]]; then
   else
     cat "$FILE" | pbcopy
   fi
+elif [[ $(command -v "wl-copy") ]]; then
+  if [[ -z $FILE ]]; then
+    wl-copy
+  else
+    cat "$FILE" | wl-copy
+  fi
 elif [[ $(command -v "xclip") ]]; then
   if [[ -z $FILE ]]; then
     xclip -in -selection clipboard
