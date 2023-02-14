@@ -23,6 +23,9 @@
       };
       init = { defaultBranch = "main"; };
       rerere = { enabled = true; };
+      merge = {
+        tool = "meld";
+      };
     };
     aliases = {
       a = "add";
@@ -148,12 +151,4 @@
       ".direnv/"
     ];
   };
-
-  # programs.fish = {
-  #   # enable = true;
-  #   plugins = with pkgs.fishPlugins; [
-  #     fzf-fish
-  #     hydro
-  #   ];
-  # };
 }
