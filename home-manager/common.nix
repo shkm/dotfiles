@@ -56,6 +56,12 @@
             word = true;
             propagate_case = true;
           }
+          {
+            trigger = "compoes";
+            replace = "compose";
+            word = true;
+            propagate_case = true;
+          }
         ];
       };
     };
