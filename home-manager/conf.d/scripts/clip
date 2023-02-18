@@ -9,7 +9,7 @@ if [[ $(command -v -p "pbcopy") ]]; then
   else
     cat "$FILE" | pbcopy
   fi
-elif [[ $(command -v "wl-copy") ]]; then
+elif [[ $XDG_SESSION_TYPE = "wayland" ]] && [[ $(command -v "wl-copy") ]]; then
   if [[ -z $FILE ]]; then
     wl-copy
   else
