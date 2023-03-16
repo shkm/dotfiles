@@ -37,6 +37,7 @@
       aria2
       meld
       navi
+      ouch
 
       # LSPs
       gopls
