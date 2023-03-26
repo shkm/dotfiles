@@ -38,6 +38,7 @@
       meld
       navi
       ouch
+      crystal
 
       # LSPs
       gopls
