@@ -85,6 +85,7 @@
     wl-clipboard
     bind
     whois
+    peek
   ];
 
   security.pam.services.gdm.enableGnomeKeyring = true;
