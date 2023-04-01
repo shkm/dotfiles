@@ -6,6 +6,12 @@ These are my dotfiles, which turns out to be a broad term now. They're a combina
 
 Initial setup is a matter of cloning down the repo, running `nix shell` and then using a corresponding command for NixOS or Home Manager as detailed below.
 
+If your host OS is not NixOS, you'll need to change shell to the nix-provided `fish` which first means adding it to `/etc/shells`:
+
+```
+sudo echo $(which fish) >> /etc/shells && chsh -s $(which fish) # note: untested
+```
+
 ### NixOS
 For NixOS, I currently have only one configuration for my personal laptop, named `denkpad`. To switch to this, use the following (replacing . with the dotfiles path):
 
