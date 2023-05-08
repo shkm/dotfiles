@@ -14,7 +14,6 @@ describe "Papirus icons"
 dconf write /org/gnome/desktop/interfaces/icon-theme "'Papirus'"
 
 describe "Monospace font"
-
 dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMonoNL Nerd Font 10'"
 
 describe "Use Emacs input"
@@ -34,6 +33,9 @@ dconf write /org/gnome/desktop/interface/clock-show-weekday true
 
 describe "Show battery % in top bar"
 dconf write /org/gnome/desktop/interface/show-battery-percentage true
+
+describe "Terminal bell"
+dconf write /org/gnome/desktop/wm/preferences/audible-bell false
 
 describe "Show min/max/close buttons on windows"
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'appmenu:minimize,maximize,close'"
