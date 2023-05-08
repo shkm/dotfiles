@@ -10,6 +10,9 @@ function describe() {
 describe "Dark mode"
 dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
 
+describe "Papirus icons"
+dconf write /org/gnome/desktop/interfaces/icon-theme "'Papirus'"
+
 describe "Monospace font"
 
 dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMonoNL Nerd Font 10'"
