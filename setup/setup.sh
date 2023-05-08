@@ -10,11 +10,12 @@ function packages() {
   if [[ $OS = "fedora" ]]; then
     sudo dnf install -y openssl-devel zlib-devel \
       bat tig ripgrep stow git fzf exa fish fd-find \
-      tilix zoxide papirus-icon-theme
+      tilix zoxide papirus-icon-theme whois
   elif [[ $OS = "ubuntu" ]]; then
     sudo apt install -y build-essential \
       bat tig ripgrep stow git fzf exa fish fd-find \
-      tilix flatpak gnome-software-plugin-flatpak zoxide papirus-icon-theme
+      tilix flatpak gnome-software-plugin-flatpak zoxide papirus-icon-theme \
+      whois
   fi
 }
 
