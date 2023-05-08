@@ -9,7 +9,7 @@ function packages() {
 
   if [[ $OS = "fedora" ]]; then
     sudo dnf install -y openssl-devel zlib-devel \
-      bat tig ripgrep stow git xclip fzf exa fish fd-find \
+      bat tig ripgrep stow git fzf exa fish fd-find \
       tilix
   fi
 }
