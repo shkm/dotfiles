@@ -35,3 +35,4 @@ abbr rm trash
 abbr v nvim
 abbr v. "nvim ."
 abbr vim nvim
+abbr z zoxide

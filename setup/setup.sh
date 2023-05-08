@@ -10,11 +10,11 @@ function packages() {
   if [[ $OS = "fedora" ]]; then
     sudo dnf install -y openssl-devel zlib-devel \
       bat tig ripgrep stow git fzf exa fish fd-find \
-      tilix
+      tilix zoxide
   elif [[ $OS = "ubuntu" ]]; then
     sudo apt install -y build-essential \
       bat tig ripgrep stow git fzf exa fish fd-find \
-      tilix flatpak gnome-software-plugin-flatpak
+      tilix flatpak gnome-software-plugin-flatpak zoxide
   fi
 }
 
