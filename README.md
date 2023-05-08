@@ -4,10 +4,9 @@ These are my dotfiles, managed using [GNU stow](https://www.gnu.org/software/sto
 
 Over the years I've used some pretty esoteric setups; nowadays I'm more focused on Getting Shit Done, and as a result my dotfiles are becoming more spartan.
 
-
 Current setup involves this software amongst others:
 
-- Fedora, Debian, PopOS
+- Fedora, Ubuntu
 - IntelliJ IDEs
 - [Neovim](https://neovim.io/)
 - [Fish](https://fishshell.com/)
