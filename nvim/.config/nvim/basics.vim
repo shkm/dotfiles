@@ -1,5 +1,3 @@
-lua require('plugins')
-
 " -- Basics --
 set termguicolors
 
@@ -12,10 +10,10 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
-" Avoid backup mess (.doc.swp, ~.doc) by moving backups tmp
-set backupcopy=yes
-set backupdir=/tmp
-set directory=/tmp
+" Avoid mess
+set backupdir=$HOME/.vim/backup//
+set directory=$HOME/.vim/swap//
+set undodir=$HOME/.vim/undo//
 
 " Automatically reload file when it's changed externally
 set autoread
@@ -32,6 +30,19 @@ set inccommand=split
 set splitbelow
 set splitright
 
+" Whitespace characters
+set listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
+set list
+
+" Disable netrw; we need to do this earlier than plugin config.
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+" Time out from sequences immediately.
+set timeoutlen=0
+
+" -- Autocmds --
+
 " Temporarily disable search highlighting when in insert mode.
 autocmd InsertEnter * :setlocal nohlsearch
 autocmd InsertLeave * :setlocal hlsearch
@@ -46,13 +57,11 @@ set viminfo^=%
 " Transparent background
 autocmd ColorScheme * hi Normal guibg='NONE'
 
-" Whitespace characters
-set listchars=tab:→\ ,nbsp:␣,trail:•,extends:»,precedes:«
-set list
-
-" Disable netrw; we need to do this earlier than plugin config.
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
+" Spelling
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal complete+=kspell
+autocmd FileType gitcommit setlocal complete+=kspell
 
 " -- Mappings --
 
@@ -85,6 +94,7 @@ let mapleader = " "
 
 nnoremap <Leader><TAB> <C-^>
 nnoremap <Leader>/ <cmd>Telescope live_grep<CR>
+vnoremap <Leader>/ <cmd>Telescope grep_string<CR>
 
 " Sideways
 nnoremap <s-h> :SidewaysLeft<cr>
@@ -104,7 +114,6 @@ nnoremap <Leader>f? <cmd>Telescope live_grep<CR>
 nnoremap <Leader>ff <cmd>Telescope find_files<CR>
   " fe Find file in set place
   nnoremap <Leader>fed <cmd>Telescope find_files cwd=$HOME/dotfiles<CR>
-  nnoremap <Leader>fev <cmd>Telescope find_files cwd=$HOME/.config/nvim<CR>
 
 " g Git
 nnoremap <Leader>gb :Git blame<CR>
@@ -126,6 +135,17 @@ nnoremap <Leader>qo :copen<CR>
 nnoremap <Leader>qq :cclose<CR>
 
 " -- Commands --
+
 command! PrettyJson :%!python -m json.tool
 command! PrettyHtml :%!tidy -q -i --show-errors 0 --raw
 command! PrettyXml :%!tidy -q -i -xml --show-errors 0 --raw
+
+" -- Plugin config (TODO move) -- 
+
+" Trouble
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
