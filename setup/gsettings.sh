@@ -12,7 +12,7 @@ dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
 
 describe "Monospace font"
 
-dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMonoNL Nerd Font Mono 10'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMonoNL Nerd Font 10'"
 
 describe "Use Emacs input"
 dconf write /org/gnome/desktop/interface/gtk-key-theme "'Emacs'"
