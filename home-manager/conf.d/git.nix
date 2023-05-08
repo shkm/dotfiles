@@ -149,6 +149,7 @@
       "tasks.json"
       "docker-compose.override.yml"
       ".direnv/"
+      "vendor/cache/"
     ];
   };
 }
