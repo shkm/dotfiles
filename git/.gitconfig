@@ -120,3 +120,6 @@
   enabled = true
 [gui]
 [global]
+
+[includeIf "gitdir:~/repos/nedap/"]
+  path = .gitconfig-nedap
