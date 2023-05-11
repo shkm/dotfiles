@@ -77,7 +77,7 @@ function asdf() {
   if [ ! -d "$HOME/.asdf" ]; then
     printf "\n\n--> Installing asdf\n"
   
-    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.10.2
+    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.11.3
   fi
 
   . "$HOME/.asdf/asdf.sh"
