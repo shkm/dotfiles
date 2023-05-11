@@ -73,18 +73,6 @@ function neovim() {
   fi
 }
 
-function neovimPackages() {
-  local packerFolder="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
-
-  if [ ! -d "$packerFolder" ]; then
-    printf "\n\n--> Installing Packer for NeoVim\n"
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim "$packerFolder"
-  fi
-
-  printf "\n\n--> Installing NeoVim packages\n"
-  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-}
-
 function asdf() {
   if [ ! -d "$HOME/.asdf" ]; then
     printf "\n\n--> Installing asdf\n"
@@ -167,7 +155,6 @@ function main() {
   gsettings
   stowDotfiles
   neovim
-  neovimPackages
   asdf
   npmPackages
   flathub
