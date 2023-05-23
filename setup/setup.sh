@@ -8,7 +8,7 @@ function packages() {
   printf "\n--> Installing packages for $OS\n"
 
   if [[ $OS = "fedora" ]]; then
-    sudo dnf install -y openssl-devel zlib-devel \
+    sudo dnf install -y openssl-devel zlib-devel libyaml \
       bat tig ripgrep stow git fzf exa fish fd-find \
       tilix zoxide papirus-icon-theme whois wl-clipboard
   elif [[ $OS = "ubuntu" ]]; then
