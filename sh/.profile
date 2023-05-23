@@ -99,49 +99,8 @@ export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
 # FZF colours
-# Material Palenight
-# color00='#292D3E'
-# color01='#444267'
-# color02='#32374D'
-# color03='#676E95'
-# color04='#8796B0'
-# color05='#959DCB'
-# color06='#959DCB'
-# color07='#FFFFFF'
-# color08='#F07178'
-# color09='#F78C6C'
-# color0A='#FFCB6B'
-# color0B='#C3E88D'
-# color0C='#89DDFF'
-# color0D='#82AAFF'
-# color0E='#C792EA'
-# color0F='#FF5370'
-
-# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-# " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
-# " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
-# " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
-
-# One dark
-
-color00='#282c34'
-color01='#353b45'
-color02='#3e4451'
-color03='#545862'
-color04='#565c64'
-color05='#abb2bf'
-color06='#b6bdca'
-color07='#c8ccd4'
-color08='#e06c75'
-color09='#d19a66'
-color0A='#e5c07b'
-color0B='#98c379'
-color0C='#56b6c2'
-color0D='#61afef'
-color0E='#c678dd'
-color0F='#be5046'
-
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-" --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
-" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
-" --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+# Catppucin-Latte
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
