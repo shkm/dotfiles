@@ -13,6 +13,9 @@ dconf write /org/gnome/desktop/interface/color-scheme "'default'"
 describe "Papirus icons"
 dconf write /org/gnome/desktop/interfaces/icon-theme "'Papirus'"
 
+describe "Papirus icons"
+dconf write /org/gnome/desktop/interface/cursor-size 48
+
 describe "Monospace font"
 dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMonoNL Nerd Font 10'"
 
