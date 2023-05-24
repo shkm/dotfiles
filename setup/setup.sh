@@ -2,7 +2,7 @@
 OS=$(cat /etc/os-release | grep "^ID=" | sed 's/^ID=//')
 
 MONOSPACE_FONT="JetBrainsMono"
-STOW_CONFIGS="asdf fish git jetbrains nvim scripts sh tig vim"
+STOW_CONFIGS="asdf bat fish git jetbrains nvim scripts sh tig vim"
 
 function packages() {
   printf "\n--> Installing packages for $OS\n"
