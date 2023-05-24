@@ -97,8 +97,8 @@ function setTilixProfileKey() {
   gsettings set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$TILIX_PROFILE/" "$key" "$value"
 }
 
-describe "Tilix: Dark mode"
-gsettings set com.gexperts.Tilix.Settings theme-variant "'dark'"
+describe "Tilix: System dark/light mode"
+gsettings set com.gexperts.Tilix.Settings theme-variant "'system'"
 
 describe "Tilix: Window style"
 gsettings set com.gexperts.Tilix.Settings window-style "'disable-csd-hide-toolbar'"
