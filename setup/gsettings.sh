@@ -11,7 +11,7 @@ describe "Light mode"
 dconf write /org/gnome/desktop/interface/color-scheme "'default'"
 
 describe "Papirus icons"
-dconf write /org/gnome/desktop/interfaces/icon-theme "'Papirus'"
+dconf write /org/gnome/desktop/interface/icon-theme "'Papirus'"
 
 describe "Papirus icons"
 dconf write /org/gnome/desktop/interface/cursor-size 48
