@@ -50,7 +50,7 @@ dconf write /org/gnome/desktop/peripherals/mouse/natural-scroll false
 dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll false
 
 describe "Flatten mouse speed"
-dconf write /org/gnome/desktop/peripherals/mouse/accelprofile "'flat'"
+dconf write /org/gnome/desktop/peripherals/mouse/accel-profile "'flat'"
 dconf write /org/gnome/desktop/peripherals/mouse/speed "0.0"
 
 describe "Touchpad tap to click"
