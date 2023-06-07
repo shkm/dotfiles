@@ -136,6 +136,9 @@ tilixMap "session-switch-to-previous-terminal" "'disabled'"
 tilixMap "win-switch-to-next-session" "'<Primary>Tab'"
 tilixMap "win-switch-to-previous-session" "'<Primary><Shift>Tab'"
 
+describe "Tilix: Ctrl+Shift+e to edit session name"
+tilixMap "session-name" "'<Primary><Shift>e'"
+
 # Profile stuff
 
 describe "Tilix: Disable terminal bell"
