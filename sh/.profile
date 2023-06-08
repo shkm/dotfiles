@@ -1,9 +1,18 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # See https://wiki.archlinux.org/title/GNOME/Keyring
-# Requires that `gcr-ssh-agent` is running for the user:
-# systemctl --user enable --now gcr-ssh-agent
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
+if [ -f "${XDG_RUNTIME_DIR}/gcr/ssh" ]; then
+  # Newer method.
+  # Requires that `gcr-ssh-agent` is running for the user:
+  # systemctl --user enable --now gcr-ssh-agent
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
+elif [ -f "${XDG_RUNTIME_DIR}/keyring/ssh" ]; then
+  # Older method.
+  # Uses `gnome-keyring` daemon.
+  # systemctl --user status gnome-keyring
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/keyring/ssh"
+fi
+
 
 # Ensure local/bin is in path.
 if [ -d "/usr/local/bin" ] ; then
