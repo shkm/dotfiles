@@ -24,6 +24,7 @@
   cm  = commit -m
   ca  = commit --amend
   can  = commit --amend --no-edit
+  cempty = commit --allow-empty --allow-empty-message -m ''
   cl = clone
   co = checkout
   cf = !fco
