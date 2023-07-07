@@ -59,6 +59,9 @@ dconf write /org/gnome/desktop/peripherals/mouse/speed "0.0"
 describe "Touchpad tap to click"
 dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click true
 
+describe "Disable touchpad when typing"
+dconf write /org/gnome/desktop/peripherals/touchpad/disable-while-typing true
+
 describe "Make caps additional escape"
 describe "Make compose right control"
 dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'compose:rctrl']"
