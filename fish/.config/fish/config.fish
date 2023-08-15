@@ -19,8 +19,11 @@ set -U hydro_color_duration grey
 set -U FZF_LEGACY_KEYBINDINGS 0
 
 # asdf
-set -l asdfPath "$HOME/.asdf/asdf.fish"
-test -f $asdfPath; and source $asdfPath
+if test -f "$HOME/.asdf/asdf.fish"
+  source "$HOME/.asdf/asdf.fish"
+else if test -f "/opt/homebrew/opt/asdf/libexec/asdf.fish"
+  source "/opt/homebrew/opt/asdf/libexec/asdf.fish"
+end
 
 abbr cat bat
 abbr dc docker compose

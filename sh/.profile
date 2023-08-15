@@ -13,6 +13,12 @@ elif [ -f "${XDG_RUNTIME_DIR}/keyring/ssh" ]; then
   export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/keyring/ssh"
 fi
 
+# Homebrew
+BREW_ROOT="/opt/homebrew/bin"
+if [ -d "$BREW_ROOT" ] ; then
+  export PATH="$BREW_ROOT:$PATH"
+fi
+
 
 # Ensure local/bin is in path.
 if [ -d "/usr/local/bin" ] ; then
