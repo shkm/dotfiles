@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 #
-# Wrapper around xdg-open to open stuff
+# Wrapper around xdg-open & /usr/bin/open to open stuff
 
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
 
 cleanup() {
   trap - SIGINT SIGTERM ERR EXIT
+}
+
+openCommand() {
+  if command -v "/usr/bin/open" >/dev/null 2>&1; then
+    echo "/usr/bin/open"
+  else
+    echo "xdg-open"
+  fi
 }
 
 usage() {
@@ -21,7 +29,8 @@ main() {
   local arg1="${1:-}"
   if [[ -z "$arg1" ]]; then usage; fi
 
-  xdg-open "$arg1" &> /dev/null &
+
+  $(openCommand) "$arg1" &> /dev/null &
 }
 
 main "$@"
