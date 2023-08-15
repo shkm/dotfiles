@@ -6,12 +6,12 @@ Over the years I've used some pretty esoteric setups; nowadays I'm more focused 
 
 Current setup involves this software amongst others:
 
-- Fedora, Ubuntu
+- Fedora, Ubuntu, MacOS
 - IntelliJ IDEs
 - [Neovim](https://neovim.io/)
 - [Fish](https://fishshell.com/)
 
-## Bootstrapping
+## Bootstrapping (Linux)
 ```
 curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/setup.sh | bash -s -- --bootstrap
 ```
