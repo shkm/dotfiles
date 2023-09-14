@@ -2,6 +2,8 @@
 # Safely remove files
 if [ -f /usr/local/bin/trash ]; then
   `/usr/local/bin/trash "${@}"`
+else if [ -f /opt/homebrew/bin/trash ]; then
+  `/opt/homebrew/bin/trash "${@}"`
 else
   `gio trash "${@}"`
 fi
