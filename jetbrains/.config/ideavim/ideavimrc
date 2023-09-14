@@ -12,6 +12,8 @@ set exchange
 set relativenumber
 set number
 
+set clipboard+=unnamed
+
 let mapleader = "\<Space>"
 
 nnoremap <Leader><TAB> <C-S-6>
