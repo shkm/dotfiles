@@ -1,5 +1,10 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# Put additional sources in ~/.profile.d/, not under VCS
+if [ -d "$HOME/.profile.d" ]; then
+  for f in "$HOME/.profile.d/*.sh"; do source $f; done
+fi
+
 # See https://wiki.archlinux.org/title/GNOME/Keyring
 if [ -f "${XDG_RUNTIME_DIR}/gcr/ssh" ]; then
   # Newer method.
