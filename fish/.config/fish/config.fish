@@ -30,5 +30,5 @@ abbr vim nvim
 zoxide init fish | source
 
 if type -q "oh-my-posh"
-  oh-my-posh init fish --config "$HOME/.config/oh-my-posh/theme.omp.json" | source
+  oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_mocha.omp.json" | source
 end
