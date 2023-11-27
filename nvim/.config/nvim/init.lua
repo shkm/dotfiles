@@ -30,9 +30,9 @@ require("lazy").setup({
 		vim.g.vim_markdown_folding_disable = 1
 	end
 },
-{ "dracula/vim", config = function()
+-- { "dracula/vim", config = function()
 	-- vim.cmd.colorscheme("dracula")
-end },
+-- end },
 { "catppuccin/nvim", config = function()
 	-- vim.cmd.colorscheme("catppuccin-latte")
 	vim.cmd.colorscheme("catppuccin-mocha")
