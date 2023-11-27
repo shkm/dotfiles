@@ -26,6 +26,7 @@ abbr rm trash
 abbr v nvim
 abbr v. "nvim ."
 abbr vim nvim
+abbr be bundle exec
 
 zoxide init fish | source
 
