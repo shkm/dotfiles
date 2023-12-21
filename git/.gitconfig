@@ -75,6 +75,9 @@
   rsh  = reset --hard
   rsh1 = reset HEAD^ --hard
   rsh2 = reset HEAD^^ --hard
+  tagd = tag --delete 
+  tagdr = push --delete origin # remote delete
+  tags = tag -n --sort=-authordate
 
   # Linting
   lr = "!f() { rubocop-git; }; f"
