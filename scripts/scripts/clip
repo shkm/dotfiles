@@ -9,6 +9,12 @@ if [[ $(command -v -p "pbcopy") ]]; then
   else
     cat "$FILE" | pbcopy
   fi
+elif [[ $(command -v "wl-copy") ]]; then
+  if [[ -z $FILE ]]; then
+    wl-copy 
+  else
+    wl-copy <  "$FILE"
+  fi
 elif [[ $(command -v "xclip") ]]; then
   if [[ -z $FILE ]]; then
     xclip -in -selection clipboard
@@ -16,5 +22,5 @@ elif [[ $(command -v "xclip") ]]; then
     xclip -in -selection clipboard "$FILE"
   fi
 else
-  echo "No clipboard command found. Consider installing xclip."
+  echo "No clipboard command found. Consider installing xclip or wl-clipboard."
 fi
