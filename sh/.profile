@@ -95,7 +95,8 @@ fi
 
 # Bat
 if command -v bat &> /dev/null; then
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  export MANPAGER="sh -c 'col -bx | bat -plman'"
+  export MANROFFOPT="-c"
 fi
 
 # ssh / gnome keyring
