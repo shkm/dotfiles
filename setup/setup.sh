@@ -2,7 +2,7 @@
 OS=$(cat /etc/os-release | grep "^ID=" | sed 's/^ID=//')
 
 MONOSPACE_FONT="JetBrainsMono"
-STOW_CONFIGS="asdf bat fish git jetbrains nvim scripts sh tig vim"
+STOW_CONFIGS="bat fish git jetbrains nvim scripts sh tig vim"
 
 function packages() {
   printf "\n--> Installing packages for $OS\n"
@@ -74,31 +74,6 @@ function neovim() {
   fi
 }
 
-function asdf() {
-  if [ ! -d "$HOME/.asdf" ]; then
-    printf "\n\n--> Installing asdf\n"
-  
-    git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.11.3
-  fi
-
-  . "$HOME/.asdf/asdf.sh"
-
-  if ! command -v ruby &> /dev/null; then
-    printf "\n\n--> Installing Ruby via asdf\n"
-    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-    asdf install ruby latest
-  fi
-
-  if ! command -v npm &> /dev/null; then
-    printf "\n\n--> Installing NodeJS via asdf\n"
-    asdf install nodejs latest
-    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  fi
-
-  asdf local ruby $(asdf list ruby | head)
-  asdf local nodejs $(asdf list nodejs | head)
-}
-
 function npmPackages() {
   printf "\n\n--> Installing global NPM packages\n"
 
@@ -156,7 +131,6 @@ function main() {
   gsettings
   stowDotfiles
   neovim
-  asdf
   npmPackages
   flathub
   flatpakPackages

@@ -6,11 +6,9 @@ set -U fish_greeting
 # FZF's legacy keybindings conflict with Fish
 set -U FZF_LEGACY_KEYBINDINGS 0
 
-# asdf
-if test -f "$HOME/.asdf/asdf.fish"
-  source "$HOME/.asdf/asdf.fish"
-else if test -f "/opt/homebrew/opt/asdf/libexec/asdf.fish"
-  source "/opt/homebrew/opt/asdf/libexec/asdf.fish"
+# mise
+if test -f "$HOME/.local/bin/mise"
+  $HOME/.local/bin/mise activate fish | source
 end
 
 abbr cat bat
