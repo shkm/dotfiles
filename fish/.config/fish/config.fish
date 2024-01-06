@@ -7,8 +7,8 @@ set -U fish_greeting
 set -U FZF_LEGACY_KEYBINDINGS 0
 
 # mise
-if test -f "$HOME/.local/bin/mise"
-  $HOME/.local/bin/mise activate fish | source
+if type -q mise
+  mise activate fish | source
 end
 
 abbr cat bat
