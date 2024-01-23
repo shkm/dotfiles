@@ -60,6 +60,12 @@ nmap <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
 
 vmap ]m <Action>(MethodDown)
 vmap [m <Action>(MethodUp)
+nmap ]m <Action>(MethodDown)
+nmap [m <Action>(MethodUp)
+nmap [e <Action>(GotoPreviousError)
+nmap ]e <Action>(GotoNextError)
+vmap [e <Action>(GotoPreviousError)
+vmap ]e <Action>(GotoNextError)
 
 " nnoremap % <Action>EditorMatchBrace
 " vnoremap % <Action>EditorMatchBrace
