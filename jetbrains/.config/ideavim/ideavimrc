@@ -46,13 +46,17 @@ nmap <leader>xd <Action>(Debug)
 nmap <leader>xr <Action>(Run)
 nmap <leader>X <Action>(Rerun)
 
+let g:WhichKeyDesc_Debug= "<Space>d +debug"
+let g:WhichKeyDesc_Debug_Breakpoint = "<Space>dp Toggle breakpoint"
 nmap <leader>dp <Action>(ToggleLineBreakpoint)
 
+let g:WhichKeyDesc_Refactor = "<Space>r +refactor"
+let g:WhichKeyDesc_Refactor_QuickList = "<Space>rq Refactor quick-list"
 nmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
 vmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
 
+let g:WhichKeyDesc_Refactor_Rename = "<Space>rr Rename"
 nmap <leader>rr <Action>(RenameElement)
-vmap <leader>rr <Action>(RenameElement)
 
 vmap ]m <Action>(MethodDown)
 vmap [m <Action>(MethodUp)
