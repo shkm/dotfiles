@@ -54,6 +54,10 @@ nmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
 let g:WhichKeyDesc_Refactor_Rename = "<Space>rr Rename"
 nmap <leader>rr <Action>(RenameElement)
 
+let g:WhichKeyDesc_Vim = "<Space>v +vim-meta"
+let g:WhichKeyDesc_Vim_Reload = "<Space>vr Reload ideavimrc"
+nmap <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
+
 vmap ]m <Action>(MethodDown)
 vmap [m <Action>(MethodUp)
 
