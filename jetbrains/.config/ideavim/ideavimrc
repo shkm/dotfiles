@@ -72,3 +72,16 @@ vmap ]e <Action>(GotoNextError)
 
 map gh <Action>(ShowErrorDescription)
 vmap gh <Action>(ShowErrorDescription)
+
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gu <Action>(ShowUsages)
+nmap <leader>gt <Action>(GotoTest)
+nmap <leader>gf <Action>(Back)
+nmap <leader>gs <Action>(Ruby.GotoTypeSignature)
+nmap <leader>gb <Action>(Annotate)
+
+" Which-Key
+let g:WhichKey_DefaultDelay = 0
+let g:WhichKey_ShowVimActions = "false"
