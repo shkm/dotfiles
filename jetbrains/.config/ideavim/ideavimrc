@@ -38,8 +38,6 @@ vmap <C-p> <Action>(SearchEverywhere)
 nmap <leader>/ <Action>(FindInPath)
 nmap <leader>ff <Action>(GotoFile)
 
-nmap <leader>gb <Action>(Annotate)
-
 nmap <leader>bf <Action>(Switcher)
 
 nmap <leader>xd <Action>(Debug)
@@ -53,13 +51,9 @@ nmap <leader>dp <Action>(ToggleLineBreakpoint)
 let g:WhichKeyDesc_Refactor = "<Space>r +refactor"
 let g:WhichKeyDesc_Refactor_QuickList = "<Space>rq Refactor quick-list"
 nmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
-vmap <leader>rq <Action>(Refactorings.QuickListPopupAction)
-
 let g:WhichKeyDesc_Refactor_Rename = "<Space>rr Rename"
 nmap <leader>rr <Action>(RenameElement)
 
-vmap ]m <Action>(MethodDown)
-vmap [m <Action>(MethodUp)
 vmap ]m <Action>(MethodDown)
 vmap [m <Action>(MethodUp)
 
