@@ -32,6 +32,7 @@ nnoremap <silent> <C-h> <C-w><C-h>
 nnoremap <silent> <C-j> <C-w><C-j>
 nnoremap <silent> <C-k> <C-w><C-k>
 nnoremap <silent> <C-l> <C-w><C-l>
+
 nmap <C-p> <Action>(SearchEverywhere)
 vmap <C-p> <Action>(SearchEverywhere)
 
@@ -66,6 +67,10 @@ nmap [e <Action>(GotoPreviousError)
 nmap ]e <Action>(GotoNextError)
 vmap [e <Action>(GotoPreviousError)
 vmap ]e <Action>(GotoNextError)
+nmap [d <Action>(Diff.PrevChange)
+nmap ]d <Action>(Diff.NextChange)
+vmap [d <Action>(Diff.PrevChange)
+vmap ]d <Action>(riff.NextChange)
 
 " nnoremap % <Action>EditorMatchBrace
 " vnoremap % <Action>EditorMatchBrace
@@ -84,4 +89,3 @@ nmap <leader>gb <Action>(Annotate)
 
 " Which-Key
 let g:WhichKey_DefaultDelay = 0
-let g:WhichKey_ShowVimActions = "false"
