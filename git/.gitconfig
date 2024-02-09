@@ -29,13 +29,6 @@
   co = checkout
   cf = !fco
   cob = checkout -b
-  cobf = "!f() { git checkout -b \"feature/$1\"; }; f"
-  cobc = "!f() { git checkout -b \"chore/$1\"; }; f"
-  cobb = "!f() { git checkout -b \"bug/$1\"; }; f"
-
-  cf = "!f() { git checkout \"feature/$1\"; }; f"
-  cc = "!f() { git checkout \"chore/$1\"; }; f"
-  cb = "!f() { git checkout \"bug/$1\"; }; f"
 
   cp = cherry-pick
   d = diff
