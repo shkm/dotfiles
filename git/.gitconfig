@@ -106,9 +106,11 @@
   cmd = vimdiff "$LOCAL" "$MERGED" "$REMOTE"
 [merge]
   tool = mergetool
+[include]
+  path = catppuccin.gitconfig
 [delta]
   side-by-side = true
-  syntax-theme = Nord
+  features = catppuccin-latte
 [init]
   defaultBranch = main
 [credential]
