@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Runs exa -T if it exists, or falls
+# Runs eza -T if it exists, or falls
 # back to `tree` otherwise.
-if command -v "exa" > /dev/null; then
-  exa -T $@
+if command -v "eza" > /dev/null; then
+  eza -T $@
 else
   command -p tree $@
 fi

@@ -17,7 +17,7 @@ abbr dka "docker kill (docker ps -q)"
 abbr ducks "du -cksh * | sort -hr"
 abbr g git
 abbr gcd "cd (git rev-parse --show-toplevel)"
-abbr ll exa -lga --group-directories-first
+abbr ll eza -lga --group-directories-first
 abbr ls ll
 abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
 abbr rm trash
