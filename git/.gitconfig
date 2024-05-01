@@ -57,7 +57,8 @@
   s = status -sbu
   sh = show
   staged = diff --name-only --cached
-  stash-all = stash save --include-untracked
+  sta = stash save --include-untracked
+  spop = stash pop
   r = rebase
   rc = rebase --continue
   ra = rebase --abort
