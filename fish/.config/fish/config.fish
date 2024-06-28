@@ -25,7 +25,8 @@ abbr v nvim
 abbr v. "nvim ."
 abbr vim nvim
 abbr be bundle exec
-abbr dcps docker compose ps --all --format 'table {{.ID}}\t{{.Service}}\t{{.Status}}'
+abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
+abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
 
 zoxide init fish | source
 
