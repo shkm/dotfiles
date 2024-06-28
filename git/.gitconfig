@@ -1,7 +1,6 @@
 [user]
   email = jamie@schembri.me
   name = Jamie Schembri
-  signingKey = 020DE21E3ECDCFE91B829BA65C963E21C3B452D2
 [core]
   excludesfile = ~/.gitignore_global
   editor = nvim
