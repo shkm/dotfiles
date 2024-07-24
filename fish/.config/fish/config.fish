@@ -23,6 +23,7 @@ abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
 abbr rm trash
 abbr v nvim
 abbr v. "nvim ."
+abbr z. "zed ."
 abbr vim nvim
 abbr be bundle exec
 abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
