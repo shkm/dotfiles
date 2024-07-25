@@ -1,0 +1,162 @@
+[user]
+  email = jamie@schembri.me
+  name = Jamie Schembri
+[init]
+  defaultBranch = main
+
+# file includes
+[include]
+  path = catppuccin.gitconfig ; colour theme
+[includeIf "gitdir:~/repos/nedap/"]
+  path = config-nedap ; work settings
+
+# common operations
+[checkout]
+  defaultRemote = "origin" ; uses origin by default even if there are multiple remotes
+  workers = -1 ; use all cores to checkout
+[fetch]
+  parallel = ; reasonable level of parrallelization
+  pruneTags = true
+[pull]
+  default = current ; only pull current branch
+  ff = only ; only attempt to fast-forward branches
+[push]
+  default = current ; push only the current branch
+  followTags = true ; include tags
+  autoSetupRemote = true
+[submodule]
+  recurse = true ; apply git operations from the main repo to submodules too
+
+# display customisation
+[blame]
+  coloring = highlightRecent ; highlight recent commits, from blue (old) to white to red (new)
+[branch]
+  sort = "committerdate" ; show most recently committed branches last
+[log]
+  decorate = short ; hide ref name prefixes
+  abbrevCommit = true ; shorten commit hashes
+  date = relative
+[pretty]
+  # formats for use with --pretty
+  doneline = "format:%C(yellow)%h%C(reset) %s %C(green)(%ar)%C(reset) %C(blue)<%an>%C(reset)%C(yellow)%d%C(reset)"
+[rerere]
+  enabled = true ; remembers and re-applies conflict resolutions
+[stash]
+  showIncludeUntracked = true
+[status]
+  short = true
+  showUntrackedFiles = all
+
+# tools
+[core]
+  editor = nvim ; no-brainer :-)
+  pager = "delta" ; https://github.com/dandavison/delta
+[delta]
+  side-by-side = true
+  features = catppuccin-latte
+[credential]
+  helper = store ; TODO: replace with rbw or something
+[diff]
+  tool = difftool
+[difftool]
+  prompt = false
+[difftool "difftool"]
+  cmd = difftool "$LOCAL" "$REMOTE" ; script which selects the right difftool
+[merge]
+  tool = mergetool
+[mergetool]
+  prompt  = false
+  hideResolved = true ; let git auto-resolve most conflicts
+  keepBackup = false ; don't make a mess
+[mergetool "mergetool"]
+  cmd = mergetool "$BASE" "$LOCAL" "$REMOTE" "$MERGED" ; script which selects the right mergetool
+
+[alias]
+  # add
+  a  = add
+  aa = add -A
+  ac = !git add -A && git commit
+  acm = !git add -A && git commit -m
+
+  # branch
+  b = branch ; list branches
+  bd = branch -d ; delete
+  bD = branch -D ; delete (remote)
+  bmv = branch -m ; rename
+  ; detailed branch list
+  bl = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) %(contents:subject) %(color:green)(%(committerdate:relative))%(color:reset) %(color:blue)<%(authorname)>%(color:reset) %(color:yellow)%(objectname:short)%(color:reset)'
+
+  # commit
+  c  = commit
+  cm  = commit -m ; inline message
+  ca  = commit --amend ; amend previous commit and edit the message
+  can  = commit --amend --no-edit ; amend previous commit without editing the message
+  cempty = commit --allow-empty --allow-empty-message -m '' ; make an empty commit with an empty message
+
+  # clone
+  cl = clone
+
+  # checkout
+  co = checkout ; switch branch
+  cob = checkout -b ; create a new branch
+
+  # cherry-pick
+  cp = cherry-pick
+
+  # diff
+  d = diff
+  dc = diff --cached ; diff against staged changes
+  dh = diff HEAD ; diff against the current head
+  d1 = diff HEAD^ ; diff against the previous head
+  d2 = diff HEAD^^ ; diff against the previous head -1
+  do = "!f() { git remote set-head origin -a && git diff origin/HEAD; }; f"
+  dt = difftool ; open difftool
+  dta = difftool --dir-diff ; compare directories
+
+  # log
+  ls = log --pretty=doneline ; simple history
+  lh = log --pretty=doneline --abbrev-commit --stat ; simple history with file changes
+  ld = log -u ; include diffs
+  lg = log --graph --pretty=doneline --all ; detailed log with graph
+
+  # merge
+  mt = mergetool
+  mc = merge --continue
+  ma = merge --abort
+
+  # push
+  pf = push -u --force-with-lease
+  pu = push -u
+
+  # fetch
+  prune = fetch --prune
+
+  # status
+  s = status -sbu
+  staged = diff --name-only --cached ; list of staged files
+
+  # stash
+  sta = stash save --include-untracked ; stash everything; not just staged files.
+  spop = stash pop
+
+  # rebase
+  r = rebase
+  rc = rebase --continue
+  ra = rebase --abort
+
+  # rev-parse
+  sha = rev-parse HEAD ; get current SHA
+
+  # reset
+  rs   = reset
+  rs1  = reset HEAD^
+  rs2  = reset HEAD^^
+  rsh  = reset --hard
+  rsh1 = reset HEAD^ --hard
+  rsh2 = reset HEAD^^ --hard
+  uncommit = reset --soft HEAD^
+
+  # tag
+  tagd = tag --delete 
+  tagdr = push --delete origin ; remote delete
+  tags = tag -n --sort=authordate ; list of tags with most recent at the bottom
