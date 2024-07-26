@@ -15,7 +15,7 @@
   defaultRemote = "origin" ; uses origin by default even if there are multiple remotes
   workers = -1 ; use all cores to checkout
 [fetch]
-  parallel = ; reasonable level of parrallelization
+  parallel = 0; reasonable level of parallelization
   pruneTags = true
 [pull]
   default = current ; only pull current branch
@@ -109,7 +109,6 @@
   dh = diff HEAD ; diff against the current head
   d1 = diff HEAD^ ; diff against the previous head
   d2 = diff HEAD^^ ; diff against the previous head -1
-  do = "!f() { git remote set-head origin -a && git diff origin/HEAD; }; f"
   dt = difftool ; open difftool
   dta = difftool --dir-diff ; compare directories
 
@@ -160,3 +159,8 @@
   tagd = tag --delete 
   tagdr = push --delete origin ; remote delete
   tags = tag -n --sort=authordate ; list of tags with most recent at the bottom
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

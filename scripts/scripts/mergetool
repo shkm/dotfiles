@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wraps difftool for git use. Conditionally determined appropriate difftool.
+# Wraps mergetool for git use. Conditionally determined appropriate mergetool.
 BASE="$1"
 LOCAL="$2"
 REMOTE="$3"
