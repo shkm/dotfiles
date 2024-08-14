@@ -26,12 +26,7 @@ return require('packer').startup(function()
     'plasticboy/vim-markdown'
   }
 
-  use {
-    'tanvirtin/monokai.nvim',
-    config = function()
-      require('monokai').setup {}
-    end
-  }
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   use {
     'nvim-lualine/lualine.nvim',

@@ -8,6 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "theme": "Catppuccin Latte",
+  "theme": "Catppuccin Mocha",
   "telemetry": {
     "diagnostics": false,
     "metrics": false

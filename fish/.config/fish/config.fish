@@ -32,7 +32,7 @@ abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.St
 zoxide init fish | source
 
 if type -q "oh-my-posh"
-  oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_latte.omp.json" | source
+  oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_mocha.omp.json" | source
 end
 
 # Bindings

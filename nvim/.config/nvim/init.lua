@@ -34,8 +34,8 @@ require("lazy").setup({
 	-- vim.cmd.colorscheme("dracula")
 -- end },
 { "catppuccin/nvim", config = function()
-	vim.cmd.colorscheme("catppuccin-latte")
-	-- vim.cmd.colorscheme("catppuccin-mocha")
+	-- vim.cmd.colorscheme("catppuccin-latte")
+	vim.cmd.colorscheme("catppuccin-mocha")
 end },
 { "nvim-lualine/lualine.nvim", config = function()
 	require('lualine').setup {
