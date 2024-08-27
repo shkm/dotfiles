@@ -53,7 +53,7 @@
   pager = "delta" ; https://github.com/dandavison/delta
 [delta]
   side-by-side = true
-  features = catppuccin-latte
+  features = catppuccin-mocha
 [credential]
   helper = store ; TODO: replace with rbw or something
 [diff]
