@@ -84,3 +84,4 @@ Thumbs.db
 tasks.json
 
 docker-compose.override.yml
+.env
