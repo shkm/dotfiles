@@ -20,6 +20,7 @@
 [pull]
   default = current ; only pull current branch
   ff = only ; only attempt to fast-forward branches
+	rebase = true
 [push]
   default = current ; push only the current branch
   followTags = true ; include tags
@@ -117,6 +118,7 @@
   lh = log --pretty=doneline --abbrev-commit --stat ; simple history with file changes
   ld = log -u ; include diffs
   lg = log --graph --pretty=doneline --all ; detailed log with graph
+  lfs = !git log --pretty=format: --name-only --diff-filter=A | sort -u | grep -v '^$' | fzf -i ; search for files historically
 
   # merge
   mt = mergetool
