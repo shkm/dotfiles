@@ -70,6 +70,11 @@ nmap ]d <Action>(Diff.NextChange)
 vmap [d <Action>(Diff.PrevChange)
 vmap ]d <Action>(riff.NextChange)
 
+nmap ]n <Action>(NextOccurence)
+nmap [n <Action>(PreviousOccurence)
+vmap ]n <Action>(NextOccurence)
+vmap [n <Action>(PreviousOccurence)
+
 " nnoremap % <Action>EditorMatchBrace
 " vnoremap % <Action>EditorMatchBrace
 
