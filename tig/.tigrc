@@ -9,11 +9,6 @@ bind main YC !@sh -c "echo %(commit) | clip"  # Copy hash
 bind main b ?git checkout %(branch)
 bind status D !@?trash %(file)
 
-set diff-show-signs = false
-set diff-show-signs = false
-set diff_column_highlight = ALL
-set diff-highlight = true
-
 # Neonwolf Color Scheme for Tig
 #
 # Based mostly on the colors from the badwolf airline theme
@@ -61,7 +56,7 @@ color "---"			165	default	bold
 color "\ No newline at end of file" 166	default	bold
 color "Binary files "		166	default	bold
 
-log view, mostly
+# log view, mostly
 color "Date: "			165	235	bold
 color "    Acked-by:"		222	235	bold
 color "    Based-on-patch-by:"	222	235	bold
