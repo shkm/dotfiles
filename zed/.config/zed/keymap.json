@@ -15,7 +15,8 @@
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       // put key-bindings here if you want them to work only in normal mode
-      "space g b": "editor::ToggleGitBlame"
+      "space g b": "editor::ToggleGitBlame",
+      "-": "pane::RevealInProjectPanel"
     }
   },
   {
@@ -30,6 +31,13 @@
       // put key-bindings here if you want them to work in insert mode
       // e.g.
       // "j j": "vim::NormalBefore" // remap jj in insert mode to escape.
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // put key-bindings here if you want them to work in project mode
+      "-": "project_panel::ToggleFocus"
     }
   }
 ]
