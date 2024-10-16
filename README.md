@@ -12,9 +12,14 @@ Current setup involves this software amongst others:
 - [Fish](https://fishshell.com/)
 
 ## Bootstrapping (Linux)
+
 ```
-curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/setup.sh | bash -s -- --bootstrap
+curl -sL https://raw.githubusercontent.com/shkm/dotfiles/master/setup/linux/setup.sh | bash -s -- --bootstrap
 ```
+
+## Setup (Mac)
+
+Clone repo and run the scripts in `setup/macos`
 
 ## Bootstrapping Fish
 
