@@ -7,9 +7,6 @@
 # file includes
 [include]
   path = catppuccin.gitconfig ; colour theme
-[includeIf "gitdir:~/repos/nedap/"]
-  path = config-nedap ; work settings
-
 # common operations
 [checkout]
   defaultRemote = "origin" ; uses origin by default even if there are multiple remotes
