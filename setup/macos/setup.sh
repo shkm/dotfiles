@@ -33,7 +33,7 @@ mas install 585829637
 mas install 1099568401
 
 echo "Installing general brew formulae"
-brew install fish stow git zoxide nvim eza ripgrep bat httpie tig fzf fd jq fx jandedobbeleer/oh-my-posh/oh-my-posh
+brew install fish stow git zoxide nvim eza ripgrep ffmpeg bat httpie tig fzf fd jq fx delta jandedobbeleer/oh-my-posh/oh-my-posh
 
 # Add fish to shells if it isn't already there
 if ! grep -Fxq "/opt/homebrew/bin/fish" /etc/shells; then
@@ -48,7 +48,7 @@ if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
 fi
 
 echo "Installing casks"
-brew install --cask signal iterm2 alfred jetbrains-toolbox font-jetbrains-mono-nerd-font zed itsycal chatgpt arc spotify obsidian
+brew install --cask signal iterm2 alfred jetbrains-toolbox font-jetbrains-mono-nerd-font zed itsycal chatgpt arc spotify obsidian shottr rectangle
 
 
 echo "Done! Consider running defaults.sh to set default settings."
