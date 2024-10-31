@@ -85,3 +85,5 @@ tasks.json
 
 docker-compose.override.yml
 .env
+
+.mise.toml
