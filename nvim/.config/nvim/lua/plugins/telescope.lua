@@ -1,10 +1,13 @@
-local actions = require('telescope.actions')
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close
+return {
+  "nvim-telescope/telescope.nvim",
+  cmd = "Telescope",
+  opts = {
+    defaults = {
+      mappings = {
+        i = {
+          ["<esc>"] = "close",
+        },
       },
     },
-  }
+  },
 }
