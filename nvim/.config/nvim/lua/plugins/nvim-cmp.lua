@@ -1,25 +1,7 @@
 return {
   "hrsh7th/nvim-cmp",
-  dependencies = {
-    "supermaven-inc/supermaven-nvim",
-    opts = {
-      disable_inline_completion = true,
-      disable_keymaps = true,
-    },
-  },
   ---@param opts cmp.ConfigSchema
   opts = function(_, opts)
-    -- Supermaven setup
-    -- require("supermaven-nvim").setup({
-    --   disable_inline_completion = true,
-    --   disable_keymaps = true,
-    -- })
-    table.insert(opts.sources, 1, {
-      name = "supermaven",
-      group_index = 1,
-      priority = 100,
-    })
-
     local has_words_before = function()
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
