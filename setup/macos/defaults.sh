@@ -57,9 +57,8 @@ defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
-
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
+sudo systemsetup -settimezone "Europe/Amsterdam" >/dev/null
 
 ##########
 # Finder #
@@ -67,7 +66,6 @@ sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
-
 
 # Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
@@ -120,7 +118,6 @@ killall Finder
 # Dock #
 ########
 
-
 # autohide dock
 defaults write com.apple.dock "autohide" -bool "true"
 
@@ -142,7 +139,6 @@ defaults write com.apple.dock mineffect -string "scale"
 # Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
 
-
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
 
@@ -157,7 +153,6 @@ killall Dock
 
 # Autogather off
 defaults write com.apple.appleseed.FeedbackAssistant "Autogather" -bool "false"
-
 
 ############
 # TextEdit #
@@ -174,6 +169,12 @@ defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 killall TextEdit
+
+########
+# Mail #
+########
+# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
 #############
 # App Store #
