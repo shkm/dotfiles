@@ -38,3 +38,5 @@ end
 
 # Bindings
 bind \cX edit_command_buffer
+
+fzf_configure_bindings --directory=\ct --processes=\cs --git_log=\cg
