@@ -14,6 +14,7 @@ end
 abbr cat bat
 abbr dc docker compose
 abbr dka "docker kill (docker ps -q)"
+abbr dsa "docker stop (docker ps -q)"
 abbr ducks "du -cksh * | sort -hr"
 abbr g git
 abbr gcd "cd (git rev-parse --show-toplevel)"
