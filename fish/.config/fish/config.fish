@@ -1,5 +1,10 @@
 fenv source "$HOME/.profile"
 
+# A place to put transient settings that shouldn't be versioned
+if test -f $HOME/.transient/fish.fish
+    source $HOME/.transient/fish.fish
+end
+
 # Disable greeting
 set -U fish_greeting
 
