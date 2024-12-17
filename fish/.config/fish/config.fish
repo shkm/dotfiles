@@ -13,7 +13,7 @@ set -U FZF_LEGACY_KEYBINDINGS 0
 
 # mise
 if type -q mise
-  mise activate fish | source
+    mise activate fish | source
 end
 
 abbr cat bat
@@ -37,8 +37,8 @@ abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.St
 
 zoxide init fish | source
 
-if type -q "oh-my-posh"
-  oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_mocha.omp.json" | source
+if type -q oh-my-posh
+    oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_mocha.omp.json" | source
 end
 
 # Bindings
