@@ -1,0 +1,14 @@
+theme = catppuccin-mocha
+keybind = ctrl+|=new_split:right
+keybind = ctrl+_=new_split:down
+
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
+
+shell-integration-features = no-cursor
+cursor-style = block
+
+background-opacity = 0.8
+background-blur-radius = 20
