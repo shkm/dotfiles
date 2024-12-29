@@ -12,3 +12,5 @@ cursor-style = block
 
 background-opacity = 0.8
 background-blur-radius = 20
+window-padding-x = 5
+window-padding-y = 2
