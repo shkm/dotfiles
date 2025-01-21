@@ -1,0 +1,34 @@
+{
+  "schemes" : [
+    {
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "if" : {
+        "device" : {
+          "serialNumber" : "D4C9CAC1",
+          "category" : "mouse",
+          "productID" : "0xc090",
+          "productName" : "G703 LIGHTSPEED Wireless Gaming Mouse w\/ HERO",
+          "vendorID" : "0x46d"
+        }
+      },
+      "scrolling" : {
+        "speed" : {
+          "vertical" : 20
+        },
+        "acceleration" : {
+          "vertical" : 0
+        },
+        "distance" : {
+          "vertical" : "auto"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.5,
+        "disableAcceleration" : true
+      }
+    }
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
+}
