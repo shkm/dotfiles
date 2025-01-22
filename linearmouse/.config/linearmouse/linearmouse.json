@@ -1,4 +1,5 @@
 {
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
   "schemes" : [
     {
       "buttons" : {
@@ -6,29 +7,56 @@
       },
       "if" : {
         "device" : {
-          "serialNumber" : "D4C9CAC1",
-          "category" : "mouse",
-          "productID" : "0xc090",
+          "vendorID" : "0x46d",
           "productName" : "G703 LIGHTSPEED Wireless Gaming Mouse w\/ HERO",
-          "vendorID" : "0x46d"
+          "productID" : "0xc090",
+          "serialNumber" : "D4C9CAC1",
+          "category" : "mouse"
         }
       },
       "scrolling" : {
         "speed" : {
           "vertical" : 20
         },
-        "acceleration" : {
-          "vertical" : 0
-        },
         "distance" : {
           "vertical" : "auto"
+        },
+        "acceleration" : {
+          "vertical" : 0
         }
       },
       "pointer" : {
-        "acceleration" : 0.5,
-        "disableAcceleration" : true
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productName" : "USB Receiver",
+          "productID" : "0xc539",
+          "vendorID" : "0x46d"
+        }
+      },
+      "scrolling" : {
+        "speed" : {
+          "vertical" : 0
+        },
+        "distance" : {
+          "vertical" : 5
+        },
+        "acceleration" : {
+          "vertical" : 1
+        }
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
       }
     }
-  ],
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
+  ]
 }
