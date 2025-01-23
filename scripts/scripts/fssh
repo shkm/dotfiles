@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+server=$(awk '/^Host / && $2 != "*"{print $2}' ~/.ssh/config | fzf)
+if [[ -n $server ]]; then
+  ssh $server
+fi
