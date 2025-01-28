@@ -159,6 +159,9 @@
   tagd = tag --delete 
   tagdr = push --delete origin ; remote delete
   tags = tag -n --sort=authordate ; list of tags with most recent at the bottom
+
+  # etc
+  cat = show
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
