@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-server=$(awk '/^Host / && $2 != "*"{print $2}' ~/.ssh/config | fzf)
+server=$(awk '/^Host / && $2 != "*"{print $2}' ~/.ssh/config | fzf --height 40% --tac)
 if [[ -n $server ]]; then
   ssh $server
 fi
