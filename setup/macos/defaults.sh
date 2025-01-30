@@ -49,6 +49,9 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # Disable hold-to-use-accents
 defaults write -g ApplePressAndHoldEnabled -bool false
 
+# Enable ctrl-cmd-click to drag windows
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
