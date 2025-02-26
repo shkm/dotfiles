@@ -36,6 +36,7 @@ abbr vim nvim
 abbr be bundle exec
 abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
 abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
+abbr lg lazygit
 
 zoxide init fish | source
 
