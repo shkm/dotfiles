@@ -7,13 +7,16 @@
 # file includes
 [include]
   path = catppuccin.gitconfig ; colour theme
+
 # common operations
 [checkout]
   defaultRemote = "origin" ; uses origin by default even if there are multiple remotes
   workers = -1 ; use all cores to checkout
 [fetch]
   parallel = 0; reasonable level of parallelization
-  pruneTags = true
+	pruneTags = true
+	prune = true
+	all = true
 [pull]
   default = current ; only pull current branch
   ff = only ; only attempt to fast-forward branches
@@ -24,12 +27,21 @@
   autoSetupRemote = true
 [submodule]
   recurse = true ; apply git operations from the main repo to submodules too
+[rerere]
+  enabled = true ; remembers and re-applies conflict resolutions
+  autoupdate = true
+[tag]
+	sort = version:refname
+[commit]
+	verbose = true
 
 # display customisation
+[column]
+	ui = auto
 [blame]
   coloring = highlightRecent ; highlight recent commits, from blue (old) to white to red (new)
 [branch]
-  sort = "committerdate" ; show most recently committed branches last
+	sort = -committerdate
 [log]
   decorate = short ; hide ref name prefixes
   abbrevCommit = true ; shorten commit hashes
@@ -37,8 +49,6 @@
 [pretty]
   # formats for use with --pretty
   doneline = "format:%C(yellow)%h%C(reset) %s %C(green)(%ar)%C(reset) %C(blue)<%an>%C(reset)%C(yellow)%d%C(reset)"
-[rerere]
-  enabled = true ; remembers and re-applies conflict resolutions
 [stash]
   showIncludeUntracked = true
 [status]
@@ -56,6 +66,10 @@
   helper = store ; TODO: replace with rbw or something
 [diff]
   tool = difftool
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [difftool]
   prompt = false
 [difftool "difftool"]
@@ -68,6 +82,13 @@
   keepBackup = false ; don't make a mess
 [mergetool "mergetool"]
   cmd = mergetool "$BASE" "$LOCAL" "$REMOTE" "$MERGED" ; script which selects the right mergetool
+
+# etc
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
 
 [alias]
   # add
@@ -162,8 +183,3 @@
 
   # etc
   cat = show
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
