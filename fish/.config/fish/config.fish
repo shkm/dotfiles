@@ -11,8 +11,6 @@ set -U fish_greeting
 # FZF's legacy keybindings conflict with Fish
 set -U FZF_LEGACY_KEYBINDINGS 0
 
-set -Ux fifc_editor nvim
-
 # mise
 if type -q mise
     mise activate fish | source
