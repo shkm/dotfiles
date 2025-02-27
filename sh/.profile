@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
+export LANG=en_GB.UTF-8
 
 # Put additional sources in ~/.profile.d/, not under VCS
 if [ -d "$HOME/.profile.d" ]; then
