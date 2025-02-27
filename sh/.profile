@@ -21,29 +21,28 @@ fi
 
 # Homebrew
 BREW_ROOT="/opt/homebrew/bin"
-if [ -d "$BREW_ROOT" ] ; then
+if [ -d "$BREW_ROOT" ]; then
   export PATH="$BREW_ROOT:$PATH"
 fi
 
-
 # Ensure local/bin is in path.
-if [ -d "/usr/local/bin" ] ; then
+if [ -d "/usr/local/bin" ]; then
   export PATH="/usr/local/bin:$PATH"
 fi
 
 # Misc user bins
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Misc user bins
-if [ -d "$HOME/bin" ] ; then
+if [ -d "$HOME/bin" ]; then
   export PATH="$HOME/bin:$PATH"
 fi
 
 # Version-controlled scripts
 export SCRIPT_PATH="$HOME/scripts"
-if [ -d "$SCRIPT_PATH" ] ; then
+if [ -d "$SCRIPT_PATH" ]; then
   export PATH="$SCRIPT_PATH:$PATH"
 fi
 
@@ -54,18 +53,18 @@ if [ -d "$HOME/go" ]; then
 fi
 
 # Rust
-if [ -d "$HOME/.cargo" ] ; then
+if [ -d "$HOME/.cargo" ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # Yarn
-if [ -d "$HOME/.yarn/bin" ] ; then
+if [ -d "$HOME/.yarn/bin" ]; then
   export PATH="$HOME/.yarn/bin:$PATH"
 fi
 
 # NPM
 NPM_PACKAGES="${HOME}/.npm-packages"
-if [ -d "$NPM_PACKAGES" ] ; then
+if [ -d "$NPM_PACKAGES" ]; then
   export PATH="$PATH:$NPM_PACKAGES/bin"
   export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 fi
@@ -76,11 +75,9 @@ if [ -d "$DENO_INSTALL" ]; then
   export PATH="$PATH:$DENO_INSTALL/bin"
 fi
 
-
-
 # Dotnet
 DOTNET_ROOT="$HOME/.dotnet"
-if [ -d "$DOTNET_ROOT" ] ; then
+if [ -d "$DOTNET_ROOT" ]; then
   export DOTNET_ROOT
   export PATH="$DOTNET_ROOT:$PATH"
   export PATH="$DOTNET_ROOT/tools:$PATH"
@@ -95,7 +92,7 @@ if [ -f "${XDG_RUNTIME_DIR}/docker.sock" ]; then
 fi
 
 # Bat
-if command -v bat &> /dev/null; then
+if command -v bat &>/dev/null; then
   export MANPAGER="sh -c 'col -bx | bat -plman'"
   export MANROFFOPT="-c"
 fi
@@ -108,8 +105,8 @@ fi
 
 # Various telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Dotnet
-export CHECKPOINT_DISABLE=1 # Prisma
-export NEXT_TELEMETRY_DISABLED=1 # Next.js
+export CHECKPOINT_DISABLE=1          # Prisma
+export NEXT_TELEMETRY_DISABLED=1     # Next.js
 
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
@@ -132,4 +129,3 @@ export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-
