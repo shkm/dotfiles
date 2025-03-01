@@ -18,3 +18,5 @@ local alpha = function()
 end
 vim.g.neovide_background_color = "#1e1e2e" .. alpha()
 vim.g.neovide_window_blurred = true
+
+vim.g.ai_cmp = false
