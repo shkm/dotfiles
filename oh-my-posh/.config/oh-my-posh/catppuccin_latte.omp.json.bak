@@ -1,52 +1,44 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "palette": {
-    "blue": "#1e66f5",
-    "closer": "p:os",
-    "lavender": "#7287FD",
     "os": "#ACB0BE",
-    "pink": "#ea76cb"
+    "closer": "p:os",
+    "pink": "#ea76cb",
+    "lavender": "#7287FD",
+    "blue": "#1e66f5"
   },
   "blocks": [
     {
-      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": "{{.Icon}} ",
           "foreground": "p:os",
-          "type": "os",
-          "style": "plain"
+          "style": "plain",
+          "template": "{{.Icon}} ",
+          "type": "os"
         },
         {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": "{{ .UserName }}@{{ .HostName }} ",
           "foreground": "p:blue",
-          "type": "session",
-          "style": "plain"
+          "style": "plain",
+          "template": "{{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
         },
         {
+          "foreground": "p:pink",
           "properties": {
-            "cache_duration": "none",
             "folder_icon": "..\ue5fe..",
             "home_icon": "~",
-            "max_depth": 2,
-            "style": "agnoster_short"
+            "style": "agnoster_short",
+            "max_depth": 2
           },
+          "style": "plain",
           "template": "{{ .Path }} ",
-          "foreground": "p:pink",
-          "type": "path",
-          "style": "plain"
+          "type": "path"
         },
         {
+          "foreground": "p:lavender",
           "properties": {
             "branch_icon": "\ue725 ",
-            "cache_duration": "none",
             "cherry_pick_icon": "\ue29b ",
             "commit_icon": "\uf417 ",
             "fetch_status": false,
@@ -58,22 +50,19 @@
             "tag_icon": "\uf412 "
           },
           "template": "{{ .HEAD }} ",
-          "foreground": "p:lavender",
-          "type": "git",
-          "style": "plain"
+          "style": "plain",
+          "type": "git"
         },
         {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": "\uf105",
+          "style": "plain",
           "foreground": "p:closer",
-          "type": "text",
-          "style": "plain"
+          "template": "\uf105",
+          "type": "text"
         }
-      ]
+      ],
+      "type": "prompt"
     }
   ],
-  "version": 3,
-  "final_space": true
+  "final_space": true,
+  "version": 2
 }
