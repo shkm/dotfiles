@@ -1,118 +1,135 @@
 {
-  "schemes": [
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
+  "schemes" : [
     {
-      "buttons": {
-        "universalBackForward": true
+      "buttons" : {
+        "universalBackForward" : true
       },
-      "if": {
-        "device": {
-          "productID": "0xc090",
-          "vendorID": "0x46d",
-          "category": "mouse",
-          "productName": "G703 LIGHTSPEED Wireless Gaming Mouse w/ HERO",
-          "serialNumber": "D4C9CAC1"
+      "if" : {
+        "device" : {
+          "productID" : "0xc090",
+          "serialNumber" : "D4C9CAC1",
+          "productName" : "G703 LIGHTSPEED Wireless Gaming Mouse w\/ HERO",
+          "vendorID" : "0x46d",
+          "category" : "mouse"
         }
       },
-      "pointer": {
-        "acceleration": 0.5,
-        "disableAcceleration": true
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
       },
-      "scrolling": {
-        "distance": {
-          "vertical": "auto"
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 0
         },
-        "acceleration": {
-          "vertical": 0
+        "speed" : {
+          "vertical" : 20
         },
-        "speed": {
-          "vertical": 20
+        "distance" : {
+          "vertical" : "auto"
         }
       }
     },
     {
-      "buttons": {
-        "universalBackForward": true
+      "pointer" : {
+        "acceleration" : 0.5,
+        "disableAcceleration" : true
       },
-      "scrolling": {
-        "speed": {
-          "vertical": 0
+      "scrolling" : {
+        "distance" : {
+          "vertical" : 5
         },
-        "distance": {
-          "vertical": 5
+        "acceleration" : {
+          "vertical" : 1
         },
-        "acceleration": {
-          "vertical": 1
+        "speed" : {
+          "vertical" : 0
         }
       },
-      "pointer": {
-        "disableAcceleration": true,
-        "acceleration": 0.5
-      },
-      "if": {
-        "device": {
-          "productID": "0xc539",
-          "productName": "USB Receiver",
-          "category": "mouse",
-          "vendorID": "0x46d"
+      "if" : {
+        "device" : {
+          "productID" : "0xc539",
+          "productName" : "USB Receiver",
+          "category" : "mouse",
+          "vendorID" : "0x46d"
         }
+      },
+      "buttons" : {
+        "universalBackForward" : true
       }
     },
     {
-      "scrolling": {
-        "acceleration": {
-          "vertical": 1
+      "scrolling" : {
+        "distance" : {
+          "vertical" : 5
         },
-        "distance": {
-          "vertical": 5
+        "acceleration" : {
+          "vertical" : 1
         },
-        "speed": {
-          "vertical": 0
+        "speed" : {
+          "vertical" : 0
         }
       },
-      "pointer": {
-        "acceleration": 0.5,
-        "speed": 0.5,
-        "disableAcceleration": true
-      },
-      "if": {
-        "device": {
-          "category": "mouse",
-          "productID": "0xc53a",
-          "vendorID": "0x46d",
-          "productName": "USB Receiver"
+      "if" : {
+        "device" : {
+          "productName" : "USB Receiver",
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "productID" : "0xc53a"
         }
+      },
+      "buttons" : {
+        "universalBackForward" : true,
+        "switchPrimaryButtonAndSecondaryButtons" : false
+      },
+      "pointer" : {
+        "speed" : 0.5,
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
       }
     },
     {
-      "scrolling": {
-        "speed": {
-          "vertical": 0
+      "if" : {
+        "device" : {
+          "productName" : "USB Receiver",
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "productID" : "0xc53a"
         },
-        "distance": {
-          "vertical": 3
-        },
-        "acceleration": {
-          "vertical": 1
+        "app" : "com.spotify.client"
+      },
+      "buttons" : {
+        "universalBackForward" : false
+      }
+    },
+    {
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "if" : {
+        "device" : {
+          "serialNumber" : "058B36703231",
+          "vendorID" : "0x46d",
+          "productName" : "Logitech G903 Wired\/Wireless Gaming Mouse",
+          "productID" : "0xc086",
+          "category" : "mouse"
         }
       },
-      "buttons": {
-        "universalBackForward": true
+      "pointer" : {
+        "acceleration" : 0.5,
+        "disableAcceleration" : true
       },
-      "if": {
-        "device": {
-          "vendorID": "0x46d",
-          "serialNumber": "058B36703231",
-          "productID": "0xc086",
-          "category": "mouse",
-          "productName": "Logitech G903 Wired/Wireless Gaming Mouse"
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "speed" : {
+          "vertical" : 0
+        },
+        "distance" : {
+          "vertical" : 3
         }
-      },
-      "pointer": {
-        "acceleration": 0.5,
-        "disableAcceleration": true
       }
     }
-  ],
-  "$schema": "https://schema.linearmouse.app/0.10.0"
+  ]
 }
-
