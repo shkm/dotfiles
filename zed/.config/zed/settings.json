@@ -9,9 +9,6 @@
 {
   "restore_on_startup": "none",
   "soft_wrap": "editor_width",
-  "features": {
-    "inline_completion_provider": "supermaven"
-  },
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
