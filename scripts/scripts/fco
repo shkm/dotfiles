@@ -14,19 +14,17 @@ usage() {
 
   echo "Usage: fco"
 
-  exit $exit_code
+  exit "$exit_code"
 }
 
 main() {
   local arg1="${1:-}"
   if [[ "$arg1" = "--help" ]]; then usage 0; fi
 
-  local branch="$(git branch -vv --color=always | grep -v '/HEAD\s' | \
-    fzf --height 40% --ansi --multi --tac | sed 's/^..//' | \
-    awk '{print $1}' | sed 's#^remotes/[^/]*/##')"
+  local branch
+  branch="$(git branch -vv | fzf --height 40% --ansi --no-sort | sed 's/^..//' | awk '{print $1}' | sed 's#^remotes/[^/]*/##')"
 
   git checkout "$branch"
 }
 
 main "$@"
-
