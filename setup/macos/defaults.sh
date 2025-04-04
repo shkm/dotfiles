@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # See https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+# Also https://github.com/kevinSuttle/macOS-Defaults/tree/master
 
 ###########
 # General #
