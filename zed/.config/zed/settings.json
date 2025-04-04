@@ -16,7 +16,7 @@
     },
     "version": "2"
   },
-  "theme": "Catppuccin Mocha",
+  "theme": "Catppuccin Latte",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
