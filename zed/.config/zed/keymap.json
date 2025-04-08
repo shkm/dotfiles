@@ -1,3 +1,4 @@
+// Consider using "Open key context view" to see what currently maps to what.
 [
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
@@ -8,14 +9,15 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "0": "vim::FirstNonWhitespace"
     }
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       // put key-bindings here if you want them to work only in normal mode
-      "space g b": "editor::ToggleGitBlame",
+      "space g b": "git::Blame",
       "-": "pane::RevealInProjectPanel"
     }
   },
