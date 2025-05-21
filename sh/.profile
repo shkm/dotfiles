@@ -69,6 +69,13 @@ if [ -d "$NPM_PACKAGES" ]; then
   export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 fi
 
+# bun
+BUN_INSTALL="${HOME}/.bun"
+if [ -d "$BUN_INSTALL" ]; then
+  export BUN_INSTALL
+  export PATH="$PATH:$BUN_INSTALL/bin"
+fi
+
 DENO_INSTALL="${HOME}/.deno"
 if [ -d "$DENO_INSTALL" ]; then
   export DENO_INSTALL
