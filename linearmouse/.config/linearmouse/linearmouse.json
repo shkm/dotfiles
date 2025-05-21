@@ -1,22 +1,21 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
   "schemes" : [
     {
-      "buttons" : {
-        "universalBackForward" : true
-      },
       "if" : {
         "device" : {
-          "productID" : "0xc090",
-          "serialNumber" : "D4C9CAC1",
           "productName" : "G703 LIGHTSPEED Wireless Gaming Mouse w\/ HERO",
+          "serialNumber" : "D4C9CAC1",
+          "category" : "mouse",
           "vendorID" : "0x46d",
-          "category" : "mouse"
+          "productID" : "0xc090"
         }
       },
       "pointer" : {
-        "disableAcceleration" : true,
-        "acceleration" : 0.5
+        "acceleration" : 0.5,
+        "disableAcceleration" : true
+      },
+      "buttons" : {
+        "universalBackForward" : true
       },
       "scrolling" : {
         "acceleration" : {
@@ -31,70 +30,70 @@
       }
     },
     {
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "category" : "mouse",
+          "productID" : "0xc539",
+          "productName" : "USB Receiver"
+        }
+      },
       "pointer" : {
         "acceleration" : 0.5,
         "disableAcceleration" : true
       },
-      "scrolling" : {
-        "distance" : {
-          "vertical" : 5
-        },
-        "acceleration" : {
-          "vertical" : 1
-        },
-        "speed" : {
-          "vertical" : 0
-        }
-      },
-      "if" : {
-        "device" : {
-          "productID" : "0xc539",
-          "productName" : "USB Receiver",
-          "category" : "mouse",
-          "vendorID" : "0x46d"
-        }
-      },
       "buttons" : {
         "universalBackForward" : true
-      }
-    },
-    {
+      },
       "scrolling" : {
-        "distance" : {
-          "vertical" : 5
-        },
         "acceleration" : {
           "vertical" : 1
         },
         "speed" : {
           "vertical" : 0
+        },
+        "distance" : {
+          "vertical" : 5
         }
-      },
-      "if" : {
-        "device" : {
-          "productName" : "USB Receiver",
-          "category" : "mouse",
-          "vendorID" : "0x46d",
-          "productID" : "0xc53a"
-        }
-      },
-      "buttons" : {
-        "universalBackForward" : true,
-        "switchPrimaryButtonAndSecondaryButtons" : false
-      },
-      "pointer" : {
-        "speed" : 0.5,
-        "disableAcceleration" : true,
-        "acceleration" : 0.5
       }
     },
     {
       "if" : {
         "device" : {
-          "productName" : "USB Receiver",
           "category" : "mouse",
+          "productID" : "0xc53a",
           "vendorID" : "0x46d",
-          "productID" : "0xc53a"
+          "productName" : "USB Receiver"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.5,
+        "disableAcceleration" : true,
+        "speed" : 0.5
+      },
+      "buttons" : {
+        "switchPrimaryButtonAndSecondaryButtons" : false,
+        "universalBackForward" : false
+      },
+      "scrolling" : {
+        "speed" : {
+          "vertical" : 0
+        },
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : 5
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "vendorID" : "0x46d",
+          "productName" : "USB Receiver",
+          "productID" : "0xc53a",
+          "category" : "mouse"
         },
         "app" : "com.spotify.client"
       },
@@ -103,33 +102,34 @@
       }
     },
     {
-      "buttons" : {
-        "universalBackForward" : true
-      },
       "if" : {
         "device" : {
-          "serialNumber" : "058B36703231",
+          "category" : "mouse",
           "vendorID" : "0x46d",
           "productName" : "Logitech G903 Wired\/Wireless Gaming Mouse",
-          "productID" : "0xc086",
-          "category" : "mouse"
+          "serialNumber" : "058B36703231",
+          "productID" : "0xc086"
         }
       },
       "pointer" : {
         "acceleration" : 0.5,
         "disableAcceleration" : true
       },
+      "buttons" : {
+        "universalBackForward" : true
+      },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
+        "distance" : {
+          "vertical" : 3
         },
         "speed" : {
           "vertical" : 0
         },
-        "distance" : {
-          "vertical" : 3
+        "acceleration" : {
+          "vertical" : 1
         }
       }
     }
-  ]
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
 }
