@@ -7,12 +7,23 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "tab_bar": {
+    "show": false
+  },
+  "max_tabs": 1,
+  "format_on_save": "on",
+  "tab_size": 2,
+  "show_edit_predictions": true,
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
   "restore_on_startup": "none",
   "soft_wrap": "editor_width",
-  "assistant": {
+  "agent": {
+    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4o"
+      "model": "claude-3.7-sonnet"
     },
     "version": "2"
   },
@@ -24,13 +35,36 @@
   "vim_mode": true,
   "ui_font_size": 16,
   "buffer_font_size": 12,
-  "buffer_font_family": "JetBrainsMono NF",
+  "buffer_font_family": "Monaspace Neon",
   "terminal": {
-    "font_family": "JetBrainsMono NF"
+    "font_family": "Monaspace Neon"
   },
   "jupyter": {
     "kernel_selections": {
       "ruby": "iruby"
+    }
+  },
+  "languages": {
+    "Markdown": {
+      "remove_trailing_whitespace_on_save": false
+    },
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "rubocop"]
+    },
+    "lsp": {
+      "ruby-lsp": {
+        "command": ["mise", "x", "--", "ruby-lsp"],
+        "initialization_options": {
+          "formatter": "standard",
+          "linters": ["standard"],
+          "enabledFeatures": {
+            // https://github.com/Shopify/ruby-lsp/issues/2971
+            "onTypeFormatting": false
+            // This disables diagnostics
+            // "diagnostics": false
+          }
+        }
+      }
     }
   }
 }

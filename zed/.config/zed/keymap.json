@@ -1,6 +1,12 @@
 // Consider using "Open key context view" to see what currently maps to what.
 [
   {
+    "context": "EmptyPane",
+    "bindings": {
+      "-": "project_panel::ToggleFocus"
+    }
+  },
+  {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       // put key-bindings here if you want them to work in normal & visual mode
@@ -10,7 +16,11 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
-      "0": "vim::FirstNonWhitespace"
+      "0": "vim::FirstNonWhitespace",
+      "[ e": "editor::GoToPreviousDiagnostic",
+      "] e": "editor::GoToDiagnostic",
+      "cmd-[": "pane::GoBack",
+      "cmd-]": "pane::GoForward"
     }
   },
   {
