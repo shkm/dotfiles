@@ -5,6 +5,11 @@ if test -f $HOME/.transient/fish.fish
     source $HOME/.transient/fish.fish
 end
 
+if test -f $HOME/.orbstack/shell/init2.fish
+    # orbstack
+    source $HOME/.orbstack/shell/init2.fish 2>/dev/null || :
+end
+
 # Disable greeting
 set -U fish_greeting
 
@@ -16,33 +21,43 @@ if type -q mise
     mise activate fish | source
 end
 
-abbr cat bat
-abbr dc docker compose
-abbr dka "docker kill (docker ps -q)"
-abbr dsa "docker stop (docker ps -q)"
-abbr ducks "du -cksh * | sort -hr"
-abbr g git
-abbr gcd "cd (git rev-parse --show-toplevel)"
-abbr ll eza -lga --group-directories-first
-abbr ls ll
-abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
-abbr rm trash
-abbr v nvim
-abbr v. "nvim ."
-abbr z. "zed ."
-abbr vim nvim
-abbr be bundle exec
-abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
-abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
-abbr lg lazygit
+if status is-interactive
+    if type -q zodide
+        zoxide init fish | source
+    end
 
-zoxide init fish | source
+    if type -q oh-my-posh
+        oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_latte.omp.json" | source
+    end
 
-if type -q oh-my-posh
-    oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_latte.omp.json" | source
+    if test -f $HOME/.atuin/bin/env.fish
+        source $HOME/.atuin/bin/env.fish
+        atuin init fish | source
+    end
+
+    abbr cat bat
+    abbr dc docker compose
+    abbr dka "docker kill (docker ps -q)"
+    abbr dsa "docker stop (docker ps -q)"
+    abbr ducks "du -cksh * | sort -hr"
+    abbr g git
+    abbr gcd "cd (git rev-parse --show-toplevel)"
+    abbr ll eza -lga --group-directories-first
+    abbr ls ll
+    abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
+    abbr rm trash
+    abbr v nvim
+    abbr v. "nvim ."
+    abbr z. "zed ."
+    abbr vim nvim
+    abbr be bundle exec
+    abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
+    abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
+    abbr lg lazygit
+
+    # Bindings
+    bind \cX edit_command_buffer
+
+    # FZF bindings but we disable history and use atuin instead.
+    fzf_configure_bindings --directory=\ct --processes=\cs --git_log=\cg --history=
 end
-
-# Bindings
-bind \cX edit_command_buffer
-
-fzf_configure_bindings --directory=\ct --processes=\cs --git_log=\cg
