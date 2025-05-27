@@ -10,7 +10,6 @@
   "tab_bar": {
     "show": false
   },
-  "max_tabs": 1,
   "format_on_save": "on",
   "tab_size": 2,
   "show_edit_predictions": true,
@@ -49,7 +48,7 @@
       "remove_trailing_whitespace_on_save": false
     },
     "Ruby": {
-      "language_servers": ["ruby-lsp", "rubocop"]
+      "language_servers": ["ruby-lsp", "!rubocop"]
     },
     "lsp": {
       "ruby-lsp": {
@@ -59,9 +58,9 @@
           "linters": ["standard"],
           "enabledFeatures": {
             // https://github.com/Shopify/ruby-lsp/issues/2971
-            "onTypeFormatting": false
+            "onTypeFormatting": false,
             // This disables diagnostics
-            // "diagnostics": false
+            "diagnostics": false
           }
         }
       }
