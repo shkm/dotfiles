@@ -1,6 +1,12 @@
 // Consider using "Open key context view" to see what currently maps to what.
 [
   {
+    "context": "Pane",
+    "bindings": {
+      "cmd-w": "pane::CloseAllItems"
+    }
+  },
+  {
     "context": "EmptyPane",
     "bindings": {
       "-": "project_panel::ToggleFocus"
