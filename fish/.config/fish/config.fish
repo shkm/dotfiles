@@ -32,7 +32,7 @@ if status is-interactive
 
     if test -f $HOME/.atuin/bin/env.fish
         source $HOME/.atuin/bin/env.fish
-        atuin init fish | source
+        atuin init fish --disable-up-arrow | source
     end
 
     abbr cat bat
