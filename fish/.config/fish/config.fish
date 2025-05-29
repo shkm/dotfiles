@@ -22,7 +22,7 @@ if type -q mise
 end
 
 if status is-interactive
-    if type -q zodide
+    if type -q zoxide
         zoxide init fish | source
     end
 
