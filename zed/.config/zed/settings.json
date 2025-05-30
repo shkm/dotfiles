@@ -7,14 +7,24 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "icon_theme": "Catppuccin Latte",
+  "title_bar": {
+    "show_branch_icon": true
+  },
+  "toolbar": {
+    "quick_actions": false
+  },
   "tab_bar": {
     "show": false
   },
+  "pane_split_direction_vertical": "right",
+  "pane_split_direction_horizontal": "down",
   "format_on_save": "on",
   "tab_size": 2,
   "show_edit_predictions": true,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
+    "edit_prediction_model": "claude-3.7-sonnet"
   },
   "restore_on_startup": "none",
   "soft_wrap": "editor_width",
@@ -26,7 +36,7 @@
     },
     "version": "2"
   },
-  "theme": "Catppuccin Latte",
+  "theme": "Catppuccin Latte - No Italics",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -34,9 +44,9 @@
   "vim_mode": true,
   "ui_font_size": 16,
   "buffer_font_size": 12,
-  "buffer_font_family": "Monaspace Neon",
+  "buffer_font_family": "BlexMono Nerd Font Mono",
   "terminal": {
-    "font_family": "Monaspace Neon"
+    "font_family": "BlexMono Nerd Font Mono"
   },
   "jupyter": {
     "kernel_selections": {
@@ -48,19 +58,40 @@
       "remove_trailing_whitespace_on_save": false
     },
     "Ruby": {
-      "language_servers": ["ruby-lsp", "!rubocop"]
+      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop"]
     },
     "lsp": {
       "ruby-lsp": {
         "command": ["mise", "x", "--", "ruby-lsp"],
         "initialization_options": {
+          "experimentalFeaturesEnabled": true,
           "formatter": "standard",
           "linters": ["standard"],
           "enabledFeatures": {
-            // https://github.com/Shopify/ruby-lsp/issues/2971
-            "onTypeFormatting": false,
-            // This disables diagnostics
-            "diagnostics": false
+            "codeActions": true,
+            "codeLens": true,
+            "completion": true,
+            "definition": true,
+            "diagnostics": false, // until Zed supports pull-type diagnostics
+            "documentHighlights": true,
+            "documentLink": true,
+            "documentSymbols": true,
+            "foldingRanges": true,
+            "formatting": true,
+            "hover": true,
+            "inlayHint": true,
+            "onTypeFormatting": true,
+            "selectionRanges": true,
+            "semanticHighlighting": true,
+            "signatureHelp": true,
+            "typeHierarchy": true,
+            "workspaceSymbol": true
+          },
+          "featuresConfiguration": {
+            "inlayHint": {
+              "implicitHashValue": true,
+              "implicitRescue": true
+            }
           }
         }
       }
