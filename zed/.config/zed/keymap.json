@@ -54,7 +54,7 @@
     }
   },
   {
-    "context": "ProjectPanel",
+    "context": "ProjectPanel && not_editing",
     "bindings": {
       // put key-bindings here if you want them to work in project mode
       "-": "project_panel::ToggleFocus",
