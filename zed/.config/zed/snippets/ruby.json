@@ -1,0 +1,7 @@
+{
+  "Debug with pry": {
+    "prefix": "pry",
+    "body": ["binding.pry", "$0"],
+    "description": "Debug with pry"
+  }
+}

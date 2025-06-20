@@ -1,0 +1,7 @@
+{
+  "Log to console": {
+    "prefix": "cl",
+    "body": ["console.log($1)", "$0"],
+    "description": "Logs to console"
+  }
+}
