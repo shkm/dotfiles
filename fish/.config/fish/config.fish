@@ -54,6 +54,7 @@ if status is-interactive
     abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
     abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
     abbr lg lazygit
+    abbr lgh lazygit log -f
 
     # Bindings
     bind \cX edit_command_buffer
