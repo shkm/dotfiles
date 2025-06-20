@@ -61,5 +61,17 @@
       "q": "workspace::ToggleLeftDock",
       "cmd-o": "project_panel::OpenWithSystem"
     }
+  },
+  {
+    "context": "Terminal",
+    "use_key_equivalents": false,
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-|": "pane::SplitRight",
+      "ctrl-_": "pane::SplitDown"
+    }
   }
 ]
