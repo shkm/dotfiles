@@ -26,7 +26,8 @@
       "[ e": "editor::GoToPreviousDiagnostic",
       "] e": "editor::GoToDiagnostic",
       "cmd-[": "pane::GoBack",
-      "cmd-]": "pane::GoForward"
+      "cmd-]": "pane::GoForward",
+      "cmd-;": "outline::Toggle"
     }
   },
   {
