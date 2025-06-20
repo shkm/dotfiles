@@ -25,6 +25,11 @@ if [ -d "$BREW_ROOT" ]; then
   export PATH="$BREW_ROOT:$PATH"
 fi
 
+BREW_SBIN="/opt/homebrew/sbin"
+if [ -d "$BREW_SBIN" ]; then
+  export PATH="$BREW_SBIN:$PATH"
+fi
+
 # Ensure local/bin is in path.
 if [ -d "/usr/local/bin" ]; then
   export PATH="/usr/local/bin:$PATH"
