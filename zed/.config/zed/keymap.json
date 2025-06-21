@@ -2,8 +2,15 @@
 [
   {
     "context": "Pane",
+    // Pretty much anywhere
+  {
+    "context": "Pane || Editor",
     "bindings": {
-      "cmd-w": "pane::CloseAllItems"
+      "cmd-w": "pane::CloseAllItems",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
@@ -18,16 +25,13 @@
       // put key-bindings here if you want them to work in normal & visual mode
       ";": "command_palette::Toggle",
       ":": "vim::RepeatFind",
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
       "0": "vim::FirstNonWhitespace",
       "[ e": "editor::GoToPreviousDiagnostic",
       "] e": "editor::GoToDiagnostic",
       "cmd-[": "pane::GoBack",
       "cmd-]": "pane::GoForward",
-      "cmd-;": "outline::Toggle"
+      "cmd-;": "outline::Toggle",
+      "/": "buffer_search::Deploy"
     }
   },
   {
