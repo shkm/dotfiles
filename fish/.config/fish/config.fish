@@ -42,6 +42,7 @@ if status is-interactive
     abbr ducks "du -cksh * | sort -hr"
     abbr g git
     abbr gcd "cd (git rev-parse --show-toplevel)"
+    abbr gsha 'git rev-parse HEAD'
     abbr ll eza -lga --group-directories-first
     abbr ls ll
     abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
