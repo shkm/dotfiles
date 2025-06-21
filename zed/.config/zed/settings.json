@@ -61,6 +61,7 @@
       "remove_trailing_whitespace_on_save": false
     },
     "Ruby": {
+      "show_edit_predictions": true,
       "language_servers": ["ruby-lsp", "!solargraph", "!rubocop"]
     },
     "lsp": {
