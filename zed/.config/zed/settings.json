@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "active_pane_modifiers": {
+    "border_size": 2.0
+  },
   "icon_theme": "Catppuccin Latte",
   "title_bar": {
     "show_branch_icon": true
