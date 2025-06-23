@@ -30,11 +30,6 @@ if status is-interactive
         oh-my-posh init fish --config "$HOME/.config/oh-my-posh/catppuccin_latte.omp.json" | source
     end
 
-    if test -f $HOME/.atuin/bin/env.fish
-        source $HOME/.atuin/bin/env.fish
-        atuin init fish --disable-up-arrow --disable-ctrl-r | source
-    end
-
     abbr cat bat
     abbr dc docker compose
     abbr dka "docker kill (docker ps -q)"
@@ -61,23 +56,5 @@ if status is-interactive
     bind \cX edit_command_buffer
 
     # FZF bindings but we disable history and use atuin instead.
-    fzf_configure_bindings --directory=\ct --processes=\cs --git_log=\cg --history=
-
-    # Atuin fzf search. TODO: move elsewhere.
-    function _atuin_fzf_search
-        set -f commands_selected (
-    atuin search --cmd-only --reverse |
-    _fzf_wrapper --height=~20 \
-    --query=(commandline) \
-    )
-
-        if test $status -eq 0
-            commandline --replace -- $commands_selected
-        end
-
-        commandline --function repaint
-
-    end
-
-    bind \cR _atuin_fzf_search
+    fzf_configure_bindings --directory=\ct --processes=\cs --git_log=\cg
 end
