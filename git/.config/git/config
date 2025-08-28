@@ -61,7 +61,9 @@
   pager = "delta" ; https://github.com/dandavison/delta
 [delta]
   side-by-side = true
-  features = catppuccin-latte
+  # Features are included via DELTA_FEATURES because we need more customization than is available here.
+  # Check profile.
+  # features = catppuccin-latte
 [credential]
   helper = store ; TODO: replace with rbw or something
 [diff]
@@ -177,7 +179,7 @@
   uncommit = reset --soft HEAD^
 
   # tag
-  tagd = tag --delete 
+  tagd = tag --delete
   tagdr = push --delete origin ; remote delete
   tags = tag -n --sort=authordate ; list of tags with most recent at the bottom
 

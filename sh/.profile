@@ -1,6 +1,17 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export LANG=en_GB.UTF-8
 
+# Dark mode will be 1 if enabled or unknown.
+DARK_MODE=1
+if [ "$(uname)" = "Darwin" ]; then
+    appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+    if [ -z "$appearance" ]; then
+        DARK_MODE=0
+    fi
+fi
+export DARK_MODE
+
+
 # Put additional sources in ~/.profile.d/, not under VCS
 if [ -d "$HOME/.profile.d" ]; then
   for f in $HOME/.profile.d/*.sh; do
@@ -22,14 +33,8 @@ elif [ -f "${XDG_RUNTIME_DIR}/keyring/ssh" ]; then
 fi
 
 # Homebrew
-BREW_ROOT="/opt/homebrew/bin"
-if [ -d "$BREW_ROOT" ]; then
-  export PATH="$BREW_ROOT:$PATH"
-fi
-
-BREW_SBIN="/opt/homebrew/sbin"
-if [ -d "$BREW_SBIN" ]; then
-  export PATH="$BREW_SBIN:$PATH"
+if [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Ensure local/bin is in path.
@@ -111,13 +116,7 @@ if command -v bat &>/dev/null; then
   export MANROFFOPT="-c"
 fi
 
-# ssh / gnome keyring
-# if [ -n "$DESKTOP_SESSION" ];then
-#   eval $(gnome-keyring-daemon --start)
-#   export SSH_AUTH_SOCK
-# fi
-
-# Various telemetry
+# Disable various telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Dotnet
 export CHECKPOINT_DISABLE=1          # Prisma
 export NEXT_TELEMETRY_DISABLED=1     # Next.js
@@ -131,17 +130,20 @@ export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
-# FZF colours
-# Catppuccin-Latte
-# export FZF_DEFAULT_OPTS=" \
-# --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
-# --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
-# --color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
+# Dark / Light mode colour differences
+if [ "$DARK_MODE" -eq 1 ]; then
+  export BAT_THEME="Catppuccin-mocha"
+  export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+else
+  export BAT_THEME="Catppuccin-latte"
+  export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+  --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+  --color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
+fi
 
 # Catppuccin-Mocha
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --marker=' ✓' --pointer=' '"

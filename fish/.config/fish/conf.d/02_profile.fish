@@ -1,0 +1,1 @@
+fenv source "$HOME/.profile"

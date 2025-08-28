@@ -1,80 +1,76 @@
 {
   "schemes" : [
     {
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
+      },
       "if" : {
         "device" : {
+          "vendorID" : "0x46d",
           "productName" : "G703 LIGHTSPEED Wireless Gaming Mouse w\/ HERO",
           "serialNumber" : "D4C9CAC1",
           "category" : "mouse",
-          "vendorID" : "0x46d",
           "productID" : "0xc090"
         }
       },
-      "pointer" : {
-        "acceleration" : 0.5,
-        "disableAcceleration" : true
-      },
-      "buttons" : {
-        "universalBackForward" : true
-      },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 0
-        },
         "speed" : {
           "vertical" : 20
+        },
+        "acceleration" : {
+          "vertical" : 0
         },
         "distance" : {
           "vertical" : "auto"
         }
-      }
-    },
-    {
-      "if" : {
-        "device" : {
-          "vendorID" : "0x46d",
-          "category" : "mouse",
-          "productID" : "0xc539",
-          "productName" : "USB Receiver"
-        }
-      },
-      "pointer" : {
-        "acceleration" : 0.5,
-        "disableAcceleration" : true
       },
       "buttons" : {
         "universalBackForward" : true
+      }
+    },
+    {
+      "pointer" : {
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
+      },
+      "if" : {
+        "device" : {
+          "productID" : "0xc539",
+          "productName" : "USB Receiver",
+          "category" : "mouse",
+          "vendorID" : "0x46d"
+        }
       },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
+        "distance" : {
+          "vertical" : 5
         },
         "speed" : {
           "vertical" : 0
         },
-        "distance" : {
-          "vertical" : 5
+        "acceleration" : {
+          "vertical" : 1
         }
+      },
+      "buttons" : {
+        "universalBackForward" : true
       }
     },
     {
+      "pointer" : {
+        "speed" : 0.5,
+        "disableAcceleration" : true,
+        "acceleration" : 0.5
+      },
       "if" : {
         "device" : {
-          "category" : "mouse",
           "productID" : "0xc53a",
+          "category" : "mouse",
           "vendorID" : "0x46d",
           "productName" : "USB Receiver"
         }
       },
-      "pointer" : {
-        "acceleration" : 0.5,
-        "disableAcceleration" : true,
-        "speed" : 0.5
-      },
-      "buttons" : {
-        "switchPrimaryButtonAndSecondaryButtons" : false,
-        "universalBackForward" : false
-      },
       "scrolling" : {
         "speed" : {
           "vertical" : 0
@@ -85,49 +81,81 @@
         "distance" : {
           "vertical" : 5
         }
+      },
+      "buttons" : {
+        "universalBackForward" : false,
+        "switchPrimaryButtonAndSecondaryButtons" : false
       }
     },
     {
       "if" : {
         "device" : {
-          "vendorID" : "0x46d",
-          "productName" : "USB Receiver",
           "productID" : "0xc53a",
-          "category" : "mouse"
+          "category" : "mouse",
+          "productName" : "USB Receiver",
+          "vendorID" : "0x46d"
         },
         "app" : "com.spotify.client"
       },
       "buttons" : {
-        "universalBackForward" : false
+        "universalBackForward" : true
       }
     },
     {
       "if" : {
         "device" : {
           "category" : "mouse",
-          "vendorID" : "0x46d",
-          "productName" : "Logitech G903 Wired\/Wireless Gaming Mouse",
-          "serialNumber" : "058B36703231",
-          "productID" : "0xc086"
+          "productID" : "0xc53a",
+          "productName" : "USB Receiver",
+          "vendorID" : "0x46d"
+        },
+        "app" : "com.valvesoftware.steam"
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      }
+    },
+    {
+      "if" : {
+        "app" : "md.obsidian",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc53a",
+          "productName" : "USB Receiver",
+          "vendorID" : "0x46d"
         }
       },
+      "buttons" : {
+        "universalBackForward" : false
+      }
+    },
+    {
       "pointer" : {
         "acceleration" : 0.5,
         "disableAcceleration" : true
       },
-      "buttons" : {
-        "universalBackForward" : true
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "vendorID" : "0x46d",
+          "serialNumber" : "058B36703231",
+          "productName" : "Logitech G903 Wired\/Wireless Gaming Mouse",
+          "productID" : "0xc086"
+        }
       },
       "scrolling" : {
-        "distance" : {
-          "vertical" : 3
-        },
         "speed" : {
           "vertical" : 0
         },
         "acceleration" : {
           "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : 3
         }
+      },
+      "buttons" : {
+        "universalBackForward" : true
       }
     }
   ],
