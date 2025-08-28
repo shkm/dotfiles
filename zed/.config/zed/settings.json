@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "snippet_sort_order": "top",
   "active_pane_modifiers": {
     "border_size": 2.0
   },
@@ -26,8 +27,7 @@
   "tab_size": 2,
   "show_edit_predictions": true,
   "features": {
-    "edit_prediction_provider": "copilot",
-    "edit_prediction_model": "claude-3.7-sonnet"
+    "edit_prediction_provider": "copilot"
   },
   "restore_on_startup": "none",
   "soft_wrap": "editor_width",
@@ -37,25 +37,19 @@
       "provider": "copilot_chat",
       "model": "gpt-4.1"
     },
-    "default_view": "thread",
-    "version": "2"
+    "default_view": "thread"
   },
-  "theme": "Catppuccin Latte - No Italics",
+  "theme": "Oxocarbon Dark (IBM Carbon)",
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
   "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 12,
-  "buffer_font_family": "BlexMono Nerd Font",
+  "buffer_font_size": 16,
+  "buffer_font_family": "ZedMono Nerd Font",
   "terminal": {
-    "font_family": "BlexMono Nerd Font"
-  },
-  "jupyter": {
-    "kernel_selections": {
-      "ruby": "iruby"
-    }
+    "font_family": "ZedMono Nerd Font",
+    "font_size": 14
   },
   "languages": {
     "Markdown": {
@@ -65,41 +59,60 @@
       "show_edit_predictions": true,
       "language_servers": ["ruby-lsp", "!solargraph", "!rubocop"]
     },
-    "lsp": {
-      "ruby-lsp": {
-        "command": ["mise", "x", "--", "ruby-lsp"],
-        "initialization_options": {
-          "experimentalFeaturesEnabled": true,
-          "formatter": "standard",
-          "linters": ["standard"],
-          "enabledFeatures": {
-            "codeActions": true,
-            "codeLens": true,
-            "completion": true,
-            "definition": true,
-            "diagnostics": false, // until Zed supports pull-type diagnostics
-            "documentHighlights": true,
-            "documentLink": true,
-            "documentSymbols": true,
-            "foldingRanges": true,
-            "formatting": true,
-            "hover": true,
-            "inlayHint": true,
-            "onTypeFormatting": true,
-            "selectionRanges": true,
-            "semanticHighlighting": true,
-            "signatureHelp": true,
-            "typeHierarchy": true,
-            "workspaceSymbol": true
-          },
-          "featuresConfiguration": {
-            "inlayHint": {
-              "implicitHashValue": true,
-              "implicitRescue": true
-            }
+    "Python": {
+      "language_servers": ["pylsp", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "initialization_options": {
+        "experimentalFeaturesEnabled": true,
+        "formatter": "standard",
+        "linters": ["standard"],
+        "enabledFeatures": {
+          "codeActions": true,
+          "codeLens": true,
+          "completion": true,
+          "definition": true,
+          "diagnostics": false, // until Zed supports pull-type diagnostics
+          "documentHighlights": true,
+          "documentLink": true,
+          "documentSymbols": true,
+          "foldingRanges": true,
+          "formatting": true,
+          "hover": true,
+          "inlayHint": true,
+          "onTypeFormatting": true,
+          "selectionRanges": true,
+          "semanticHighlighting": true,
+          "signatureHelp": true,
+          "typeHierarchy": true,
+          "workspaceSymbol": true
+        },
+        "featuresConfiguration": {
+          "inlayHint": {
+            "implicitHashValue": true,
+            "implicitRescue": true
           }
         }
       }
     }
+  },
+  "file_types": {
+    "Dockerfile": ["Dockerfile*"]
   }
 }
