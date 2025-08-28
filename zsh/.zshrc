@@ -26,7 +26,3 @@
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 source /Users/jamie/.config/broot/launcher/bash/br
-
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
