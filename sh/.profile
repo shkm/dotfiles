@@ -3,7 +3,9 @@ export LANG=en_GB.UTF-8
 
 # Put additional sources in ~/.profile.d/, not under VCS
 if [ -d "$HOME/.profile.d" ]; then
-  for f in "$HOME/.profile.d/*.sh"; do source $f; done
+  for f in $HOME/.profile.d/*.sh; do
+    [ -e "$f" ] && source "$f"
+  done
 fi
 
 # See https://wiki.archlinux.org/title/GNOME/Keyring
