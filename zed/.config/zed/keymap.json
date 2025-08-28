@@ -35,7 +35,7 @@
       "cmd-[": "pane::GoBack",
       "cmd-]": "pane::GoForward",
       "cmd-;": "outline::Toggle",
-      "/": "buffer_search::Deploy"
+      "space /": "buffer_search::Deploy"
     }
   },
   {
