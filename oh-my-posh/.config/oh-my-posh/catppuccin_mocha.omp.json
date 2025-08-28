@@ -14,29 +14,15 @@
       "segments": [
         {
           "properties": {
-            "cache_duration": "none"
-          },
-          "template": "{{.Icon}} ",
-          "foreground": "p:os",
-          "type": "os",
-          "style": "plain"
-        },
-        {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": "{{ .UserName }}@{{ .HostName }} ",
-          "foreground": "p:blue",
-          "type": "session",
-          "style": "plain"
-        },
-        {
-          "properties": {
             "cache_duration": "none",
-            "folder_icon": "..\ue5fe..",
-            "home_icon": "~",
-            "max_depth": 2,
-            "style": "agnoster_short"
+            "folder_icon": "\uf141",
+            "home_icon": "\uf4e2",
+            "max_depth": 1,
+            "style": "agnoster_short",
+            "mapped_locations_enabled": true,
+            "mapped_locations": {
+              "~/repos": "\uea62"
+            }
           },
           "template": "{{ .Path }} ",
           "foreground": "p:pink",
