@@ -4,13 +4,12 @@ export LANG=en_GB.UTF-8
 # Dark mode will be 1 if enabled or unknown.
 DARK_MODE=1
 if [ "$(uname)" = "Darwin" ]; then
-    appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-    if [ -z "$appearance" ]; then
-        DARK_MODE=0
-    fi
+  appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+  if [ -z "$appearance" ]; then
+    DARK_MODE=0
+  fi
 fi
 export DARK_MODE
-
 
 # Put additional sources in ~/.profile.d/, not under VCS
 if [ -d "$HOME/.profile.d" ]; then
@@ -88,6 +87,7 @@ if [ -d "$BUN_INSTALL" ]; then
   export PATH="$PATH:$BUN_INSTALL/bin"
 fi
 
+# Deno
 DENO_INSTALL="${HOME}/.deno"
 if [ -d "$DENO_INSTALL" ]; then
   export DENO_INSTALL
@@ -100,6 +100,19 @@ if [ -d "$DOTNET_ROOT" ]; then
   export DOTNET_ROOT
   export PATH="$DOTNET_ROOT:$PATH"
   export PATH="$DOTNET_ROOT/tools:$PATH"
+fi
+
+HERD_LITE_ROOT="$HOME/.Users/jamie/.config/herd-lite/bin"
+if [ -d "$HERD_LITE_ROOT" ]; then
+  export PATH="$HERD_LITE_ROOT:$PATH"
+  export PHP_INI_SCAN_DIR="$HERD_LITE_ROOT:$PHP_INI_SCAN_DIR"
+fi
+
+# PHP
+HERD_ROOT="$HOME/Library/Application Support/Herd/bin"
+if [ -d "$HERD_ROOT" ]; then
+  export PATH="$HERD_ROOT:$PATH"
+  export PHP_INI_SCAN_DIR="$HERD_ROOT:$PHP_INI_SCAN_DIR"
 fi
 
 # EDITOR
