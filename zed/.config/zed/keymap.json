@@ -4,7 +4,11 @@
     // Pretty much anywhere
     "context": "ProjectPanel || Pane || Editor || Terminal",
     "bindings": {
-      "ctrl-shift-j": "terminal_panel::ToggleFocus"
+      "ctrl-shift-j": "terminal_panel::ToggleFocus",
+      "cmd-shift-g": [
+        "task::Spawn",
+        { "task_name": "LazyGit", "reveal_target": "center" }
+      ]
     }
   },
   {
