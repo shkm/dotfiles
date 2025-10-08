@@ -67,7 +67,7 @@
       // put key-bindings here if you want them to work in project mode
       "-": "project_panel::ToggleFocus",
       "q": "workspace::ToggleLeftDock",
-      "cmd-o": "project_panel::OpenWithSystem"
+      "cmd-o": "workspace::OpenWithSystem"
     }
   },
   {
