@@ -1,6 +1,6 @@
 -- adds gS to toggle splitjoin
 return {
-  "echasnovski/mini.nvim",
+  "nvim-mini/mini.nvim",
   version = false,
   config = function()
     require("mini.splitjoin").setup()
