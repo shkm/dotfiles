@@ -1,4 +1,4 @@
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
 export LANG=en_GB.UTF-8
 
 # Dark mode will be 1 if enabled or unknown.
