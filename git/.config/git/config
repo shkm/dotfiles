@@ -190,3 +190,6 @@
   cat = show
 [gpg]
 	format = ssh
+
+[includeIf "gitdir:~/repos/new-work-se/"]
+  path = config-new-work-se
