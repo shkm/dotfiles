@@ -1,6 +1,8 @@
 [user]
   email = jamie@schembri.me
   name = Jamie Schembri
+  signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETRV6+7nHan/vCdy0yzSRsG7hIv8S2ooJDVfkpTIRGN jamie+macbook@schembri.me"
+
 [init]
   defaultBranch = main
 
@@ -34,6 +36,7 @@
 	sort = version:refname
 [commit]
 	verbose = true
+	gpgsign = true
 
 # display customisation
 [column]
@@ -185,3 +188,5 @@
 
   # etc
   cat = show
+[gpg]
+	format = ssh
