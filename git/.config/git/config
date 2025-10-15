@@ -68,7 +68,7 @@
   # Check profile.
   # features = catppuccin-latte
 [credential]
-  helper = store ; TODO: replace with rbw or something
+	helper = osxkeychain
 [diff]
   tool = difftool
 	algorithm = histogram
