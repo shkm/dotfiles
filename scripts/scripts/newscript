@@ -28,7 +28,7 @@ main() {
 
   local full_path="$BASE_DIR/$filename"
 
-  if [[ ! -f "$full_path" ]]; then
+  if [[ -f "$full_path" ]]; then
     echo "Script at $full_path already exists."
     exit 2
   fi
