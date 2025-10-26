@@ -14,7 +14,7 @@ usage() {
 
   echo "Usage: TODO"
 
-  exit $exit_code
+  exit "$exit_code"
 }
 
 main() {
