@@ -1,7 +1,7 @@
 [user]
   email = jamie@schembri.me
   name = Jamie Schembri
-  signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETRV6+7nHan/vCdy0yzSRsG7hIv8S2ooJDVfkpTIRGN jamie+macbook@schembri.me"
+	signingkey = /Users/jamie/.ssh/jamie-macbook.pub
 
 [init]
   defaultBranch = main
