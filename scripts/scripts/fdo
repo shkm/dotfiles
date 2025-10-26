@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# Dotfiles fuzzy finder
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+}
+
+usage() {
+  local exit_code="${1:-1}"
+
+  echo "Usage: fdo"
+
+  exit "$exit_code"
+}
+
+main() {
+  fd . "$DOTFILES" --hidden | fzf --print0 | xargs -0 -o "$EDITOR"
+}
+
+main "$@"
