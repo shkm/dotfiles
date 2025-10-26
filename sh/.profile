@@ -11,6 +11,10 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 export DARK_MODE
 
+if [ -d "${HOME}/dotfiles" ]; then
+  export DOTFILES="${HOME}/dotfiles"
+fi
+
 # Put additional sources in ~/.profile.d/, not under VCS
 if [ -d "$HOME/.profile.d" ]; then
   for f in $HOME/.profile.d/*.sh; do
