@@ -1,26 +1,19 @@
 #!/usr/bin/env bash
-# OS-generic clipboard copy command
-# Pipe stdin into this or provide a filename
-FILE=$1
+# From https://codeberg.org/EvanHahn/dotfiles/src/commit/843b9ee13d949d346a4a73ccee2a99351aed285b/home/bin/bin/copy
+set -e
+set -u
 
-if [[ $(command -v -p "pbcopy") ]]; then
-  if [[ -z $FILE ]]; then
-    pbcopy
-  else
-    cat "$FILE" | pbcopy
-  fi
-elif [[ $(command -v "wl-copy") ]]; then
-  if [[ -z $FILE ]]; then
-    wl-copy 
-  else
-    wl-copy <  "$FILE"
-  fi
-elif [[ $(command -v "xclip") ]]; then
-  if [[ -z $FILE ]]; then
-    xclip -in -selection clipboard
-  else
-    xclip -in -selection clipboard "$FILE"
-  fi
+if hash pbcopy 2>/dev/null; then
+  exec pbcopy
+elif hash xclip 2>/dev/null; then
+  exec xclip -selection clipboard
+elif hash putclip 2>/dev/null; then
+  exec putclip
 else
-  echo "No clipboard command found. Consider installing xclip or wl-clipboard."
+  rm -f /tmp/clipboard 2>/dev/null
+  if [ $# -eq 0 ]; then
+    cat >/tmp/clipboard
+  else
+    cat "$1" >/tmp/clipboard
+  fi
 fi
