@@ -119,6 +119,9 @@ if [ -d "$HERD_ROOT" ]; then
   export PHP_INI_SCAN_DIR="$HERD_ROOT:$PHP_INI_SCAN_DIR"
 fi
 
+# Elixir
+export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 2048000"
+
 # EDITOR
 export EDITOR='nvim'
 
