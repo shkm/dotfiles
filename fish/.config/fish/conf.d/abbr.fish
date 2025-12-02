@@ -14,6 +14,7 @@ if status is-interactive
     abbr v nvim
     abbr v. "nvim ."
     abbr z. "zed ."
+    abbr y yazi
     abbr vim nvim
     abbr be bundle exec
     abbr dcps docker compose ps --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
