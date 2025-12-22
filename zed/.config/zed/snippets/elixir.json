@@ -1,0 +1,7 @@
+{
+  "IEx Pry": {
+    "prefix": "pry",
+    "body": ["require IEx; IEx.pry"],
+    "description": "Insert IEx.pry breakpoint"
+  }
+}
