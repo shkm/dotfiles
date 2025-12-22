@@ -8,7 +8,9 @@
       "cmd-shift-g": [
         "task::Spawn",
         { "task_name": "LazyGit", "reveal_target": "center" }
-      ]
+      ],
+      "cmd-[": "pane::GoBack",
+      "cmd-]": "pane::GoForward"
     }
   },
   {
@@ -36,18 +38,13 @@
       "0": "vim::FirstNonWhitespace",
       "[ e": "editor::GoToPreviousDiagnostic",
       "] e": "editor::GoToDiagnostic",
-      "cmd-[": "pane::GoBack",
-      "cmd-]": "pane::GoForward",
       "cmd-;": "outline::Toggle",
       "space /": "buffer_search::Deploy"
     }
   },
   {
     "context": "ProjectSearchBar",
-    "bindings": {
-      "cmd-[": "pane::GoBack",
-      "cmd-]": "pane::GoForward"
-    }
+    "bindings": {}
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
