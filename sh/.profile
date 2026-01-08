@@ -37,7 +37,7 @@ fi
 
 # Homebrew
 if [ -d "/opt/homebrew" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv bash)"
 fi
 
 # Ensure local/bin is in path.
