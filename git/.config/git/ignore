@@ -88,3 +88,5 @@ docker-compose.override.yml
 
 mise.toml
 .aider*
+
+**/.claude/settings.local.json
