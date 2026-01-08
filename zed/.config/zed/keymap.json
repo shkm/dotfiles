@@ -89,5 +89,11 @@
       "ctrl-|": "pane::SplitRight",
       "ctrl-_": "pane::SplitDown"
     }
+  },
+  {
+    "context": "(Editor && mode == full)",
+    "bindings": {
+      "cmd-e": null
+    }
   }
 ]

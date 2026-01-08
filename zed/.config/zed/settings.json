@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "colorize_brackets": true,
+  "show_completions_on_input": true,
+  "autosave": "on_focus_change",
   "snippet_sort_order": "top",
   "active_pane_modifiers": {
     "border_size": 2.0
@@ -32,6 +35,8 @@
   "restore_on_startup": "none",
   "soft_wrap": "editor_width",
   "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
       "model": "gpt-4.1"
@@ -107,6 +112,7 @@
     }
   },
   "file_types": {
-    "Dockerfile": ["Dockerfile*"]
+    "Dockerfile": ["Dockerfile*"],
+    "YAML": ["*.yml", "*.yaml", "*.yaml.gotmpl"]
   }
 }
