@@ -1,3 +1,4 @@
 _plugins
 fish_variables
-completions
+completions/*.fish
+!completions/wt.fish

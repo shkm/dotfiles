@@ -1,0 +1,506 @@
+#!/usr/bin/env bash
+#
+# wt - Git worktree helper for parallel development
+#
+# Creates and manages git worktrees in ~/.worktrees/<project>/<name>
+# with optional config file and dependency copying.
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+WORKTREE_BASE="$HOME/.worktrees"
+
+# Default patterns (can be overridden by .wtconfig)
+DEFAULT_COPY_FILES=".env .env.* .envrc"
+DEFAULT_COPY_DIRS="node_modules deps _build vendor/bundle _deps build/dev"
+
+# Track worktree being created for cleanup on failure
+CLEANUP_WORKTREE=""
+
+cleanup() {
+  local exit_code=$?
+  trap - SIGINT SIGTERM ERR EXIT
+
+  # Clean up partially created worktree on failure
+  if [[ -n "$CLEANUP_WORKTREE" ]] && [[ -d "$CLEANUP_WORKTREE" ]] && [[ $exit_code -ne 0 ]]; then
+    echo "" >&2
+    echo "Cleaning up partial worktree at $CLEANUP_WORKTREE..." >&2
+    git worktree remove --force "$CLEANUP_WORKTREE" 2>/dev/null || true
+  fi
+}
+
+usage() {
+  local exit_code="${1:-1}"
+
+  cat <<EOF
+Usage: wt <command> [args]
+
+Commands:
+  new, n <name>      Create a new worktree with branch <name>
+  remove, r <name>   Remove a worktree (prompts to delete branch)
+  merge, m <name>    Merge branch into main, remove worktree, delete branch
+  list, l            List all worktrees for this project
+  find, f <name>     Output worktree path (use: cd $(wt f name))
+  exec, e <name> <cmd>  Run a command in a worktree
+  claude, c <name>   Shortcut for: exec <name> claude
+  lg <name>          Shortcut for: exec <name> lazygit
+
+Configuration:
+  Create a .wtconfig file in your project root to customize behavior:
+
+    # Files to copy from main worktree (space-separated, supports globs)
+    COPY_FILES=".env .env.* .envrc"
+
+    # Directories to copy (space-separated)
+    COPY_DIRS="node_modules deps _build"
+
+Examples:
+  wt new feature-auth       # Create worktree for feature-auth branch
+  wt n bugfix-123           # Short form
+  wt list                   # Show all worktrees
+  wt remove feature-auth    # Remove worktree
+EOF
+
+  exit "$exit_code"
+}
+
+# Get the project name from git remote or directory
+get_project_name() {
+  local remote_url name
+
+  remote_url=$(git remote get-url origin 2>/dev/null || echo "")
+
+  if [[ -n "$remote_url" ]]; then
+    # Extract repo name from URL (handles both HTTPS and SSH)
+    name=$(basename -s .git "$remote_url")
+  else
+    # Fall back to directory name
+    name=$(basename "$(git rev-parse --show-toplevel)")
+  fi
+
+  echo "$name"
+}
+
+# Get the main (non-linked) worktree path
+get_main_worktree() {
+  local main_worktree
+  main_worktree=$(git worktree list --porcelain | grep "^worktree " | head -1 | cut -d' ' -f2)
+
+  if [[ -z "$main_worktree" ]]; then
+    echo "Error: Could not determine main worktree" >&2
+    exit 1
+  fi
+
+  echo "$main_worktree"
+}
+
+# Load configuration from .wtconfig or use defaults
+# Only reads COPY_FILES and COPY_DIRS, ignoring other content
+load_config() {
+  local main_worktree="$1"
+  local config_file="$main_worktree/.wtconfig"
+
+  COPY_FILES="$DEFAULT_COPY_FILES"
+  COPY_DIRS="$DEFAULT_COPY_DIRS"
+
+  if [[ -f "$config_file" ]]; then
+    local key value
+    while IFS='=' read -r key value; do
+      # Skip comments and empty lines
+      [[ "$key" =~ ^[[:space:]]*# ]] && continue
+      [[ -z "$key" ]] && continue
+      # Trim whitespace
+      key=$(echo "$key" | xargs)
+      value=$(echo "$value" | xargs)
+      # Remove surrounding quotes if present
+      value="${value#\"}"
+      value="${value%\"}"
+      value="${value#\'}"
+      value="${value%\'}"
+      case "$key" in
+        COPY_FILES) COPY_FILES="$value" ;;
+        COPY_DIRS) COPY_DIRS="$value" ;;
+      esac
+    done < "$config_file"
+  fi
+}
+
+# Offer to copy config files from main worktree to new worktree
+copy_files() {
+  local main_worktree="$1"
+  local new_worktree="$2"
+  local pattern
+  local files_to_copy=()
+
+  # Save current nullglob state and enable it
+  local nullglob_was_set=0
+  shopt -q nullglob && nullglob_was_set=1
+  shopt -s nullglob
+
+  # Collect matching files
+  for pattern in $COPY_FILES; do
+    local file
+    for file in "$main_worktree"/$pattern; do
+      # Skip if file doesn't exist (nullglob only affects glob patterns, not literals)
+      [[ -e "$file" ]] || continue
+      local base="$new_worktree/$(basename "$file")"
+      if [[ ! -e "$base" ]]; then
+        files_to_copy+=("$file")
+      fi
+    done
+  done
+
+  # Restore nullglob state
+  if [[ $nullglob_was_set -eq 0 ]]; then
+    shopt -u nullglob
+  fi
+
+  # If we have files to copy, prompt the user
+  if [[ ${#files_to_copy[@]} -gt 0 ]]; then
+    echo ""
+    echo "Config files available to copy:"
+    for file in "${files_to_copy[@]}"; do
+      echo "  - $(basename "$file")"
+    done
+    echo ""
+    read -rp "Copy these files to the new worktree? [y/N] " copy_confirm
+    if [[ "$copy_confirm" =~ ^[Yy]$ ]]; then
+      for file in "${files_to_copy[@]}"; do
+        local base target
+        base=$(basename "$file")
+        target="$new_worktree/$base"
+        cp "$file" "$target"
+        echo "  Copied: $base"
+      done
+    else
+      echo "  Skipped copying config files."
+    fi
+  fi
+}
+
+# Copy dependency directories from main worktree to new worktree
+copy_dirs() {
+  local main_worktree="$1"
+  local new_worktree="$2"
+  local dir
+
+  for dir in $COPY_DIRS; do
+    local source="$main_worktree/$dir"
+    local target="$new_worktree/$dir"
+
+    if [[ -d "$source" ]]; then
+      echo "  Copying: $dir ..."
+      mkdir -p "$(dirname "$target")"
+      cp -R "$source" "$target"
+      echo "  Copied: $dir"
+    fi
+  done
+}
+
+# Get worktree path for a given name
+get_worktree_path() {
+  local name="$1"
+  local project
+  project=$(get_project_name)
+  echo "$WORKTREE_BASE/$project/$name"
+}
+
+# Create a new worktree
+cmd_create() {
+  local name="${1:-}"
+
+  if [[ -z "$name" ]]; then
+    echo "Error: Missing worktree name"
+    echo "Usage: wt create <name>"
+    exit 1
+  fi
+
+  local project main_worktree worktree_path current_branch
+
+  project=$(get_project_name)
+  main_worktree=$(get_main_worktree)
+  worktree_path="$WORKTREE_BASE/$project/$name"
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+  # Check if worktree already exists
+  if [[ -d "$worktree_path" ]]; then
+    echo "Error: Worktree already exists at $worktree_path"
+    exit 1
+  fi
+
+  # Create project directory if needed
+  mkdir -p "$WORKTREE_BASE/$project"
+
+  # Load config
+  load_config "$main_worktree"
+
+  echo "Creating worktree '$name' for project '$project'..."
+  echo "  Base branch: $current_branch"
+  echo ""
+
+  # Check if branch exists
+  if git show-ref --verify --quiet "refs/heads/$name"; then
+    echo "  Using existing branch: $name"
+    git worktree add "$worktree_path" "$name"
+  else
+    echo "  Creating new branch: $name (from $current_branch)"
+    git worktree add -b "$name" "$worktree_path"
+  fi
+
+  # Mark worktree for cleanup if subsequent steps fail
+  CLEANUP_WORKTREE="$worktree_path"
+
+  echo ""
+  echo "Setting up worktree..."
+
+  # Copy dependency directories
+  copy_dirs "$main_worktree" "$worktree_path"
+
+  # Offer to copy config files
+  copy_files "$main_worktree" "$worktree_path"
+
+  # Success - don't clean up
+  CLEANUP_WORKTREE=""
+
+  echo ""
+  echo "Worktree created at: $worktree_path"
+  echo ""
+  echo "To start working:"
+  echo "  cd $worktree_path"
+}
+
+# Remove a worktree
+cmd_remove() {
+  local name="${1:-}"
+
+  if [[ -z "$name" ]]; then
+    echo "Error: Missing worktree name"
+    echo "Usage: wt remove <name>"
+    exit 1
+  fi
+
+  local worktree_path
+  worktree_path=$(get_worktree_path "$name")
+
+  if [[ ! -d "$worktree_path" ]]; then
+    echo "Error: Worktree not found at $worktree_path"
+    exit 1
+  fi
+
+  echo "Removing worktree at $worktree_path..."
+  git worktree remove "$worktree_path"
+  echo "Worktree removed."
+
+  # Ask about branch deletion
+  if git show-ref --verify --quiet "refs/heads/$name"; then
+    echo ""
+    read -rp "Delete branch '$name' as well? [y/N] " delete_branch
+    if [[ "$delete_branch" =~ ^[Yy]$ ]]; then
+      git branch -d "$name" 2>/dev/null || git branch -D "$name"
+      echo "Branch '$name' deleted."
+    fi
+  fi
+}
+
+# Merge a worktree branch into main and clean up
+cmd_merge() {
+  local name="${1:-}"
+
+  if [[ -z "$name" ]]; then
+    echo "Error: Missing worktree name"
+    echo "Usage: wt merge <name>"
+    exit 1
+  fi
+
+  local worktree_path main_worktree main_branch
+  worktree_path=$(get_worktree_path "$name")
+  main_worktree=$(get_main_worktree)
+
+  if [[ ! -d "$worktree_path" ]]; then
+    echo "Error: Worktree not found at $worktree_path"
+    exit 1
+  fi
+
+  # Detect main branch name
+  if git show-ref --verify --quiet "refs/heads/main"; then
+    main_branch="main"
+  elif git show-ref --verify --quiet "refs/heads/master"; then
+    main_branch="master"
+  else
+    echo "Error: Could not find main or master branch"
+    exit 1
+  fi
+
+  echo "Merging '$name' into '$main_branch'..."
+  echo ""
+
+  # Perform merge from main worktree
+  cd "$main_worktree" || exit 1
+  git checkout "$main_branch"
+
+  if ! git merge "$name"; then
+    echo ""
+    echo "Error: Merge failed. Resolve conflicts and run:"
+    echo "  git merge --continue"
+    echo "  wt remove $name"
+    exit 1
+  fi
+
+  echo ""
+  echo "Merge successful. Cleaning up..."
+
+  # Remove worktree and branch
+  git worktree remove "$worktree_path"
+  echo "  Removed worktree: $worktree_path"
+
+  git branch -d "$name"
+  echo "  Deleted branch: $name"
+
+  echo ""
+  echo "Done."
+}
+
+# List worktrees for current project
+cmd_list() {
+  local project main_worktree
+  project=$(get_project_name)
+  main_worktree=$(get_main_worktree)
+  local project_path="$WORKTREE_BASE/$project"
+
+  echo "Worktrees for '$project':"
+  echo ""
+
+  local found=0
+  if [[ -d "$project_path" ]]; then
+    while read -r line; do
+      if [[ "$line" == "$project_path"* ]]; then
+        echo "  $line"
+        found=1
+      fi
+    done < <(git worktree list)
+  fi
+
+  if [[ $found -eq 0 ]]; then
+    echo "  (none)"
+  fi
+
+  echo ""
+  echo "Main worktree:"
+  echo "  $(git worktree list | head -1)"
+}
+
+# Output worktree path
+cmd_find() {
+  local name="${1:-}"
+
+  if [[ -z "$name" ]]; then
+    echo "Error: Missing worktree name" >&2
+    echo "Usage: wt find <name>" >&2
+    exit 1
+  fi
+
+  local worktree_path
+  worktree_path=$(get_worktree_path "$name")
+
+  if [[ ! -d "$worktree_path" ]]; then
+    echo "Error: Worktree not found at $worktree_path" >&2
+    exit 1
+  fi
+
+  echo "$worktree_path"
+}
+
+# Run a command in a worktree
+cmd_run() {
+  local name="${1:-}"
+
+  if [[ -z "$name" ]]; then
+    echo "Error: Missing worktree name" >&2
+    echo "Usage: wt exec <name> <command>" >&2
+    exit 1
+  fi
+
+  shift
+  local cmd="${1:-}"
+
+  if [[ -z "$cmd" ]]; then
+    echo "Error: Missing command" >&2
+    echo "Usage: wt exec <name> <command>" >&2
+    exit 1
+  fi
+
+  local worktree_path
+  worktree_path=$(get_worktree_path "$name")
+
+  if [[ ! -d "$worktree_path" ]]; then
+    echo "Error: Worktree not found at $worktree_path" >&2
+    exit 1
+  fi
+
+  cd "$worktree_path" && "$@"
+}
+
+main() {
+  local cmd="${1:-}"
+
+  # Commands that don't require a git repository
+  case "$cmd" in
+    find | f)
+      shift
+      cmd_find "$@"
+      return
+      ;;
+    exec | e)
+      shift
+      cmd_run "$@"
+      return
+      ;;
+    claude | c)
+      shift
+      cmd_run "$1" claude
+      return
+      ;;
+    lg)
+      shift
+      cmd_run "$1" lazygit
+      return
+      ;;
+    --help | -h)
+      usage 0
+      ;;
+  esac
+
+  # Must be in a git repository for other commands
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo "Error: Not in a git repository"
+    exit 1
+  fi
+
+  case "$cmd" in
+    new | n)
+      shift
+      cmd_create "$@"
+      ;;
+    remove | r)
+      shift
+      cmd_remove "$@"
+      ;;
+    merge | m)
+      shift
+      cmd_merge "$@"
+      ;;
+    list | l)
+      cmd_list
+      ;;
+    "")
+      usage
+      ;;
+    *)
+      echo "Error: Unknown command '$cmd'"
+      echo ""
+      usage
+      ;;
+  esac
+}
+
+main "$@"
