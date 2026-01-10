@@ -36,7 +36,8 @@ usage() {
 Usage: wt <command> [args]
 
 Commands:
-  new, n <name>      Create a new worktree with branch <name>
+  new, n <name> [-e <cmd>]  Create a new worktree with branch <name>
+                            -e, --exec <cmd>  Run command in worktree after creation
   remove, r <name>   Remove a worktree (prompts to delete branch)
   merge, m <name>    Merge branch into main, remove worktree, delete branch
   list, l            List all worktrees for this project
@@ -57,6 +58,7 @@ Configuration:
 Examples:
   wt new feature-auth       # Create worktree for feature-auth branch
   wt n bugfix-123           # Short form
+  wt n feature -e claude    # Create worktree and run claude in it
   wt list                   # Show all worktrees
   wt remove feature-auth    # Remove worktree
 EOF
@@ -207,11 +209,39 @@ get_worktree_path() {
 
 # Create a new worktree
 cmd_create() {
-  local name="${1:-}"
+  local name=""
+  local exec_cmd=""
+
+  # Parse arguments
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -e|--exec)
+        if [[ -z "${2:-}" ]]; then
+          echo "Error: --exec requires a command"
+          exit 1
+        fi
+        exec_cmd="$2"
+        shift 2
+        ;;
+      -*)
+        echo "Error: Unknown option '$1'"
+        exit 1
+        ;;
+      *)
+        if [[ -z "$name" ]]; then
+          name="$1"
+        else
+          echo "Error: Unexpected argument '$1'"
+          exit 1
+        fi
+        shift
+        ;;
+    esac
+  done
 
   if [[ -z "$name" ]]; then
     echo "Error: Missing worktree name"
-    echo "Usage: wt create <name>"
+    echo "Usage: wt new <name> [-e <cmd>]"
     exit 1
   fi
 
@@ -264,9 +294,17 @@ cmd_create() {
 
   echo ""
   echo "Worktree created at: $worktree_path"
-  echo ""
-  echo "To start working:"
-  echo "  cd $worktree_path"
+
+  # Execute command if provided
+  if [[ -n "$exec_cmd" ]]; then
+    echo ""
+    echo "Running: $exec_cmd"
+    cd "$worktree_path" && exec $exec_cmd
+  else
+    echo ""
+    echo "To start working:"
+    echo "  cd $worktree_path"
+  fi
 }
 
 # Remove a worktree
