@@ -7,22 +7,26 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "which_key": {
+    "delay_ms": 0,
+    "enabled": true,
+  },
   "colorize_brackets": true,
   "show_completions_on_input": true,
   "autosave": "on_focus_change",
   "snippet_sort_order": "top",
   "active_pane_modifiers": {
-    "border_size": 2.0
+    "border_size": 2.0,
   },
   "icon_theme": "Catppuccin Latte",
   "title_bar": {
-    "show_branch_icon": true
+    "show_branch_icon": true,
   },
   "toolbar": {
-    "quick_actions": false
+    "quick_actions": false,
   },
   "tab_bar": {
-    "show": false
+    "show": false,
   },
   "pane_split_direction_vertical": "right",
   "pane_split_direction_horizontal": "down",
@@ -30,7 +34,7 @@
   "tab_size": 2,
   "show_edit_predictions": true,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "restore_on_startup": "none",
   "soft_wrap": "editor_width",
@@ -39,30 +43,30 @@
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
     "model_parameters": [],
-    "enable_feedback": false
+    "enable_feedback": false,
   },
   "theme": "Oxocarbon Dark (IBM Carbon)",
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "vim_mode": true,
   "buffer_font_size": 16,
   "buffer_font_family": "Maple Mono NF",
   "terminal": {
     "font_family": "Maple Mono NF",
-    "font_size": 14
+    "font_size": 14,
   },
   "languages": {
     "Markdown": {
-      "remove_trailing_whitespace_on_save": false
+      "remove_trailing_whitespace_on_save": false,
     },
     "Ruby": {
       "show_edit_predictions": true,
-      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop"]
+      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop"],
     },
     "Python": {
       "language_servers": ["pylsp", "ruff"],
@@ -70,11 +74,11 @@
       "formatter": [
         {
           "language_server": {
-            "name": "ruff"
-          }
-        }
-      ]
-    }
+            "name": "ruff",
+          },
+        },
+      ],
+    },
   },
   "lsp": {
     "ruby-lsp": {
@@ -100,19 +104,19 @@
           "semanticHighlighting": true,
           "signatureHelp": true,
           "typeHierarchy": true,
-          "workspaceSymbol": true
+          "workspaceSymbol": true,
         },
         "featuresConfiguration": {
           "inlayHint": {
             "implicitHashValue": true,
-            "implicitRescue": true
-          }
-        }
-      }
-    }
+            "implicitRescue": true,
+          },
+        },
+      },
+    },
   },
   "file_types": {
     "Dockerfile": ["Dockerfile*"],
-    "YAML": ["*.yml", "*.yaml", "*.yaml.gotmpl"]
-  }
+    "YAML": ["*.yml", "*.yaml", "*.yaml.gotmpl"],
+  },
 }
