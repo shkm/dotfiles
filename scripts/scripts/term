@@ -1,0 +1,13 @@
+#!/bin/bash
+# Open default terminal in current (or specified) directory
+
+dir="${1:-$(pwd)}"
+
+if [[ -d "/Applications/iTerm.app" ]]; then
+    open -a iTerm "$dir"
+elif [[ -d "/Applications/Terminal.app" ]]; then
+    open -a Terminal "$dir"
+else
+    echo "No supported terminal found" >&2
+    exit 1
+fi
