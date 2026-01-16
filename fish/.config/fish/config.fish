@@ -1,9 +1,0 @@
-if status is-interactive
-  # Bindings
-  bind \cX edit_command_buffer
-
-  # FZF bindings but we disable history and use atuin instead.
-  if functions -q fzf_configure_bindings
-    fzf_configure_bindings --directory=\ct --processes=\cs --git_log=\cg
-  end
-end
