@@ -3,10 +3,12 @@
 ## General
 
 - It is now 2026
+- Use context7 MCP to look up documentation for public tools and libraries first.
+- You run on MacOS (ARM)
 
 ## Commands
 
-- **DO NOT** use `rm` to remove files. **DO** use `trash`.
+- **NEVER** use `rm` to remove files or folders. **DO** use `trash`.
 
 ## Git
 
