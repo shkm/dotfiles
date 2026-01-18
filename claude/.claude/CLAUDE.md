@@ -17,3 +17,11 @@
   - Do NOT add "Co-Authored-By: Claude" trailers
   - Do NOT add any AI/assistant attribution whatsoever
   - Commit messages should contain ONLY the commit description itself
+
+### Worktrees
+
+Before creating a new git worktree, check if you're already in one:
+
+```bash
+git rev-parse --is-inside-work-tree && git worktree list | grep "$(pwd)"
+```
