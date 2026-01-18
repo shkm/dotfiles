@@ -11,7 +11,7 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 WORKTREE_BASE="$HOME/.worktrees"
 
 # Default patterns (can be overridden by .wtconfig)
-DEFAULT_COPY_FILES=".env .env.* .envrc"
+DEFAULT_COPY_FILES=".env .env.* .envrc .claude/settings.local.json"
 DEFAULT_COPY_DIRS="node_modules deps _build vendor/bundle _deps build/dev"
 
 # Track worktree being created for cleanup on failure
@@ -120,10 +120,10 @@ load_config() {
       value="${value#\'}"
       value="${value%\'}"
       case "$key" in
-        COPY_FILES) COPY_FILES="$value" ;;
-        COPY_DIRS) COPY_DIRS="$value" ;;
+      COPY_FILES) COPY_FILES="$value" ;;
+      COPY_DIRS) COPY_DIRS="$value" ;;
       esac
-    done < "$config_file"
+    done <"$config_file"
   fi
 }
 
@@ -215,27 +215,27 @@ cmd_create() {
   # Parse arguments
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      -e|--exec)
-        if [[ -z "${2:-}" ]]; then
-          echo "Error: --exec requires a command"
-          exit 1
-        fi
-        exec_cmd="$2"
-        shift 2
-        ;;
-      -*)
-        echo "Error: Unknown option '$1'"
+    -e | --exec)
+      if [[ -z "${2:-}" ]]; then
+        echo "Error: --exec requires a command"
         exit 1
-        ;;
-      *)
-        if [[ -z "$name" ]]; then
-          name="$1"
-        else
-          echo "Error: Unexpected argument '$1'"
-          exit 1
-        fi
-        shift
-        ;;
+      fi
+      exec_cmd="$2"
+      shift 2
+      ;;
+    -*)
+      echo "Error: Unknown option '$1'"
+      exit 1
+      ;;
+    *)
+      if [[ -z "$name" ]]; then
+        name="$1"
+      else
+        echo "Error: Unexpected argument '$1'"
+        exit 1
+      fi
+      shift
+      ;;
     esac
   done
 
@@ -483,29 +483,29 @@ main() {
 
   # Commands that don't require a git repository
   case "$cmd" in
-    find | f)
-      shift
-      cmd_find "$@"
-      return
-      ;;
-    exec | e)
-      shift
-      cmd_run "$@"
-      return
-      ;;
-    claude | c)
-      shift
-      cmd_run "$1" claude
-      return
-      ;;
-    lg)
-      shift
-      cmd_run "$1" lazygit
-      return
-      ;;
-    --help | -h)
-      usage 0
-      ;;
+  find | f)
+    shift
+    cmd_find "$@"
+    return
+    ;;
+  exec | e)
+    shift
+    cmd_run "$@"
+    return
+    ;;
+  claude | c)
+    shift
+    cmd_run "$1" claude
+    return
+    ;;
+  lg)
+    shift
+    cmd_run "$1" lazygit
+    return
+    ;;
+  --help | -h)
+    usage 0
+    ;;
   esac
 
   # Must be in a git repository for other commands
@@ -515,29 +515,29 @@ main() {
   fi
 
   case "$cmd" in
-    new | n)
-      shift
-      cmd_create "$@"
-      ;;
-    remove | r)
-      shift
-      cmd_remove "$@"
-      ;;
-    merge | m)
-      shift
-      cmd_merge "$@"
-      ;;
-    list | l)
-      cmd_list
-      ;;
-    "")
-      usage
-      ;;
-    *)
-      echo "Error: Unknown command '$cmd'"
-      echo ""
-      usage
-      ;;
+  new | n)
+    shift
+    cmd_create "$@"
+    ;;
+  remove | r)
+    shift
+    cmd_remove "$@"
+    ;;
+  merge | m)
+    shift
+    cmd_merge "$@"
+    ;;
+  list | l)
+    cmd_list
+    ;;
+  "")
+    usage
+    ;;
+  *)
+    echo "Error: Unknown command '$cmd'"
+    echo ""
+    usage
+    ;;
   esac
 }
 
