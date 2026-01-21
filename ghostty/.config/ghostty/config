@@ -1,4 +1,5 @@
-theme = catppuccin-mocha
+theme = catppuccin-mocha.conf
+font-family = "Maple Mono NF"
 keybind = ctrl+|=new_split:right
 keybind = ctrl+_=new_split:down
 
