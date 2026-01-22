@@ -9,6 +9,8 @@ if status is-interactive
     abbr gsha 'git rev-parse HEAD'
     alias ll "eza -lga --group-directories-first"
     abbr ls ll
+    abbr o open
+    abbr o. "open ."
     abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
     abbr rm trash
     abbr v nvim
