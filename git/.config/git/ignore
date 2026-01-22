@@ -90,3 +90,5 @@ mise.toml
 .aider*
 
 **/.claude/settings.local.json
+/.worktrees
+/.onemanband/config.local.jsonc
