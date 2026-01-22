@@ -12,6 +12,7 @@
 
 ## Git
 
+- When working on an issue (e.g., "work on issue #123"), include "Fixes #<num>" in the commit message
 - **NEVER** add Claude Code attribution to commits. This means:
   - Do NOT add "Generated with Claude Code" to commit messages
   - Do NOT add "Co-Authored-By: Claude" trailers
