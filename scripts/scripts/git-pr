@@ -2,7 +2,7 @@
 # Opens the PR page for the current branch
 
 if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
-  url=$(git config remote.origin.url | sed -E "s~[^@]*@(.*):(.*)*\..*~https://\1/\2~")
+  url=$(git config remote.origin.url | sed -E -e "s~[^@]*@(.*):(.*)*\..*~https://\1/\2~" -e "s~\.git$~~")
   branch=$(git rev-parse --abbrev-ref HEAD)
 
   open "${url}/compare/${branch}?expand=1"
