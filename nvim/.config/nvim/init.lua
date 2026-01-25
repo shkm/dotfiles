@@ -9,7 +9,7 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
-vim.o.showmode = false
+vim.o.showmode = true
 vim.o.showcmd = false
 vim.o.breakindent = true
 vim.o.undofile = true
@@ -385,6 +385,30 @@ require('lazy').setup({
       }
       vim.cmd.colorscheme 'catppuccin'
     end,
+  },
+
+  -- Popup command line and notifications
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
+    opts = {
+      lsp = {
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true, -- cmdline and popupmenu at top
+        long_message_to_split = true,
+      },
+    },
   },
 
   -- TODO comments
