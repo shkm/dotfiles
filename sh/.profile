@@ -106,12 +106,6 @@ if [ -d "$DOTNET_ROOT" ]; then
   export PATH="$DOTNET_ROOT/tools:$PATH"
 fi
 
-HERD_LITE_ROOT="$HOME/.Users/jamie/.config/herd-lite/bin"
-if [ -d "$HERD_LITE_ROOT" ]; then
-  export PATH="$HERD_LITE_ROOT:$PATH"
-  export PHP_INI_SCAN_DIR="$HERD_LITE_ROOT:$PHP_INI_SCAN_DIR"
-fi
-
 # PHP
 HERD_ROOT="$HOME/Library/Application Support/Herd/bin"
 if [ -d "$HERD_ROOT" ]; then
