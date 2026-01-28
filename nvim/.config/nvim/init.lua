@@ -85,6 +85,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Close gitsigns blame with q or <leader>gb",
+  pattern = "gitsigns-blame",
+  callback = function()
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<leader>gb", "<cmd>close<cr>", { buffer = true, silent = true })
+  end,
+})
+
 -- [[ Install lazy.nvim ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -132,7 +141,20 @@ require("lazy").setup({
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
-        vim.keymap.set("n", "<leader>gb", gs.blame, { buffer = bufnr, desc = "Git blame" })
+
+        local function toggle_blame()
+          -- Find and close any existing gitsigns-blame window
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype == "gitsigns-blame" then
+              vim.api.nvim_win_close(win, true)
+              return
+            end
+          end
+          gs.blame()
+        end
+
+        vim.keymap.set("n", "<leader>gb", toggle_blame, { buffer = bufnr, desc = "Git blame" })
         vim.keymap.set("n", "]h", gs.next_hunk, { buffer = bufnr, desc = "Next hunk" })
         vim.keymap.set("n", "[h", gs.prev_hunk, { buffer = bufnr, desc = "Previous hunk" })
       end,
@@ -147,6 +169,7 @@ require("lazy").setup({
       delay = 0,
       icons = { mappings = vim.g.have_nerd_font },
       spec = {
+        { "<leader>b", group = "Buffer" },
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
         { "<leader>t", group = "Toggle" },
@@ -310,12 +333,12 @@ require("lazy").setup({
     cmd = { "ConformInfo" },
     keys = {
       {
-        "<leader>f",
+        "<leader>bf",
         function()
           require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
-        desc = "Format",
+        desc = "Format buffer",
       },
     },
     opts = {
