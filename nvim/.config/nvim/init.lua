@@ -190,7 +190,6 @@ require("lazy").setup({
 
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find grep" })
       vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find word" })
       vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
@@ -198,7 +197,6 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find diagnostics" })
       vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Find resume" })
       vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "Find recent files" })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find buffers" })
       vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Find in project" })
       vim.keymap.set("n", "<leader>fn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
