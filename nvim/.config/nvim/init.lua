@@ -199,11 +199,7 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Find resume" })
       vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "Find recent files" })
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find buffers" })
-      vim.keymap.set("n", "<leader>/", function()
-        builtin.current_buffer_fuzzy_find(
-          require("telescope.themes").get_dropdown({ winblend = 10, previewer = false })
-        )
-      end, { desc = "Find in buffer" })
+      vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Find in project" })
       vim.keymap.set("n", "<leader>fn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
       end, { desc = "Find nvim config" })
