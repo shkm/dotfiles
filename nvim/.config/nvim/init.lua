@@ -10,7 +10,6 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.showmode = true
-vim.o.showcmd = false
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
