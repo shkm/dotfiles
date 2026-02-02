@@ -105,6 +105,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+
 -- [[ Install lazy.nvim ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -124,29 +125,78 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Plugins ]]
 require("lazy").setup({
-  -- Claude Code integration
+  -- CodeCompanion - AI code assistant
   {
-    "coder/claudecode.nvim",
-    dependencies = { "folke/snacks.nvim" },
-    config = true,
-    keys = {
-      { "<leader>a", nil, desc = "AI/Claude Code" },
-      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-      {
-        "<leader>as",
-        "<cmd>ClaudeCodeTreeAdd<cr>",
-        desc = "Add file",
-        ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
-      },
-      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
+    opts = {
+      adapters = {
+        acp = {
+          claude_code = function()
+            return require("codecompanion.adapters").extend("claude_code", {
+              env = {
+                CLAUDE_CODE_OAUTH_TOKEN = "cmd:security find-generic-password -s ClaudeCodeToken -w",
+              },
+              schema = {
+                model = { default = "claude-opus-4-5-20250514" },
+              },
+            })
+          end,
+        },
+      },
+      interactions = {
+        chat = {
+          adapter = "claude_code",
+        },
+      },
+    },
+    keys = function()
+      local function toggle_chat()
+        -- If already in codecompanion buffer, hide it
+        if vim.bo.filetype == "codecompanion" then
+          vim.cmd("hide")
+          return
+        end
+
+        -- Check for tab-local chat buffer
+        local tab_chat_buf = vim.t.codecompanion_chat_buf
+        if tab_chat_buf and vim.api.nvim_buf_is_valid(tab_chat_buf) then
+          -- Find window in current tab only
+          local wins = vim.fn.win_findbuf(tab_chat_buf)
+          for _, win in ipairs(wins) do
+            if vim.api.nvim_win_get_tabpage(win) == vim.api.nvim_get_current_tabpage() then
+              vim.api.nvim_set_current_win(win)
+              return
+            end
+          end
+          -- Buffer exists but not visible in this tab, show it
+          vim.cmd("vsplit")
+          vim.api.nvim_set_current_buf(tab_chat_buf)
+          return
+        end
+
+        -- No chat for this tab, open new one and track it
+        vim.cmd("CodeCompanionChat")
+        -- Store the new chat buffer for this tab (after it's created)
+        vim.schedule(function()
+          if vim.bo.filetype == "codecompanion" then
+            vim.t.codecompanion_chat_buf = vim.api.nvim_get_current_buf()
+          end
+        end)
+      end
+
+      return {
+        { "<leader>a", nil, desc = "AI" },
+        { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "AI actions" },
+        { "<leader>ac", toggle_chat, desc = "AI chat" },
+        { "<leader>ae", "<cmd>CodeCompanion<cr>", mode = "v", desc = "Edit with AI" },
+        { "<leader>an", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add to AI chat" },
+        { "<C-\\>", toggle_chat, mode = { "n", "i", "v" }, desc = "AI chat" },
+      }
+    end,
   },
 
   -- CodeDiff - VSCode-style diff view
@@ -178,7 +228,15 @@ require("lazy").setup({
     "tadaa/vimade",
     event = "VeryLazy",
     config = function()
-      require("vimade").setup({ recipe = { "minimalist", { animate = true } } })
+      require("vimade").setup({
+        recipe = { "minimalist", { animate = true } },
+        fadelevel = 0.7, -- Milder dimming (0.4 is default, 1.0 is no fade)
+        blocklist = {
+          codecompanion = {
+            buf_opts = { filetype = { "codecompanion" } },
+          },
+        },
+      })
     end,
   },
 
@@ -226,38 +284,126 @@ require("lazy").setup({
       words = { enabled = true },
     },
     keys = {
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
-      { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find word" },
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find buffers" },
-      { "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
-      { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
-      { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
-      { "<leader>fr", function() Snacks.picker.resume() end, desc = "Find resume" },
-      { "<leader>f.", function() Snacks.picker.recent() end, desc = "Find recent files" },
-      { "<leader>/", function() Snacks.picker.grep() end, desc = "Find in project" },
-      { "<leader>fn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find nvim config" },
-      { "<leader>ft", function()
-        local tabs = {}
-        local current = vim.api.nvim_get_current_tabpage()
-        for i, tabnr in ipairs(vim.api.nvim_list_tabpages()) do
-          local name = vim.t[tabnr].name
-          if not name then
-            local ok, cwd = pcall(vim.fn.getcwd, -1, tabnr)
-            name = ok and vim.fn.fnamemodify(cwd, ":t") or tostring(i)
+      {
+        "<leader>ff",
+        function()
+          Snacks.picker.files()
+        end,
+        desc = "Find files",
+      },
+      {
+        "<leader>fw",
+        function()
+          Snacks.picker.grep_word()
+        end,
+        desc = "Find word",
+      },
+      {
+        "<leader>fb",
+        function()
+          Snacks.picker.buffers()
+        end,
+        desc = "Find buffers",
+      },
+      {
+        "<leader>fh",
+        function()
+          Snacks.picker.help()
+        end,
+        desc = "Find help",
+      },
+      {
+        "<leader>fk",
+        function()
+          Snacks.picker.keymaps()
+        end,
+        desc = "Find keymaps",
+      },
+      {
+        "<leader>fd",
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = "Find diagnostics",
+      },
+      {
+        "<leader>fr",
+        function()
+          Snacks.picker.resume()
+        end,
+        desc = "Find resume",
+      },
+      {
+        "<leader>f.",
+        function()
+          Snacks.picker.recent()
+        end,
+        desc = "Find recent files",
+      },
+      {
+        "<leader>/",
+        function()
+          Snacks.picker.grep()
+        end,
+        desc = "Find in project",
+      },
+      {
+        "<leader>fn",
+        function()
+          Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+        end,
+        desc = "Find nvim config",
+      },
+      {
+        "<leader>ft",
+        function()
+          local tabs = {}
+          local current = vim.api.nvim_get_current_tabpage()
+          for i, tabnr in ipairs(vim.api.nvim_list_tabpages()) do
+            local name = vim.t[tabnr].name
+            if not name then
+              local ok, cwd = pcall(vim.fn.getcwd, -1, tabnr)
+              name = ok and vim.fn.fnamemodify(cwd, ":t") or tostring(i)
+            end
+            local prefix = tabnr == current and "* " or "  "
+            table.insert(tabs, { display = prefix .. name, tabnr = tabnr })
           end
-          local prefix = tabnr == current and "* " or "  "
-          table.insert(tabs, { display = prefix .. name, tabnr = tabnr })
-        end
-        vim.ui.select(tabs, {
-          prompt = "Tabs:",
-          format_item = function(item) return item.display end,
-        }, function(item)
-          if item then vim.api.nvim_set_current_tabpage(item.tabnr) end
-        end)
-      end, desc = "Find tabs" },
-      { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference", mode = { "n", "t" } },
-      { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference", mode = { "n", "t" } },
-      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+          vim.ui.select(tabs, {
+            prompt = "Tabs:",
+            format_item = function(item)
+              return item.display
+            end,
+          }, function(item)
+            if item then
+              vim.api.nvim_set_current_tabpage(item.tabnr)
+            end
+          end)
+        end,
+        desc = "Find tabs",
+      },
+      {
+        "]]",
+        function()
+          Snacks.words.jump(vim.v.count1)
+        end,
+        desc = "Next reference",
+        mode = { "n", "t" },
+      },
+      {
+        "[[",
+        function()
+          Snacks.words.jump(-vim.v.count1)
+        end,
+        desc = "Prev reference",
+        mode = { "n", "t" },
+      },
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit()
+        end,
+        desc = "Lazygit",
+      },
       { "<leader>gd", "<cmd>CodeDiff<cr>", desc = "Git diff" },
     },
   },
@@ -357,13 +503,25 @@ require("lazy").setup({
 
           map("grn", vim.lsp.buf.rename, "Rename")
           map("gra", vim.lsp.buf.code_action, "Code action", { "n", "x" })
-          map("grr", function() Snacks.picker.lsp_references() end, "References")
-          map("gri", function() Snacks.picker.lsp_implementations() end, "Implementation")
-          map("grd", function() Snacks.picker.lsp_definitions() end, "Definition")
+          map("grr", function()
+            Snacks.picker.lsp_references()
+          end, "References")
+          map("gri", function()
+            Snacks.picker.lsp_implementations()
+          end, "Implementation")
+          map("grd", function()
+            Snacks.picker.lsp_definitions()
+          end, "Definition")
           map("grD", vim.lsp.buf.declaration, "Declaration")
-          map("grt", function() Snacks.picker.lsp_type_definitions() end, "Type definition")
-          map("gO", function() Snacks.picker.lsp_symbols() end, "Document symbols")
-          map("gW", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
+          map("grt", function()
+            Snacks.picker.lsp_type_definitions()
+          end, "Type definition")
+          map("gO", function()
+            Snacks.picker.lsp_symbols()
+          end, "Document symbols")
+          map("gW", function()
+            Snacks.picker.lsp_workspace_symbols()
+          end, "Workspace symbols")
 
           -- Keep traditional Ctrl-] for definition
           map("<C-]>", vim.lsp.buf.definition, "Definition")
