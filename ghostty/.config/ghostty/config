@@ -1,5 +1,5 @@
 theme = catppuccin-mocha.conf
-font-family = "Maple Mono NF"
+font-family = "0xMono Nerd Font"
 keybind = ctrl+|=new_split:right
 keybind = ctrl+_=new_split:down
 
