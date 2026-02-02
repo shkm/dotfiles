@@ -11,6 +11,7 @@ vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.showmode = true
 vim.o.breakindent = true
+vim.o.expandtab = true
 vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -113,6 +114,54 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Plugins ]]
 require("lazy").setup({
+  -- Snacks.nvim - QoL plugins collection
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      bigfile = { enabled = true },
+      indent = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
+      picker = {
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              -- Emacs keybindings in insert mode
+              ["<C-a>"] = { "<Home>", mode = "i", expr = true },
+              ["<C-e>"] = { "<End>", mode = "i", expr = true },
+              ["<C-b>"] = { "<Left>", mode = "i", expr = true },
+              ["<C-f>"] = { "<Right>", mode = "i", expr = true },
+              ["<C-d>"] = { "<Del>", mode = "i", expr = true },
+              ["<C-k>"] = { "<C-o>D", mode = "i", expr = true },
+            },
+          },
+        },
+      },
+      quickfile = { enabled = true },
+      scope = { enabled = true },
+      scroll = { enabled = true },
+      words = { enabled = true },
+    },
+    keys = {
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
+      { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find word" },
+      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find buffers" },
+      { "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
+      { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
+      { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
+      { "<leader>fr", function() Snacks.picker.resume() end, desc = "Find resume" },
+      { "<leader>f.", function() Snacks.picker.recent() end, desc = "Find recent files" },
+      { "<leader>/", function() Snacks.picker.grep() end, desc = "Find in project" },
+      { "<leader>fn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find nvim config" },
+      { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference", mode = { "n", "t" } },
+      { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference", mode = { "n", "t" } },
+    },
+  },
+
   "NMAC427/guess-indent.nvim", -- Detect indent automatically
 
   -- Emacs-style editing in insert/command mode
@@ -177,55 +226,6 @@ require("lazy").setup({
     },
   },
 
-  -- Telescope fuzzy finder
-  {
-    "nvim-telescope/telescope.nvim",
-    event = "VimEnter",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        cond = function()
-          return vim.fn.executable("make") == 1
-        end,
-      },
-      "nvim-telescope/telescope-ui-select.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      local actions = require("telescope.actions")
-      require("telescope").setup({
-        defaults = {
-          mappings = {
-            i = {
-              ["<Esc>"] = actions.close,
-            },
-          },
-        },
-        extensions = {
-          ["ui-select"] = { require("telescope.themes").get_dropdown() },
-        },
-      })
-      pcall(require("telescope").load_extension, "fzf")
-      pcall(require("telescope").load_extension, "ui-select")
-
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-      vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find word" })
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
-      vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
-      vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
-      vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find diagnostics" })
-      vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Find resume" })
-      vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "Find recent files" })
-      vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Find in project" })
-      vim.keymap.set("n", "<leader>fn", function()
-        builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, { desc = "Find nvim config" })
-    end,
-  },
-
   -- LSP
   {
     "folke/lazydev.nvim",
@@ -242,7 +242,6 @@ require("lazy").setup({
       { "mason-org/mason.nvim", opts = {} },
       "mason-org/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim", opts = {} },
       "saghen/blink.cmp",
     },
     config = function()
@@ -256,13 +255,13 @@ require("lazy").setup({
 
           map("grn", vim.lsp.buf.rename, "Rename")
           map("gra", vim.lsp.buf.code_action, "Code action", { "n", "x" })
-          map("grr", require("telescope.builtin").lsp_references, "References")
-          map("gri", require("telescope.builtin").lsp_implementations, "Implementation")
-          map("grd", require("telescope.builtin").lsp_definitions, "Definition")
+          map("grr", function() Snacks.picker.lsp_references() end, "References")
+          map("gri", function() Snacks.picker.lsp_implementations() end, "Implementation")
+          map("grd", function() Snacks.picker.lsp_definitions() end, "Definition")
           map("grD", vim.lsp.buf.declaration, "Declaration")
-          map("grt", require("telescope.builtin").lsp_type_definitions, "Type definition")
-          map("gO", require("telescope.builtin").lsp_document_symbols, "Document symbols")
-          map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+          map("grt", function() Snacks.picker.lsp_type_definitions() end, "Type definition")
+          map("gO", function() Snacks.picker.lsp_symbols() end, "Document symbols")
+          map("gW", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
 
           -- Keep traditional Ctrl-] for definition
           map("<C-]>", vim.lsp.buf.definition, "Definition")
@@ -374,7 +373,17 @@ require("lazy").setup({
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-        ["<Tab>"] = { "accept", "snippet_forward", "fallback" },
+        ["<Tab>"] = {
+          function(cmp)
+            local copilot = require("copilot.suggestion")
+            if copilot.is_visible() then
+              copilot.accept()
+              return true
+            end
+            return cmp.accept() or cmp.snippet_forward()
+          end,
+          "fallback",
+        },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
         -- No Enter to confirm
       },
