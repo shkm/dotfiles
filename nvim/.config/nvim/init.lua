@@ -5,6 +5,10 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
+-- Disable netrw (use oil instead)
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+
 -- [[ Options ]]
 vim.o.number = true
 vim.o.relativenumber = true
@@ -145,9 +149,17 @@ require("lazy").setup({
     },
   },
 
+  -- CodeDiff - VSCode-style diff view
+  {
+    "esmuellert/codediff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "CodeDiff",
+  },
+
   -- Orchard - worktree manager (local dev)
   {
     dir = "~/repos/orchard.nvim",
+    dependencies = { "esmuellert/codediff.nvim" },
     opts = {},
     keys = {
       { "<leader>w", nil, desc = "Worktree" },
@@ -155,6 +167,7 @@ require("lazy").setup({
       { "<leader>wc", "<cmd>Orchard create<cr>", desc = "Create worktree" },
       { "<leader>wp", "<cmd>Orchard pick<cr>", desc = "Pick worktree" },
       { "<leader>wm", "<cmd>Orchard merge<cr>", desc = "Merge to main" },
+      { "<leader>wd", "<cmd>Orchard diff<cr>", desc = "Diff against main" },
     },
   },
 
@@ -234,6 +247,7 @@ require("lazy").setup({
       { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference", mode = { "n", "t" } },
       { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference", mode = { "n", "t" } },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+      { "<leader>gd", "<cmd>CodeDiff<cr>", desc = "Git diff" },
     },
   },
 
@@ -525,6 +539,7 @@ require("lazy").setup({
   -- File explorer (edit directories as buffers)
   {
     "stevearc/oil.nvim",
+    lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
