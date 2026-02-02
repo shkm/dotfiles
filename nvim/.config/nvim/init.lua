@@ -69,6 +69,12 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus up" })
 -- Terminal escape
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-- Terminal window navigation (exit terminal mode and move)
+vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Move focus left" })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move focus down" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move focus up" })
+vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Move focus right" })
+
 -- Diagnostic quickfix
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
 
@@ -139,6 +145,19 @@ require("lazy").setup({
     },
   },
 
+  -- Orchard - worktree manager (local dev)
+  {
+    dir = "~/repos/orchard.nvim",
+    opts = {},
+    keys = {
+      { "<leader>w", nil, desc = "Worktree" },
+      { "<leader>wo", "<cmd>Orchard<cr>", desc = "Orchard sidebar" },
+      { "<leader>wc", "<cmd>Orchard create<cr>", desc = "Create worktree" },
+      { "<leader>wp", "<cmd>Orchard pick<cr>", desc = "Pick worktree" },
+      { "<leader>wm", "<cmd>Orchard merge<cr>", desc = "Merge to main" },
+    },
+  },
+
   -- Snacks.nvim - QoL plugins collection
   {
     "folke/snacks.nvim",
@@ -147,6 +166,17 @@ require("lazy").setup({
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
+      -- Open file in current nvim and close lazygit when editing
+      lazygit = {
+        config = {
+          os = {
+            editPreset = "",
+            editInTerminal = false,
+            edit = "nvim --server $NVIM --remote {{filename}}; nvim --server $NVIM --remote-send 'q'",
+          },
+          promptToReturnFromSubprocess = false,
+        },
+      },
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true },
@@ -182,8 +212,28 @@ require("lazy").setup({
       { "<leader>f.", function() Snacks.picker.recent() end, desc = "Find recent files" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Find in project" },
       { "<leader>fn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find nvim config" },
+      { "<leader>ft", function()
+        local tabs = {}
+        local current = vim.api.nvim_get_current_tabpage()
+        for i, tabnr in ipairs(vim.api.nvim_list_tabpages()) do
+          local name = vim.t[tabnr].name
+          if not name then
+            local ok, cwd = pcall(vim.fn.getcwd, -1, tabnr)
+            name = ok and vim.fn.fnamemodify(cwd, ":t") or tostring(i)
+          end
+          local prefix = tabnr == current and "* " or "  "
+          table.insert(tabs, { display = prefix .. name, tabnr = tabnr })
+        end
+        vim.ui.select(tabs, {
+          prompt = "Tabs:",
+          format_item = function(item) return item.display end,
+        }, function(item)
+          if item then vim.api.nvim_set_current_tabpage(item.tabnr) end
+        end)
+      end, desc = "Find tabs" },
       { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference", mode = { "n", "t" } },
       { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference", mode = { "n", "t" } },
+      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     },
   },
 
@@ -248,6 +298,7 @@ require("lazy").setup({
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
         { "<leader>t", group = "Toggle" },
+        { "<leader>w", group = "Worktree" },
       },
     },
   },
