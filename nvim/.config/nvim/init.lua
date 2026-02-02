@@ -160,15 +160,26 @@ require("lazy").setup({
   {
     dir = "~/repos/orchard.nvim",
     dependencies = { "esmuellert/codediff.nvim" },
+    event = "VeryLazy",
+    cmd = "Orchard",
     opts = {},
     keys = {
       { "<leader>w", nil, desc = "Worktree" },
-      { "<leader>wo", "<cmd>Orchard<cr>", desc = "Orchard sidebar" },
       { "<leader>wc", "<cmd>Orchard create<cr>", desc = "Create worktree" },
-      { "<leader>wp", "<cmd>Orchard pick<cr>", desc = "Pick worktree" },
+      { "<leader>wf", "<cmd>Orchard pick<cr>", desc = "Find worktree" },
+      { "<leader>fw", "<cmd>Orchard pick<cr>", desc = "Find worktree" },
       { "<leader>wm", "<cmd>Orchard merge<cr>", desc = "Merge to main" },
-      { "<leader>wd", "<cmd>Orchard diff<cr>", desc = "Diff against main" },
+      { "<leader>wd", "<cmd>Orchard delete<cr>", desc = "Delete worktree" },
     },
+  },
+
+  -- Vimade - fade inactive windows
+  {
+    "tadaa/vimade",
+    event = "VeryLazy",
+    config = function()
+      require("vimade").setup({ recipe = { "minimalist", { animate = true } } })
+    end,
   },
 
   -- Snacks.nvim - QoL plugins collection
