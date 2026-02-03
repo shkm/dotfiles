@@ -30,7 +30,8 @@
     "security-guidance@claude-plugins-official": true,
     "repomix-mcp@repomix": true,
     "swift-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "spinnerVerbs": {
     "mode": "replace",
