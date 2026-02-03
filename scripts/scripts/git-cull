@@ -1,0 +1,159 @@
+#!/bin/bash
+# git cull - removes stale worktrees and branches that are gone/merged
+
+set -e
+
+# Detect main branch from origin/HEAD or fall back to main/master
+main_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+if [[ -z "$main_branch" ]]; then
+  if git show-ref --verify --quiet refs/heads/main; then
+    main_branch="main"
+  elif git show-ref --verify --quiet refs/heads/master; then
+    main_branch="master"
+  else
+    echo "Could not detect main branch" >&2
+    exit 1
+  fi
+fi
+
+echo "Using main branch: $main_branch"
+echo
+
+# Fetch and prune remote-tracking refs
+git fetch --prune -q
+
+# Prune stale worktree entries
+git worktree prune
+
+current_branch=$(git branch --show-current)
+main_worktree=$(git worktree list --porcelain | head -1 | cut -d' ' -f2-)
+
+wt_to_remove=()
+wt_to_keep=()
+br_to_remove=()
+br_to_keep=()
+
+# Track branches that have worktrees
+branches_with_worktrees=()
+
+# Check worktrees first
+while IFS= read -r line; do
+  [[ -z "$line" ]] && continue
+
+  path=$(echo "$line" | awk '{print $1}')
+  branch=$(echo "$line" | sed 's/.*\[//' | sed 's/\].*//')
+
+  # Skip main worktree and detached HEAD
+  [[ "$path" == "$main_worktree" ]] && continue
+  [[ "$branch" == "detached HEAD" ]] && continue
+
+  branches_with_worktrees+=("$branch")
+
+  # Count commits in branch that aren't in main
+  ahead=$(git log "$main_branch..$branch" --oneline 2>/dev/null | wc -l | tr -d ' ')
+
+  if [[ "$ahead" -eq 0 ]]; then
+    wt_to_remove+=("$path|$branch")
+  else
+    wt_to_keep+=("$path|$branch|$ahead")
+  fi
+done < <(git worktree list)
+
+# Check branches (excluding those with worktrees)
+while IFS= read -r branch; do
+  [[ -z "$branch" ]] && continue
+  [[ "$branch" == "$main_branch" ]] && continue
+  [[ "$branch" == "$current_branch" ]] && continue
+
+  # Skip branches that have worktrees (handled above)
+  skip=false
+  for wt_branch in "${branches_with_worktrees[@]}"; do
+    [[ "$branch" == "$wt_branch" ]] && skip=true && break
+  done
+  [[ "$skip" == true ]] && continue
+
+  # Check if upstream is gone
+  upstream=$(git for-each-ref --format='%(upstream:track)' "refs/heads/$branch")
+
+  if [[ "$upstream" == "[gone]" ]]; then
+    br_to_remove+=("$branch|gone")
+  else
+    ahead=$(git log "$main_branch..$branch" --oneline 2>/dev/null | wc -l | tr -d ' ')
+    if [[ "$ahead" -eq 0 ]]; then
+      br_to_remove+=("$branch|merged")
+    else
+      br_to_keep+=("$branch|$ahead")
+    fi
+  fi
+done < <(git for-each-ref --format='%(refname:short)' refs/heads/)
+
+# Display summary
+has_output=false
+
+if [[ ${#wt_to_keep[@]} -gt 0 ]]; then
+  has_output=true
+  echo "Keeping worktrees (have unique commits):"
+  for item in "${wt_to_keep[@]}"; do
+    path=$(echo "$item" | cut -d'|' -f1)
+    branch=$(echo "$item" | cut -d'|' -f2)
+    ahead=$(echo "$item" | cut -d'|' -f3)
+    echo "  $branch ($ahead ahead) - $path"
+  done
+  echo
+fi
+
+if [[ ${#br_to_keep[@]} -gt 0 ]]; then
+  has_output=true
+  echo "Keeping branches (have unique commits):"
+  for item in "${br_to_keep[@]}"; do
+    branch=$(echo "$item" | cut -d'|' -f1)
+    ahead=$(echo "$item" | cut -d'|' -f2)
+    echo "  $branch ($ahead ahead)"
+  done
+  echo
+fi
+
+if [[ ${#wt_to_remove[@]} -eq 0 && ${#br_to_remove[@]} -eq 0 ]]; then
+  echo "Nothing to remove."
+  exit 0
+fi
+
+if [[ ${#wt_to_remove[@]} -gt 0 ]]; then
+  has_output=true
+  echo "Will remove worktrees (no unique commits):"
+  for item in "${wt_to_remove[@]}"; do
+    path=$(echo "$item" | cut -d'|' -f1)
+    branch=$(echo "$item" | cut -d'|' -f2)
+    echo "  $branch - $path"
+  done
+  echo
+fi
+
+if [[ ${#br_to_remove[@]} -gt 0 ]]; then
+  has_output=true
+  echo "Will remove branches:"
+  for item in "${br_to_remove[@]}"; do
+    branch=$(echo "$item" | cut -d'|' -f1)
+    reason=$(echo "$item" | cut -d'|' -f2)
+    echo "  $branch ($reason)"
+  done
+  echo
+fi
+
+# Remove worktrees (and their branches)
+for item in "${wt_to_remove[@]}"; do
+  path=$(echo "$item" | cut -d'|' -f1)
+  branch=$(echo "$item" | cut -d'|' -f2)
+  echo "Removing worktree: $path ($branch)"
+  git worktree remove "$path" --force
+  git branch -D "$branch" 2>/dev/null || true
+done
+
+# Remove branches
+for item in "${br_to_remove[@]}"; do
+  branch=$(echo "$item" | cut -d'|' -f1)
+  echo "Removing branch: $branch"
+  git branch -D "$branch"
+done
+
+echo "Done."
