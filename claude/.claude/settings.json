@@ -5,7 +5,7 @@
       "/Users/jamie/.workspaces"
     ]
   },
-  "model": "haiku",
+  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -31,6 +31,12 @@
     "repomix-mcp@repomix": true,
     "swift-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      ""
+    ]
   },
   "terminal": {
     "vimMode": false
