@@ -1,8 +1,26 @@
 {
-  "model": "opus",
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "/Users/jamie/.workspaces"
+    ]
+  },
+  "model": "haiku",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/scripts/claude-notify"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
-    "command": "input=$(cat); model=$(echo \"$input\" | jq -r '.model.display_name'); worktree=$(echo \"$input\" | jq -r '.workspace.current_dir'); branch=$(cd \"$worktree\" && git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"no-git\"); cost=$(printf '%.2f' $(echo \"$input\" | jq -r '.cost.total_cost_usd // 0')); usage=$(echo \"$input\" | jq '.context_window.current_usage'); if [ \"$usage\" != \"null\" ]; then context_tokens=$(echo \"$usage\" | jq '.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens'); else context_tokens=0; fi; context_window=$(echo \"$input\" | jq -r '.context_window.context_window_size'); if [ \"$context_tokens\" -gt 0 ] && [ \"$context_window\" -gt 0 ]; then context_pct=$((context_tokens * 100 / context_window)); else context_pct=0; fi; if [ \"$context_tokens\" -ge 1000 ]; then tokens_short=\"$((context_tokens / 1000))k\"; else tokens_short=\"$context_tokens\"; fi; if [ \"$context_pct\" -le 33 ]; then pct_color=$'\\033[32m'; elif [ \"$context_pct\" -le 66 ]; then pct_color=$'\\033[33m'; else pct_color=$'\\033[31m'; fi; printf '\\033[36m%s\\033[0m · \\033[35m%s\\033[0m · \\033[33m%s\\033[0m · \\033[34m%s\\033[0m · %s%s%%\\033[0m · \\033[32m$%s\\033[0m' \"$model\" \"$(basename \"$worktree\")\" \"$branch\" \"$tokens_short\" \"$pct_color\" \"$context_pct\" \"$cost\""
+    "command": "input=$(cat); model=$(echo \"$input\" | jq -r '.model.display_name'); worktree=$(echo \"$input\" | jq -r '.workspace.current_dir'); branch=$(cd \"$worktree\" && git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"no-git\"); usage=$(echo \"$input\" | jq '.context_window.current_usage'); if [ \"$usage\" != \"null\" ]; then context_tokens=$(echo \"$usage\" | jq '.input_tokens + .cache_creation_input_tokens + .cache_read_input_tokens'); else context_tokens=0; fi; if [ \"$context_tokens\" -ge 1000 ]; then tokens_short=\"$((context_tokens / 1000))k\"; else tokens_short=\"$context_tokens\"; fi; printf '\\033[36m%s\\033[0m · \\033[35m%s\\033[0m · \\033[33m%s\\033[0m · \\033[34m%s\\033[0m' \"$model\" \"$(basename \"$worktree\")\" \"$branch\" \"$tokens_short\""
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
@@ -14,10 +32,8 @@
     "swift-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true
   },
-  "includePrerelease": false,
-  "permissions": {
-    "additionalDirectories": [
-      "/Users/jamie/.workspaces"
-    ]
-  }
+  "terminal": {
+    "vimMode": false
+  },
+  "includePrerelease": false
 }

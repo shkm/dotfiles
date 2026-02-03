@@ -1,0 +1,88 @@
+#!/bin/bash
+# Claude notification script for kitty + neovim
+# Sends bell/notification when Claude finishes, unless you're focused on it
+#
+# Requirements:
+#   - kitty with remote control enabled (allow_remote_control yes, listen_on unix:/tmp/mykitty)
+#   - jq for parsing kitty state
+#   - For neovim support, add this to init.lua:
+#
+#     function _G.forward_bell(pid)
+#       io.stdout:write("\a")
+#       io.stdout:flush()
+#       local function get_ppid(p)
+#         local handle = io.popen("ps -o ppid= -p " .. p .. " 2>/dev/null")
+#         if handle then
+#           local result = handle:read("*a")
+#           handle:close()
+#           return tonumber(result:match("%d+"))
+#         end
+#       end
+#       local ancestors = {}
+#       local current_pid = pid
+#       while current_pid and current_pid > 1 do
+#         ancestors[current_pid] = true
+#         current_pid = get_ppid(current_pid)
+#       end
+#       local current_tab = vim.api.nvim_get_current_tabpage()
+#       for _, tabnr in ipairs(vim.api.nvim_list_tabpages()) do
+#         if tabnr ~= current_tab then
+#           for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabnr)) do
+#             local buf = vim.api.nvim_win_get_buf(win)
+#             if vim.bo[buf].buftype == "terminal" then
+#               local job_pid = vim.b[buf].terminal_job_pid
+#               if job_pid and ancestors[job_pid] then
+#                 vim.t[tabnr].has_bell = true
+#                 vim.cmd("redrawtabline")
+#                 return
+#               end
+#             end
+#           end
+#         end
+#       end
+#       vim.cmd("redrawtabline")
+#     end
+#
+#   - Your tabline should check vim.t[tabnr].has_bell for bell indicator
+#   - Add TabEnter autocmd to clear: vim.api.nvim_create_autocmd("TabEnter", {callback = function() vim.t.has_bell = nil end})
+#
+# Usage: Add to Claude's Stop hook in settings.json:
+#   "hooks": { "Stop": [{ "hooks": [{ "type": "command", "command": "~/scripts/claude-notify" }] }] }
+
+# Get kitty state - exit silently if not in kitty
+kitty_output=$(kitty @ ls --match=id:$KITTY_WINDOW_ID 2>/dev/null)
+[ -z "$kitty_output" ] && exit 0
+
+kitty_focused=$(echo "$kitty_output" | jq -r '.[0].is_focused')
+tab_focused=$(echo "$kitty_output" | jq -r '.[0].tabs[0].is_focused')
+
+# Check if running inside neovim and focused on Claude's terminal
+if [ -n "$NVIM" ]; then
+    current_job_pid=$(nvim --server "$NVIM" --remote-expr "get(b:, 'terminal_job_pid', 0)" 2>/dev/null)
+    # Only skip notification if BOTH kitty is focused AND we're on Claude's terminal
+    if [ -n "$current_job_pid" ] && [ "$current_job_pid" != "0" ] && [ "$tab_focused" = "true" ] && [ "$kitty_focused" = "true" ]; then
+        # Walk up process tree to see if current_job_pid is an ancestor
+        check_pid=$$
+        while [ "$check_pid" -gt 1 ]; do
+            [ "$check_pid" = "$current_job_pid" ] && exit 0
+            check_pid=$(ps -o ppid= -p "$check_pid" 2>/dev/null | tr -d ' ')
+        done
+    fi
+fi
+
+# Not in nvim - check kitty focus
+if [ -z "$NVIM" ] && [ "$tab_focused" = "true" ] && [ "$kitty_focused" = "true" ]; then
+    exit 0
+fi
+
+# Send bell
+if [ -n "$NVIM" ]; then
+    nvim --server "$NVIM" --remote-expr "execute(\"lua _G.forward_bell($$)\")" 2>/dev/null
+else
+    printf '\a' > /dev/tty 2>/dev/null
+fi
+
+# If kitty itself is not focused, send system notification
+if [ "$kitty_focused" != "true" ]; then
+    kitty @ kitten notify "Claude" "Waiting for input"
+fi

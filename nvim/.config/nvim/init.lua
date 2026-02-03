@@ -61,23 +61,34 @@ vim.keymap.set("n", "0", "^", { noremap = true, silent = true })
 -- Alternate file
 vim.keymap.set("n", "<Leader><Tab>", "<C-^>", { noremap = true, silent = true, desc = "Alternate file" })
 
+-- Exit insert/terminal mode with jk
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set("t", "jk", "<C-\\><C-n>", { noremap = true, silent = true })
+
 -- Clear search highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Window navigation
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus left" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus right" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus down" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus up" })
+-- Window navigation (handled by smart-splits for Kitty integration)
 
 -- Terminal escape
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Terminal window navigation (exit terminal mode and move)
-vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Move focus left" })
-vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move focus down" })
-vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move focus up" })
-vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Move focus right" })
+-- Terminal reflow - force resize to trigger reflow
+local function terminal_reflow()
+  local win = vim.api.nvim_get_current_win()
+  local height = vim.api.nvim_win_get_height(win)
+  vim.api.nvim_win_set_height(win, height - 1)
+  vim.api.nvim_win_set_height(win, height)
+end
+vim.keymap.set({ "n", "t" }, "<C-S-l>", terminal_reflow, { desc = "Reflow terminal" })
+
+-- Terminal conveniences (I to enter insert at start of line)
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.keymap.set("n", "I", "i<C-a>", { buffer = true, noremap = true, silent = true, desc = "Enter terminal, go to start of line" })
+  end,
+})
+
 
 -- Diagnostic quickfix
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
@@ -105,6 +116,85 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "TermLeave", "WinLeave" }, {
+  desc = "Switch to normal mode when leaving terminal",
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.cmd("stopinsert")
+    end
+  end,
+})
+
+-- Forward bell to kitty and mark the tab containing the calling terminal
+function _G.forward_bell(pid)
+  io.stdout:write("\a")
+  io.stdout:flush()
+
+  -- Find which terminal buffer owns this PID by walking up the process tree
+  local function get_ppid(p)
+    local handle = io.popen("ps -o ppid= -p " .. p .. " 2>/dev/null")
+    if handle then
+      local result = handle:read("*a")
+      handle:close()
+      return tonumber(result:match("%d+"))
+    end
+  end
+
+  -- Build set of ancestor PIDs
+  local ancestors = {}
+  local current_pid = pid
+  while current_pid and current_pid > 1 do
+    ancestors[current_pid] = true
+    current_pid = get_ppid(current_pid)
+  end
+
+  -- Find terminal buffer whose job PID is in our ancestor chain
+  local current_tab = vim.api.nvim_get_current_tabpage()
+  for _, tabnr in ipairs(vim.api.nvim_list_tabpages()) do
+    if tabnr ~= current_tab then
+      for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tabnr)) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        if vim.bo[buf].buftype == "terminal" then
+          local job_pid = vim.b[buf].terminal_job_pid
+          if job_pid and ancestors[job_pid] then
+            vim.t[tabnr].has_bell = true
+            vim.cmd("redrawtabline")
+            return
+          end
+        end
+      end
+    end
+  end
+  vim.cmd("redrawtabline")
+end
+
+vim.api.nvim_create_autocmd("TermRequest", {
+  desc = "Forward terminal bells to kitty and mark vim tabs",
+  callback = function(args)
+    if args.data == "\x07" then
+      _G.forward_bell()
+    end
+  end,
+})
+
+-- Clear bell indicator when entering a tab
+vim.api.nvim_create_autocmd("TabEnter", {
+  desc = "Clear bell indicator on tab enter",
+  callback = function()
+    vim.t.has_bell = nil
+  end,
+})
+
+-- Test command: run `:TestBell` in a terminal buffer to test notifications
+vim.api.nvim_create_user_command("TestBell", function()
+  local chan = vim.b.terminal_job_id
+  if chan then
+    vim.api.nvim_chan_send(chan, "printf '\\a'\n")
+  else
+    vim.notify("Not in a terminal buffer", vim.log.levels.WARN)
+  end
+end, {})
+
 
 -- [[ Install lazy.nvim ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -125,77 +215,59 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Plugins ]]
 require("lazy").setup({
-  -- CodeCompanion - AI code assistant
+  -- Claude Code - AI assistant terminal integration
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
+    "greggh/claude-code.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      adapters = {
-        acp = {
-          claude_code = function()
-            return require("codecompanion.adapters").extend("claude_code", {
-              env = {
-                CLAUDE_CODE_OAUTH_TOKEN = "cmd:security find-generic-password -s ClaudeCodeToken -w",
-              },
-              schema = {
-                model = { default = "claude-opus-4-5-20250514" },
-              },
-            })
-          end,
-        },
+      window = {
+        position = "botright",
+        split_ratio = 0.75,
+        enter_insert = false,
       },
-      interactions = {
-        chat = {
-          adapter = "claude_code",
+      keymaps = {
+        toggle = {
+          normal = "<C-'>",
+          terminal = "<C-'>",
+          variants = {},
         },
       },
     },
-    keys = function()
-      local function toggle_chat()
-        -- If already in codecompanion buffer, hide it
-        if vim.bo.filetype == "codecompanion" then
-          vim.cmd("hide")
-          return
-        end
+    keys = {
+      { "<leader>a", nil, desc = "AI" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Claude Code" },
+      { "<leader>ar", "<cmd>ClaudeCodeResume<cr>", desc = "Resume conversation" },
+    },
+  },
 
-        -- Check for tab-local chat buffer
-        local tab_chat_buf = vim.t.codecompanion_chat_buf
-        if tab_chat_buf and vim.api.nvim_buf_is_valid(tab_chat_buf) then
-          -- Find window in current tab only
-          local wins = vim.fn.win_findbuf(tab_chat_buf)
-          for _, win in ipairs(wins) do
-            if vim.api.nvim_win_get_tabpage(win) == vim.api.nvim_get_current_tabpage() then
-              vim.api.nvim_set_current_win(win)
-              return
-            end
+  -- Smart splits - seamless navigation with Kitty (not lazy-loaded for IS_NVIM var)
+  {
+    "mrjones2014/smart-splits.nvim",
+    lazy = false,
+    build = "./kitty/install-kittens.bash",
+    opts = {
+      at_edge = "stop",
+    },
+    config = function(_, opts)
+      require("smart-splits").setup(opts)
+      -- Navigation (normal mode only - use jk or Esc to exit terminal insert first)
+      local function nav_with_stopinsert(direction)
+        return function()
+          if vim.bo.buftype == "terminal" then
+            vim.cmd("stopinsert")
           end
-          -- Buffer exists but not visible in this tab, show it
-          vim.cmd("vsplit")
-          vim.api.nvim_set_current_buf(tab_chat_buf)
-          return
+          require("smart-splits")["move_cursor_" .. direction]()
         end
-
-        -- No chat for this tab, open new one and track it
-        vim.cmd("CodeCompanionChat")
-        -- Store the new chat buffer for this tab (after it's created)
-        vim.schedule(function()
-          if vim.bo.filetype == "codecompanion" then
-            vim.t.codecompanion_chat_buf = vim.api.nvim_get_current_buf()
-          end
-        end)
       end
-
-      return {
-        { "<leader>a", nil, desc = "AI" },
-        { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "AI actions" },
-        { "<leader>ac", toggle_chat, desc = "AI chat" },
-        { "<leader>ae", "<cmd>CodeCompanion<cr>", mode = "v", desc = "Edit with AI" },
-        { "<leader>an", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add to AI chat" },
-        { "<C-\\>", toggle_chat, mode = { "n", "i", "v" }, desc = "AI chat" },
-      }
+      vim.keymap.set("n", "<C-h>", nav_with_stopinsert("left"), { desc = "Move to left split" })
+      vim.keymap.set("n", "<C-j>", nav_with_stopinsert("down"), { desc = "Move to below split" })
+      vim.keymap.set("n", "<C-k>", nav_with_stopinsert("up"), { desc = "Move to above split" })
+      vim.keymap.set("n", "<C-l>", nav_with_stopinsert("right"), { desc = "Move to right split" })
+      -- Resize
+      vim.keymap.set("n", "<C-S-h>", require("smart-splits").resize_left, { desc = "Resize left" })
+      vim.keymap.set("n", "<C-S-j>", require("smart-splits").resize_down, { desc = "Resize down" })
+      vim.keymap.set("n", "<C-S-k>", require("smart-splits").resize_up, { desc = "Resize up" })
+      vim.keymap.set("n", "<C-S-l>", require("smart-splits").resize_right, { desc = "Resize right" })
     end,
   },
 
@@ -219,7 +291,8 @@ require("lazy").setup({
       { "<leader>wf", "<cmd>Orchard pick<cr>", desc = "Find worktree" },
       { "<leader>fw", "<cmd>Orchard pick<cr>", desc = "Find worktree" },
       { "<leader>wm", "<cmd>Orchard merge<cr>", desc = "Merge to main" },
-      { "<leader>wd", "<cmd>Orchard delete<cr>", desc = "Delete worktree" },
+      { "<leader>wd", "<cmd>Orchard diff<cr>", desc = "Diff worktree" },
+      { "<leader>wD", "<cmd>Orchard delete<cr>", desc = "Delete worktree" },
     },
   },
 
@@ -231,11 +304,15 @@ require("lazy").setup({
       require("vimade").setup({
         recipe = { "minimalist", { animate = true } },
         fadelevel = 0.7, -- Milder dimming (0.4 is default, 1.0 is no fade)
-        blocklist = {
-          codecompanion = {
-            buf_opts = { filetype = { "codecompanion" } },
-          },
-        },
+        ncmode = "buffers", -- Use buffer focus instead of window focus
+      })
+      -- Force vimade refresh when entering terminal mode
+      vim.api.nvim_create_autocmd("TermEnter", {
+        callback = function()
+          vim.schedule(function()
+            pcall(vim.cmd, "VimadeRedraw")
+          end)
+        end,
       })
     end,
   },
@@ -280,7 +357,7 @@ require("lazy").setup({
       },
       quickfile = { enabled = true },
       scope = { enabled = true },
-      scroll = { enabled = true },
+      scroll = { enabled = false },
       words = { enabled = true },
     },
     keys = {
@@ -721,6 +798,8 @@ require("lazy").setup({
       },
       keymaps = {
         ["q"] = "actions.close",
+        ["<C-h>"] = false, -- Use global smart-splits mapping instead of toggle hidden
+        ["<C-l>"] = false, -- Use global smart-splits mapping instead of refresh
       },
     },
   },
@@ -739,7 +818,7 @@ require("lazy").setup({
           active = function()
             local git = MiniStatusline.section_git({ trunc_width = 75 })
             local filename = "%f%m"
-            local location = "%2l:%-2v"
+            local location = "%2l:%-2v %p%%"
             return MiniStatusline.combine_groups({
               { strings = { filename } },
               "%=", -- right align
