@@ -1,6 +1,8 @@
 -- Simplified Neovim config based on kickstart.nvim
 -- Migrated from LazyVim
 
+vim.loader.enable()
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
@@ -13,9 +15,12 @@ vim.g.loaded_netrw = 1
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = "a"
-vim.o.showmode = true
+vim.o.showmode = false
 vim.o.breakindent = true
 vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
 vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -30,6 +35,12 @@ vim.o.inccommand = "split"
 vim.o.cursorline = true
 vim.o.scrolloff = 10
 vim.o.confirm = true
+
+vim.filetype.add({
+  pattern = {
+    [".*%.yaml%..*"] = "yaml",
+  },
+})
 
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
@@ -172,7 +183,9 @@ vim.api.nvim_create_autocmd("TermRequest", {
   desc = "Forward terminal bells to kitty and mark vim tabs",
   callback = function(args)
     if args.data == "\x07" then
-      _G.forward_bell()
+      local bufnr = args.buf
+      local pid = vim.b[bufnr].terminal_job_pid
+      _G.forward_bell(pid)
     end
   end,
 })
@@ -485,8 +498,6 @@ require("lazy").setup({
     },
   },
 
-  "NMAC427/guess-indent.nvim", -- Detect indent automatically
-
   -- Emacs-style editing in insert/command mode
   "tpope/vim-rsi",
 
@@ -680,7 +691,7 @@ require("lazy").setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, yaml = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         end
@@ -793,6 +804,9 @@ require("lazy").setup({
     opts = {
       default_file_explorer = true,
       delete_to_trash = true,
+      win_options = {
+        winbar = "%!v:lua.require('oil').get_current_dir()",
+      },
       view_options = {
         show_hidden = true,
       },
@@ -804,6 +818,33 @@ require("lazy").setup({
     },
   },
 
+  -- Lualine - statusline
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        icons_enabled = vim.g.have_nerd_font,
+        theme = "catppuccin",
+      },
+      sections = {
+        lualine_x = { "overseer" },
+      },
+    },
+  },
+
+  -- Overseer - task runner
+  {
+    "stevearc/overseer.nvim",
+    cmd = { "OverseerOpen", "OverseerClose", "OverseerToggle", "OverseerRun" },
+    keys = {
+      { "<leader>e", nil, desc = "Execute" },
+      { "<leader>er", "<cmd>OverseerRun<cr>", desc = "Run task" },
+      { "<leader>eo", "<cmd>OverseerToggle<cr>", desc = "Toggle Overseer" },
+    },
+    opts = {},
+  },
+
   -- Mini.nvim modules
   {
     "echasnovski/mini.nvim",
@@ -811,23 +852,6 @@ require("lazy").setup({
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.surround").setup()
       require("mini.splitjoin").setup() -- gS to toggle
-      local statusline = require("mini.statusline")
-      statusline.setup({
-        use_icons = vim.g.have_nerd_font,
-        content = {
-          active = function()
-            local git = MiniStatusline.section_git({ trunc_width = 75 })
-            local filename = "%f%m"
-            local location = "%2l:%-2v %p%%"
-            return MiniStatusline.combine_groups({
-              { strings = { filename } },
-              "%=", -- right align
-              { strings = { git } },
-              { strings = { location } },
-            })
-          end,
-        },
-      })
     end,
   },
 
