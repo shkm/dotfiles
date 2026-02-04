@@ -120,7 +120,7 @@ function _G.custom_tabline()
     end
 
     -- Bell indicator
-    local bell = vim.t[tabnr].has_bell and "" or ""
+    local bell = vim.t[tabnr].has_bell and "󰂚 " or ""
 
     -- Tab content
     local tab_hl = is_current and "%#TabLineSel#" or "%#TabLine#"
@@ -1052,19 +1052,19 @@ require("lazy").setup({
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      require = "🌙",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤 ",
+      cmd = "󰘳",
+      config = "󱁤",
+      event = "󰃭",
+      ft = "󰉋",
+      init = "󰒓",
+      keys = "",
+      plugin = "󰚥",
+      runtime = "󰌢",
+      require = "󰽥",
+      source = "󰈮",
+      start = "󰑣",
+      task = "󰐃",
+      lazy = "󰒲 ",
     },
   },
 })
