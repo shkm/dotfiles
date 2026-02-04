@@ -6,7 +6,7 @@ function _G.custom_tabline()
   local s = ""
   local current = vim.api.nvim_get_current_tabpage()
   local tabs = vim.api.nvim_list_tabpages()
-  local sep = "" -- powerline arrow
+  local sep = "" -- powerline arrow
 
   for i, tabnr in ipairs(tabs) do
     local is_current = tabnr == current
