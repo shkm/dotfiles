@@ -35,6 +35,7 @@ vim.o.inccommand = "split"
 vim.o.cursorline = true
 vim.o.scrolloff = 10
 vim.o.confirm = true
+vim.o.exrc = true -- Load .nvim.lua from project directories
 
 vim.filetype.add({
   pattern = {
@@ -72,12 +73,95 @@ vim.keymap.set("n", "0", "^", { noremap = true, silent = true })
 -- Alternate file
 vim.keymap.set("n", "<Leader><Tab>", "<C-^>", { noremap = true, silent = true, desc = "Alternate file" })
 
--- Exit insert/terminal mode with jk
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
-vim.keymap.set("t", "jk", "<C-\\><C-n>", { noremap = true, silent = true })
+-- Exit insert/terminal mode with Alt+j
+vim.keymap.set("i", "<M-j>", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set("t", "<M-j>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 -- Clear search highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Tab navigation
+vim.keymap.set(
+  { "n", "i", "t", "v" },
+  "<M-h>",
+  "<cmd>tabprev<CR>",
+  { noremap = true, silent = true, desc = "Previous tab" }
+)
+vim.keymap.set(
+  { "n", "i", "t", "v" },
+  "<M-l>",
+  "<cmd>tabnext<CR>",
+  { noremap = true, silent = true, desc = "Next tab" }
+)
+
+-- Custom tabline (powerline style to match kitty)
+vim.o.showtabline = 2
+function _G.custom_tabline()
+  local s = ""
+  local current = vim.api.nvim_get_current_tabpage()
+  local tabs = vim.api.nvim_list_tabpages()
+
+  for i, tabnr in ipairs(tabs) do
+    local is_current = tabnr == current
+    local next_is_current = tabs[i + 1] == current
+
+    -- Get tab name (use orchard if available for worktree/branch detection)
+    local name
+    local orchard_ok, orchard_tabline = pcall(require, "orchard.tabline")
+    if orchard_ok then
+      name = orchard_tabline.get_tab_name(tabnr, i)
+    else
+      name = vim.t[tabnr].name
+      if not name then
+        local cwd_ok, cwd = pcall(vim.fn.getcwd, -1, tabnr)
+        name = cwd_ok and vim.fn.fnamemodify(cwd, ":t") or tostring(i)
+      end
+    end
+
+    -- Bell indicator
+    local bell = vim.t[tabnr].has_bell and "" or ""
+
+    -- Build tab content
+    local tab_hl = is_current and "%#TabLineSel#" or "%#TabLine#"
+    local sep_hl
+    if is_current then
+      sep_hl = "%#TabLineSepActive#"
+    elseif next_is_current then
+      sep_hl = "%#TabLineSepToActive#"
+    else
+      sep_hl = "%#TabLineSep#"
+    end
+
+    s = s .. tab_hl .. " " .. i .. " " .. bell .. name .. " "
+    s = s .. sep_hl .. ""
+  end
+
+  s = s .. "%#TabLineFill#"
+  return s
+end
+vim.o.tabline = "%!v:lua.custom_tabline()"
+
+-- Tabline highlight groups - applied after colorscheme loads
+local function setup_tabline_highlights()
+  local ok, palettes = pcall(require, "catppuccin.palettes")
+  if not ok then
+    return
+  end
+  local colors = palettes.get_palette("mocha")
+  if colors then
+    vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.crust, bg = colors.mauve, bold = true })
+    vim.api.nvim_set_hl(0, "TabLine", { fg = colors.overlay0, bg = colors.mantle })
+    vim.api.nvim_set_hl(0, "TabLineFill", { bg = colors.crust })
+    vim.api.nvim_set_hl(0, "TabLineSepActive", { fg = colors.mauve, bg = colors.crust })
+    vim.api.nvim_set_hl(0, "TabLineSepToActive", { fg = colors.mantle, bg = colors.mauve })
+    vim.api.nvim_set_hl(0, "TabLineSep", { fg = colors.mantle, bg = colors.crust })
+  end
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "catppuccin*",
+  callback = setup_tabline_highlights,
+})
 
 -- Window navigation (handled by smart-splits for Kitty integration)
 
@@ -96,10 +180,14 @@ vim.keymap.set({ "n", "t" }, "<C-S-l>", terminal_reflow, { desc = "Reflow termin
 -- Terminal conveniences (I to enter insert at start of line)
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function()
-    vim.keymap.set("n", "I", "i<C-a>", { buffer = true, noremap = true, silent = true, desc = "Enter terminal, go to start of line" })
+    vim.keymap.set(
+      "n",
+      "I",
+      "i<C-a>",
+      { buffer = true, noremap = true, silent = true, desc = "Enter terminal, go to start of line" }
+    )
   end,
 })
-
 
 -- Diagnostic quickfix
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
@@ -159,7 +247,21 @@ function _G.forward_bell(pid)
     current_pid = get_ppid(current_pid)
   end
 
-  -- Find terminal buffer whose job PID is in our ancestor chain
+  -- Check if this bell is from Claude Code terminal (hidden float)
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.bo[buf].buftype == "terminal" then
+      local job_pid = vim.b[buf].terminal_job_pid
+      if job_pid and ancestors[job_pid] then
+        local bufname = vim.api.nvim_buf_get_name(buf)
+        if bufname:match("claude") then
+          vim.g.claude_awaiting_input = true
+          return
+        end
+      end
+    end
+  end
+
+  -- Find terminal buffer whose job PID is in our ancestor chain (for tabs)
   local current_tab = vim.api.nvim_get_current_tabpage()
   for _, tabnr in ipairs(vim.api.nvim_list_tabpages()) do
     if tabnr ~= current_tab then
@@ -198,6 +300,17 @@ vim.api.nvim_create_autocmd("TabEnter", {
   end,
 })
 
+-- Clear Claude indicator when entering Claude's terminal buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Clear Claude awaiting indicator when entering Claude buffer",
+  callback = function()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname:match("claude") and vim.bo.buftype == "terminal" then
+      vim.g.claude_awaiting_input = nil
+    end
+  end,
+})
+
 -- Test command: run `:TestBell` in a terminal buffer to test notifications
 vim.api.nvim_create_user_command("TestBell", function()
   local chan = vim.b.terminal_job_id
@@ -207,7 +320,6 @@ vim.api.nvim_create_user_command("TestBell", function()
     vim.notify("Not in a terminal buffer", vim.log.levels.WARN)
   end
 end, {})
-
 
 -- [[ Install lazy.nvim ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -229,13 +341,18 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Plugins ]]
 require("lazy").setup({
   -- Claude Code - AI assistant terminal integration
+  -- TODO: Switch back to greggh/claude-code.nvim when PR #106 is merged
   {
-    "greggh/claude-code.nvim",
+    "shkm/claude-code.nvim",
+    branch = "fix/terminal-exit-cleanup",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       window = {
-        position = "botright",
-        split_ratio = 0.75,
+        position = "float",
+        float_opts = {
+          width = 0.9,
+          height = 0.9,
+        },
         enter_insert = false,
       },
       keymaps = {
@@ -277,10 +394,10 @@ require("lazy").setup({
       vim.keymap.set("n", "<C-k>", nav_with_stopinsert("up"), { desc = "Move to above split" })
       vim.keymap.set("n", "<C-l>", nav_with_stopinsert("right"), { desc = "Move to right split" })
       -- Resize
-      vim.keymap.set("n", "<C-S-h>", require("smart-splits").resize_left, { desc = "Resize left" })
-      vim.keymap.set("n", "<C-S-j>", require("smart-splits").resize_down, { desc = "Resize down" })
-      vim.keymap.set("n", "<C-S-k>", require("smart-splits").resize_up, { desc = "Resize up" })
-      vim.keymap.set("n", "<C-S-l>", require("smart-splits").resize_right, { desc = "Resize right" })
+      vim.keymap.set({ "n", "i", "t", "v" }, "<C-S-h>", require("smart-splits").resize_left, { desc = "Resize left" })
+      vim.keymap.set({ "n", "i", "t", "v" }, "<C-S-j>", require("smart-splits").resize_down, { desc = "Resize down" })
+      vim.keymap.set({ "n", "i", "t", "v" }, "<C-S-k>", require("smart-splits").resize_up, { desc = "Resize up" })
+      vim.keymap.set({ "n", "i", "t", "v" }, "<C-S-l>", require("smart-splits").resize_right, { desc = "Resize right" })
     end,
   },
 
@@ -318,6 +435,11 @@ require("lazy").setup({
         recipe = { "minimalist", { animate = true } },
         fadelevel = 0.7, -- Milder dimming (0.4 is default, 1.0 is no fade)
         ncmode = "buffers", -- Use buffer focus instead of window focus
+        blocklist = {
+          default = {
+            buf_name = { "codediff" },
+          },
+        },
       })
       -- Force vimade refresh when entering terminal mode
       vim.api.nvim_create_autocmd("TermEnter", {
@@ -499,7 +621,7 @@ require("lazy").setup({
   },
 
   -- Emacs-style editing in insert/command mode
-  "tpope/vim-rsi",
+  { "tpope/vim-rsi" },
 
   -- Move function arguments left/right with H/L
   {
@@ -828,7 +950,18 @@ require("lazy").setup({
         theme = "catppuccin",
       },
       sections = {
-        lualine_x = { "overseer" },
+        lualine_x = {
+          {
+            function()
+              return "󰂞 AGENT"
+            end,
+            cond = function()
+              return vim.g.claude_awaiting_input
+            end,
+            color = "DiagnosticWarn",
+          },
+          "overseer",
+        },
       },
     },
   },
@@ -894,12 +1027,16 @@ require("lazy").setup({
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
-    opts = {
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-    },
+    config = function()
+      -- Enable treesitter highlighting for all filetypes with a parser
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
+    end,
   },
 }, {
   ui = {
