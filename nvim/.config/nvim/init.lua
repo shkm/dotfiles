@@ -100,6 +100,7 @@ function _G.custom_tabline()
   local s = ""
   local current = vim.api.nvim_get_current_tabpage()
   local tabs = vim.api.nvim_list_tabpages()
+  local sep = "" -- powerline arrow
 
   for i, tabnr in ipairs(tabs) do
     local is_current = tabnr == current
@@ -121,8 +122,11 @@ function _G.custom_tabline()
     -- Bell indicator
     local bell = vim.t[tabnr].has_bell and "" or ""
 
-    -- Build tab content
+    -- Tab content
     local tab_hl = is_current and "%#TabLineSel#" or "%#TabLine#"
+    s = s .. tab_hl .. " " .. i .. " " .. bell .. name .. " "
+
+    -- Trailing separator
     local sep_hl
     if is_current then
       sep_hl = "%#TabLineSepActive#"
@@ -131,9 +135,7 @@ function _G.custom_tabline()
     else
       sep_hl = "%#TabLineSep#"
     end
-
-    s = s .. tab_hl .. " " .. i .. " " .. bell .. name .. " "
-    s = s .. sep_hl .. ""
+    s = s .. sep_hl .. sep
   end
 
   s = s .. "%#TabLineFill#"
@@ -457,6 +459,15 @@ require("lazy").setup({
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    init = function()
+      -- Show hidden files in dotfiles directory
+      _G.picker_opts = function()
+        if vim.fn.getcwd():match("/dotfiles$") then
+          return { hidden = true }
+        end
+        return {}
+      end
+    end,
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
@@ -499,7 +510,7 @@ require("lazy").setup({
       {
         "<leader>ff",
         function()
-          Snacks.picker.files()
+          Snacks.picker.files(picker_opts())
         end,
         desc = "Find files",
       },
@@ -555,7 +566,7 @@ require("lazy").setup({
       {
         "<leader>/",
         function()
-          Snacks.picker.grep()
+          Snacks.picker.grep(picker_opts())
         end,
         desc = "Find in project",
       },
