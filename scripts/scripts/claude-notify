@@ -49,7 +49,9 @@
 # Usage: Add to Claude's Stop hook in settings.json:
 #   "hooks": { "Stop": [{ "hooks": [{ "type": "command", "command": "~/scripts/claude-notify" }] }] }
 
-# Get kitty state - exit silently if not in kitty
+# Exit silently if not in kitty
+[ -z "$KITTY_WINDOW_ID" ] && exit 0
+
 kitty_output=$(kitty @ ls --match=id:$KITTY_WINDOW_ID 2>/dev/null)
 [ -z "$kitty_output" ] && exit 0
 
