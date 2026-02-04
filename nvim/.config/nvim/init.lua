@@ -854,17 +854,7 @@ require("lazy").setup({
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-        ["<Tab>"] = {
-          function(cmp)
-            local copilot = require("copilot.suggestion")
-            if copilot.is_visible() then
-              copilot.accept()
-              return true
-            end
-            return cmp.accept() or cmp.snippet_forward()
-          end,
-          "fallback",
-        },
+        ["<Tab>"] = { "accept", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
         -- No Enter to confirm
       },
@@ -879,28 +869,6 @@ require("lazy").setup({
       snippets = { preset = "luasnip" },
       fuzzy = { implementation = "lua" },
       signature = { enabled = true },
-    },
-  },
-
-  -- Copilot
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        keymap = {
-          accept = "<M-l>",
-          accept_word = "<M-k>",
-          accept_line = "<M-j>",
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-      panel = { enabled = false },
     },
   },
 
