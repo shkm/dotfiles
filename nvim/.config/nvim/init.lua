@@ -856,6 +856,14 @@ require("lazy").setup({
         },
       },
       task_list = {
+        keymaps = {
+          ["<C-j>"] = false,
+          ["<C-k>"] = false,
+          ["J"] = "keymap.scroll_output_down",
+          ["K"] = "keymap.scroll_output_up",
+          ["gx"] = { "keymap.run_action", opts = { action = "open url" }, desc = "Open task URL" },
+          ["r"] = { "keymap.run_action", opts = { action = "restart" }, desc = "Restart task" },
+        },
         render = function(task)
           local STATUS = {
             RUNNING = { icon = "󰐊", hl = "DiagnosticInfo" },
