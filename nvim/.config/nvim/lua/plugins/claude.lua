@@ -1,8 +1,19 @@
 return {
-  -- TODO: Switch back to greggh/claude-code.nvim when PR #106 is merged
-  "shkm/claude-code.nvim",
-  branch = "fix/terminal-exit-cleanup",
+  "greggh/claude-code.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  config = function(_, opts)
+    require("claude-code").setup(opts)
+    vim.api.nvim_create_autocmd("TermOpen", {
+      callback = function(ev)
+        vim.schedule(function()
+          local name = vim.api.nvim_buf_get_name(ev.buf)
+          if name:match("claude%-code") then
+            vim.keymap.set("n", "q", "<cmd>ClaudeCode<cr>", { buffer = ev.buf, desc = "Hide Claude Code" })
+          end
+        end)
+      end,
+    })
+  end,
   opts = {
     window = {
       position = "float",
@@ -11,6 +22,7 @@ return {
         height = 0.9,
       },
       enter_insert = false,
+      start_in_normal_mode = true,
     },
     keymaps = {
       toggle = {
