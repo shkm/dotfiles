@@ -39,6 +39,7 @@
       ""
     ]
   },
+  "prefersReducedMotion": true,
   "terminal": {
     "vimMode": false
   },
