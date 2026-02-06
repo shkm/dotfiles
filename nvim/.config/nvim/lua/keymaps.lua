@@ -31,8 +31,8 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Next tab" }
 )
 
--- Terminal escape
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- Terminal escape: use <M-j> instead (line 15) to avoid conflicts with apps that use Esc
+-- vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Terminal reflow - force resize to trigger reflow
 local function terminal_reflow()
