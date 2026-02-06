@@ -41,6 +41,7 @@ return {
       delete_to_trash = true,
       win_options = {
         winbar = "%!v:lua.require('oil').get_current_dir()",
+        signcolumn = "yes:2",
       },
       view_options = {
         show_hidden = true,
@@ -52,5 +53,12 @@ return {
         ["<C-l>"] = false,
       },
     },
+  },
+
+  -- Git status icons in Oil
+  {
+    "refractalize/oil-git-status.nvim",
+    dependencies = { "stevearc/oil.nvim" },
+    opts = {},
   },
 }
