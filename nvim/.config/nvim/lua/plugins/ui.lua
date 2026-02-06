@@ -33,7 +33,7 @@ return {
             end,
             color = "DiagnosticWarn",
           },
-          "overseer",
+          -- "overseer",  -- disabled: may cause stalls with terminal buffers (quickfix wildcard expansion)
         },
       },
     },
@@ -122,6 +122,7 @@ return {
       { "<leader>fr", function() Snacks.picker.resume() end, desc = "Find resume" },
       { "<leader>f.", function() Snacks.picker.recent() end, desc = "Find recent files" },
       { "<leader>/", function() Snacks.picker.grep(picker_opts()) end, desc = "Find in project" },
+      { "<leader>on", function() Snacks.notifier.show_history() end, desc = "Open notifications" },
       { "<leader>fn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find nvim config" },
       {
         "<leader>ft",
