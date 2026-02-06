@@ -36,6 +36,13 @@ return {
     cmd = "CodeDiff",
   },
 
+  -- Octo - GitHub issues & PRs
+  {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    opts = {},
+  },
+
   -- Orchard - worktree manager (local dev)
   {
     dir = "~/repos/orchard.nvim",
