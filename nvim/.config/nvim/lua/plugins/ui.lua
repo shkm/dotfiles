@@ -75,9 +75,16 @@ return {
         fadelevel = 0.7,
         ncmode = "buffers",
         blocklist = {
-          default = {
-            buf_name = { "codediff" },
-          },
+          codediff = function(win)
+            local tabpage = vim.api.nvim_win_get_tabpage(win.winid)
+            for _, w in ipairs(vim.api.nvim_tabpage_list_wins(tabpage)) do
+              local buf = vim.api.nvim_win_get_buf(w)
+              if vim.api.nvim_buf_get_name(buf):find("codediff://") or vim.bo[buf].filetype:find("^codediff") then
+                return true
+              end
+            end
+            return false
+          end,
         },
       })
       vim.api.nvim_create_autocmd("TermEnter", {
