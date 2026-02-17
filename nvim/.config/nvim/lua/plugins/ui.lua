@@ -17,26 +17,52 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      options = {
-        icons_enabled = vim.g.have_nerd_font,
-        theme = "catppuccin",
-      },
-      sections = {
-        lualine_x = {
-          {
-            function()
-              return "󰂞 AGENT"
-            end,
-            cond = function()
-              return vim.g.claude_awaiting_input
-            end,
-            color = "DiagnosticWarn",
-          },
-          -- "overseer",  -- disabled: may cause stalls with terminal buffers (quickfix wildcard expansion)
+    opts = function()
+      local catppuccin = require("catppuccin.palettes").get_palette("mocha")
+      local bg = catppuccin.mantle
+      local flat = { bg = bg }
+      local theme = require("lualine.themes.catppuccin")
+      for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }) do
+        if theme[mode] then
+          theme[mode].b = flat
+          theme[mode].c = flat
+          if theme[mode].x then theme[mode].x = flat end
+          theme[mode].y = flat
+          theme[mode].z = flat
+        end
+      end
+      return {
+        options = {
+          icons_enabled = false,
+          theme = theme,
+          section_separators = "",
+          component_separators = "",
         },
-      },
-    },
+        sections = {
+          lualine_a = {
+            { "mode", fmt = function(s) return s:sub(1, 1) end },
+          },
+          lualine_b = { { "branch", color = { fg = catppuccin.subtext0 } } },
+          lualine_c = { "filename" },
+          lualine_x = {
+            {
+              function() return "AGENT" end,
+              cond = function() return vim.g.claude_awaiting_input end,
+              color = "DiagnosticWarn",
+            },
+            { "filetype", color = { fg = catppuccin.overlay0 } },
+          },
+          lualine_y = { { function() return "%l" end, color = { fg = catppuccin.subtext0 } } },
+          lualine_z = { { function() return "%p%%" end, color = { fg = catppuccin.overlay0 } } },
+        },
+        inactive_sections = {
+          lualine_c = { "filename" },
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+        },
+      }
+    end,
   },
 
   -- Vimade - fade inactive windows
