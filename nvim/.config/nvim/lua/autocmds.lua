@@ -65,6 +65,16 @@ vim.api.nvim_create_autocmd("TermOpen", {
       "i<C-a>",
       { buffer = true, noremap = true, silent = true, desc = "Enter terminal, go to start of line" }
     )
+    vim.o.showmode = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+  desc = "Disable showmode outside terminal buffers",
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.o.showmode = false
+    end
   end,
 })
 

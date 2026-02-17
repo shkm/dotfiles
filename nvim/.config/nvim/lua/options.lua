@@ -30,6 +30,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.o.inccommand = "split"
 vim.o.cursorline = true
 vim.o.scrolloff = 10
+vim.o.cmdheight = 0
 vim.o.confirm = true
 vim.o.exrc = true -- Load .nvim.lua from project directories
 
