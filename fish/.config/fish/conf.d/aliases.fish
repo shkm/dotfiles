@@ -11,7 +11,7 @@ if status is-interactive
     abbr ls ll
     abbr o open
     abbr o. "open ."
-    abbr sshkey "clip $HOME/.ssh/id_ed25519.pub"
+    abbr sshkey "clip $HOME/.ssh/jamie-macbook.pub"
     abbr rm trash
     abbr v nvim
     abbr v. "nvim ."
