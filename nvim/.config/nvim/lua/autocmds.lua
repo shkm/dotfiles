@@ -1,16 +1,14 @@
 -- Autocommands
 
--- Custom tabline (powerline style to match kitty)
+-- Custom tabline
 vim.o.showtabline = 2
 function _G.custom_tabline()
   local s = ""
   local current = vim.api.nvim_get_current_tabpage()
   local tabs = vim.api.nvim_list_tabpages()
-  local sep = "" -- powerline arrow
 
   for i, tabnr in ipairs(tabs) do
     local is_current = tabnr == current
-    local next_is_current = tabs[i + 1] == current
 
     -- Get tab name (use orchard if available for worktree/branch detection)
     local name
@@ -32,16 +30,6 @@ function _G.custom_tabline()
     local tab_hl = is_current and "%#TabLineSel#" or "%#TabLine#"
     s = s .. tab_hl .. " " .. i .. " " .. bell .. name .. " "
 
-    -- Trailing separator
-    local sep_hl
-    if is_current then
-      sep_hl = "%#TabLineSepActive#"
-    elseif next_is_current then
-      sep_hl = "%#TabLineSepToActive#"
-    else
-      sep_hl = "%#TabLineSep#"
-    end
-    s = s .. sep_hl .. sep
   end
 
   s = s .. "%#TabLineFill#"
@@ -57,12 +45,9 @@ local function setup_tabline_highlights()
   end
   local colors = palettes.get_palette("mocha")
   if colors then
-    vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.crust, bg = colors.mauve, bold = true })
+    vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.crust, bg = colors.blue, bold = true })
     vim.api.nvim_set_hl(0, "TabLine", { fg = colors.overlay0, bg = colors.mantle })
     vim.api.nvim_set_hl(0, "TabLineFill", { bg = colors.crust })
-    vim.api.nvim_set_hl(0, "TabLineSepActive", { fg = colors.mauve, bg = colors.crust })
-    vim.api.nvim_set_hl(0, "TabLineSepToActive", { fg = colors.mantle, bg = colors.mauve })
-    vim.api.nvim_set_hl(0, "TabLineSep", { fg = colors.mantle, bg = colors.crust })
   end
 end
 
