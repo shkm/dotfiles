@@ -43,6 +43,46 @@ local function terminal_reflow()
 end
 vim.keymap.set({ "n", "t" }, "<C-S-l>", terminal_reflow, { desc = "Reflow terminal" })
 
+-- Toggle terminal (one per tab)
+local function toggle_tab_terminal()
+  local tab = vim.api.nvim_get_current_tabpage()
+  local term_buf = vim.t[tab].terminal_buf
+
+  -- Check if the terminal buffer is still valid
+  if term_buf and not vim.api.nvim_buf_is_valid(term_buf) then
+    vim.t[tab].terminal_buf = nil
+    term_buf = nil
+  end
+
+  -- If terminal window is visible in this tab, close it
+  if term_buf then
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+      if vim.api.nvim_win_get_buf(win) == term_buf then
+        vim.api.nvim_win_close(win, false)
+        return
+      end
+    end
+  end
+
+  -- Open a split with the existing terminal buffer, or create a new one
+  vim.cmd("botright split")
+  vim.api.nvim_win_set_height(0, 15)
+  if term_buf then
+    vim.api.nvim_set_current_buf(term_buf)
+  else
+    vim.cmd("terminal")
+    vim.t[tab].terminal_buf = vim.api.nvim_get_current_buf()
+  end
+  vim.cmd("startinsert")
+end
+
+vim.keymap.set({ "n", "t", "i" }, "<C-`>", toggle_tab_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })
+vim.keymap.set("n", "<leader>ot", toggle_tab_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })
+
+-- Dashes (macOS-style shortcuts don't work in terminal)
+vim.keymap.set("i", "<M-S-->", "—", { desc = "Em dash" })
+vim.keymap.set("i", "<M-->", "–", { desc = "En dash" })
+
 -- Diagnostic quickfix
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
 
