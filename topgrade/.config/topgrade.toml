@@ -22,6 +22,8 @@ disable = [
   "ruby_gems",
   "gem",
   "mise",
+  "helm",
+  "pipx",
   "containers",
   "git_repos",
 ]

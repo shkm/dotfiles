@@ -87,6 +87,7 @@ return {
     opts = {
       diff = {
         cycle_next_hunk = false,
+        jump_to_first_change = true,
       },
       keymaps = {
         explorer = {
