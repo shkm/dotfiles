@@ -1,5 +1,16 @@
 -- Autocommands
 
+-- Detect OS appearance (dark vs light)
+function _G.is_dark_mode()
+  local handle = io.popen("theme-env")
+  if handle then
+    local output = handle:read("*a")
+    handle:close()
+    return output:match("DARK_MODE=1") ~= nil
+  end
+  return true
+end
+
 -- Custom tabline
 vim.o.showtabline = 2
 function _G.custom_tabline()
@@ -43,7 +54,7 @@ local function setup_tabline_highlights()
   if not ok then
     return
   end
-  local colors = palettes.get_palette("mocha")
+  local colors = palettes.get_palette()
   if colors then
     vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.crust, bg = colors.blue, bold = true })
     vim.api.nvim_set_hl(0, "TabLine", { fg = colors.overlay0, bg = colors.mantle })
@@ -54,6 +65,25 @@ end
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "catppuccin*",
   callback = setup_tabline_highlights,
+})
+
+-- Auto-switch theme when macOS appearance changes
+vim.api.nvim_create_autocmd("FocusGained", {
+  desc = "Switch colorscheme to match macOS appearance",
+  callback = function()
+    local dark = _G.is_dark_mode()
+    local expected_bg = dark and "dark" or "light"
+    if vim.o.background == expected_bg then
+      return
+    end
+    local flavour = dark and "mocha" or "latte"
+    require("catppuccin").setup({ flavour = flavour, no_italic = true })
+    vim.o.background = expected_bg
+    vim.cmd.colorscheme("catppuccin")
+    if _G.setup_lualine then
+      _G.setup_lualine()
+    end
+  end,
 })
 
 -- Terminal conveniences (I to enter insert at start of line)

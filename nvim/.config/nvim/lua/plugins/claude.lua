@@ -33,12 +33,17 @@ return {
     })
 
     -- Border highlights matching catppuccin lualine mode colors
-    local palette_ok, palettes = pcall(require, "catppuccin.palettes")
-    if palette_ok then
-      local c = palettes.get_palette("mocha")
-      vim.api.nvim_set_hl(0, "ClaudeBorderNormal", { fg = c.blue })
-      vim.api.nvim_set_hl(0, "ClaudeBorderTerminal", { fg = c.green })
+    local function set_claude_border_highlights()
+      local palette_ok, palettes = pcall(require, "catppuccin.palettes")
+      if palette_ok then
+        local flavour = _G.is_dark_mode() and "mocha" or "latte"
+        local c = palettes.get_palette(flavour)
+        vim.api.nvim_set_hl(0, "ClaudeBorderNormal", { fg = c.blue })
+        vim.api.nvim_set_hl(0, "ClaudeBorderTerminal", { fg = c.green })
+      end
     end
+    set_claude_border_highlights()
+    vim.api.nvim_create_autocmd("ColorScheme", { callback = set_claude_border_highlights })
   end,
   opts = {
     window = {

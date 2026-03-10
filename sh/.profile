@@ -3,15 +3,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export LANG=en_GB.UTF-8
 
-# Dark mode will be 1 if enabled or unknown.
-DARK_MODE=1
-if [ "$(uname)" = "Darwin" ]; then
-  appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
-  if [ -z "$appearance" ]; then
-    DARK_MODE=0
-  fi
-fi
-export DARK_MODE
 
 if [ -d "${HOME}/dotfiles" ]; then
   export DOTFILES="${HOME}/dotfiles"
@@ -55,6 +46,11 @@ fi
 # Misc user bins
 if [ -d "$HOME/bin" ]; then
   export PATH="$HOME/bin:$PATH"
+fi
+
+# Obsidian Mac
+if [ -d "/Applications/Obsidian.app/Contents/MacOS" ]; then
+  export PATH="/Applications/Obsidian.app/Contents/MacOS:$PATH"
 fi
 
 # Version-controlled scripts
@@ -152,20 +148,21 @@ export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
+# Theme variables (DARK_MODE, DARK_MODE_THEME)
+eval "$("$HOME/scripts/theme-env")"
+
 # Dark / Light mode colour differences
+export BAT_THEME="$DARK_MODE_THEME"
 if [ "$DARK_MODE" -eq 1 ]; then
-  export BAT_THEME="Catppuccin-mocha"
   export FZF_DEFAULT_OPTS=" \
     --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 else
-  export BAT_THEME="Catppuccin-latte"
   export FZF_DEFAULT_OPTS=" \
     --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
     --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
     --color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
 fi
 
-# Catppuccin-Mocha
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --marker=' ✓' --pointer=' '"

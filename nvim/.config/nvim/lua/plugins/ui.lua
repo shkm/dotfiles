@@ -5,10 +5,12 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
+      local flavour = _G.is_dark_mode() and "mocha" or "latte"
       require("catppuccin").setup({
-        flavour = "mocha",
+        flavour = flavour,
         no_italic = true,
       })
+      vim.o.background = flavour == "mocha" and "dark" or "light"
       vim.cmd.colorscheme("catppuccin")
     end,
   },
@@ -17,51 +19,55 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = function()
-      local catppuccin = require("catppuccin.palettes").get_palette("mocha")
-      local bg = catppuccin.mantle
-      local flat = { bg = bg }
-      local theme = require("lualine.themes.catppuccin")
-      for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }) do
-        if theme[mode] then
-          theme[mode].b = flat
-          theme[mode].c = flat
-          if theme[mode].x then theme[mode].x = flat end
-          theme[mode].y = flat
-          theme[mode].z = flat
+    config = function()
+      function _G.setup_lualine()
+        local palette = require("catppuccin.palettes").get_palette()
+        local bg = palette.mantle
+        local flat = { bg = bg }
+        package.loaded["lualine.themes.catppuccin"] = nil
+        local theme = require("lualine.themes.catppuccin")
+        for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }) do
+          if theme[mode] then
+            theme[mode].b = flat
+            theme[mode].c = flat
+            if theme[mode].x then theme[mode].x = flat end
+            theme[mode].y = flat
+            theme[mode].z = flat
+          end
         end
-      end
-      return {
-        options = {
-          icons_enabled = false,
-          theme = theme,
-          section_separators = "",
-          component_separators = "",
-        },
-        sections = {
-          lualine_a = {
-            { "mode", fmt = function(s) return s:sub(1, 1) end },
+        require("lualine").setup({
+          options = {
+            icons_enabled = false,
+            theme = theme,
+            section_separators = "",
+            component_separators = "",
           },
-          lualine_b = { { "branch", color = { fg = catppuccin.subtext0 } } },
-          lualine_c = { "filename" },
-          lualine_x = {
-            {
-              function() return "AGENT" end,
-              cond = function() return vim.g.claude_awaiting_input end,
-              color = "DiagnosticWarn",
+          sections = {
+            lualine_a = {
+              { "mode", fmt = function(s) return s:sub(1, 1) end },
             },
-            { "filetype", color = { fg = catppuccin.overlay0 } },
+            lualine_b = { { "branch", color = { fg = palette.subtext0 } } },
+            lualine_c = { "filename" },
+            lualine_x = {
+              {
+                function() return "AGENT" end,
+                cond = function() return vim.g.claude_awaiting_input end,
+                color = "DiagnosticWarn",
+              },
+              { "filetype", color = { fg = palette.overlay0 } },
+            },
+            lualine_y = { { function() return "%l" end, color = { fg = palette.subtext0 } } },
+            lualine_z = { { function() return "%p%%" end, color = { fg = palette.overlay0 } } },
           },
-          lualine_y = { { function() return "%l" end, color = { fg = catppuccin.subtext0 } } },
-          lualine_z = { { function() return "%p%%" end, color = { fg = catppuccin.overlay0 } } },
-        },
-        inactive_sections = {
-          lualine_c = { "filename" },
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {},
-        },
-      }
+          inactive_sections = {
+            lualine_c = { "filename" },
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {},
+          },
+        })
+      end
+      _G.setup_lualine()
     end,
   },
 
