@@ -1,0 +1,9 @@
+backups/
+cache/
+file-history/
+plugins/
+projects/
+sessions/
+shell-snapshots/
+history.jsonl
+mcp-needs-auth-cache.json
