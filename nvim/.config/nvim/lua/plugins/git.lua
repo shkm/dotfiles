@@ -107,9 +107,9 @@ return {
     opts = {},
   },
 
-  -- Orchard - worktree manager (local dev)
+  -- Orchard - worktree manager
   {
-    dir = "~/repos/orchard.nvim",
+    dir = vim.fn.stdpath("config") .. "/plugins/orchard.nvim",
     dependencies = { "esmuellert/codediff.nvim" },
     event = "VeryLazy",
     cmd = "Orchard",
