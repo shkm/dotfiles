@@ -61,8 +61,8 @@ defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
-# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Amsterdam" >/dev/null
+# Set the timezone
+sudo ln -sf /var/db/timezone/zoneinfo/Europe/Amsterdam /etc/localtime
 
 ##########
 # Finder #
@@ -83,7 +83,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool truek
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Show extensions
 defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
@@ -101,7 +101,7 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+chflags nohidden ~/Library
 
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -109,9 +109,6 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # No file extension change warning
 defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
-
-# Title bar icon
-defaults write com.apple.universalaccess "showWindowTitlebarIcons" -bool "true"
 
 # Title bar rollover delay 0
 defaults write NSGlobalDomain "NSToolbarTitleViewRolloverDelay" -float "0"
@@ -143,12 +140,6 @@ defaults write com.apple.dock mineffect -string "scale"
 # Minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool true
 
-# Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
-
-# Don’t show Dashboard as a Space
-defaults write com.apple.dock dashboard-in-overlay -bool true
-
 killall Dock
 
 ########
@@ -172,13 +163,7 @@ defaults write com.apple.TextEdit "SmartQuotes" -bool "false"
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
-killall TextEdit
-
-########
-# Mail #
-########
-# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
+killall TextEdit 2>/dev/null || true
 
 #############
 # App Store #
