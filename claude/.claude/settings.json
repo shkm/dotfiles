@@ -33,7 +33,6 @@
       "/Users/jamie/"
     ]
   },
-  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
