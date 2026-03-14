@@ -192,7 +192,4 @@
 	format = ssh
 
 [includeIf "gitdir:/Users/jamie.schembri/"]
-  path = config-jamie-schembri
-
-[includeIf "gitdir:~/repos/new-work-se/"]
-  path = config-new-work-se
+  path = config-nedap
