@@ -1,2 +1,3 @@
 [user]
+  email = jamie.schembri@nedap.com
 	signingkey = /Users/jamie.schembri/.ssh/id_ed25519.pub
