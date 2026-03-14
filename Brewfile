@@ -1,0 +1,135 @@
+# Shell & Terminal
+brew "fish"
+brew "jandedobbeleer/oh-my-posh/oh-my-posh"
+brew "zoxide"
+brew "bat"
+brew "eza"
+brew "fd"
+brew "fzf"
+brew "bottom"
+brew "procs"
+brew "broot"
+brew "yazi"
+brew "tealdeer"
+brew "sd"
+brew "watch"
+
+# Disk usage
+brew "dust"
+brew "duf"
+brew "dua-cli"
+brew "ncdu"
+brew "diskonaut"
+
+# Dev tools
+brew "overmind"
+brew "tig"
+brew "git"
+brew "git-delta"
+brew "gh"
+brew "glab"
+brew "lazygit"
+brew "neovim"
+brew "stow"
+brew "stylua"
+brew "shellcheck"
+brew "watchexec"
+brew "fswatch"
+
+# Languages & Package Managers
+brew "go"
+brew "crystal"
+brew "elixir-ls"
+brew "pnpm"
+
+# Containers & Infra
+brew "docker"
+brew "docker-compose"
+brew "dive"
+
+# Networking
+brew "curl"
+brew "wget"
+brew "httpie"
+brew "aria2"
+brew "doggo"
+brew "gping"
+brew "mtr"
+brew "nmap"
+brew "websocat"
+brew "swaks"
+
+# Media & Images
+brew "ffmpeg"
+brew "imagemagick-full"
+brew "graphicsmagick"
+brew "vips"
+brew "mcat"
+
+# Documents
+brew "pandoc"
+brew "texlive"
+
+# Security
+brew "mkcert"
+
+# macOS utilities
+brew "terminal-notifier"
+brew "xcodegen"
+brew "tsonglew/dutis/dutis"
+
+# Hardware
+brew "qmk/qmk/qmk"
+brew "timrogers/tap/litra"
+brew "timrogers/tap/litra-autotoggle"
+
+# Misc CLI tools
+brew "topgrade"
+brew "translate-shell"
+brew "exiftool"
+brew "llm"
+brew "ntfy"
+brew "rsync"
+brew "ouch"
+brew "rbspy"
+brew "fx"
+brew "lla"
+
+# Fun
+brew "cowsay"
+brew "cfonts"
+brew "figlet"
+brew "brogue"
+
+# Casks -- Apps
+cask "claude-code"
+cask "ghostty"
+cask "github"
+cask "google-chrome"
+cask "hammerspoon"
+cask "itsycal"
+cask "kitty"
+cask "linearmouse"
+cask "qobuz"
+cask "slack"
+cask "sublime-merge"
+cask "zed"
+cask "zoom"
+
+# Casks -- Browsers
+cask "firefox"
+cask "orion"
+cask "vivaldi"
+cask "zen"
+
+# Casks -- Utilities
+cask "affinity"
+cask "cyberduck"
+cask "keka"
+cask "kekaexternalhelper"
+cask "keyboardcleantool"
+cask "pearcleaner"
+cask "vlc"
+
+# Casks -- Fonts
+cask "font-0xproto-nerd-font"
