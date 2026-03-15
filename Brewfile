@@ -81,7 +81,6 @@ brew "xcodegen"
 brew "tsonglew/dutis/dutis"
 
 # Hardware
-brew "qmk/qmk/qmk"
 brew "timrogers/tap/litra"
 brew "timrogers/tap/litra-autotoggle"
 
