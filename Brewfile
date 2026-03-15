@@ -5,7 +5,7 @@ tap "timrogers/tap"
 
 # Shell & Terminal
 brew "fish"
-brew "jandedobbeleer/oh-my-posh/oh-my-posh"
+brew "oh-my-posh"
 brew "zoxide"
 brew "bat"
 brew "eza"
@@ -81,12 +81,12 @@ brew "mkcert"
 # macOS utilities
 brew "terminal-notifier"
 brew "xcodegen"
-brew "tsonglew/dutis/dutis"
+brew "dutis"
 
 # Hardware
-brew "qmk/qmk/qmk"
-brew "timrogers/tap/litra"
-brew "timrogers/tap/litra-autotoggle"
+brew "qmk"
+brew "litra"
+brew "litra-autotoggle"
 
 # Misc CLI tools
 brew "topgrade"
