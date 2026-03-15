@@ -1,5 +1,4 @@
 tap "jandedobbeleer/oh-my-posh"
-tap "tsonglew/dutis"
 tap "qmk/qmk"
 tap "timrogers/tap"
 
@@ -81,7 +80,7 @@ brew "mkcert"
 # macOS utilities
 brew "terminal-notifier"
 brew "xcodegen"
-brew "dutis"
+brew "tsonglew/dutis/dutis"
 
 # Hardware
 brew "qmk"
