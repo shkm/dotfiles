@@ -1,3 +1,8 @@
+tap "jandedobbeleer/oh-my-posh"
+tap "tsonglew/dutis"
+tap "qmk/qmk"
+tap "timrogers/tap"
+
 # Shell & Terminal
 brew "fish"
 brew "jandedobbeleer/oh-my-posh/oh-my-posh"
