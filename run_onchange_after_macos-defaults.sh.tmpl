@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+{{ if eq .chezmoi.os "darwin" }}
 # See https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # Also https://github.com/kevinSuttle/macOS-Defaults/tree/master
 
@@ -33,7 +34,7 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Disable “natural” (Lion-style) scrolling
+# Disable "natural" (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Enable full keyboard access for all controls
@@ -54,7 +55,7 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Set language and text formats
-# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
+# Note: if you're in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
 defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
 defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
@@ -137,7 +138,7 @@ defaults write com.apple.dock "static-only" -bool "true"
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
 
-# Minimize windows into their application’s icon
+# Minimize windows into their application's icon
 defaults write com.apple.dock minimize-to-application -bool true
 
 killall Dock
@@ -183,5 +184,4 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 # Turn on app auto-update
 defaults write com.apple.commerce AutoUpdate -bool true
-
-echo "Done. Log out and in again to apply all changes."
+{{ end }}

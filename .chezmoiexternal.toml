@@ -1,0 +1,31 @@
+# Fish plugins
+[".local/share/fish-plugins/fzf"]
+    type = "archive"
+    url = "https://github.com/PatrickF1/fzf.fish/archive/main.tar.gz"
+    stripComponents = 1
+    include = ["*/functions/**", "*/completions/**", "*/conf.d/**"]
+
+[".local/share/fish-plugins/foreign-env"]
+    type = "archive"
+    url = "https://github.com/oh-my-fish/plugin-foreign-env/archive/master.tar.gz"
+    stripComponents = 1
+    include = ["*/functions/**"]
+
+[".local/share/fish-plugins/abbreviation-tips"]
+    type = "archive"
+    url = "https://github.com/gazorby/fish-abbreviation-tips/archive/master.tar.gz"
+    stripComponents = 1
+    include = ["*/functions/**", "*/conf.d/**"]
+
+[".local/share/fish-plugins/catppuccin"]
+    type = "archive"
+    url = "https://github.com/catppuccin/fish/archive/main.tar.gz"
+    stripComponents = 1
+    include = ["*/themes/**"]
+
+# Bat themes
+[".config/bat/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/bat/archive/main.tar.gz"
+    stripComponents = 2
+    include = ["*/themes/*.tmTheme"]

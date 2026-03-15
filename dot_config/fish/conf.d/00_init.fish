@@ -1,4 +1,4 @@
-set fisher_path (dirname (status current-filename))/../_plugins
+set fish_plugins_path ~/.local/share/fish-plugins
 
 # Disable greeting
 set -U fish_greeting

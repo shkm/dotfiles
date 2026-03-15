@@ -1,0 +1,10 @@
+# Repo-only files (not applied to ~)
+Brewfile
+README.md
+LICENSE
+
+# macOS-only
+{{ if ne .chezmoi.os "darwin" }}
+.hammerspoon
+.config/linearmouse
+{{ end }}

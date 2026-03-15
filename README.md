@@ -1,12 +1,13 @@
-# :godmode: shkm's dotfiles
+# shkm's dotfiles
 
-These are my dotfiles, managed with [GNU stow](https://www.gnu.org/software/stow/).
+These are my dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 
 No promises are made about stability or portability, but feel free to use anything you find useful.
 
-I primarily use the following right now:
+## Install
 
-- MacOS
-- [Fish](https://fishshell.com/)
-- [Neovim](https://neovim.io/)
-- [Kitty](https://sw.kovidgoyal.net/kitty/)
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install chezmoi
+chezmoi init --source ~/dotfiles --apply shkm/dotfiles
+```
