@@ -32,7 +32,6 @@ brew "tig"
 brew "git"
 brew "git-delta"
 brew "gh"
-brew "glab"
 brew "lazygit"
 brew "neovim"
 brew "stow"
@@ -43,7 +42,6 @@ brew "fswatch"
 
 # Languages & Package Managers
 brew "go"
-brew "crystal"
 brew "elixir-ls"
 brew "pnpm"
 
@@ -73,7 +71,6 @@ brew "mcat"
 
 # Documents
 brew "pandoc"
-brew "texlive"
 
 # Security
 brew "mkcert"
@@ -98,13 +95,11 @@ brew "rsync"
 brew "ouch"
 brew "rbspy"
 brew "fx"
-brew "lla"
 
 # Fun
 brew "cowsay"
 brew "cfonts"
 brew "figlet"
-brew "brogue"
 
 # Casks -- Apps
 cask "claude-code"
@@ -125,7 +120,6 @@ cask "zoom"
 cask "firefox"
 cask "orion"
 cask "vivaldi"
-cask "zen"
 
 # Casks -- Utilities
 cask "affinity"
