@@ -8,7 +8,7 @@
       "mcp__plugin_repomix-mcp_repomix__*",
       "WebSearch",
       "WebFetch",
-      "Read(~/.ssh/jamie-macbook.pub)"
+      "Read(~/.ssh/*.pub)"
     ],
     "deny": [
       "Read(~/.ssh/**)",
@@ -95,5 +95,6 @@
   "terminal": {
     "vimMode": false
   },
-  "includePrerelease": false
+  "includePrerelease": false,
+  "model": "opus[1m]"
 }
