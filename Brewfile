@@ -1,10 +1,6 @@
-tap "jandedobbeleer/oh-my-posh"
-tap "qmk/qmk"
-tap "timrogers/tap"
-
 # Shell & Terminal
 brew "fish"
-brew "oh-my-posh"
+brew "jandedobbeleer/oh-my-posh/oh-my-posh"
 brew "zoxide"
 brew "bat"
 brew "eza"
@@ -83,9 +79,9 @@ brew "xcodegen"
 brew "tsonglew/dutis/dutis"
 
 # Hardware
-brew "qmk"
-brew "litra"
-brew "litra-autotoggle"
+brew "qmk/qmk/qmk"
+brew "timrogers/tap/litra"
+brew "timrogers/tap/litra-autotoggle"
 
 # Misc CLI tools
 brew "topgrade"
