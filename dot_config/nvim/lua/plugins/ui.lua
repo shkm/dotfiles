@@ -18,14 +18,13 @@ return {
   -- Lualine - statusline
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
       function _G.setup_lualine()
         local palette = require("catppuccin.palettes").get_palette()
         local bg = palette.mantle
         local flat = { bg = bg }
-        package.loaded["lualine.themes.catppuccin"] = nil
-        local theme = require("lualine.themes.catppuccin")
+        local theme = require("catppuccin.utils.lualine")()
         for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }) do
           if theme[mode] then
             theme[mode].b = flat
