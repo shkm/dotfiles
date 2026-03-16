@@ -22,7 +22,7 @@ link() {
     ln -sfn "$src" "$dest"
   elif [ -e "$dest" ]; then
     echo "  conflict: $dest (exists and is not a symlink)"
-    read -rp "  overwrite? [y/N] " answer
+    read -rp "  overwrite? [y/N] " answer </dev/tty
     if [[ "$answer" =~ ^[Yy]$ ]]; then
       rm -rf "$dest"
       ln -sfn "$src" "$dest"
@@ -54,12 +54,11 @@ link_children "$DOTFILES_HOME/.config" "$HOME/.config"
 link_children "$DOTFILES_HOME/.local/share" "$HOME/.local/share"
 
 # Everything else in home/ is symlinked directly.
-find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1 \
-  -not -name .config \
-  -not -name .local \
-  | while read -r item; do
+while read -r item; do
   link "$item" "$HOME/$(basename "$item")"
-done
+done < <(find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1 \
+  -not -name .config \
+  -not -name .local)
 
 # ===========================================================================
 # Shell
