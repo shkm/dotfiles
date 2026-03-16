@@ -1,5 +1,0 @@
-#!/bin/bash
-{{ if eq .chezmoi.os "darwin" }}
-# Brewfile hash: {{ include "Brewfile" | sha256sum }}
-brew bundle --file="{{ .chezmoi.sourceDir }}/Brewfile"
-{{ end }}

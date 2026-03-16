@@ -1,0 +1,15 @@
+[submodule "home/.local/share/fish-plugins/fzf"]
+	path = home/.local/share/fish-plugins/fzf
+	url = https://github.com/PatrickF1/fzf.fish.git
+[submodule "home/.local/share/fish-plugins/foreign-env"]
+	path = home/.local/share/fish-plugins/foreign-env
+	url = https://github.com/oh-my-fish/plugin-foreign-env.git
+[submodule "home/.local/share/fish-plugins/abbreviation-tips"]
+	path = home/.local/share/fish-plugins/abbreviation-tips
+	url = https://github.com/gazorby/fish-abbreviation-tips.git
+[submodule "home/.local/share/fish-plugins/catppuccin"]
+	path = home/.local/share/fish-plugins/catppuccin
+	url = https://github.com/catppuccin/fish.git
+[submodule "home/.config/bat/themes"]
+	path = home/.config/bat/themes
+	url = https://github.com/catppuccin/bat.git

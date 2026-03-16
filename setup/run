@@ -1,0 +1,111 @@
+#!/bin/bash
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+SETUP_DIR="$DOTFILES_DIR/setup"
+DOTFILES_HOME="$DOTFILES_DIR/home"
+
+# ===========================================================================
+# Symlinks
+# ===========================================================================
+
+link() {
+  local src="$1" dest="$2"
+
+  if [ -L "$dest" ]; then
+    local current
+    current=$(readlink "$dest")
+    if [ "$current" = "$src" ]; then
+      return
+    fi
+    echo "  relink: $dest (was $current)"
+    ln -sfn "$src" "$dest"
+  elif [ -e "$dest" ]; then
+    echo "  conflict: $dest (exists and is not a symlink)"
+    read -rp "  overwrite? [y/N] " answer
+    if [[ "$answer" =~ ^[Yy]$ ]]; then
+      rm -rf "$dest"
+      ln -sfn "$src" "$dest"
+    fi
+  else
+    echo "  link: $dest"
+    ln -sfn "$src" "$dest"
+  fi
+}
+
+# Symlink children of a directory individually, creating the target dir
+# if needed. Used for shared dirs like .config where we don't want to
+# own the entire directory.
+link_children() {
+  local src_dir="$1" dest_dir="$2"
+  mkdir -p "$dest_dir"
+
+  for child in "$src_dir"/*; do
+    [ -e "$child" ] || continue
+    link "$child" "$dest_dir/$(basename "$child")"
+  done
+}
+
+echo "Linking dotfiles..."
+
+# Shared directories: other tools write into these too, so we symlink
+# their children rather than the directory itself.
+link_children "$DOTFILES_HOME/.config" "$HOME/.config"
+link_children "$DOTFILES_HOME/.local/share" "$HOME/.local/share"
+
+# Everything else in home/ is symlinked directly.
+find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1 \
+  -not -name .config \
+  -not -name .local \
+  | while read -r item; do
+  link "$item" "$HOME/$(basename "$item")"
+done
+
+# ===========================================================================
+# Shell
+# ===========================================================================
+
+echo ""
+echo "Setting up shell..."
+
+FISH_PATH=$(command -v fish)
+if [ -n "$FISH_PATH" ]; then
+  grep -Fxq "$FISH_PATH" /etc/shells || echo "$FISH_PATH" | sudo tee -a /etc/shells
+  [ "$SHELL" != "$FISH_PATH" ] && chsh -s "$FISH_PATH"
+fi
+
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+mkdir -p ~/repos
+
+# ===========================================================================
+# Packages
+# ===========================================================================
+
+echo ""
+if [ "$(uname)" = "Darwin" ]; then
+  echo "Installing Homebrew packages..."
+  brew bundle --file="$DOTFILES_DIR/Brewfile"
+fi
+
+# ===========================================================================
+# Plugins (git submodules)
+# ===========================================================================
+
+echo ""
+echo "Initialising submodules..."
+git -C "$DOTFILES_DIR" submodule update --init --recursive
+
+command -v bat >/dev/null && bat cache --build
+
+# ===========================================================================
+# macOS defaults
+# ===========================================================================
+
+if [ "$(uname)" = "Darwin" ]; then
+  echo ""
+  echo "Applying macOS defaults..."
+  "$SETUP_DIR/macos-defaults"
+fi
+
+echo ""
+echo "Done."

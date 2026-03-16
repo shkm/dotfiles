@@ -1,5 +1,11 @@
 #!/bin/bash
-{{ if eq .chezmoi.os "darwin" }}
+set -euo pipefail
+
+if [ "$(uname)" != "Darwin" ]; then
+  echo "Skipping: not on macOS"
+  exit 0
+fi
+
 # See https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # Also https://github.com/kevinSuttle/macOS-Defaults/tree/master
 
@@ -55,8 +61,6 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 defaults write -g NSWindowShouldDragOnGesture -bool true
 
 # Set language and text formats
-# Note: if you're in the US, replace `EUR` with `USD`, `Centimeters` with
-# `Inches`, `en_GB` with `en_US`, and `true` with `false`.
 defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
 defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
@@ -76,7 +80,6 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Set Desktop as the default location for new Finder windows
-# For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfLe"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
@@ -184,4 +187,3 @@ defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 # Turn on app auto-update
 defaults write com.apple.commerce AutoUpdate -bool true
-{{ end }}

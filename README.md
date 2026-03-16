@@ -1,13 +1,29 @@
 # shkm's dotfiles
 
-These are my dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
-
 No promises are made about stability or portability, but feel free to use anything you find useful.
+
+## Structure
+
+```
+home/           Symlinked into ~
+setup/
+  run           Main entry point (symlinks, shell, packages, plugins, macOS defaults)
+  macos-defaults  macOS system preferences
+Brewfile        Homebrew packages
+```
+
+Plugins (fish, bat themes) are managed as git submodules under `home/`.
 
 ## Install
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install chezmoi
-chezmoi init --source ~/dotfiles --apply shkm/dotfiles
+git clone --recursive git@github.com:shkm/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./setup/run
+```
+
+Setup scripts can also be run individually:
+
+```sh
+./setup/macos-defaults
 ```
