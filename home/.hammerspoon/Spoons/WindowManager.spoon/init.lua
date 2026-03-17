@@ -4,7 +4,7 @@ obj.__index = obj
 obj.name = "WindowManager"
 obj.version = "1.0"
 
-local tileSizes = { 1 / 2, 2 / 3 }
+local tileSizes = { 1 / 2, 2 / 3, 1 / 3 }
 local threshold = 10
 
 local function focusedWindow()
