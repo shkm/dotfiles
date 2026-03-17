@@ -48,6 +48,35 @@ local function maximize()
   win:setFrame(win:screen():frame())
 end
 
+local function center()
+  local win = focusedWindow()
+  if not win then return end
+  local sf = win:screen():frame()
+  local w = sf.w * 0.65
+  local h = sf.h * 0.80
+  local x = sf.x + (sf.w - w) / 2
+  local y = sf.y + (sf.h - h) / 2
+  win:setFrame({ x = x, y = y, w = w, h = h })
+end
+
+local resizeStep = 0.05
+
+local function resize(larger)
+  local win = focusedWindow()
+  if not win then return end
+  local sf = win:screen():frame()
+  local wf = win:frame()
+  local dw = sf.w * resizeStep * (larger and 1 or -1)
+  local dh = sf.h * resizeStep * (larger and 1 or -1)
+  local newW = math.max(200, math.min(sf.w, wf.w + dw))
+  local newH = math.max(200, math.min(sf.h, wf.h + dh))
+  local newX = wf.x - (newW - wf.w) / 2
+  local newY = wf.y - (newH - wf.h) / 2
+  newX = math.max(sf.x, math.min(sf.x + sf.w - newW, newX))
+  newY = math.max(sf.y, math.min(sf.y + sf.h - newH, newY))
+  win:setFrame({ x = newX, y = newY, w = newW, h = newH })
+end
+
 local function moveToScreen(direction)
   local win = focusedWindow()
   if not win then return end
@@ -64,6 +93,9 @@ end
 function obj:bindHotkeys()
   hs.hotkey.bind({ "cmd", "shift" }, "h", function() tile("left") end)
   hs.hotkey.bind({ "cmd", "shift" }, "l", function() tile("right") end)
+  hs.hotkey.bind({ "cmd", "shift" }, "j", center)
+  hs.hotkey.bind({ "cmd", "shift" }, "-", function() resize(false) end)
+  hs.hotkey.bind({ "cmd", "shift" }, "=", function() resize(true) end)
   hs.hotkey.bind({ "cmd", "shift" }, "return", maximize)
   hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "h", function() moveToScreen("left") end)
   hs.hotkey.bind({ "cmd", "shift", "ctrl" }, "l", function() moveToScreen("right") end)
