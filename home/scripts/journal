@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# Opens / creates today's journal entry
+#
+# Usage:
+#
+# journal [today|prev|next]
+
+set -o errexit      # Exit on most errors (see the manual)
+set -o errtrace
+set -o nounset      # Disallow expansion of unset variables
+set -o pipefail     # Use last non-zero exit code in a pipeline
+
+JOURNAL_DIR="$HOME/journal"
+TODAY="$(date +%Y-%m-%d)"
+ACTION="${1:-today}"
+
+case "$ACTION" in
+  today)
+    FULL_PATH="$JOURNAL_DIR/$TODAY.md"
+
+    mkdir -p "$JOURNAL_DIR"
+
+    if [[ ! -f "$FULL_PATH" ]]; then
+      printf "# %s\n\n\n" "$(date +'%-d %B %Y')" > "$FULL_PATH"
+    fi
+
+    $EDITOR "$FULL_PATH"
+    ;;
+
+  prev)
+    PREV=$(find "$JOURNAL_DIR" -name '*.md' -type f | sort | while read -r f; do
+      base="$(basename "$f" .md)"
+      if [[ "$base" < "$TODAY" ]]; then
+        echo "$f"
+      fi
+    done | tail -1)
+
+    if [[ -z "$PREV" ]]; then
+      echo "No previous journal entry found." >&2
+      exit 1
+    fi
+
+    $EDITOR "$PREV"
+    ;;
+
+  next)
+    NEXT=$(find "$JOURNAL_DIR" -name '*.md' -type f | sort | while read -r f; do
+      base="$(basename "$f" .md)"
+      if [[ "$base" > "$TODAY" ]]; then
+        echo "$f"
+        break
+      fi
+    done)
+
+    if [[ -z "$NEXT" ]]; then
+      echo "No next journal entry found." >&2
+      exit 1
+    fi
+
+    $EDITOR "$NEXT"
+    ;;
+
+  *)
+    echo "Usage: journal [today|prev|next]" >&2
+    exit 1
+    ;;
+esac
