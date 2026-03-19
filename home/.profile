@@ -152,12 +152,12 @@ export LESS_TERMCAP_us=$(printf "\033[01;32m")
 eval "$("$HOME/scripts/theme-env")"
 
 # Dark / Light mode colour differences
-case "$DARK_MODE_THEME" in
+case "$THEME" in
   catppuccin-mocha)     export BAT_THEME="Catppuccin Mocha" ;;
   catppuccin-latte)     export BAT_THEME="Catppuccin Latte" ;;
   catppuccin-frappe)    export BAT_THEME="Catppuccin Frappe" ;;
   catppuccin-macchiato) export BAT_THEME="Catppuccin Macchiato" ;;
-  *)                    export BAT_THEME="$DARK_MODE_THEME" ;;
+  *)                    export BAT_THEME="$THEME" ;;
 esac
 if [ "$DARK_MODE" -eq 1 ]; then
   export FZF_DEFAULT_OPTS=" \

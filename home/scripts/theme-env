@@ -26,6 +26,8 @@ else
 fi
 
 echo "export DARK_MODE=$dark"
-echo "export DARK_MODE_THEME=$theme"
+echo "export DARK_MODE_THEME=catppuccin-mocha"
+echo "export LIGHT_MODE_THEME=catppuccin-latte"
+echo "export THEME=$theme"
 
 exit $(( 1 - dark ))
