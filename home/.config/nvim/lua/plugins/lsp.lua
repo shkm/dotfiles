@@ -13,6 +13,7 @@ return {
   -- LSP Configuration
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       { "mason-org/mason.nvim", opts = {} },
       "mason-org/mason-lspconfig.nvim",
@@ -121,7 +122,7 @@ return {
   -- Completion
   {
     "saghen/blink.cmp",
-    event = "VimEnter",
+    event = "InsertEnter",
     version = "1.*",
     dependencies = {
       { "L3MON4D3/LuaSnip", version = "2.*", build = "make install_jsregexp", opts = {} },

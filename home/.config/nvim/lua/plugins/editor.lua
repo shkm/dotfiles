@@ -16,6 +16,7 @@ return {
   -- Mini.nvim modules
   {
     "echasnovski/mini.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.surround").setup()
@@ -60,5 +61,5 @@ return {
   },
 
   -- Emacs-style editing
-  { "tpope/vim-rsi" },
+  { "tpope/vim-rsi", event = "InsertEnter" },
 }
