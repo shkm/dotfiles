@@ -7,7 +7,8 @@ No promises are made about stability or portability, but feel free to use anythi
 ```
 home/           Symlinked into ~
 setup/
-  run           Main entry point (symlinks, shell, packages, plugins, macOS defaults)
+  run             Main entry point (symlinks, shell, packages, plugins, macOS defaults)
+  symlinks        Create/update symlinks from home/ into ~
   macos-defaults  macOS system preferences
 Brewfile        Homebrew packages
 ```
@@ -25,5 +26,6 @@ cd ~/dotfiles
 Setup scripts can also be run individually:
 
 ```sh
-./setup/macos-defaults
+./setup/symlinks        # re-link dotfiles only
+./setup/macos-defaults  # apply macOS defaults only
 ```
