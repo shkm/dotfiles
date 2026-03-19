@@ -11,7 +11,7 @@ dark=1
 
 case "$(uname)" in
   Darwin)
-    defaults read -g AppleInterfaceStyle &>/dev/null || dark=0
+    [[ "$(dark-mode status)" == "on" ]] || dark=0
     ;;
   *)
     scheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null)
@@ -21,13 +21,16 @@ esac
 
 if [ "$dark" -eq 1 ]; then
   theme=catppuccin-mocha
+  bat_theme="Catppuccin Mocha"
 else
   theme=catppuccin-latte
+  bat_theme="Catppuccin Latte"
 fi
 
 echo "export DARK_MODE=$dark"
 echo "export DARK_MODE_THEME=catppuccin-mocha"
 echo "export LIGHT_MODE_THEME=catppuccin-latte"
 echo "export THEME=$theme"
+echo "export BAT_THEME=\"$bat_theme\""
 
 exit $(( 1 - dark ))

@@ -5,13 +5,8 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      local flavour = _G.is_dark_mode() and "mocha" or "latte"
-      require("catppuccin").setup({
-        flavour = flavour,
-        no_italic = true,
-      })
-      vim.o.background = flavour == "mocha" and "dark" or "light"
-      vim.cmd.colorscheme("catppuccin")
+      require("catppuccin").setup({ no_italic = true })
+      vim.cmd.colorscheme(_G.current_theme())
     end,
   },
 

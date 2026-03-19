@@ -36,8 +36,7 @@ return {
     local function set_claude_border_highlights()
       local palette_ok, palettes = pcall(require, "catppuccin.palettes")
       if palette_ok then
-        local flavour = _G.is_dark_mode() and "mocha" or "latte"
-        local c = palettes.get_palette(flavour)
+        local c = palettes.get_palette()
         vim.api.nvim_set_hl(0, "ClaudeBorderNormal", { fg = c.blue })
         vim.api.nvim_set_hl(0, "ClaudeBorderTerminal", { fg = c.green })
       end

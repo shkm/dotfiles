@@ -1,14 +1,18 @@
 -- Autocommands
 
--- Detect OS appearance (dark vs light)
-function _G.is_dark_mode()
-  local handle = io.popen("theme-env")
+-- Returns the current theme name (e.g. "catppuccin-mocha").
+function _G.current_theme()
+  local handle = io.popen("dark-mode status")
   if handle then
-    local output = handle:read("*a")
+    local status = handle:read("*l")
     handle:close()
-    return output:match("DARK_MODE=1") ~= nil
+    if status == "on" then
+      return os.getenv("DARK_MODE_THEME") or "catppuccin-mocha"
+    else
+      return os.getenv("LIGHT_MODE_THEME") or "catppuccin-latte"
+    end
   end
-  return true
+  return "catppuccin-mocha"
 end
 
 -- Custom tabline
@@ -71,15 +75,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.api.nvim_create_autocmd("FocusGained", {
   desc = "Switch colorscheme to match macOS appearance",
   callback = function()
-    local dark = _G.is_dark_mode()
-    local expected_bg = dark and "dark" or "light"
-    if vim.o.background == expected_bg then
+    local theme = _G.current_theme()
+    if vim.g.colors_name == theme then
       return
     end
-    local flavour = dark and "mocha" or "latte"
-    require("catppuccin").setup({ flavour = flavour, no_italic = true })
-    vim.o.background = expected_bg
-    vim.cmd.colorscheme("catppuccin")
+    vim.cmd.colorscheme(theme)
     if _G.setup_lualine then
       _G.setup_lualine()
     end

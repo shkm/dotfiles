@@ -18,6 +18,7 @@ brew "yazi"
 brew "tealdeer"
 brew "sd"
 brew "watch"
+brew "dark-mode"
 
 # Disk usage
 brew "dust"
