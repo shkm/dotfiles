@@ -15,6 +15,10 @@ Brewfile        Homebrew packages
 
 Plugins (fish, bat themes) are managed as git submodules under `home/`.
 
+## Vivaldi
+
+Custom CSS mods live in `home/.config/vivaldi-mods/`. After setup, point **Settings → Appearance → Custom UI Modifications** to `~/.config/vivaldi-mods`.
+
 ## Install
 
 ```sh
