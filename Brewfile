@@ -86,7 +86,6 @@ brew "tsonglew/dutis/dutis"
 # Hardware
 brew "shkm/brew/camera-hook"
 brew "timrogers/tap/litra"
-brew "timrogers/tap/litra-autotoggle"
 
 # Misc CLI tools
 brew "topgrade"
