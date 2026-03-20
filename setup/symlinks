@@ -51,7 +51,10 @@ echo "Linking dotfiles..."
 # their children rather than the directory itself.
 link_children "$DOTFILES_HOME/.config" "$HOME/.config"
 link_children "$DOTFILES_HOME/.local/share" "$HOME/.local/share"
-link "$DOTFILES_HOME/Library/Application Support/camera-hook" "$HOME/Library/Application Support/camera-hook"
+# macOS-only
+if [[ "$(uname)" == "Darwin" ]]; then
+  link "$DOTFILES_HOME/Library/Application Support/camera-hook" "$HOME/Library/Application Support/camera-hook"
+fi
 
 # Everything else in home/ is symlinked directly.
 while read -r item; do
