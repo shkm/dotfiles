@@ -49,8 +49,61 @@ return {
             if not vim.api.nvim_win_is_valid(win) then return end
             vim.fn.win_execute(win, 'execute "normal! ' .. key .. '"')
           end
+          local function get_commit_at_cursor()
+            local lifecycle = require("codediff.ui.lifecycle")
+            local panel = lifecycle.get_explorer(vim.api.nvim_get_current_tabpage())
+            if not panel or not panel.tree then return nil end
+            local node = panel.tree:get_node()
+            if not node or not node.data then return nil end
+            -- Walk up to commit node if on a file/directory child
+            while node and node.data and node.data.type ~= "commit" do
+              node = panel.tree:get_node(node:get_parent_id())
+            end
+            if node and node.data and node.data.type == "commit" then
+              return node.data
+            end
+            return nil
+          end
+
           vim.keymap.set("n", "J", function() scroll_diff("\\<C-d>") end, { buffer = args.buf, desc = "Scroll diff down" })
           vim.keymap.set("n", "K", function() scroll_diff("\\<C-u>") end, { buffer = args.buf, desc = "Scroll diff up" })
+
+          vim.keymap.set("n", "gK", function()
+            local commit = get_commit_at_cursor()
+            if not commit then return end
+            local result = vim.fn.systemlist({ "git", "-C", commit.git_root, "show", "--no-patch", "--format=%B", commit.hash })
+            vim.lsp.util.open_floating_preview(result, "", { border = "rounded", focus_id = "commit_msg" })
+          end, { buffer = args.buf, desc = "Show full commit message" })
+
+          vim.keymap.set("n", "gx", function()
+            local commit = get_commit_at_cursor()
+            if not commit then return end
+            vim.fn.jobstart({ "gh", "browse", commit.hash }, { cwd = commit.git_root, detach = true })
+          end, { buffer = args.buf, desc = "Open commit on GitHub" })
+
+          vim.keymap.set("n", "o", function()
+            local lifecycle = require("codediff.ui.lifecycle")
+            local panel = lifecycle.get_explorer(vim.api.nvim_get_current_tabpage())
+            if not panel or not panel.tree then return end
+            local node = panel.tree:get_node()
+            if not node or not node.data then return end
+
+            if node.data.type == "file" then
+              local file_path = node.data.git_root .. "/" .. node.data.path
+              vim.cmd("tabclose")
+              vim.schedule(function()
+                vim.cmd("CodeDiff history " .. vim.fn.fnameescape(file_path))
+              end)
+            else
+              local commit = get_commit_at_cursor()
+              if not commit then return end
+              local range = commit.hash .. "~1.." .. commit.hash
+              vim.cmd("tabclose")
+              vim.schedule(function()
+                vim.cmd("CodeDiff history " .. range)
+              end)
+            end
+          end, { buffer = args.buf, desc = "Toggle between file/commit history" })
 
           if vim.bo[args.buf].filetype == "codediff-history" then
             local function jump_commit(direction)
@@ -98,6 +151,7 @@ return {
     },
     keys = {
       { "<leader>gh", "<cmd>CodeDiff history<cr>", desc = "Git history" },
+      { "<leader>gf", "<cmd>CodeDiff history %<cr>", desc = "Git file history" },
     },
   },
 
