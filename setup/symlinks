@@ -51,10 +51,12 @@ echo "Linking dotfiles..."
 # their children rather than the directory itself.
 link_children "$DOTFILES_HOME/.config" "$HOME/.config"
 link_children "$DOTFILES_HOME/.local/share" "$HOME/.local/share"
+link "$DOTFILES_HOME/Library/Application Support/camera-hook" "$HOME/Library/Application Support/camera-hook"
 
 # Everything else in home/ is symlinked directly.
 while read -r item; do
   link "$item" "$HOME/$(basename "$item")"
 done < <(find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1 \
   -not -name .config \
-  -not -name .local)
+  -not -name .local \
+  -not -name Library)

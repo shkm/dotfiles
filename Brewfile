@@ -1,6 +1,7 @@
 tap "jandedobbeleer/oh-my-posh"
 tap "tsonglew/dutis"
 tap "qmk/qmk"
+tap "shkm/brew"
 tap "timrogers/tap"
 
 # Shell & Terminal
@@ -83,6 +84,7 @@ brew "xcodegen"
 brew "tsonglew/dutis/dutis"
 
 # Hardware
+brew "shkm/brew/camera-hook"
 brew "timrogers/tap/litra"
 brew "timrogers/tap/litra-autotoggle"
 
