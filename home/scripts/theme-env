@@ -19,17 +19,20 @@ case "$(uname)" in
     ;;
 esac
 
+dark_theme=catppuccin-mocha
+light_theme=catppuccin-latte
+
 if [ "$dark" -eq 1 ]; then
-  theme=catppuccin-mocha
+  theme=$dark_theme
   bat_theme="Catppuccin Mocha"
 else
-  theme=catppuccin-latte
+  theme=$light_theme
   bat_theme="Catppuccin Latte"
 fi
 
 echo "export DARK_MODE=$dark"
-echo "export DARK_MODE_THEME=catppuccin-mocha"
-echo "export LIGHT_MODE_THEME=catppuccin-latte"
+echo "export DARK_MODE_THEME=$dark_theme"
+echo "export LIGHT_MODE_THEME=$light_theme"
 echo "export THEME=$theme"
 echo "export BAT_THEME=\"$bat_theme\""
 
