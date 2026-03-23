@@ -1,10 +1,9 @@
-backups/
-cache/
-file-history/
-plugins/
-projects/
-sessions/
-shell-snapshots/
-history.jsonl
-mcp-needs-auth-cache.json
-paste-cache/
+# Ignore everything
+*
+
+# Allow tracked config
+!.gitignore
+!CLAUDE.md
+!settings.json
+!hooks/
+!hooks/**
