@@ -7,3 +7,4 @@ sessions/
 shell-snapshots/
 history.jsonl
 mcp-needs-auth-cache.json
+paste-cache/
