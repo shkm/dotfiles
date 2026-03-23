@@ -83,6 +83,10 @@ vim.keymap.set("n", "<leader>ot", toggle_tab_terminal, { noremap = true, silent 
 vim.keymap.set("i", "<M-S-->", "—", { desc = "Em dash" })
 vim.keymap.set("i", "<M-->", "–", { desc = "En dash" })
 
+-- Indent/dedent
+vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true, desc = "Indent" })
+vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true, desc = "Dedent" })
+
 -- Diagnostic quickfix
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
 
