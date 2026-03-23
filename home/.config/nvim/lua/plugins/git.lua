@@ -155,6 +155,17 @@ return {
     },
   },
 
+  -- Gitlinker - open file/line on GitHub
+  {
+    "linrongbin16/gitlinker.nvim",
+    cmd = "GitLink",
+    keys = {
+      { "<leader>go", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Copy GitHub link" },
+      { "<leader>gO", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open on GitHub" },
+    },
+    opts = {},
+  },
+
   -- Octo - GitHub issues & PRs
   {
     "pwntester/octo.nvim",
