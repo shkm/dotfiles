@@ -1,5 +1,15 @@
 return {
   {
+    dir = vim.fn.stdpath("config") .. "/plugins/mdlink.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    ft = "markdown",
+    keys = {
+      { "<C-k>", function() require("mdlink").insert_link() end, mode = "i", ft = "markdown", desc = "Insert link" },
+      { "gK", function() require("mdlink").insert_link() end, ft = "markdown", desc = "Edit link" },
+      { "gK", function() require("mdlink").insert_link({ visual = true }) end, mode = "v", ft = "markdown", desc = "Link selection" },
+    },
+  },
+  {
     "roodolv/markdown-toggle.nvim",
     ft = "markdown",
     opts = {
@@ -32,6 +42,7 @@ return {
           map("n", "O", mt.autolist_up, "Auto list above")
           map("n", "o", mt.autolist_down, "Auto list below")
           map("i", "<CR>", mt.autolist_cr, "Auto list continue")
+
 
           -- Markdown surrounds via mini.surround
           vim.b[ev.buf].minisurround_config = {
