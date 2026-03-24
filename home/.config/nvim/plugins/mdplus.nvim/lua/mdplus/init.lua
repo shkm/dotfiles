@@ -1,10 +1,33 @@
 local M = {}
 
+--- Check if cursor is inside a list item via treesitter.
+function M.in_list()
+  local node = vim.treesitter.get_node()
+  while node do
+    if node:type() == "list_item" then return true end
+    node = node:parent()
+  end
+  return false
+end
+
+--- Returns a function that indents/outdents if in a list, otherwise falls through.
+function M.list_indent(key, fallback)
+  return function()
+    if M.in_list() then
+      vim.cmd("normal! " .. key)
+      vim.cmd("startinsert!")
+    else
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(fallback, true, false, true), "n", false)
+    end
+  end
+end
+
+-- Link insertion/editing
+
 local function is_url(str)
   return str:match("^https?://") or str:match("^www%.")
 end
 
---- Given a string and replacement boundaries, classify into url/text defaults.
 local function prefill_from(str, col_start, col_end)
   if is_url(str) then
     return str, "", col_start, col_end
@@ -13,7 +36,6 @@ local function prefill_from(str, col_start, col_end)
   end
 end
 
---- Find a markdown link surrounding the cursor (1-indexed).
 local function find_link_at_cursor()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
@@ -29,7 +51,6 @@ local function find_link_at_cursor()
   end
 end
 
---- Find the word under the cursor and its boundaries (1-indexed).
 local function find_word_at_cursor()
   local word = vim.fn.expand("<cWORD>")
   if not word or word == "" then return nil end
@@ -39,7 +60,6 @@ local function find_word_at_cursor()
   local s = line:find(word, math.max(1, col - #word), true)
   if not s then return nil end
 
-  -- Use <cword> for non-URL text to get tighter boundaries
   if not is_url(word) then
     word = vim.fn.expand("<cword>")
     if word == "" then return nil end
@@ -50,7 +70,6 @@ local function find_word_at_cursor()
   return word, s, s + #word - 1
 end
 
---- Get visual selection text and boundaries (1-indexed columns).
 local function get_visual_selection()
   vim.cmd('noautocmd normal! "vy')
   local text = vim.fn.getreg("v")

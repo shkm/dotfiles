@@ -1,12 +1,14 @@
 return {
   {
-    dir = vim.fn.stdpath("config") .. "/plugins/mdlink.nvim",
+    dir = vim.fn.stdpath("config") .. "/plugins/mdplus.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     ft = "markdown",
     keys = {
-      { "<C-k>", function() require("mdlink").insert_link() end, mode = "i", ft = "markdown", desc = "Insert link" },
-      { "gK", function() require("mdlink").insert_link() end, ft = "markdown", desc = "Edit link" },
-      { "gK", function() require("mdlink").insert_link({ visual = true }) end, mode = "v", ft = "markdown", desc = "Link selection" },
+      { "<C-k>", function() require("mdplus").insert_link() end, mode = "i", ft = "markdown", desc = "Insert link" },
+      { "gK", function() require("mdplus").insert_link() end, ft = "markdown", desc = "Edit link" },
+      { "gK", function() require("mdplus").insert_link({ visual = true }) end, mode = "v", ft = "markdown", desc = "Link selection" },
+      { "<Tab>", function() require("mdplus").list_indent(">>", "<Tab>")() end, mode = "i", ft = "markdown", desc = "Indent list item" },
+      { "<S-Tab>", function() require("mdplus").list_indent("<<", "<S-Tab>")() end, mode = "i", ft = "markdown", desc = "Outdent list item" },
     },
   },
   {
@@ -42,7 +44,6 @@ return {
           map("n", "O", mt.autolist_up, "Auto list above")
           map("n", "o", mt.autolist_down, "Auto list below")
           map("i", "<CR>", mt.autolist_cr, "Auto list continue")
-
 
           -- Markdown surrounds via mini.surround
           vim.b[ev.buf].minisurround_config = {
