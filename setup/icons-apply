@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+ICONS_DIR="$(cd "$(dirname "$0")" && pwd)/icons"
+
+for icon in "$ICONS_DIR"/*.icns; do
+  [ -f "$icon" ] || continue
+  app_name="$(basename "$icon" .icns)"
+  app_path="/Applications/${app_name}.app"
+
+  if [ -d "$app_path" ]; then
+    echo "  ${app_name}: applying icon"
+    fileicon set "$app_path" "$icon" > /dev/null
+  else
+    echo "  ${app_name}: app not found, skipping"
+  fi
+done

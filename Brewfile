@@ -79,6 +79,7 @@ brew "pandoc"
 brew "mkcert"
 
 # macOS utilities
+brew "fileicon"
 brew "terminal-notifier"
 brew "xcodegen"
 brew "tsonglew/dutis/dutis"
