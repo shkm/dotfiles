@@ -22,7 +22,7 @@ case "$ACTION" in
     mkdir -p "$JOURNAL_DIR"
 
     if [[ ! -f "$FULL_PATH" ]]; then
-      printf "# %s\n\n\n" "$(date +'%-d %B %Y')" > "$FULL_PATH"
+      printf "# %s\n\n\n" "$(date +'%A, %-d %B %Y')" > "$FULL_PATH"
     fi
 
     $EDITOR "$FULL_PATH"
