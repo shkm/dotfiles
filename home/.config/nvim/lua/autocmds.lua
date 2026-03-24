@@ -16,7 +16,6 @@ function _G.current_theme()
 end
 
 -- Custom tabline
-vim.o.showtabline = 2
 function _G.custom_tabline()
   local s = ""
   local current = vim.api.nvim_get_current_tabpage()
