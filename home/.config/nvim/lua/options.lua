@@ -56,4 +56,11 @@ if vim.g.neovide then
   vim.g.transparency = 0.85
   vim.g.neovide_background_color = "#1e1e2e" .. string.format("%x", math.floor(255 * vim.g.transparency))
   vim.g.neovide_window_blurred = true
+
+  vim.keymap.set("v", "<D-c>", '"+y')         -- Copy
+  vim.keymap.set("n", "<D-v>", '"+P')          -- Paste normal mode
+  vim.keymap.set("v", "<D-v>", '"+P')          -- Paste visual mode
+  vim.keymap.set("c", "<D-v>", "<C-R>+")       -- Paste command mode
+  vim.keymap.set("i", "<D-v>", "<C-R>+")        -- Paste insert mode
+  vim.keymap.set("t", "<D-v>", '<C-\\><C-n>"+Pi') -- Paste terminal mode
 end
