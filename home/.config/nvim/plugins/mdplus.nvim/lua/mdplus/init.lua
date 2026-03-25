@@ -79,9 +79,38 @@ local function get_visual_selection()
   return text, s[3], e[3]
 end
 
+local function decode_html_entities(str)
+  local entities = {
+    ["&amp;"] = "&", ["&lt;"] = "<", ["&gt;"] = ">",
+    ["&quot;"] = '"', ["&#39;"] = "'", ["&apos;"] = "'",
+  }
+  str = str:gsub("(&%w+;)", function(e) return entities[e] or e end)
+  str = str:gsub("&#(%d+);", function(n) return string.char(tonumber(n)) end)
+  return str
+end
+
+local function fetch_title(url, callback)
+  vim.system(
+    { "curl", "-sL", "--max-time", "5", "--compressed", "-r", "0-16384", url },
+    {},
+    vim.schedule_wrap(function(result)
+      local title
+      if result.code == 0 and result.stdout then
+        title = result.stdout:match("<[Tt][Ii][Tt][Ll][Ee][^>]*>([^<]+)</[Tt][Ii][Tt][Ll][Ee]>")
+        if title then
+          title = decode_html_entities(title)
+          title = title:gsub("^%s+", ""):gsub("%s+$", ""):gsub("%s+", " ")
+        end
+      end
+      callback(title)
+    end)
+  )
+end
+
 function M.insert_link(opts)
   opts = opts or {}
   local Input = require("nui.input")
+  local Popup = require("nui.popup")
   local Layout = require("nui.layout")
 
   local default_url, default_text = "", ""
@@ -105,7 +134,8 @@ function M.insert_link(opts)
   end
 
   local url_value, text_value = default_url, default_text
-  local layout, url_input, text_input
+  local auto_fetch = (default_text == "")
+  local layout, url_input, text_input, checkbox
 
   local closed = false
   local function close()
@@ -114,22 +144,44 @@ function M.insert_link(opts)
     vim.schedule(function()
       url_input:unmount()
       text_input:unmount()
+      checkbox:unmount()
     end)
   end
 
+  local function insert_link_text(link)
+    if replace_start then
+      local line = vim.api.nvim_get_current_line()
+      vim.api.nvim_set_current_line(line:sub(1, replace_start - 1) .. link .. line:sub(replace_end + 1))
+    else
+      vim.api.nvim_put({ link }, "c", false, true)
+    end
+  end
+
   local function submit()
-    if url_value ~= "" and text_value ~= "" then
+    if url_value == "" then return end
+
+    if auto_fetch and (text_value == nil or text_value == "") then
+      close()
+      fetch_title(url_value, function(title)
+        local text = title or url_value
+        local link = "[" .. text .. "](" .. url_value .. ")"
+        insert_link_text(link)
+      end)
+    elseif text_value ~= "" then
       close()
       vim.schedule(function()
         local link = "[" .. text_value .. "](" .. url_value .. ")"
-        if replace_start then
-          local line = vim.api.nvim_get_current_line()
-          vim.api.nvim_set_current_line(line:sub(1, replace_start - 1) .. link .. line:sub(replace_end + 1))
-        else
-          vim.api.nvim_put({ link }, "c", false, true)
-        end
+        insert_link_text(link)
       end)
     end
+  end
+
+  local function update_checkbox()
+    if not checkbox.bufnr or not vim.api.nvim_buf_is_valid(checkbox.bufnr) then return end
+    local mark = auto_fetch and "x" or " "
+    vim.api.nvim_buf_set_option(checkbox.bufnr, "modifiable", true)
+    vim.api.nvim_buf_set_lines(checkbox.bufnr, 0, -1, false, { " [" .. mark .. "] Fetch title from URL" })
+    vim.api.nvim_buf_set_option(checkbox.bufnr, "modifiable", false)
   end
 
   local title = replace_start and " Edit Link " or " Insert Link "
@@ -146,8 +198,7 @@ function M.insert_link(opts)
     on_change = function(v) url_value = v end,
     on_submit = function(v)
       url_value = v
-      vim.api.nvim_set_current_win(text_input.winid)
-      vim.cmd("startinsert!")
+      submit()
     end,
     on_close = close,
   })
@@ -160,7 +211,14 @@ function M.insert_link(opts)
   }, {
     prompt = " Text: ",
     default_value = default_text,
-    on_change = function(v) text_value = v end,
+    on_change = function(v)
+      text_value = v
+      local should_fetch = (v == nil or v == "")
+      if should_fetch ~= auto_fetch then
+        auto_fetch = should_fetch
+        update_checkbox()
+      end
+    end,
     on_submit = function(v)
       text_value = v
       submit()
@@ -168,20 +226,50 @@ function M.insert_link(opts)
     on_close = close,
   })
 
+  checkbox = Popup({
+    border = { style = "rounded" },
+    focusable = true,
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+      cursorline = false,
+    },
+  })
+
+  local focus_order = { url_input, text_input, checkbox }
+
+  local function focus_next()
+    local cur = vim.api.nvim_get_current_win()
+    for i, w in ipairs(focus_order) do
+      if w.winid == cur then
+        local next = focus_order[(i % #focus_order) + 1]
+        vim.api.nvim_set_current_win(next.winid)
+        if next == checkbox then
+          vim.cmd("stopinsert")
+        else
+          vim.cmd("startinsert!")
+        end
+        return
+      end
+    end
+  end
+
   layout = Layout(
     {
       position = "50%",
-      size = { width = 60, height = 6 },
+      size = { width = 60, height = 9 },
     },
     Layout.Box({
-      Layout.Box(url_input, { size = 2 }),
+      Layout.Box(url_input, { size = 3 }),
       Layout.Box(text_input, { size = 3 }),
+      Layout.Box(checkbox, { size = 3 }),
     }, { dir = "col" })
   )
 
   local focus_text = default_url ~= "" and default_text == ""
 
   layout:mount()
+  update_checkbox()
+
   vim.schedule(function()
     vim.api.nvim_set_current_win(focus_text and text_input.winid or url_input.winid)
     vim.cmd("startinsert!")
@@ -189,13 +277,17 @@ function M.insert_link(opts)
 
   for _, input in ipairs({ url_input, text_input }) do
     input:map("i", "<Esc>", close, { noremap = true })
-    input:map("i", "<Tab>", function()
-      local target = vim.api.nvim_get_current_win() == url_input.winid
-          and text_input or url_input
-      vim.api.nvim_set_current_win(target.winid)
-      vim.cmd("startinsert!")
-    end, { noremap = true })
+    input:map("i", "<Tab>", focus_next, { noremap = true })
   end
+
+
+  checkbox:map("n", "<Esc>", close, { noremap = true })
+  checkbox:map("n", "<Tab>", focus_next, { noremap = true })
+  checkbox:map("n", "<CR>", submit, { noremap = true })
+  checkbox:map("n", "<Space>", function()
+    auto_fetch = not auto_fetch
+    update_checkbox()
+  end, { noremap = true })
 end
 
 return M
