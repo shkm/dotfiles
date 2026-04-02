@@ -50,6 +50,9 @@ return {
           map("gW", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
           map("<C-]>", vim.lsp.buf.definition, "Definition")
 
+          map("<leader>ld", function() Snacks.picker.lsp_symbols() end, "Document symbols")
+          map("<leader>ls", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
+
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map("<leader>th", function()
