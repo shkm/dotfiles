@@ -107,6 +107,15 @@ vim.api.nvim_create_autocmd("BufLeave", {
   end,
 })
 
+-- Ensure filetype detection when editing into the [No Name] startup buffer
+vim.api.nvim_create_autocmd("BufRead", {
+  callback = function()
+    if vim.bo.filetype == "" then
+      vim.cmd("filetype detect")
+    end
+  end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight on yank",
