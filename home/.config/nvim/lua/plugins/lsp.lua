@@ -152,9 +152,10 @@ return {
       appearance = { nerd_font_variant = "mono" },
       completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
       sources = {
-        default = { "lsp", "path", "snippets", "lazydev" },
+        default = { "lsp", "path", "snippets", "lazydev", "noteworthy" },
         providers = {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+          noteworthy = { module = "noteworthy.blink", name = "Notes" },
         },
       },
       snippets = { preset = "luasnip" },
