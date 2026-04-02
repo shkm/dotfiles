@@ -73,6 +73,15 @@ return {
             },
           },
         },
+        ruby_lsp = {
+          init_options = {
+            addonSettings = {
+              ["Ruby LSP Rails"] = {
+                enablePendingMigrationsPrompt = false,
+              },
+            },
+          },
+        },
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
