@@ -36,6 +36,7 @@ return {
         { "<leader>b", group = "Buffer" },
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
+        { "<leader>l", group = "LSP" },
         { "<leader>n", group = "Notes" },
         { "<leader>t", group = "Toggle" },
         { "<leader>w", group = "Worktree" },
