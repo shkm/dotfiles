@@ -21,6 +21,16 @@ return {
       "saghen/blink.cmp",
     },
     config = function()
+      vim.lsp.config("ruby_lsp", {
+        init_options = {
+          addonSettings = {
+            ["Ruby LSP Rails"] = {
+              enablePendingMigrationsPrompt = false,
+            },
+          },
+        },
+      })
+
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
@@ -73,15 +83,7 @@ return {
             },
           },
         },
-        ruby_lsp = {
-          init_options = {
-            addonSettings = {
-              ["Ruby LSP Rails"] = {
-                enablePendingMigrationsPrompt = false,
-              },
-            },
-          },
-        },
+        ruby_lsp = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
