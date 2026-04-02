@@ -152,6 +152,57 @@ return {
       { "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
       { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
       { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
+      {
+        "<leader>fg",
+        function()
+          local function get_gem_dirs(force)
+            local lockfile = vim.fn.getcwd() .. "/Gemfile.lock"
+            local stat = vim.uv.fs_stat(lockfile)
+            if not stat then return nil, "No Gemfile.lock found" end
+
+            local cache_key = lockfile .. ":" .. stat.size .. ":" .. stat.mtime.sec
+            _G._gem_paths_cache = _G._gem_paths_cache or {}
+
+            if force then _G._gem_paths_cache[cache_key] = nil end
+            if _G._gem_paths_cache[cache_key] then return _G._gem_paths_cache[cache_key] end
+
+            local handle = io.popen("bundle show --paths 2>/dev/null")
+            if not handle then return nil, "Not in a bundled project" end
+            local output = handle:read("*a")
+            handle:close()
+            local dirs = vim.split(vim.trim(output), "\n", { trimempty = true })
+            if #dirs == 0 then return nil, "No gems found" end
+            _G._gem_paths_cache[cache_key] = dirs
+            return dirs
+          end
+
+          local function open_picker(force)
+            local dirs, err = get_gem_dirs(force)
+            if not dirs then return vim.notify(err, vim.log.levels.WARN) end
+            Snacks.picker.files({
+              title = "Gems",
+              dirs = dirs,
+              actions = {
+                refresh = function(picker)
+                  picker:close()
+                  vim.schedule(function() open_picker(true) end)
+                end,
+              },
+              win = {
+                input = {
+                  keys = {
+                    ["<C-r>"] = { "refresh", mode = { "n", "i" }, desc = "Refresh gems" },
+                  },
+                },
+              },
+            })
+          end
+
+          open_picker()
+        end,
+        ft = "ruby",
+        desc = "Search gems",
+      },
       { "<leader>fr", function() Snacks.picker.resume() end, desc = "Find resume" },
       { "<leader>f.", function() Snacks.picker.recent() end, desc = "Find recent files" },
       { "<leader>/", function() Snacks.picker.grep(picker_opts()) end, desc = "Find in project" },
