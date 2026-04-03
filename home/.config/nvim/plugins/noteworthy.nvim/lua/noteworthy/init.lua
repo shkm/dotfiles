@@ -37,12 +37,9 @@ function M.setup(opts)
     pattern = "markdown",
     callback = function(ev)
       if not M.is_note(ev.buf) then return end
-      local map = function(mode, lhs, rhs, desc)
-        vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+      if M.opts.on_attach then
+        M.opts.on_attach(ev.buf)
       end
-      map("n", "K", function() M.hover() end, "Preview wiki link")
-      map("n", "gf", function() M.follow_link() end, "Follow wiki link")
-      map("n", "<C-]>", function() M.follow_link() end, "Follow wiki link")
     end,
   })
 end

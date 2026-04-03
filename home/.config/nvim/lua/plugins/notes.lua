@@ -10,6 +10,15 @@ return {
     opts = {
       dir = "~/notes",
       daily_dir = "~/notes/daily",
+      on_attach = function(buf)
+        local nw = require("noteworthy")
+        local map = function(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = buf, desc = desc })
+        end
+        map("n", "K", nw.hover, "Preview wiki link")
+        map("n", "gf", nw.follow_link, "Follow wiki link")
+        map("n", "<C-]>", nw.follow_link, "Follow wiki link")
+      end,
     },
   },
 }
