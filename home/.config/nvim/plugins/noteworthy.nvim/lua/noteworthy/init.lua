@@ -22,20 +22,6 @@ function M.setup(opts)
   end, {})
   vim.api.nvim_create_user_command("NoteworthyToday", M.today, {})
 
-  -- Register custom filetype for notes directory
-  vim.filetype.add({
-    pattern = {
-      [".*%.md"] = {
-        function(path)
-          if vim.fn.resolve(path):find(M.opts.dir, 1, true) then
-            return "markdown.noteworthy"
-          end
-        end,
-        { priority = 10 },
-      },
-    },
-  })
-
   -- Invalidate cache when a note is saved
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.md",
@@ -48,11 +34,15 @@ function M.setup(opts)
   })
 
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown.noteworthy",
+    pattern = "markdown",
     callback = function(ev)
-      vim.keymap.set("n", "K", function()
-        M.hover()
-      end, { buffer = ev.buf, desc = "Preview wiki link" })
+      if not M.is_note(ev.buf) then return end
+      local map = function(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+      end
+      map("n", "K", function() M.hover() end, "Preview wiki link")
+      map("n", "gf", function() M.follow_link() end, "Follow wiki link")
+      map("n", "<C-]>", function() M.follow_link() end, "Follow wiki link")
     end,
   })
 end
@@ -184,6 +174,12 @@ function M.hover()
     max_width = 80,
     max_height = 20,
   })
+end
+
+--- Check if a buffer belongs to the notes directory.
+function M.is_note(buf)
+  local path = vim.fn.resolve(vim.api.nvim_buf_get_name(buf))
+  return path:find(M.opts.dir, 1, true) ~= nil
 end
 
 --- Slugify a title into a filename-safe string.

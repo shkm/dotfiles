@@ -2,18 +2,18 @@ return {
   {
     dir = vim.fn.stdpath("config") .. "/plugins/mdplus.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
-    ft = { "markdown", "markdown.noteworthy" },
+    ft = "markdown",
     keys = {
-      { "<C-k>", function() require("mdplus").insert_link() end, mode = "i", ft = { "markdown", "markdown.noteworthy" }, desc = "Insert link" },
-      { "gK", function() require("mdplus").insert_link() end, ft = { "markdown", "markdown.noteworthy" }, desc = "Edit link" },
-      { "gK", function() require("mdplus").insert_link({ visual = true }) end, mode = "v", ft = { "markdown", "markdown.noteworthy" }, desc = "Link selection" },
-      { "<Tab>", function() require("mdplus").list_indent(">>", "<Tab>")() end, mode = "i", ft = { "markdown", "markdown.noteworthy" }, desc = "Indent list item" },
-      { "<S-Tab>", function() require("mdplus").list_indent("<<", "<S-Tab>")() end, mode = "i", ft = { "markdown", "markdown.noteworthy" }, desc = "Outdent list item" },
+      { "<C-k>", function() require("mdplus").insert_link() end, mode = "i", ft = "markdown", desc = "Insert link" },
+      { "gK", function() require("mdplus").insert_link() end, ft = "markdown", desc = "Edit link" },
+      { "gK", function() require("mdplus").insert_link({ visual = true }) end, mode = "v", ft = "markdown", desc = "Link selection" },
+      { "<Tab>", function() require("mdplus").list_indent(">>", "<Tab>")() end, mode = "i", ft = "markdown", desc = "Indent list item" },
+      { "<S-Tab>", function() require("mdplus").list_indent("<<", "<S-Tab>")() end, mode = "i", ft = "markdown", desc = "Outdent list item" },
     },
   },
   {
     "roodolv/markdown-toggle.nvim",
-    ft = { "markdown", "markdown.noteworthy" },
+    ft = "markdown",
     opts = {
       list_before_box = true,
     },
@@ -22,7 +22,7 @@ return {
       mt.setup(opts)
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "markdown", "markdown.noteworthy" },
+        pattern = "markdown",
         callback = function(ev)
           local map = function(mode, lhs, rhs, desc)
             vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
