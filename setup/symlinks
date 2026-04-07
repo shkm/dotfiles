@@ -62,4 +62,5 @@ while read -r item; do
 done < <(find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1 \
   -not -name .config \
   -not -name .local \
+  -not -name .DS_Store \
   -not -name Library)
