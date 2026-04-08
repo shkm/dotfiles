@@ -141,6 +141,7 @@ fi
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Dotnet
 export CHECKPOINT_DISABLE=1          # Prisma
 export NEXT_TELEMETRY_DISABLED=1     # Next.js
+export RTK_TELEMETRY_DISABLED=1      # RTK
 
 # LESS colouring
 export LESS_TERMCAP_mb=$(printf "\033[01;31m")
