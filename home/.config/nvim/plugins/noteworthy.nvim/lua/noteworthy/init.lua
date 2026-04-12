@@ -361,12 +361,14 @@ end
 --- Open today's daily note.
 function M.today()
   local daily_dir = M.opts.daily_dir
-  vim.fn.mkdir(daily_dir, "p")
-  local date = os.date(M.opts.daily_format)
-  local path = daily_dir .. "/" .. date .. ".md"
+  local fmt = M.opts.daily_path_format or M.opts.daily_format
+  local rel = os.date(fmt)
+  local path = daily_dir .. "/" .. rel .. ".md"
+  vim.fn.mkdir(vim.fn.fnamemodify(path, ":h"), "p")
   vim.cmd("edit " .. vim.fn.fnameescape(path))
   if vim.fn.filereadable(path) == 0 then
-    vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# " .. date, "" })
+    local heading = vim.fn.fnamemodify(rel, ":t")
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# " .. heading, "" })
   end
   notes_cache = nil
 end

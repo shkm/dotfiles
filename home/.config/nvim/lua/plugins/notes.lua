@@ -12,6 +12,7 @@ return {
     opts = {
       dir = "~/notes",
       daily_dir = "~/notes/daily",
+      daily_path_format = "%Y/%m/%Y-%m-%d",
       on_attach = function(buf)
         local nw = require("noteworthy")
         local map = function(mode, lhs, rhs, desc)
