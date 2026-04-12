@@ -4,6 +4,8 @@ return {
     event = "BufReadPre",
     keys = {
       { "<leader>nf", "<cmd>NoteworthyFind<cr>", desc = "Find note" },
+      { "<leader>nd", "<cmd>NoteworthyFindDaily<cr>", desc = "Find daily notes" },
+      { "<leader>n/", "<cmd>NoteworthySearch<cr>", desc = "Search notes" },
       { "<leader>nn", "<cmd>NoteworthyNew<cr>", desc = "New note" },
       { "<leader>nt", "<cmd>NoteworthyToday<cr>", desc = "Daily note (today)" },
     },

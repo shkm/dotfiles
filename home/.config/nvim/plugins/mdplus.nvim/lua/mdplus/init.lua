@@ -136,6 +136,7 @@ function M.insert_link(opts)
   local url_value, text_value = default_url, default_text
   local auto_fetch = (default_text == "")
   local layout, url_input, text_input, checkbox
+  local origin_win = vim.api.nvim_get_current_win()
 
   local closed = false
   local function close()
@@ -149,6 +150,8 @@ function M.insert_link(opts)
   end
 
   local function insert_link_text(link)
+    if not vim.api.nvim_win_is_valid(origin_win) then return end
+    vim.api.nvim_set_current_win(origin_win)
     if replace_start then
       local line = vim.api.nvim_get_current_line()
       vim.api.nvim_set_current_line(line:sub(1, replace_start - 1) .. link .. line:sub(replace_end + 1))
@@ -216,7 +219,7 @@ function M.insert_link(opts)
       local should_fetch = (v == nil or v == "")
       if should_fetch ~= auto_fetch then
         auto_fetch = should_fetch
-        update_checkbox()
+        vim.schedule(update_checkbox)
       end
     end,
     on_submit = function(v)

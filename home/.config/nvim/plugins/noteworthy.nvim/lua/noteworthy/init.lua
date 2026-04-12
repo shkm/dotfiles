@@ -7,6 +7,10 @@ M.opts = {
 -- Notes cache, invalidated on BufWritePost in notes dir
 local notes_cache = nil
 
+local function is_daily_note(path)
+  return path:find(M.opts.daily_dir, 1, true) == 1
+end
+
 function M.setup(opts)
   M.opts = vim.tbl_deep_extend("force", M.opts, opts or {})
 
@@ -17,6 +21,8 @@ function M.setup(opts)
   M.opts.daily_dir = vim.fn.resolve(vim.fn.expand(M.opts.daily_dir))
 
   vim.api.nvim_create_user_command("NoteworthyFind", M.find, {})
+  vim.api.nvim_create_user_command("NoteworthyFindDaily", M.find_daily, {})
+  vim.api.nvim_create_user_command("NoteworthySearch", M.search, {})
   vim.api.nvim_create_user_command("NoteworthyNew", function()
     M.create(vim.fn.input("Title: "))
   end, {})
@@ -186,7 +192,9 @@ end
 
 --- Open the snacks picker with note titles.
 function M.find()
-  local notes = M.get_notes()
+  local notes = vim.tbl_filter(function(note)
+    return not is_daily_note(note.file)
+  end, M.get_notes())
   local dir = M.opts.dir
 
   local items = {}
@@ -258,7 +266,9 @@ function M.find()
       end,
       refresh = function(picker)
         notes_cache = nil
-        local fresh = M.get_notes()
+        local fresh = vim.tbl_filter(function(note)
+          return not is_daily_note(note.file)
+        end, M.get_notes())
         local new_items = {}
         for _, note in ipairs(fresh) do
           table.insert(new_items, {
@@ -285,6 +295,50 @@ function M.find()
         },
       },
     },
+  })
+end
+
+--- Open the snacks picker with daily notes only.
+function M.find_daily()
+  local notes = vim.tbl_filter(function(note)
+    return is_daily_note(note.file)
+  end, M.get_notes())
+  local dir = M.opts.daily_dir
+
+  local items = {}
+  for _, note in ipairs(notes) do
+    table.insert(items, {
+      text = note.title .. " " .. note.rel,
+      title = note.title,
+      file = note.file,
+    })
+  end
+
+  Snacks.picker({
+    title = "Daily Notes",
+    items = items,
+    format = function(item)
+      local rel = item.file:sub(#dir + 2)
+      return {
+        { item.title },
+        { "  " },
+        { rel, "Comment" },
+      }
+    end,
+    confirm = function(picker, item)
+      picker:close()
+      if item then
+        vim.cmd("edit " .. vim.fn.fnameescape(item.file))
+      end
+    end,
+  })
+end
+
+--- Search note contents in the notes directory.
+function M.search()
+  Snacks.picker.grep({
+    title = "Search Notes",
+    cwd = M.opts.dir,
   })
 end
 

@@ -33,6 +33,7 @@
       "/Users/jamie/"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -42,6 +43,15 @@
             "type": "command",
             "command": "~/.claude/hooks/guard-files.sh",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/rtk-rewrite.sh"
           }
         ]
       }
@@ -80,7 +90,8 @@
     "repomix-mcp@repomix": true,
     "swift-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": false
@@ -95,6 +106,5 @@
   "terminal": {
     "vimMode": false
   },
-  "includePrerelease": false,
-  "model": "opus[1m]"
+  "includePrerelease": false
 }
