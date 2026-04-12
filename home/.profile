@@ -3,7 +3,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CONFIG_HOME="$HOME/.config"
 export LANG=en_GB.UTF-8
 
-
 if [ -d "${HOME}/dotfiles" ]; then
   export DOTFILES="${HOME}/dotfiles"
 fi

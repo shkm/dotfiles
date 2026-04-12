@@ -29,8 +29,8 @@
     ],
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
-      "/Users/jamie/.workspaces",
-      "/Users/jamie/"
+      "~/.workspaces",
+      "~"
     ]
   },
   "model": "opus[1m]",
