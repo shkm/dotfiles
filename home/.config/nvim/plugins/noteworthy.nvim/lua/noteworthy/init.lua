@@ -352,6 +352,9 @@ function M.create(title)
   end
   local path = M.opts.dir .. "/" .. slug .. ".md"
   vim.cmd("edit " .. vim.fn.fnameescape(path))
+  if vim.bo.filetype == "" then
+    vim.cmd("setfiletype markdown")
+  end
   if vim.fn.filereadable(path) == 0 then
     vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# " .. title, "" })
   end
@@ -366,6 +369,9 @@ function M.today()
   local path = daily_dir .. "/" .. rel .. ".md"
   vim.fn.mkdir(vim.fn.fnamemodify(path, ":h"), "p")
   vim.cmd("edit " .. vim.fn.fnameescape(path))
+  if vim.bo.filetype == "" then
+    vim.cmd("setfiletype markdown")
+  end
   if vim.fn.filereadable(path) == 0 then
     local heading = vim.fn.fnamemodify(rel, ":t")
     vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# " .. heading, "" })
