@@ -5,6 +5,13 @@ return {
     lazy = false,
     build = ":TSUpdate",
     config = function()
+      local treesitter = require("nvim-treesitter")
+
+      treesitter.setup({
+        install_dir = vim.fn.stdpath("data") .. "/site",
+      })
+      treesitter.install({ "ruby" })
+
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
           pcall(vim.treesitter.start, args.buf)
@@ -20,7 +27,29 @@ return {
     config = function()
       require("mini.ai").setup({ n_lines = 500 })
       require("mini.surround").setup()
-      require("mini.splitjoin").setup()
+    end,
+  },
+
+  -- Splitjoin-alike (treesj)
+  {
+    "Wansmer/treesj",
+    keys = {
+      {
+        "gJ",
+        function() require("treesj").join() end,
+        desc = "Join code block",
+      },
+      {
+        "gS",
+        function() require("treesj").split() end,
+        desc = "Split code block",
+      },
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
     end,
   },
 

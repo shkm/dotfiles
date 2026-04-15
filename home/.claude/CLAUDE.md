@@ -9,6 +9,7 @@
 ## Commands
 
 - **NEVER** use `rm` to remove files or folders. **DO** use `trash`.
+- Use `gh` for GitHub issues, pull requests, and other GitHub interactions.
 
 ## Git
 
