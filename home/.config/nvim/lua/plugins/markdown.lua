@@ -2,7 +2,7 @@ return {
   {
     dir = vim.fn.stdpath("config") .. "/plugins/mdplus.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
-    ft = "markdown",
+    lazy = false,
     keys = {
       { "<C-k>", function() require("mdplus").insert_link() end, mode = "i", ft = "markdown", desc = "Insert link" },
       { "gK", function() require("mdplus").insert_link() end, ft = "markdown", desc = "Edit link" },
@@ -13,7 +13,7 @@ return {
   },
   {
     "roodolv/markdown-toggle.nvim",
-    ft = "markdown",
+    lazy = false,
     opts = {
       list_before_box = true,
     },

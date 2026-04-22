@@ -107,12 +107,28 @@ vim.api.nvim_create_autocmd("BufLeave", {
   end,
 })
 
--- Ensure filetype detection when editing into the [No Name] startup buffer
-vim.api.nvim_create_autocmd("BufRead", {
+-- Ensure filetype detection when editing into the initial [No Name] startup buffer
+local startup_no_name_buf = nil
+
+vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    if vim.bo.filetype == "" then
-      vim.cmd("filetype detect")
+    if vim.fn.argc() == 0 and vim.api.nvim_buf_get_name(0) == "" then
+      startup_no_name_buf = vim.api.nvim_get_current_buf()
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function(args)
+    if args.buf ~= startup_no_name_buf then
+      return
+    end
+    if vim.bo[args.buf].filetype == "" then
+      vim.api.nvim_buf_call(args.buf, function()
+        vim.cmd("filetype detect")
+      end)
+    end
+    startup_no_name_buf = nil
   end,
 })
 
