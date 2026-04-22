@@ -19,6 +19,7 @@ vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.undofile = true
+vim.o.backupdir = vim.fn.stdpath("state") .. "/backup//"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.signcolumn = "yes"
