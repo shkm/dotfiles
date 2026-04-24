@@ -8,6 +8,7 @@ return {
       { "<leader>n/", "<cmd>NoteworthySearch<cr>", desc = "Search notes" },
       { "<leader>nn", "<cmd>NoteworthyNew<cr>", desc = "New note" },
       { "<leader>nt", "<cmd>NoteworthyToday<cr>", desc = "Daily note (today)" },
+      { "<leader>ny", "<cmd>NoteworthyYesterday<cr>", desc = "Daily note (yesterday)" },
     },
     opts = {
       dir = "~/notes",

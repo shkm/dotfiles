@@ -27,6 +27,7 @@ function M.setup(opts)
     M.create(vim.fn.input("Title: "))
   end, {})
   vim.api.nvim_create_user_command("NoteworthyToday", M.today, {})
+  vim.api.nvim_create_user_command("NoteworthyYesterday", M.yesterday, {})
 
   -- Invalidate cache when a note is saved
   vim.api.nvim_create_autocmd("BufWritePost", {
@@ -357,6 +358,24 @@ function M.create(title)
   end
   if vim.fn.filereadable(path) == 0 then
     vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# " .. title, "" })
+  end
+  notes_cache = nil
+end
+
+--- Open yesterday's daily note.
+function M.yesterday()
+  local daily_dir = M.opts.daily_dir
+  local fmt = M.opts.daily_path_format or M.opts.daily_format
+  local rel = os.date(fmt, os.time() - 86400)
+  local path = daily_dir .. "/" .. rel .. ".md"
+  vim.fn.mkdir(vim.fn.fnamemodify(path, ":h"), "p")
+  vim.cmd("edit " .. vim.fn.fnameescape(path))
+  if vim.bo.filetype == "" then
+    vim.cmd("setfiletype markdown")
+  end
+  if vim.fn.filereadable(path) == 0 then
+    local heading = vim.fn.fnamemodify(rel, ":t")
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, { "# " .. heading, "" })
   end
   notes_cache = nil
 end
