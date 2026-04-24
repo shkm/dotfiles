@@ -156,7 +156,7 @@ function M.insert_link(opts)
       local line = vim.api.nvim_get_current_line()
       vim.api.nvim_set_current_line(line:sub(1, replace_start - 1) .. link .. line:sub(replace_end + 1))
     else
-      vim.api.nvim_put({ link }, "c", false, true)
+      vim.api.nvim_put({ link }, "c", true, true)
     end
   end
 
