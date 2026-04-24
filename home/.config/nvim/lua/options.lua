@@ -53,7 +53,7 @@ if vim.g.neovide then
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
   vim.o.guifont = "0xProto Nerd Font Mono:h14"
-  vim.g.neovide_opacity = 0.0
+  vim.g.neovide_opacity = 0.9
   vim.g.transparency = 0.85
   vim.g.neovide_background_color = "#1e1e2e" .. string.format("%x", math.floor(255 * vim.g.transparency))
   vim.g.neovide_window_blurred = true
