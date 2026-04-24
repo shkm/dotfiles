@@ -88,7 +88,19 @@ vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true, desc = "Inde
 vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true, desc = "Dedent" })
 
 -- Diagnostic quickfix
+local function toggle_quickfix_list()
+  for _, win in ipairs(vim.fn.getwininfo()) do
+    if win.quickfix == 1 and win.loclist == 0 then
+      vim.cmd("cclose")
+      return
+    end
+  end
+
+  vim.cmd("copen")
+end
+
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
+vim.keymap.set("n", "<leader>oq", toggle_quickfix_list, { desc = "Toggle quickfix list" })
 
 -- Custom commands
 vim.api.nvim_create_user_command("PrettyJson", "%!python -m json.tool", {})
