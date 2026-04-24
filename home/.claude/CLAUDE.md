@@ -27,5 +27,3 @@ Before creating a new git worktree, check if you're already in one:
 ```bash
 git rev-parse --is-inside-work-tree && git worktree list | grep "$(pwd)"
 ```
-
-@RTK.md
