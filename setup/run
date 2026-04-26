@@ -45,6 +45,7 @@ echo "Initialising submodules..."
 git -C "$DOTFILES_DIR" submodule update --init --recursive
 
 command -v bat >/dev/null && bat cache --build
+command -v nvim >/dev/null && nvim --headless "+Lazy! sync" +qa
 
 # ===========================================================================
 # App icons
