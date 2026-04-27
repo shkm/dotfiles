@@ -97,5 +97,7 @@
   "terminal": {
     "vimMode": false
   },
-  "includePrerelease": false
+  "includePrerelease": false,
+  "autoCompactEnabled": false,
+  "terminalProgressBarEnabled": false
 }
