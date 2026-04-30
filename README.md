@@ -2,6 +2,10 @@
 
 No promises are made about stability or portability, but feel free to use anything you find useful.
 
+New scripts and setup code are mostly written by LLM. They're quick to write and only have to support my particular setup, which turns out leads me to a better experience than using off-the-shelf tools like chezmoi.
+
+The canonical location of these dotfiles is now [Tangled.org](https://tangled.org/jamie.schembri.me/dotfiles). GitHub contains a mirror.
+
 ## Structure
 
 ```
@@ -17,12 +21,12 @@ Plugins (fish, bat themes) are managed as git submodules under `home/`.
 
 ## Vivaldi
 
-Custom CSS mods live in `home/.config/vivaldi-mods/`. After setup, point **Settings → Appearance → Custom UI Modifications** to `~/.config/vivaldi-mods`.
+Custom CSS mods live in `home/.config/vivaldi-mods/`. Point **Settings → Appearance → Custom UI Modifications** to `.config/vivaldi-mods`.
 
 ## Install
 
 ```sh
-git clone --recursive git@github.com:shkm/dotfiles.git ~/dotfiles
+git clone --recursive git@tangled.org:jamie.schembri.me/dotfiles ~/dotfiles
 cd ~/dotfiles
 ./setup/run
 ```
