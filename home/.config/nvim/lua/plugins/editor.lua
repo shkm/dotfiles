@@ -68,6 +68,7 @@ return {
         { "<leader>g", group = "Git" },
         { "<leader>l", group = "LSP" },
         { "<leader>n", group = "Notes" },
+        { "<leader>s", group = "Spec/Test" },
         { "<leader>t", group = "Toggle" },
         { "<leader>w", group = "Worktree" },
       },

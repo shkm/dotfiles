@@ -5,7 +5,12 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({ no_italic = true })
+      require("catppuccin").setup({
+        no_italic = true,
+        integrations = {
+          neotest = true,
+        },
+      })
       vim.cmd.colorscheme(_G.current_theme())
     end,
   },
