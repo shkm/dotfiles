@@ -137,6 +137,7 @@ return {
               ["<C-d>"] = { "<Del>", mode = "i", expr = true },
               ["<C-k>"] = { "<C-o>D", mode = "i", expr = true },
               ["<C-/>"] = { "toggle_live", mode = { "n", "i" }, desc = "Toggle live search" },
+              ["<C-g>"] = { "toggle_help_input", mode = { "n", "i" }, desc = "Toggle help" },
             },
           },
         },
