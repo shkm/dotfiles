@@ -102,6 +102,13 @@ end
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix" })
 vim.keymap.set("n", "<leader>oq", toggle_quickfix_list, { desc = "Toggle quickfix list" })
 
+-- Yank file path (relative to project root) to clipboard
+vim.keymap.set("n", "<leader>yp", function()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
+end, { desc = "Yank relative file path" })
+
 -- Custom commands
 vim.api.nvim_create_user_command("PrettyJson", "%!python -m json.tool", {})
 vim.api.nvim_create_user_command("PrettyHtml", "%!tidy -q -i --show-errors 0 --raw", {})
