@@ -1,5 +1,5 @@
 theme = catppuccin-mocha.conf
-font-family = "0xMono Nerd Font"
+font-family = "0xProto Nerd Font Mono"
 keybind = ctrl+|=new_split:right
 keybind = ctrl+_=new_split:down
 
@@ -7,6 +7,11 @@ keybind = ctrl+shift+h=goto_split:left
 keybind = ctrl+shift+j=goto_split:bottom
 keybind = ctrl+shift+k=goto_split:top
 keybind = ctrl+shift+l=goto_split:right
+
+keybind = ctrl+alt+h=resize_split:left,10
+keybind = ctrl+alt+j=resize_split:down,10
+keybind = ctrl+alt+k=resize_split:up,10
+keybind = ctrl+alt+l=resize_split:right,10
 
 shell-integration-features = no-cursor
 cursor-style = block
