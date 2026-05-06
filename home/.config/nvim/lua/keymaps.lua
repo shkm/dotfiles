@@ -109,6 +109,9 @@ vim.keymap.set("n", "<leader>yp", function()
   vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
 end, { desc = "Yank relative file path" })
 
+-- Cmd+C to yank in visual mode (terminal; Neovide handled in options.lua)
+vim.keymap.set("v", "<D-c>", "y", { noremap = true, silent = true, desc = "Copy" })
+
 -- Custom commands
 vim.api.nvim_create_user_command("PrettyJson", "%!python -m json.tool", {})
 vim.api.nvim_create_user_command("PrettyHtml", "%!tidy -q -i --show-errors 0 --raw", {})

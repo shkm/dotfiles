@@ -13,6 +13,8 @@ keybind = ctrl+alt+j=resize_split:down,10
 keybind = ctrl+alt+k=resize_split:up,10
 keybind = ctrl+alt+l=resize_split:right,10
 
+keybind = performable:super+c=copy_to_clipboard
+
 shell-integration-features = no-cursor
 cursor-style = block
 

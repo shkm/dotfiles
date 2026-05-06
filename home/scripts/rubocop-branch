@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# Run RuboCop on Ruby files changed on the current branch
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+}
+
+usage() {
+  local exit_code="${1:-1}"
+
+  echo "Usage: rubocop-branch [rubocop args...]"
+
+  exit "$exit_code"
+}
+
+default_branch_ref() {
+  git symbolic-ref --quiet --short refs/remotes/origin/HEAD
+}
+
+main() {
+  if [[ "${1:-}" = "--help" ]]; then usage 0; fi
+
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "Not in a git repository."
+    exit 2
+  fi
+
+  local base_ref
+  base_ref="$(default_branch_ref)"
+
+  if [[ -z "$base_ref" ]]; then
+    echo "Could not determine origin default branch."
+    exit 2
+  fi
+
+  local files=()
+  while IFS= read -r -d '' file; do
+    [[ -f "$file" ]] && files+=("$file")
+  done < <(git diff --name-only -z "$base_ref"...HEAD -- '*.rb')
+
+  if [[ "${#files[@]}" -eq 0 ]]; then
+    echo "No changed Ruby files between $base_ref and HEAD."
+    exit 0
+  fi
+
+  bundle exec rubocop "$@" "${files[@]}"
+}
+
+main "$@"
