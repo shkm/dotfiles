@@ -24,5 +24,6 @@ if status is-interactive
     abbr dcpsa docker compose ps --all --format \"table {{.ID}}\t{{.Service}}\t{{.Status}}\"
     abbr lg lazygit
     abbr lgh lazygit log -f
+    abbr gu gitui
     abbr art php artisan
 end
