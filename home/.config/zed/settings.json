@@ -7,6 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
   "which_key": {
     "delay_ms": 0,
     "enabled": true,
@@ -54,11 +59,11 @@
     "metrics": false,
   },
   "vim_mode": true,
-  "buffer_font_size": 16,
-  "buffer_font_family": "Maple Mono NF",
+  "buffer_font_size": 14,
+  "buffer_font_family": "0xProto Nerd Font Mono",
   "terminal": {
-    "font_family": "Maple Mono NF",
-    "font_size": 14,
+    "font_family": "0xProto Nerd Font Mono",
+    "font_size": 13,
   },
   "languages": {
     "Markdown": {
