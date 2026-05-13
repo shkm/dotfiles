@@ -93,11 +93,17 @@
       " "
     ]
   },
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "prefersReducedMotion": true,
+  "autoCompactEnabled": false,
+  "terminalProgressBarEnabled": false,
+  "voiceEnabled": true,
   "terminal": {
     "vimMode": false
   },
   "includePrerelease": false,
-  "autoCompactEnabled": false,
-  "terminalProgressBarEnabled": false
+  "theme": "dark-daltonized"
 }
