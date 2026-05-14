@@ -23,10 +23,7 @@
   "active_pane_modifiers": {
     "border_size": 2.0,
   },
-  "icon_theme": "Catppuccin Latte",
-  "title_bar": {
-    "show_branch_icon": true,
-  },
+  "icon_theme": "Zed (Default)",
   "toolbar": {
     "quick_actions": false,
   },
@@ -38,13 +35,8 @@
   "format_on_save": "on",
   "tab_size": 2,
   "show_edit_predictions": true,
-  "features": {
-    "edit_prediction_provider": "copilot",
-  },
-  "restore_on_startup": "none",
   "soft_wrap": "editor_width",
   "agent": {
-    "always_allow_tool_actions": true,
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
@@ -53,7 +45,7 @@
     "model_parameters": [],
     "enable_feedback": false,
   },
-  "theme": "Oxocarbon Dark (IBM Carbon)",
+  "theme": "Catppuccin Macchiato",
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
