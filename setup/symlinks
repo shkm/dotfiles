@@ -4,10 +4,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 DOTFILES_HOME="$DOTFILES_DIR/home"
 
-# ===========================================================================
-# Symlinks
-# ===========================================================================
-
+# Link src -> dest. Idempotent; prompts on non-symlink conflicts.
 link() {
   local src="$1" dest="$2"
 
@@ -32,35 +29,29 @@ link() {
   fi
 }
 
-# Symlink children of a directory individually, creating the target dir
-# if needed. Used for shared dirs like .config where we don't want to
-# own the entire directory.
-link_children() {
-  local src_dir="$1" dest_dir="$2"
-  mkdir -p "$dest_dir"
+# Stow-style tree folding:
+#   - if dest already exists as a real directory and src is a directory,
+#     recurse into children (shared dir — don't claim the whole thing)
+#   - otherwise link src to dest as a single symlink
+fold() {
+  local src="$1" dest="$2"
 
-  for child in "$src_dir"/*; do
-    [ -e "$child" ] || continue
-    link "$child" "$dest_dir/$(basename "$child")"
-  done
+  if [ -d "$src" ] && [ ! -L "$src" ] && [ -d "$dest" ] && [ ! -L "$dest" ]; then
+    while IFS= read -r child; do
+      local name
+      name=$(basename "$child")
+      [ "$name" = ".DS_Store" ] && continue
+      fold "$child" "$dest/$name"
+    done < <(find "$src" -maxdepth 1 -mindepth 1)
+  else
+    link "$src" "$dest"
+  fi
 }
 
 echo "Linking dotfiles..."
 
-# Shared directories: other tools write into these too, so we symlink
-# their children rather than the directory itself.
-link_children "$DOTFILES_HOME/.config" "$HOME/.config"
-link_children "$DOTFILES_HOME/.local/share" "$HOME/.local/share"
-# macOS-only
-if [[ "$(uname)" == "Darwin" ]]; then
-  link "$DOTFILES_HOME/Library/Application Support/camera-hook" "$HOME/Library/Application Support/camera-hook"
-fi
-
-# Everything else in home/ is symlinked directly.
-while read -r item; do
-  link "$item" "$HOME/$(basename "$item")"
-done < <(find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1 \
-  -not -name .config \
-  -not -name .local \
-  -not -name .DS_Store \
-  -not -name Library)
+while IFS= read -r child; do
+  name=$(basename "$child")
+  [ "$name" = ".DS_Store" ] && continue
+  fold "$child" "$HOME/$name"
+done < <(find "$DOTFILES_HOME" -maxdepth 1 -mindepth 1)
