@@ -7,6 +7,13 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "tree_view": true
+  },
+  "buffer_line_height": "standard",
   "agent_servers": {
     "claude-acp": {
       "type": "registry",
@@ -23,7 +30,11 @@
   "active_pane_modifiers": {
     "border_size": 2.0,
   },
-  "icon_theme": "Zed (Default)",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
   "toolbar": {
     "quick_actions": false,
   },
@@ -37,6 +48,8 @@
   "show_edit_predictions": true,
   "soft_wrap": "editor_width",
   "agent": {
+    "dock": "right",
+    "sidebar_side": "right",
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
@@ -45,7 +58,11 @@
     "model_parameters": [],
     "enable_feedback": false,
   },
-  "theme": "Catppuccin Macchiato",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte (Blur)",
+    "dark": "Catppuccin Mocha",
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
@@ -88,7 +105,7 @@
           "codeLens": true,
           "completion": true,
           "definition": true,
-          "diagnostics": false, // until Zed supports pull-type diagnostics
+          "diagnostics": true, // until Zed supports pull-type diagnostics
           "documentHighlights": true,
           "documentLink": true,
           "documentSymbols": true,
