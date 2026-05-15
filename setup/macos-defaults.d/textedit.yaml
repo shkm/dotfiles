@@ -1,0 +1,11 @@
+---
+description: TextEdit
+kill: [TextEdit]
+data:
+  com.apple.TextEdit:
+    # Don't convert smart quotes
+    SmartQuotes: false
+
+    # Open and save files as UTF-8
+    PlainTextEncoding: 4
+    PlainTextEncodingForWrite: 4

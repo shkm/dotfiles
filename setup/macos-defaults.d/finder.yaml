@@ -1,0 +1,57 @@
+---
+description: Finder
+kill: [Finder]
+data:
+  com.apple.finder:
+    # Allow quitting via ⌘Q (also hides desktop icons)
+    QuitMenuItem: true
+
+    # Disable window & Get Info animations
+    DisableAllAnimations: true
+
+    # Home folder as default location for new windows
+    NewWindowTarget: "PfLe"
+    NewWindowTargetPath: "file:///Users/jamie/"
+
+    # Default to column view
+    FXPreferredViewStyle: "clmv"
+
+    # Auto-size columns in column view
+    _FXEnableColumnAutoSizing: true
+
+    # ⌘+double-click opens new window, not new tab
+    FinderSpawnTab: false
+
+    # Empty bin items after 30 days
+    FXRemoveOldTrashItems: true
+
+    # Show drive/server/media icons on the desktop
+    ShowExternalHardDrivesOnDesktop: true
+    ShowHardDrivesOnDesktop: true
+    ShowMountedServersOnDesktop: true
+    ShowRemovableMediaOnDesktop: true
+
+    # Show path bar
+    ShowPathbar: true
+
+    # Search the current folder by default
+    FXDefaultSearchScope: "SCcf"
+
+    # Keep folders on top when sorting by name
+    _FXSortFoldersFirst: true
+
+    # Don't warn when changing file extensions
+    FXEnableExtensionChangeWarning: false
+
+  # Show folder icon before title in the window title bar (requires Full Disk Access for terminal)
+  com.apple.universalaccess:
+    showWindowTitlebarIcons: true
+
+  # AirDrop over Ethernet and on unsupported Macs
+  com.apple.NetworkBrowser:
+    BrowseAllInterfaces: true
+
+  # Avoid .DS_Store on network / USB volumes
+  com.apple.desktopservices:
+    DSDontWriteNetworkStores: true
+    DSDontWriteUSBStores: true

@@ -1,0 +1,6 @@
+---
+description: Tap to click (per-host, login screen)
+current_host: true
+data:
+  NSGlobalDomain:
+    com.apple.mouse.tapBehavior: 1

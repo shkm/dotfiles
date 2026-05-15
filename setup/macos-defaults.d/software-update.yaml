@@ -1,0 +1,13 @@
+---
+description: Software Update & App Store
+data:
+  com.apple.SoftwareUpdate:
+    # Auto-check enabled, daily, download in background, install critical updates
+    AutomaticCheckEnabled: true
+    ScheduleFrequency: 1
+    AutomaticDownload: 1
+    CriticalUpdateInstall: 1
+
+  com.apple.commerce:
+    # Auto-update apps
+    AutoUpdate: true

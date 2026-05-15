@@ -11,9 +11,9 @@ The canonical location of these dotfiles is now [Tangled.org](https://tangled.or
 ```
 home/           Symlinked into ~
 setup/
-  run             Main entry point (symlinks, shell, packages, plugins, macOS defaults)
-  symlinks        Create/update symlinks from home/ into ~
-  macos-defaults  macOS system preferences
+  run                   Main entry point (symlinks, shell, packages, plugins, macOS defaults)
+  symlinks              Create/update symlinks from home/ into ~
+  macos-defaults.d/     Declarative macOS defaults (dsully/macos-defaults YAML format)
 Brewfile        Homebrew packages
 ```
 
@@ -34,6 +34,6 @@ cd ~/dotfiles
 Setup scripts can also be run individually:
 
 ```sh
-./setup/symlinks        # re-link dotfiles only
-./setup/macos-defaults  # apply macOS defaults only
+./setup/symlinks                              # re-link dotfiles only
+macos-defaults apply ./setup/macos-defaults.d/  # apply macOS defaults only
 ```

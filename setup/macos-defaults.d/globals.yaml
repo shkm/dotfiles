@@ -1,0 +1,62 @@
+---
+description: Globals
+data:
+  NSGlobalDomain:
+    # Expand save & print panels by default
+    NSNavPanelExpandedStateForSaveMode: true
+    NSNavPanelExpandedStateForSaveMode2: true
+    PMPrintingExpandedStateForPrint: true
+    PMPrintingExpandedStateForPrint2: true
+
+    # Show all file extensions
+    AppleShowAllExtensions: true
+
+    # Title bar rollover delay 0
+    NSToolbarTitleViewRolloverDelay: 0.0
+
+    # Full keyboard access for all controls (Tab in modals)
+    AppleKeyboardUIMode: 3
+
+    # F-keys behave like F-keys
+    com.apple.keyboard.fnState: true
+
+    # Blazingly fast keyboard repeat rate
+    KeyRepeat: 1
+    InitialKeyRepeat: 10
+
+    # Disable hold-to-use-accents (favours key repeat)
+    ApplePressAndHoldEnabled: false
+
+    # Enable ctrl-cmd-click to drag windows
+    NSWindowShouldDragOnGesture: true
+
+    # Disable "natural" (Lion-style) scrolling
+    com.apple.swipescrolldirection: false
+
+    # Tap to click
+    com.apple.mouse.tapBehavior: 1
+
+    # Language & text formats
+    AppleLanguages: ["en", "nl"]
+    AppleLocale: "en_GB@currency=EUR"
+    AppleMeasurementUnits: "Centimeters"
+    AppleMetricUnits: true
+
+    # Save to disk by default, not iCloud
+    NSDocumentSaveNewDocumentsToCloud: false
+
+  # Fn / 🌐 key does nothing
+  com.apple.HIToolbox:
+    AppleFnUsageType: 0
+
+  # Disable Resume system-wide (legacy System Preferences)
+  com.apple.systempreferences:
+    NSQuitAlwaysKeepsWindows: false
+
+  # Automatically quit printer app once print jobs complete
+  com.apple.print.PrintingPrefs:
+    "Quit When Finished": true
+
+  # Deactivate Apple Intelligence (macOS 15.3+)
+  com.apple.CloudSubscriptionFeatures.optIn:
+    "545129924": false

@@ -1,0 +1,7 @@
+---
+description: Safari
+kill: [Safari]
+data:
+  com.apple.Safari:
+    # Show full URL in the address bar
+    ShowFullURLInSmartSearchField: true

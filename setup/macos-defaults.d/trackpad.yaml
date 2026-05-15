@@ -1,0 +1,6 @@
+---
+description: Trackpad
+data:
+  com.apple.driver.AppleBluetoothMultitouch.trackpad:
+    # Tap to click
+    Clicking: true

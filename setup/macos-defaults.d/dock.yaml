@@ -1,0 +1,13 @@
+---
+description: Dock
+kill: [Dock]
+data:
+  com.apple.dock:
+    orientation: "right"
+    autohide: true
+    autohide-time-modifier: 0.0
+    autohide-delay: 0.0
+    show-recents: false
+    static-only: true
+    mineffect: "scale"
+    minimize-to-application: true

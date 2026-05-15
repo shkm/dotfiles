@@ -64,7 +64,21 @@ fi
 if [ "$(uname)" = "Darwin" ]; then
   echo ""
   echo "Applying macOS defaults..."
-  "$SETUP_DIR/macos-defaults"
+  macos-defaults apply "$SETUP_DIR/macos-defaults.d/"
+
+  # Show the ~/Library folder
+  chflags nohidden ~/Library
+
+  # Reveal IP, hostname, OS version etc. when clicking the clock in the login window.
+  # /Library/Preferences requires root, so this only runs when not already set.
+  if [ "$(defaults read /Library/Preferences/com.apple.loginwindow AdminHostInfo 2>/dev/null)" != "HostName" ]; then
+    sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+  fi
+
+  # Timezone — symlinking /etc/localtime requires root, so only when not already set.
+  if [ "$(readlink /etc/localtime)" != "/var/db/timezone/zoneinfo/Europe/Amsterdam" ]; then
+    sudo ln -sf /var/db/timezone/zoneinfo/Europe/Amsterdam /etc/localtime
+  fi
 fi
 
 echo ""

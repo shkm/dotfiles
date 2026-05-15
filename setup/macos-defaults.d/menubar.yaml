@@ -1,0 +1,7 @@
+---
+description: Menu bar
+kill: [SystemUIServer]
+data:
+  com.apple.menuextra.clock:
+    # 24-hour HH:mm digital clock (Apple stores the format with literal surrounding quotes)
+    DateFormat: '"HH:mm"'

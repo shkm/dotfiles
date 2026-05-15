@@ -1,0 +1,7 @@
+---
+description: Screenshots
+kill: [SystemUIServer]
+data:
+  com.apple.screencapture:
+    # Save screenshots to ~/Downloads
+    location: "~/Downloads"

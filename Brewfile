@@ -3,6 +3,7 @@ tap "tsonglew/dutis"
 tap "qmk/qmk"
 tap "shkm/brew"
 tap "timrogers/tap"
+tap "dsully/tap"
 
 # Shell & Terminal
 brew "fish"
@@ -85,6 +86,7 @@ brew "fileicon"
 brew "terminal-notifier"
 brew "xcodegen"
 brew "tsonglew/dutis/dutis"
+brew "dsully/tap/macos-defaults"
 
 # Hardware
 brew "shkm/brew/camera-hook"
