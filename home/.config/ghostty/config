@@ -1,4 +1,4 @@
-theme = catppuccin-mocha.conf
+theme = dark:Catppuccin Frappe,light:Catppuccin Latte
 font-family = "0xProto Nerd Font Mono"
 keybind = ctrl+|=new_split:right
 keybind = ctrl+_=new_split:down
