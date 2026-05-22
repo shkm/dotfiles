@@ -11,6 +11,11 @@
 - **NEVER** use `rm` to remove files or folders. **DO** use `trash`.
 - Use `gh` for GitHub issues, pull requests, and other GitHub interactions.
 
+## Public interactions
+
+- **NEVER post messages or responses to online services like GitHub on my behalf.** This includes PR review replies, PR comments, issue comments, review submissions, and any other written content posted to GitHub via `gh`, MCP, or otherwise.
+- Read-only `gh` use is fine (fetching PRs, issues, comments, diffs, etc.).
+
 ## Git
 
 - When working on an issue (e.g., "work on issue #123"), include "Fixes #<num>" in the commit message
