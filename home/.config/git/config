@@ -150,7 +150,7 @@
   ma = merge --abort
 
   # push
-  pf = push -u --force-with-lease
+	pf = !git fetch && git push -u --force-with-lease
   pu = push -u
 
   # fetch
