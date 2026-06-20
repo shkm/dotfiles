@@ -1,18 +1,42 @@
 -- Autocommands
 
--- Returns the current theme name (e.g. "catppuccin-mocha").
+-- Returns the current theme name (e.g. "ayu-dark").
 function _G.current_theme()
   local handle = io.popen("dark-mode status")
   if handle then
     local status = handle:read("*l")
     handle:close()
     if status == "on" then
-      return os.getenv("DARK_MODE_THEME") or "catppuccin-mocha"
+      return os.getenv("DARK_MODE_THEME") or "ayu-dark"
     else
-      return os.getenv("LIGHT_MODE_THEME") or "catppuccin-latte"
+      return os.getenv("LIGHT_MODE_THEME") or "ayu-light"
     end
   end
-  return "catppuccin-mocha"
+  return "ayu-dark"
+end
+
+-- UI accent colors for statusline/tabline/Claude border, keyed off the active
+-- background. Kept as a small fixed table so UI code doesn't depend on the
+-- colorscheme plugin's internal palette API.
+function _G.ui_palette()
+  if vim.go.background == "light" then
+    return {
+      panel_bg = "#ECEDEE", -- statusline/tabline section background
+      panel_fill = "#E1E2E3", -- tabline fill (the empty area)
+      accent = "#399EE6", -- active tab / Claude normal-mode border
+      muted = "#787B80", -- branch, line number
+      faint = "#ABB0B6", -- filetype, percentage, inactive tab
+      ok = "#86B300", -- Claude terminal-mode border
+    }
+  end
+  return {
+    panel_bg = "#11151C",
+    panel_fill = "#0B0E14",
+    accent = "#59C2FF",
+    muted = "#8A9199",
+    faint = "#565B66",
+    ok = "#AAD94C",
+  }
 end
 
 -- Custom tabline
@@ -53,20 +77,14 @@ vim.o.tabline = "%!v:lua.custom_tabline()"
 
 -- Tabline highlight groups - applied after colorscheme loads
 local function setup_tabline_highlights()
-  local ok, palettes = pcall(require, "catppuccin.palettes")
-  if not ok then
-    return
-  end
-  local colors = palettes.get_palette()
-  if colors then
-    vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.crust, bg = colors.blue, bold = true })
-    vim.api.nvim_set_hl(0, "TabLine", { fg = colors.overlay0, bg = colors.mantle })
-    vim.api.nvim_set_hl(0, "TabLineFill", { bg = colors.crust })
-  end
+  local colors = _G.ui_palette()
+  vim.api.nvim_set_hl(0, "TabLineSel", { fg = colors.panel_fill, bg = colors.accent, bold = true })
+  vim.api.nvim_set_hl(0, "TabLine", { fg = colors.faint, bg = colors.panel_bg })
+  vim.api.nvim_set_hl(0, "TabLineFill", { bg = colors.panel_fill })
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "catppuccin*",
+  pattern = "ayu*",
   callback = setup_tabline_highlights,
 })
 
@@ -75,7 +93,10 @@ vim.api.nvim_create_autocmd("FocusGained", {
   desc = "Switch colorscheme to match macOS appearance",
   callback = function()
     local theme = _G.current_theme()
-    if vim.g.colors_name == theme then
+    -- ayu sets colors_name to "ayu" for every variant, so compare on the
+    -- background it implies instead of the colorscheme name.
+    local want = theme:match("light") and "light" or "dark"
+    if vim.go.background == want then
       return
     end
     vim.cmd.colorscheme(theme)

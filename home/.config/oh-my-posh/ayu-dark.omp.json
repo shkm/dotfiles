@@ -1,11 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "palette": {
-    "blue": "#1e66f5",
+    "blue": "#59C2FF",
     "closer": "p:os",
-    "lavender": "#7287FD",
-    "os": "#ACB0BE",
-    "pink": "#ea76cb"
+    "lavender": "#D2A6FF",
+    "os": "#8A9199",
+    "pink": "#E6B450"
   },
   "blocks": [
     {

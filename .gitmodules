@@ -7,9 +7,3 @@
 [submodule "home/.local/share/fish-plugins/abbreviation-tips"]
 	path = home/.local/share/fish-plugins/abbreviation-tips
 	url = https://github.com/gazorby/fish-abbreviation-tips.git
-[submodule "home/.local/share/fish-plugins/catppuccin"]
-	path = home/.local/share/fish-plugins/catppuccin
-	url = https://github.com/catppuccin/fish.git
-[submodule "home/.config/bat/themes"]
-	path = home/.config/bat/themes
-	url = https://github.com/catppuccin/bat.git

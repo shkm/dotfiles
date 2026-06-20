@@ -1,0 +1,30 @@
+# name: 'Ayu Dark'
+# url: 'https://github.com/dempfi/ayu'
+
+# preferred_background: 0b0e14
+fish_color_normal bfbdb6
+fish_color_command 59c2ff
+fish_color_param bfbdb6
+fish_color_keyword ff8f40
+fish_color_quote aad94c
+fish_color_redirection f29668
+fish_color_end f29668
+fish_color_comment 565b66
+fish_color_error f07178
+fish_color_gray 565b66
+fish_color_selection --background=1c212b
+fish_color_search_match --background=1c212b
+fish_color_option aad94c
+fish_color_operator f29668
+fish_color_escape 95e6cb
+fish_color_autosuggestion 565b66
+fish_color_cancel f07178
+fish_color_host 59c2ff
+fish_color_host_remote aad94c
+fish_color_user 95e6cb
+fish_color_valid_path --underline
+fish_pager_color_progress 565b66
+fish_pager_color_prefix 59c2ff
+fish_pager_color_completion bfbdb6
+fish_pager_color_description 565b66
+fish_pager_color_selected_background --background=1c212b

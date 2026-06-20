@@ -16,6 +16,9 @@
   "buffer_line_height": "standard",
   "agent_servers": {
     "claude-acp": {
+      "default_config_options": {
+        "effort": "medium"
+      },
       "type": "registry",
     },
   },
@@ -49,7 +52,7 @@
   "soft_wrap": "editor_width",
   "agent": {
     "dock": "right",
-    "sidebar_side": "right",
+    "sidebar_side": "left",
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
@@ -59,9 +62,9 @@
     "enable_feedback": false,
   },
   "theme": {
-    "mode": "system",
-    "light": "Catppuccin Latte (Blur)",
-    "dark": "Catppuccin Mocha",
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark",
   },
   "telemetry": {
     "diagnostics": false,

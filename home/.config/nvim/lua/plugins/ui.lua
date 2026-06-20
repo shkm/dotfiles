@@ -1,16 +1,11 @@
 return {
   -- Colorscheme
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "Shatur/neovim-ayu",
+    name = "ayu",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        no_italic = true,
-        integrations = {
-          neotest = true,
-        },
-      })
+      require("ayu").setup({ mirage = false })
       vim.cmd.colorscheme(_G.current_theme())
     end,
   },
@@ -18,13 +13,13 @@ return {
   -- Lualine - statusline
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "Shatur/neovim-ayu" },
     config = function()
       function _G.setup_lualine()
-        local palette = require("catppuccin.palettes").get_palette()
-        local bg = palette.mantle
-        local flat = { bg = bg }
-        local theme = require("catppuccin.utils.lualine")()
+        local palette = _G.ui_palette()
+        local flat = { bg = palette.panel_bg }
+        local variant = vim.go.background == "light" and "ayu_light" or "ayu_dark"
+        local theme = require("lualine.themes." .. variant)
         for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }) do
           if theme[mode] then
             theme[mode].b = flat
@@ -45,7 +40,7 @@ return {
             lualine_a = {
               { "mode", fmt = function(s) return s:sub(1, 1) end },
             },
-            lualine_b = { { "branch", color = { fg = palette.subtext0 } } },
+            lualine_b = { { "branch", color = { fg = palette.muted } } },
             lualine_c = { "filename" },
             lualine_x = {
               {
@@ -53,10 +48,10 @@ return {
                 cond = function() return vim.g.claude_awaiting_input end,
                 color = "DiagnosticWarn",
               },
-              { "filetype", color = { fg = palette.overlay0 } },
+              { "filetype", color = { fg = palette.faint } },
             },
-            lualine_y = { { function() return "%l" end, color = { fg = palette.subtext0 } } },
-            lualine_z = { { function() return "%p%%" end, color = { fg = palette.overlay0 } } },
+            lualine_y = { { function() return "%l" end, color = { fg = palette.muted } } },
+            lualine_z = { { function() return "%p%%" end, color = { fg = palette.faint } } },
           },
           inactive_sections = {
             lualine_c = { "filename" },

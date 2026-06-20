@@ -1,0 +1,30 @@
+# name: 'Ayu Light'
+# url: 'https://github.com/dempfi/ayu'
+
+# preferred_background: f8f9fa
+fish_color_normal 5c6166
+fish_color_command 399ee6
+fish_color_param 5c6166
+fish_color_keyword fa8d3e
+fish_color_quote 86b300
+fish_color_redirection ed9366
+fish_color_end ed9366
+fish_color_comment abb0b6
+fish_color_error f07171
+fish_color_gray abb0b6
+fish_color_selection --background=e1e2e3
+fish_color_search_match --background=e1e2e3
+fish_color_option 86b300
+fish_color_operator ed9366
+fish_color_escape 4cbf99
+fish_color_autosuggestion abb0b6
+fish_color_cancel f07171
+fish_color_host 399ee6
+fish_color_host_remote 86b300
+fish_color_user 4cbf99
+fish_color_valid_path --underline
+fish_pager_color_progress abb0b6
+fish_pager_color_prefix 399ee6
+fish_pager_color_completion 5c6166
+fish_pager_color_description abb0b6
+fish_pager_color_selected_background --background=e1e2e3

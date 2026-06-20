@@ -8,7 +8,7 @@
 
 # file includes
 [include]
-  path = catppuccin.gitconfig ; colour theme
+  path = ayu.gitconfig ; colour theme
 
 # common operations
 [checkout]
@@ -66,7 +66,7 @@
   side-by-side = true
   # Features are included via DELTA_FEATURES because we need more customization than is available here.
   # Check profile.
-  # features = catppuccin-latte
+  # features = ayu-light
 [credential]
 	helper = osxkeychain
 [diff]

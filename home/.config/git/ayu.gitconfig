@@ -1,0 +1,62 @@
+[delta "ayu-light"]
+	blame-palette = "#f8f9fa #f3f4f5 #ecedee #e1e2e3 #d3d4d5"
+	commit-decoration-style = "box ul"
+	dark = false
+	file-decoration-style = "#5c6166"
+	file-style = "#5c6166"
+	hunk-header-decoration-style = "box ul"
+	hunk-header-file-style = "bold"
+	hunk-header-line-number-style = "bold #787b80"
+	hunk-header-style = "file line-number syntax"
+	line-numbers = true
+	line-numbers-left-style = "#abb0b6"
+	line-numbers-minus-style = "bold #f07171"
+	line-numbers-plus-style = "bold #86b300"
+	line-numbers-right-style = "#abb0b6"
+	line-numbers-zero-style = "#abb0b6"
+	# 25% red 75% base
+	minus-emph-style = "bold syntax #f7c9c9"
+	# 10% red 90% base
+	minus-style = "syntax #fbe4e4"
+	# 25% green 75% base
+	plus-emph-style = "bold syntax #dde7c0"
+	# 10% green 90% base
+	plus-style = "syntax #eef2e0"
+	map-styles = \
+		bold purple => syntax "#ece2f7", \
+		bold blue => syntax "#dceaf8", \
+		bold cyan => syntax "#dcf1ea", \
+		bold yellow => syntax "#fcefd6"
+	# Should match the name of the bat theme
+	syntax-theme = "Ayu Light"
+[delta "ayu-dark"]
+	blame-palette = "#0b0e14 #0d1017 #11151c #1c212b #273747"
+	commit-decoration-style = "box ul"
+	dark = true
+	file-decoration-style = "#bfbdb6"
+	file-style = "#bfbdb6"
+	hunk-header-decoration-style = "box ul"
+	hunk-header-file-style = "bold"
+	hunk-header-line-number-style = "bold #8a9199"
+	hunk-header-style = "file line-number syntax"
+	line-numbers = true
+	line-numbers-left-style = "#565b66"
+	line-numbers-minus-style = "bold #f07178"
+	line-numbers-plus-style = "bold #aad94c"
+	line-numbers-right-style = "#565b66"
+	line-numbers-zero-style = "#565b66"
+	# 25% red 75% base
+	minus-emph-style = "bold syntax #4a1d24"
+	# 10% red 90% base
+	minus-style = "syntax #2a1518"
+	# 25% green 75% base
+	plus-emph-style = "bold syntax #34431f"
+	# 10% green 90% base
+	plus-style = "syntax #1c2415"
+	map-styles = \
+		bold purple => syntax "#2a2440", \
+		bold blue => syntax "#1b3147", \
+		bold cyan => syntax "#1d3b3a", \
+		bold yellow => syntax "#3a3320"
+	# Should match the name of the bat theme
+	syntax-theme = "Ayu Dark"
