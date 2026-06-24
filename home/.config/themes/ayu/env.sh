@@ -1,3 +1,5 @@
+DARK_VARIANT=dark
+LIGHT_VARIANT=light
 DARK_THEME=ayu-dark
 LIGHT_THEME=ayu-light
 DARK_BAT_THEME="Ayu Dark"

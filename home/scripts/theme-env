@@ -24,10 +24,12 @@ esac
 
 if [ "$dark" -eq 1 ]; then
   theme=$DARK_THEME
+  variant=$DARK_VARIANT
   bat_theme=$DARK_BAT_THEME
   fish_theme=$DARK_FISH_THEME
 else
   theme=$LIGHT_THEME
+  variant=$LIGHT_VARIANT
   bat_theme=$LIGHT_BAT_THEME
   fish_theme=$LIGHT_FISH_THEME
 fi
@@ -36,6 +38,7 @@ echo "export DARK_MODE=$dark"
 echo "export DARK_MODE_THEME=$DARK_THEME"
 echo "export LIGHT_MODE_THEME=$LIGHT_THEME"
 echo "export THEME=$theme"
+echo "export VARIANT=$variant"
 echo "export BAT_THEME=\"$bat_theme\""
 echo "export FISH_THEME=\"$fish_theme\""
 

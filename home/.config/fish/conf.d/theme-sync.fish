@@ -16,13 +16,13 @@ function __theme_sync --on-event fish_prompt
     end
 
     # FZF
-    if test -f $active/fzf-$THEME.opts
-        set -gx FZF_DEFAULT_OPTS (cat $active/fzf-$THEME.opts)
+    if test -f $active/fzf/$VARIANT.opts
+        set -gx FZF_DEFAULT_OPTS (cat $active/fzf/$VARIANT.opts)
     end
 
     # Oh My Posh (re-init with new config)
     if type -q oh-my-posh
-        oh-my-posh init fish --config "$active/omp-$THEME.omp.json" | source
+        oh-my-posh init fish --config "$active/omp/$VARIANT.omp.json" | source
     end
 
     # Fish prompt colors
