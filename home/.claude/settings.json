@@ -46,26 +46,6 @@
           }
         ]
       }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/scripts/claude-notify"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/scripts/claude-notify"
-          }
-        ]
-      }
     ]
   },
   "statusLine": {
