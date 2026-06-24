@@ -1,25 +1,36 @@
 return {
   -- Colorscheme
   {
+    "folke/tokyonight.nvim",
+    dependencies = { "Shatur/neovim-ayu" },
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require("tokyonight").setup({ style = "storm", day_brightness = 0.3 })
+      vim.cmd.colorscheme(_G.current_theme())
+    end,
+  },
+
+  -- Ayu (kept loaded so theme-switch can swap back without restarting nvim)
+  {
     "Shatur/neovim-ayu",
     name = "ayu",
-    priority = 1000,
+    lazy = true,
     config = function()
       require("ayu").setup({ mirage = false })
-      vim.cmd.colorscheme(_G.current_theme())
     end,
   },
 
   -- Lualine - statusline
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", "Shatur/neovim-ayu" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       function _G.setup_lualine()
         local palette = _G.ui_palette()
         local flat = { bg = palette.panel_bg }
-        local variant = vim.go.background == "light" and "ayu_light" or "ayu_dark"
-        local theme = require("lualine.themes." .. variant)
+        local lualine_theme = _G.lualine_theme_name()
+        local theme = require("lualine.themes." .. lualine_theme)
         for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "terminal", "inactive" }) do
           if theme[mode] then
             theme[mode].b = flat

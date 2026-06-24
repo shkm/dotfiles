@@ -15,28 +15,38 @@ function _G.current_theme()
   return "ayu-dark"
 end
 
--- UI accent colors for statusline/tabline/Claude border, keyed off the active
--- background. Kept as a small fixed table so UI code doesn't depend on the
--- colorscheme plugin's internal palette API.
-function _G.ui_palette()
-  if vim.go.background == "light" then
-    return {
-      panel_bg = "#ECEDEE", -- statusline/tabline section background
-      panel_fill = "#E1E2E3", -- tabline fill (the empty area)
-      accent = "#399EE6", -- active tab / Claude normal-mode border
-      muted = "#787B80", -- branch, line number
-      faint = "#ABB0B6", -- filetype, percentage, inactive tab
-      ok = "#86B300", -- Claude terminal-mode border
-    }
+-- UI accent colors for statusline/tabline/Claude border. Sourced from the
+-- active theme so a theme-switch flip takes effect without nvim restart.
+local function load_theme_meta()
+  local path = os.getenv("HOME") .. "/.config/themes/active/nvim.lua"
+  local ok, mod = pcall(dofile, path)
+  if ok and type(mod) == "table" then
+    return mod
   end
+  return nil
+end
+
+function _G.ui_palette()
+  local meta = load_theme_meta()
+  local bg = vim.go.background == "light" and "light" or "dark"
+  if meta and meta.palette and meta.palette[bg] then
+    return meta.palette[bg]
+  end
+  -- Fallback so UI doesn't break if the active theme dir is missing nvim.lua.
   return {
-    panel_bg = "#11151C",
-    panel_fill = "#0B0E14",
-    accent = "#59C2FF",
-    muted = "#8A9199",
-    faint = "#565B66",
-    ok = "#AAD94C",
+    panel_bg = "#1f2335", panel_fill = "#24283b",
+    accent = "#7aa2f7", muted = "#9aa5ce",
+    faint = "#565f89", ok = "#9ece6a",
   }
+end
+
+function _G.lualine_theme_name()
+  local meta = load_theme_meta()
+  local bg = vim.go.background == "light" and "light" or "dark"
+  if meta and meta.lualine and meta.lualine[bg] then
+    return meta.lualine[bg]
+  end
+  return "auto"
 end
 
 -- Custom tabline
@@ -84,7 +94,7 @@ local function setup_tabline_highlights()
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "ayu*",
+  pattern = { "tokyonight*", "ayu*" },
   callback = setup_tabline_highlights,
 })
 
@@ -92,14 +102,15 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.api.nvim_create_autocmd("FocusGained", {
   desc = "Switch colorscheme to match macOS appearance",
   callback = function()
-    local theme = _G.current_theme()
-    -- ayu sets colors_name to "ayu" for every variant, so compare on the
-    -- background it implies instead of the colorscheme name.
-    local want = theme:match("light") and "light" or "dark"
+    local handle = io.popen("dark-mode status")
+    if not handle then return end
+    local status = handle:read("*l")
+    handle:close()
+    local want = status == "on" and "dark" or "light"
     if vim.go.background == want then
       return
     end
-    vim.cmd.colorscheme(theme)
+    vim.cmd.colorscheme(_G.current_theme())
     if _G.setup_lualine then
       _G.setup_lualine()
     end
@@ -182,7 +193,7 @@ vim.api.nvim_create_autocmd({ "TermLeave", "WinLeave" }, {
   end,
 })
 
--- Forward bell to kitty and mark the tab containing the calling terminal
+-- Forward bell to the host terminal and mark the tab containing the calling terminal
 function _G.forward_bell(pid)
   io.stdout:write("\a")
   io.stdout:flush()
@@ -240,7 +251,7 @@ function _G.forward_bell(pid)
 end
 
 vim.api.nvim_create_autocmd("TermRequest", {
-  desc = "Forward terminal bells to kitty and mark vim tabs",
+  desc = "Forward terminal bells to the host terminal and mark vim tabs",
   callback = function(args)
     if args.data == "\x07" then
       local bufnr = args.buf

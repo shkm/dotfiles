@@ -1,0 +1,1 @@
+--highlight-line --info=inline-right --ansi --layout=reverse --color=bg+:#c4c8da,bg:#e1e2e7,border:#6172b0,fg:#3760bf,gutter:#e1e2e7,header:#b15c00,hl+:#9854f1,hl:#9854f1,info:#6172b0,marker:#b15c00,pointer:#b15c00,prompt:#2e7de9,query:#3760bf:regular,scrollbar:#8990b3,separator:#6172b0,spinner:#b15c00 --marker=' ✓' --pointer=' '

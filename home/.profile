@@ -151,20 +151,19 @@ export LESS_TERMCAP_so=$(printf "\033[01;44;33m")
 export LESS_TERMCAP_ue=$(printf "\033[0m")
 export LESS_TERMCAP_us=$(printf "\033[01;32m")
 
-# Theme variables (DARK_MODE, DARK_MODE_THEME)
+# Theme variables (DARK_MODE, DARK_MODE_THEME, THEME, ...)
 eval "$("$HOME/scripts/theme-env")"
 
-# Dark / Light mode colour differences
-if [ "$DARK_MODE" -eq 1 ]; then
-  export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-    --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-else
-  export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
-    --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
-    --color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
+# FZF colours from the active theme.
+_fzf_opts_file="$HOME/.config/themes/active/fzf-$THEME.opts"
+if [ -f "$_fzf_opts_file" ]; then
+  FZF_DEFAULT_OPTS=$(cat "$_fzf_opts_file")
+  export FZF_DEFAULT_OPTS
 fi
+unset _fzf_opts_file
 
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --marker=' ✓' --pointer=' '"
+# LS_COLORS: use non-bold palette indices so colours track the terminal
+# palette (which itself is theme-aware via ghostty). Avoiding bold keeps
+# directories readable on light backgrounds where the bright palette
+# variants wash out.
+export LS_COLORS='di=34:ln=36:so=35:pi=33:ex=31:bd=33;40:cd=33;40:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:*.tar=31:*.tgz=31:*.zip=31:*.gz=31:*.bz2=31:*.xz=31:*.7z=31:*.deb=31:*.rpm=31:*.jpg=35:*.jpeg=35:*.gif=35:*.png=35:*.svg=35:*.bmp=35:*.tif=35:*.tiff=35:*.mov=35:*.mp4=35:*.mkv=35:*.webm=35:*.mp3=36:*.flac=36:*.ogg=36:*.wav=36:*.pdf=33:*.md=33:*.txt=33'

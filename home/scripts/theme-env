@@ -19,21 +19,24 @@ case "$(uname)" in
     ;;
 esac
 
-dark_theme=ayu-dark
-light_theme=ayu-light
+# shellcheck source=/dev/null
+. "$HOME/.config/themes/active/env.sh"
 
 if [ "$dark" -eq 1 ]; then
-  theme=$dark_theme
-  bat_theme="Ayu Dark"
+  theme=$DARK_THEME
+  bat_theme=$DARK_BAT_THEME
+  fish_theme=$DARK_FISH_THEME
 else
-  theme=$light_theme
-  bat_theme="Ayu Light"
+  theme=$LIGHT_THEME
+  bat_theme=$LIGHT_BAT_THEME
+  fish_theme=$LIGHT_FISH_THEME
 fi
 
 echo "export DARK_MODE=$dark"
-echo "export DARK_MODE_THEME=$dark_theme"
-echo "export LIGHT_MODE_THEME=$light_theme"
+echo "export DARK_MODE_THEME=$DARK_THEME"
+echo "export LIGHT_MODE_THEME=$LIGHT_THEME"
 echo "export THEME=$theme"
 echo "export BAT_THEME=\"$bat_theme\""
+echo "export FISH_THEME=\"$fish_theme\""
 
 exit $(( 1 - dark ))

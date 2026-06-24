@@ -8,7 +8,7 @@
 
 # file includes
 [include]
-  path = ayu.gitconfig ; colour theme
+  path = ~/.config/themes/active/git.gitconfig ; colour theme
 
 # common operations
 [checkout]

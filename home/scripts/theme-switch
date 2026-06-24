@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#
+# Switch the active theme by repointing ~/.config/themes/active.
+# Re-link bat's theme cache so the new tmThemes load.
+#
+# Usage: theme-switch <name>
+#   <name> must match a directory under ~/.config/themes/.
+
+set -euo pipefail
+
+name=${1:?usage: theme-switch <name>}
+themes_dir="$HOME/.config/themes"
+
+if [ ! -d "$themes_dir/$name" ]; then
+  echo "no such theme: $name (looked under $themes_dir)" >&2
+  ls -1 "$themes_dir" 2>/dev/null | grep -v '^active$' >&2
+  exit 1
+fi
+
+ln -sfn "$name" "$themes_dir/active"
+
+if command -v bat >/dev/null; then
+  bat cache --build >/dev/null
+fi
+
+echo "switched to $name. open a new shell to pick up env."

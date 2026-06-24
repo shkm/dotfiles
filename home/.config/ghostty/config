@@ -1,4 +1,4 @@
-theme = dark:Ayu,light:Ayu Light
+config-file = ~/.config/themes/active/ghostty.conf
 font-family = "0xProto Nerd Font Mono"
 keybind = ctrl+|=new_split:right
 keybind = ctrl+_=new_split:down
