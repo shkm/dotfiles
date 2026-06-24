@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
 # Switch the active theme by repointing ~/.config/themes/active.
-# Re-link bat's theme cache so the new tmThemes load.
+# Rebuilds bat's cache and signals ghostty to reload its config so
+# running windows pick up the new palette without restart.
 #
 # Usage: theme-switch <name>
 #   <name> must match a directory under ~/.config/themes/.
@@ -23,4 +24,10 @@ if command -v bat >/dev/null; then
   bat cache --build >/dev/null
 fi
 
-echo "switched to $name. open a new shell to pick up env."
+# Ghostty reads its config once at startup and reloads on SIGUSR2
+# (since v1.2.0). Tell every running ghostty to repaint.
+if pgrep -x ghostty >/dev/null; then
+  pkill -USR2 -x ghostty || true
+fi
+
+echo "switched to $name."
