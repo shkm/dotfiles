@@ -25,8 +25,10 @@ function __theme_sync --on-event fish_prompt
         oh-my-posh init fish --config "$active/omp/$VARIANT.omp.json" | source
     end
 
-    # Fish prompt colors
+    # Fish prompt colors. `theme save` (vs `choose`) writes universal vars
+    # so other running fish shells pick up the change automatically.
+    # Pipe `y` to bypass the interactive overwrite prompt.
     if test -f ~/.config/fish/themes/$FISH_THEME.theme
-        fish_config theme choose "$FISH_THEME"
+        echo y | fish_config theme save "$FISH_THEME" >/dev/null
     end
 end
