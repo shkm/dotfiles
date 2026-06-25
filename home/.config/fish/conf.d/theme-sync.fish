@@ -3,11 +3,7 @@ if not status is-interactive
     return
 end
 
-function __theme_sync --on-event fish_prompt
-    set -l prev $THEME
-    eval (theme-env)
-    test "$prev" = "$THEME"; and return
-
+function __theme_apply
     set -l active $HOME/.config/themes/active
 
     # Delta
@@ -30,5 +26,20 @@ function __theme_sync --on-event fish_prompt
     # Pipe `y` to bypass the interactive overwrite prompt.
     if test -f ~/.config/fish/themes/$FISH_THEME.theme
         echo y | fish_config theme save "$FISH_THEME" >/dev/null
+        set -U __fish_active_theme "$FISH_THEME"
+    end
+end
+
+function __theme_sync --on-event fish_prompt
+    set -l prev $THEME
+    eval (theme-env)
+    # Apply when dark/light just toggled, *or* when the universal fish
+    # colours don't yet match the current theme (the first prompt of a
+    # fresh shell after a theme-switch — $THEME is already correct from
+    # .profile, so a prev/THEME comparison alone would miss it).
+    if test "$prev" != "$THEME"
+        __theme_apply
+    else if test "$__fish_active_theme" != "$FISH_THEME"
+        __theme_apply
     end
 end
