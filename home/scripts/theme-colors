@@ -1,0 +1,74 @@
+#!/usr/bin/env fish
+#
+# Print the 16-colour terminal palette and every fish_color_* variable
+# with a swatch so you can eyeball the active theme.
+
+function _swatch_truecolor --argument-names hex
+    set -l r (printf '%d' 0x(string sub -l 2 $hex))
+    set -l g (printf '%d' 0x(string sub -s 3 -l 2 $hex))
+    set -l b (printf '%d' 0x(string sub -s 5 -l 2 $hex))
+    printf '\e[48;2;%d;%d;%dm      \e[0m \e[38;2;%d;%d;%dm████\e[0m' \
+        $r $g $b $r $g $b
+end
+
+function _swatch_named --argument-names name
+    # Fish maps named colours to the terminal palette; render via fg/bg attrs.
+    set_color $name
+    printf '████'
+    set_color normal
+end
+
+set -l labels black red green yellow blue magenta cyan white \
+              "bright black" "bright red" "bright green" "bright yellow" \
+              "bright blue" "bright magenta" "bright cyan" "bright white"
+
+echo "Terminal palette (ghostty theme):"
+for i in (seq 0 15)
+    printf '  \e[48;5;%dm      \e[0m \e[38;5;%dm████\e[0m  %2d  %s\n' \
+        $i $i $i $labels[(math $i + 1)]
+end
+
+echo
+echo "fish_color_*:"
+for v in (set --names | string match 'fish_color_*' | sort)
+    set -l val $$v
+    # Skip empty (e.g. fish_color_cancel default).
+    set -q val[1]; or continue
+    test -z "$val[1]"; and continue
+
+    # Find the colour token: the first arg that's not a --flag, or a
+    # --background=HEX flag's value.
+    set -l colour
+    set -l modifiers
+    for tok in $val
+        switch $tok
+            case '--theme=*'
+                # fish_config metadata, ignore.
+            case '--background=*'
+                set colour (string replace -r '^--background=' '' -- $tok)
+            case '--*'
+                set -a modifiers $tok
+            case '*'
+                test -z "$colour"; and set colour $tok
+        end
+    end
+
+    printf '  %-32s ' "$v"
+    if string match -rq '^[a-fA-F0-9]{6}$' -- $colour
+        _swatch_truecolor $colour
+        printf '  #%s' $colour
+    else if string match -rq '^[a-fA-F0-9]{3}$' -- $colour
+        set -l e (string sub -l 1 $colour)(string sub -l 1 $colour)(string sub -s 2 -l 1 $colour)(string sub -s 2 -l 1 $colour)(string sub -s 3 -l 1 $colour)(string sub -s 3 -l 1 $colour)
+        _swatch_truecolor $e
+        printf '  #%s' $colour
+    else if test -n "$colour"
+        _swatch_named $colour
+        printf '  %s' "$colour"
+    else
+        printf '  (modifier-only)'
+    end
+    if set -q modifiers[1]
+        printf '  %s' (string join ' ' $modifiers)
+    end
+    echo
+end

@@ -2,3 +2,4 @@ _plugins
 fish_variables
 completions/*.fish
 !completions/wt.fish
+!completions/theme-switch.fish

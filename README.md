@@ -19,6 +19,21 @@ Brewfile        Homebrew packages
 
 Plugins (fish, bat themes) are managed as git submodules under `home/`.
 
+## Themes
+
+Each theme is a self-contained directory at `home/.config/themes/<name>/`
+with palette files for bat, delta, fish, fzf, ghostty, lazygit, nvim,
+and oh-my-posh. The `themes/active` symlink picks the active one.
+
+```sh
+theme-switch              # list themes; * marks the active one
+theme-switch <name>       # switch (rebuilds bat cache, signals ghostty to reload)
+theme-colors              # preview terminal palette + fish syntax colours
+```
+
+Dark/light follows macOS appearance automatically. To add a new theme,
+copy an existing dir and edit `env.sh` plus the per-tool files.
+
 ## Vivaldi
 
 Custom CSS mods live in `home/.config/vivaldi-mods/`. Point **Settings → Appearance → Custom UI Modifications** to `.config/vivaldi-mods`.

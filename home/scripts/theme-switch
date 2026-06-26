@@ -1,24 +1,54 @@
 #!/usr/bin/env bash
 #
-# Switch the active theme by repointing ~/.config/themes/active.
-# Rebuilds bat's cache and signals ghostty to reload its config so
-# running windows pick up the new palette without restart.
+# Switch the active theme, or list available ones.
 #
-# Usage: theme-switch <name>
-#   <name> must match a directory under ~/.config/themes/.
+# Usage:
+#   theme-switch              show active + list
+#   theme-switch <name>       switch to <name>
 
 set -euo pipefail
 
-name=${1:?usage: theme-switch <name>}
 themes_dir="$HOME/.config/themes"
+active_link="$themes_dir/active"
+
+list_themes() {
+  local active=""
+  [ -L "$active_link" ] && active=$(readlink "$active_link")
+
+  echo "Available themes:"
+  for d in "$themes_dir"/*/; do
+    local name
+    name=$(basename "$d")
+    [ "$name" = "active" ] && continue
+    if [ "$name" = "$active" ]; then
+      printf "  * %s (active)\n" "$name"
+    else
+      printf "    %s\n" "$name"
+    fi
+  done
+}
+
+if [ "$#" -eq 0 ]; then
+  list_themes
+  exit 0
+fi
+
+name=$1
 
 if [ ! -d "$themes_dir/$name" ]; then
-  echo "no such theme: $name (looked under $themes_dir)" >&2
-  ls -1 "$themes_dir" 2>/dev/null | grep -v '^active$' >&2
+  echo "no such theme: $name" >&2
+  echo >&2
+  list_themes >&2
   exit 1
 fi
 
-ln -sfn "$name" "$themes_dir/active"
+# No-op if already active.
+if [ -L "$active_link" ] && [ "$(readlink "$active_link")" = "$name" ]; then
+  echo "already on $name."
+  exit 0
+fi
+
+ln -sfn "$name" "$active_link"
 
 if command -v bat >/dev/null; then
   bat cache --build >/dev/null
