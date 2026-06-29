@@ -1,8 +1,0 @@
-DARK_VARIANT=dark
-LIGHT_VARIANT=light
-DARK_THEME=ayu-dark
-LIGHT_THEME=ayu-light
-DARK_BAT_THEME="Ayu Dark"
-LIGHT_BAT_THEME="Ayu Light"
-DARK_FISH_THEME="Ayu Dark"
-LIGHT_FISH_THEME="Ayu Light"

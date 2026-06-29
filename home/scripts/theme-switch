@@ -1,31 +1,74 @@
 #!/usr/bin/env bash
 #
-# Switch the active theme, or list available ones.
+# Switch the active dark or light theme, or list available ones.
+#
+# Each theme dir under ~/.config/themes/ ships an env.sh declaring its
+# MODE (dark or light). Switching reads that MODE and updates the
+# matching active-<mode> symlink — light and dark are independent.
 #
 # Usage:
-#   theme-switch              show active + list
-#   theme-switch <name>       switch to <name>
+#   theme-switch              show actives + list available
+#   theme-switch <name>       switch the matching mode to <name>
 
 set -euo pipefail
 
 themes_dir="$HOME/.config/themes"
-active_link="$themes_dir/active"
+ghostty_conf="$themes_dir/.ghostty.conf"
+
+# Echo the value of $VAR from a theme's env.sh, or empty if unset/missing.
+theme_var() {
+  local name=$1 var=$2
+  local env_file="$themes_dir/$name/env.sh"
+  [ -f "$env_file" ] || { echo ""; return; }
+  (
+    # shellcheck source=/dev/null
+    . "$env_file"
+    eval "printf '%s' \"\${$var:-}\""
+  )
+}
+
+active_for() {
+  local mode=$1
+  local link="$themes_dir/active-$mode"
+  [ -L "$link" ] && basename "$(readlink "$link")"
+}
 
 list_themes() {
-  local active=""
-  [ -L "$active_link" ] && active=$(readlink "$active_link")
+  local dark_active light_active
+  dark_active=$(active_for dark)
+  light_active=$(active_for light)
 
-  echo "Available themes:"
-  for d in "$themes_dir"/*/; do
-    local name
-    name=$(basename "$d")
-    [ "$name" = "active" ] && continue
-    if [ "$name" = "$active" ]; then
-      printf "  * %s (active)\n" "$name"
-    else
-      printf "    %s\n" "$name"
-    fi
+  printf "Active:\n"
+  printf "  dark:  %s\n" "${dark_active:-<none>}"
+  printf "  light: %s\n" "${light_active:-<none>}"
+
+  printf "\nAvailable:\n"
+  for mode in dark light; do
+    printf "  [%s]\n" "$mode"
+    for d in "$themes_dir"/*/; do
+      local name
+      name=$(basename "$d")
+      [[ "$name" == active-* ]] && continue
+      local m
+      m=$(theme_var "$name" MODE)
+      [ "$m" = "$mode" ] || continue
+      local marker=" "
+      if { [ "$mode" = dark ] && [ "$name" = "$dark_active" ]; } \
+         || { [ "$mode" = light ] && [ "$name" = "$light_active" ]; }; then
+        marker="*"
+      fi
+      printf "    %s %s\n" "$marker" "$name"
+    done
   done
+}
+
+write_ghostty_conf() {
+  local dark light dark_g light_g
+  dark=$(active_for dark)
+  light=$(active_for light)
+  dark_g=$(theme_var "$dark" GHOSTTY_THEME)
+  light_g=$(theme_var "$light" GHOSTTY_THEME)
+  printf "theme = dark:%s,light:%s\n" "$dark_g" "$light_g" > "$ghostty_conf"
 }
 
 if [ "$#" -eq 0 ]; then
@@ -42,22 +85,29 @@ if [ ! -d "$themes_dir/$name" ]; then
   exit 1
 fi
 
-# No-op if already active.
-if [ -L "$active_link" ] && [ "$(readlink "$active_link")" = "$name" ]; then
-  echo "already on $name."
+mode=$(theme_var "$name" MODE)
+case "$mode" in
+  dark|light) ;;
+  *)
+    echo "theme '$name' has no MODE=dark|light in env.sh" >&2
+    exit 1
+    ;;
+esac
+
+if [ "$(active_for "$mode")" = "$name" ]; then
+  echo "already on $name ($mode)."
   exit 0
 fi
 
-ln -sfn "$name" "$active_link"
+ln -sfn "$name" "$themes_dir/active-$mode"
+write_ghostty_conf
 
 if command -v bat >/dev/null; then
   bat cache --build >/dev/null
 fi
 
-# Ghostty reads its config once at startup and reloads on SIGUSR2
-# (since v1.2.0). Tell every running ghostty to repaint.
 if pgrep -x ghostty >/dev/null; then
   pkill -USR2 -x ghostty || true
 fi
 
-echo "switched to $name."
+echo "switched $mode theme to $name."

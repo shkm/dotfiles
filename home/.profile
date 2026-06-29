@@ -155,7 +155,7 @@ export LESS_TERMCAP_us=$(printf "\033[01;32m")
 eval "$("$HOME/scripts/theme-env")"
 
 # FZF colours from the active theme.
-_fzf_opts_file="$HOME/.config/themes/active/fzf/$VARIANT.opts"
+_fzf_opts_file="$HOME/.config/themes/$THEME/fzf.opts"
 if [ -f "$_fzf_opts_file" ]; then
   FZF_DEFAULT_OPTS=$(cat "$_fzf_opts_file")
   export FZF_DEFAULT_OPTS

@@ -8,7 +8,9 @@
 
 # file includes
 [include]
-  path = ~/.config/themes/active/git.gitconfig ; colour theme
+  path = ~/.config/themes/active-dark/git.gitconfig ; delta feature for dark theme
+[include]
+  path = ~/.config/themes/active-light/git.gitconfig ; delta feature for light theme
 
 # common operations
 [checkout]

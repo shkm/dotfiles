@@ -4,7 +4,7 @@ if not status is-interactive
 end
 
 function __theme_apply
-    set -l active $HOME/.config/themes/active
+    set -l theme_dir $HOME/.config/themes/$THEME
 
     # Delta
     if type -q delta
@@ -12,13 +12,13 @@ function __theme_apply
     end
 
     # FZF
-    if test -f $active/fzf/$VARIANT.opts
-        set -gx FZF_DEFAULT_OPTS (cat $active/fzf/$VARIANT.opts)
+    if test -f $theme_dir/fzf.opts
+        set -gx FZF_DEFAULT_OPTS (cat $theme_dir/fzf.opts)
     end
 
     # Oh My Posh (re-init with new config)
     if type -q oh-my-posh
-        oh-my-posh init fish --config "$active/omp/$VARIANT.omp.json" | source
+        oh-my-posh init fish --config "$theme_dir/omp.omp.json" | source
     end
 
     # Fish prompt colors. `theme save` (vs `choose`) writes universal vars

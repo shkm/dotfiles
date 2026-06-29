@@ -16,9 +16,11 @@ function _G.current_theme()
 end
 
 -- UI accent colors for statusline/tabline/Claude border. Sourced from the
--- active theme so a theme-switch flip takes effect without nvim restart.
+-- current theme's nvim.lua so dark/light toggles and theme-switch both
+-- take effect without nvim restart.
 local function load_theme_meta()
-  local path = os.getenv("HOME") .. "/.config/themes/active/nvim.lua"
+  local theme = _G.current_theme()
+  local path = os.getenv("HOME") .. "/.config/themes/" .. theme .. "/nvim.lua"
   local ok, mod = pcall(dofile, path)
   if ok and type(mod) == "table" then
     return mod
@@ -28,9 +30,8 @@ end
 
 function _G.ui_palette()
   local meta = load_theme_meta()
-  local bg = vim.go.background == "light" and "light" or "dark"
-  if meta and meta.palette and meta.palette[bg] then
-    return meta.palette[bg]
+  if meta and meta.palette then
+    return meta.palette
   end
   -- Fallback so UI doesn't break if the active theme dir is missing nvim.lua.
   return {
@@ -42,9 +43,8 @@ end
 
 function _G.lualine_theme_name()
   local meta = load_theme_meta()
-  local bg = vim.go.background == "light" and "light" or "dark"
-  if meta and meta.lualine and meta.lualine[bg] then
-    return meta.lualine[bg]
+  if meta and meta.lualine then
+    return meta.lualine
   end
   return "auto"
 end

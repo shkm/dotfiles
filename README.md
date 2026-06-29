@@ -21,18 +21,29 @@ Plugins (fish, bat themes) are managed as git submodules under `home/`.
 
 ## Themes
 
-Each theme is a self-contained directory at `home/.config/themes/<name>/`
-with palette files for bat, delta, fish, fzf, ghostty, lazygit, nvim,
-and oh-my-posh. The `themes/active` symlink picks the active one.
+Each theme is a single-mode (dark *or* light) directory at
+`home/.config/themes/<name>/` with palette files for bat, delta, fish,
+fzf, ghostty, lazygit, nvim, and oh-my-posh. Two symlinks pick the
+actives, one per mode:
+
+```
+themes/active-dark  -> tokyonight-storm
+themes/active-light -> tokyonight-day
+```
+
+Dark and light are independent — mix and match across families.
 
 ```sh
-theme-switch              # list themes; * marks the active one
-theme-switch <name>       # switch (rebuilds bat cache, signals ghostty to reload)
+theme-switch              # show actives + list by mode (* marks active)
+theme-switch <name>       # set the matching mode (MODE comes from env.sh)
 theme-colors              # preview terminal palette + fish syntax colours
 ```
 
-Dark/light follows macOS appearance automatically. To add a new theme,
-copy an existing dir and edit `env.sh` plus the per-tool files.
+Variant follows macOS appearance automatically. To add a new theme,
+copy an existing dir, edit `env.sh` (set `MODE`, `THEME`,
+`BAT_THEME`, `FISH_THEME`, `GHOSTTY_THEME`), and drop in the per-tool
+files. The matching bat/fish theme files go in `home/.config/bat/themes/`
+and `home/.config/fish/themes/`.
 
 ## Vivaldi
 
