@@ -40,7 +40,8 @@ main() {
   local files=()
   while IFS= read -r -d '' file; do
     [[ -f "$file" ]] && files+=("$file")
-  done < <(git diff --name-only -z "$base_ref"...HEAD -- '*.rb')
+  done < <(git diff --name-only -z "$base_ref"...HEAD -- \
+    '*.rb' '*.rake' '*.gemspec' '*.ru' 'Gemfile' 'Rakefile')
 
   if [[ "${#files[@]}" -eq 0 ]]; then
     echo "No changed Ruby files between $base_ref and HEAD."
