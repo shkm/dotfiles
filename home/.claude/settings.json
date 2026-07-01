@@ -78,12 +78,12 @@
     "mode": "hold"
   },
   "prefersReducedMotion": true,
+  "theme": "auto",
   "autoCompactEnabled": false,
   "terminalProgressBarEnabled": false,
   "voiceEnabled": true,
   "terminal": {
     "vimMode": false
   },
-  "includePrerelease": false,
-  "theme": "dark-daltonized"
+  "includePrerelease": false
 }
