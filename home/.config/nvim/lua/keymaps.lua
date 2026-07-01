@@ -76,7 +76,12 @@ local function toggle_tab_terminal()
   vim.cmd("startinsert")
 end
 
-vim.keymap.set({ "n", "t", "i" }, "<C-`>", toggle_tab_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })
+vim.keymap.set(
+  { "n", "t", "i" },
+  "<C-`>",
+  toggle_tab_terminal,
+  { noremap = true, silent = true, desc = "Toggle terminal" }
+)
 vim.keymap.set("n", "<leader>ot", toggle_tab_terminal, { noremap = true, silent = true, desc = "Toggle terminal" })
 
 -- Dashes (macOS-style shortcuts don't work in terminal)
@@ -113,6 +118,6 @@ end, { desc = "Yank relative file path" })
 vim.keymap.set("v", "<D-c>", "y", { noremap = true, silent = true, desc = "Copy" })
 
 -- Custom commands
-vim.api.nvim_create_user_command("PrettyJson", "%!python -m json.tool", {})
+vim.api.nvim_create_user_command("PrettyJson", "%!python3 -m json.tool", {})
 vim.api.nvim_create_user_command("PrettyHtml", "%!tidy -q -i --show-errors 0 --raw", {})
 vim.api.nvim_create_user_command("PrettyXml", "%!tidy -q -i -xml --show-errors 0 --raw", {})
