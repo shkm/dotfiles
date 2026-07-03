@@ -20,13 +20,27 @@ case "$(uname)" in
 esac
 
 themes_dir="$HOME/.config/themes"
-dark_theme=$(basename "$(readlink "$themes_dir/active-dark")")
-light_theme=$(basename "$(readlink "$themes_dir/active-light")")
+
+# Fall back to defaults when active-dark/active-light aren't valid symlinks
+# (e.g. a clone with core.symlinks=false checks them out as plain files).
+resolve_theme() {
+  local link="$themes_dir/$1" fallback="$2" target
+  target=$(readlink "$link") && [ -n "$target" ] || target="$fallback"
+  basename "$target"
+}
+
+dark_theme=$(resolve_theme active-dark tokyonight-storm)
+light_theme=$(resolve_theme active-light tokyonight-day)
 
 if [ "$dark" -eq 1 ]; then
   current="$dark_theme"
 else
   current="$light_theme"
+fi
+
+if [ ! -f "$themes_dir/$current/env.sh" ]; then
+  echo "theme-env: missing $themes_dir/$current/env.sh" >&2
+  exit $(( 1 - dark ))
 fi
 
 # shellcheck source=/dev/null
