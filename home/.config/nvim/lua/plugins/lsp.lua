@@ -48,7 +48,9 @@ return {
           map("grt", function() Snacks.picker.lsp_type_definitions() end, "Type definition")
           map("gO", function() Snacks.picker.lsp_symbols() end, "Document symbols")
           map("gW", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
-          map("<C-]>", vim.lsp.buf.definition, "Definition")
+          -- unique: don't clobber buffer-local maps (obsidivim owns <C-]> in notes)
+          pcall(vim.keymap.set, "n", "<C-]>", vim.lsp.buf.definition,
+            { buffer = event.buf, desc = "LSP: Definition", unique = true })
 
           map("<leader>ld", function() Snacks.picker.lsp_symbols() end, "Document symbols")
           map("<leader>ls", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace symbols")
@@ -157,10 +159,10 @@ return {
       appearance = { nerd_font_variant = "mono" },
       completion = { documentation = { auto_show = true, auto_show_delay_ms = 200 } },
       sources = {
-        default = { "lsp", "path", "snippets", "lazydev", "noteworthy" },
+        default = { "lsp", "path", "snippets", "lazydev", "obsidivim" },
         providers = {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
-          noteworthy = { module = "noteworthy.blink", name = "Notes" },
+          obsidivim = { module = "obsidivim.blink", name = "Notes" },
         },
       },
       snippets = { preset = "luasnip" },
