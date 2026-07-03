@@ -21,6 +21,16 @@ return {
     end,
   },
 
+  -- Catppuccin (kept available so theme-switch can swap to it without restarting nvim)
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = true,
+    config = function()
+      require("catppuccin").setup({})
+    end,
+  },
+
   -- Lualine - statusline
   {
     "nvim-lualine/lualine.nvim",
