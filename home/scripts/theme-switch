@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 #
-# Switch the active dark or light theme, or list available ones.
+# Switch the theme shown for the current OS appearance, or list available.
 #
-# Each theme dir under ~/.config/themes/ ships an env.sh declaring its
-# MODE (dark or light). Switching reads that MODE and updates the
-# matching active-<mode> symlink — light and dark are independent.
+# Two symlinks decide what shows: active-dark (when the OS is in dark mode)
+# and active-light (when it's light). Any theme can go in either slot — a
+# theme's MODE in env.sh is just a label, not a constraint.
 #
 # Usage:
-#   theme-switch              show actives + list available
-#   theme-switch <name>       switch the matching mode to <name>
+#   theme-switch                     show actives + list available
+#   theme-switch <name>              set the current-appearance theme
+#   theme-switch -i                  pick any theme (fzf) for the current appearance
+#   theme-switch -d|--dark [name]    set the dark-appearance slot
+#   theme-switch -l|--light [name]   set the light-appearance slot
+#
+# -d/-l take an optional <name>; without one they open the fzf picker.
 
 set -euo pipefail
 
@@ -31,6 +36,19 @@ active_for() {
   local mode=$1
   local link="$themes_dir/active-$mode"
   [ -L "$link" ] && basename "$(readlink "$link")"
+}
+
+# Echo "dark" or "light" for the current OS appearance (mirrors theme-env).
+current_mode() {
+  case "$(uname)" in
+    Darwin)
+      [ "$(dark-mode status)" = "on" ] && echo dark || echo light ;;
+    *)
+      case "$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null)" in
+        *dark*) echo dark ;;
+        *)      echo light ;;
+      esac ;;
+  esac
 }
 
 list_themes() {
@@ -62,6 +80,25 @@ list_themes() {
   done
 }
 
+# Emit "name (mode)" for each theme (skips the active-* symlinks).
+enumerate_themes() {
+  for d in "$themes_dir"/*/; do
+    local name
+    name=$(basename "$d")
+    [[ "$name" == active-* ]] && continue
+    printf '%s (%s)\n' "$name" "$(theme_var "$name" MODE)"
+  done
+}
+
+# fzf picker over all themes; echoes the selected theme name.
+pick_theme() {
+  enumerate_themes | sort -k2 | fzf \
+    --prompt='theme> ' --height='60%' --reverse \
+    --preview "cat '$themes_dir'/{1}/env.sh" \
+    --preview-window='right,50%' \
+    | awk '{print $1}'
+}
+
 write_ghostty_conf() {
   local dark light dark_g light_g
   dark=$(active_for dark)
@@ -71,12 +108,42 @@ write_ghostty_conf() {
   printf "theme = dark:%s,light:%s\n" "$dark_g" "$light_g" > "$ghostty_conf"
 }
 
+# Tell running Ghostty instances to re-read their config (SIGUSR2). On macOS the
+# process comm is the full .app path, so pgrep -x/-f don't match it — fall back
+# to matching comm ending in /ghostty. Matching comm (not args) avoids false
+# hits on processes that merely have Ghostty.app in $PATH.
+reload_ghostty() {
+  local pids
+  pids=$(pgrep -x ghostty 2>/dev/null || true)
+  [ -n "$pids" ] || pids=$(ps -Ao pid=,comm= | awk '$2 ~ /(^|\/)ghostty$/ {print $1}')
+  [ -n "$pids" ] || return 0
+  # shellcheck disable=SC2086
+  kill -USR2 $pids 2>/dev/null || true
+}
+
 if [ "$#" -eq 0 ]; then
   list_themes
   exit 0
 fi
 
-name=$1
+# slot is the appearance we're setting; defaults to the current OS appearance.
+# An empty name falls through to the fzf picker.
+name=""
+slot=""
+case "$1" in
+  -i|--interactive) ;;
+  -d|--dark)        slot=dark;  name=${2:-} ;;
+  -l|--light)       slot=light; name=${2:-} ;;
+  -*)               echo "theme-switch: unknown option: $1" >&2; exit 1 ;;
+  *)                name=$1 ;;
+esac
+[ -n "$slot" ] || slot=$(current_mode)
+
+if [ -z "$name" ]; then
+  command -v fzf >/dev/null || { echo "theme-switch: fzf not installed" >&2; exit 1; }
+  name=$(pick_theme) || true
+  [ -n "$name" ] || exit 0
+fi
 
 if [ ! -d "$themes_dir/$name" ]; then
   echo "no such theme: $name" >&2
@@ -85,29 +152,18 @@ if [ ! -d "$themes_dir/$name" ]; then
   exit 1
 fi
 
-mode=$(theme_var "$name" MODE)
-case "$mode" in
-  dark|light) ;;
-  *)
-    echo "theme '$name' has no MODE=dark|light in env.sh" >&2
-    exit 1
-    ;;
-esac
-
-if [ "$(active_for "$mode")" = "$name" ]; then
-  echo "already on $name ($mode)."
+if [ "$(active_for "$slot")" = "$name" ]; then
+  echo "already on $name ($slot)."
   exit 0
 fi
 
-ln -sfn "$name" "$themes_dir/active-$mode"
+ln -sfn "$name" "$themes_dir/active-$slot"
 write_ghostty_conf
 
 if command -v bat >/dev/null; then
   bat cache --build >/dev/null
 fi
 
-if pgrep -x ghostty >/dev/null; then
-  pkill -USR2 -x ghostty || true
-fi
+reload_ghostty
 
-echo "switched $mode theme to $name."
+echo "switched $slot theme to $name."
