@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 #
-# Run RuboCop on Ruby files changed on the current branch
+# Run RuboCop on the changes made on the current branch.
+#
+# By default, offenses are reported only when they land on a line added or
+# modified between the origin default branch and HEAD (like CI's reviewdog
+# "filter-mode: added"). Pass --whole-files to inspect the full content of
+# every changed file instead -- useful because reviewdog can flag lines your
+# local branch-vs-master diff considers unchanged.
 
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
@@ -12,7 +18,12 @@ cleanup() {
 usage() {
   local exit_code="${1:-1}"
 
-  echo "Usage: rubocop-branch [rubocop args...]"
+  echo "Usage: rubocop-branch [--whole-files] [rubocop args...]"
+  echo
+  echo "  --whole-files   Inspect entire changed files, not just changed lines."
+  echo
+  echo "Offenses are limited to changed lines by default. Autocorrect flags"
+  echo "(-a/-A/--fix-layout) always operate on the whole changed files."
 
   exit "$exit_code"
 }
@@ -21,6 +32,73 @@ default_branch_ref() {
   git symbolic-ref --quiet --short refs/remotes/origin/HEAD
 }
 
+has_autocorrect_flag() {
+  local arg
+  for arg in "$@"; do
+    case "$arg" in
+      -a | -A | --autocorrect | --auto-correct | --autocorrect-all | --auto-correct-all | --fix-layout)
+        return 0
+        ;;
+    esac
+  done
+  return 1
+}
+
+# Reads a RuboCop JSON report on stdin and prints only the offenses that fall
+# on lines added/modified in "$BASE_REF"...HEAD. ARGV is the changed files.
+read -r -d '' filter_to_changed_lines <<'RUBY' || true
+require "json"
+require "set"
+
+base   = ENV.fetch("BASE_REF")
+files  = ARGV
+report = JSON.parse($stdin.read)
+
+added   = Hash.new { |h, k| h[k] = Set.new }
+current = nil
+lineno  = nil
+IO.popen(["git", "diff", "--unified=0", "#{base}...HEAD", "--", *files]) do |io|
+  io.each_line do |line|
+    if (m = line.match(%r{\Adiff --git a/.+ b/(.+?)\s*\z}))
+      current, lineno = m[1], nil
+    elsif (m = line.match(/\A@@ -\d+(?:,\d+)? \+(\d+)/))
+      lineno = m[1].to_i
+    elsif current && lineno
+      case line[0]
+      when "+" then added[current] << lineno; lineno += 1
+      when "-" then nil # removed line: new-file numbering is unaffected
+      else lineno += 1
+      end
+    end
+  end
+end
+
+sev = { "info" => "I", "refactor" => "R", "convention" => "C",
+        "warning" => "W", "error" => "E", "fatal" => "F" }
+
+total = 0
+report.fetch("files", []).each do |f|
+  path = f["path"]
+  f.fetch("offenses", []).each do |o|
+    loc  = o["location"]
+    line = loc["line"] || loc["start_line"]
+    next unless added[path].include?(line)
+
+    total += 1
+    col = loc["column"] || loc["start_column"]
+    puts "#{path}:#{line}:#{col}: #{sev.fetch(o["severity"], "?")}: #{o["cop_name"]}: #{o["message"]}"
+  end
+end
+
+if total.zero?
+  puts "No offenses on lines changed between #{base} and HEAD."
+else
+  puts
+  puts "#{total} offense#{"s" unless total == 1} on changed lines."
+end
+exit(total.zero? ? 0 : 1)
+RUBY
+
 main() {
   if [[ "${1:-}" = "--help" ]]; then usage 0; fi
 
@@ -28,6 +106,17 @@ main() {
     echo "Not in a git repository."
     exit 2
   fi
+
+  # Split our own flags from the args forwarded to rubocop.
+  local whole_files=0
+  local rubocop_args=()
+  local arg
+  for arg in "$@"; do
+    case "$arg" in
+      -w | --whole-files) whole_files=1 ;;
+      *) rubocop_args+=("$arg") ;;
+    esac
+  done
 
   local base_ref
   base_ref="$(default_branch_ref)"
@@ -48,7 +137,20 @@ main() {
     exit 0
   fi
 
-  bundle exec rubocop "$@" "${files[@]}"
+  # Autocorrect and --whole-files both inspect the entire changed files.
+  if [[ "$whole_files" -eq 1 ]] || has_autocorrect_flag ${rubocop_args[@]+"${rubocop_args[@]}"}; then
+    exec bundle exec rubocop ${rubocop_args[@]+"${rubocop_args[@]}"} "${files[@]}"
+  fi
+
+  local json rc=0
+  json="$(bundle exec rubocop ${rubocop_args[@]+"${rubocop_args[@]}"} --format json "${files[@]}")" || rc=$?
+
+  if [[ "$rc" -ge 2 ]]; then
+    echo "RuboCop failed to run (exit $rc). Re-run with --whole-files to see the error." >&2
+    exit "$rc"
+  fi
+
+  printf '%s' "$json" | BASE_REF="$base_ref" ruby -e "$filter_to_changed_lines" "${files[@]}"
 }
 
 main "$@"
