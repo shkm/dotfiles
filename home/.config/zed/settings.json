@@ -81,6 +81,7 @@
   },
   "languages": {
     "Markdown": {
+      "show_edit_predictions": false,
       "remove_trailing_whitespace_on_save": false,
     },
     "Ruby": {
