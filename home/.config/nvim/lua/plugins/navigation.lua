@@ -1,11 +1,13 @@
 return {
-  -- Smart splits - seamless navigation with Kitty
+  -- Smart splits - seamless navigation between nvim splits
   {
     "mrjones2014/smart-splits.nvim",
     lazy = false,
-    build = "./kitty/install-kittens.bash",
     opts = {
       at_edge = "stop",
+      -- Ghostty isn't a supported multiplexer; disabling avoids the kitty
+      -- auto-detect warning. Set to "tmux" etc. if running under one.
+      multiplexer_integration = false,
     },
     config = function(_, opts)
       require("smart-splits").setup(opts)
