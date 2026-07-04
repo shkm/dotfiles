@@ -1,6 +1,7 @@
 return {
   {
-    dir = "~/repos/obsidivim",
+    url = "https://tangled.org/@jamie.schembri.me/obsidivim",
+    version = "*",
     event = "BufReadPre",
     keys = {
       { "<leader>nf", "<cmd>ObsidivimFind<cr>", desc = "Find note" },
