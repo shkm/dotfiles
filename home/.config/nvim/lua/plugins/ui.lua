@@ -148,6 +148,8 @@ return {
       notifier = { enabled = true },
       picker = {
         win = {
+          -- render markdown previews like the editor (treesitter conceal)
+          preview = { wo = { conceallevel = 2, concealcursor = "nvic" } },
           input = {
             keys = {
               ["<Esc>"] = { "close", mode = { "n", "i" } },
@@ -162,6 +164,30 @@ return {
             },
           },
         },
+        sources = {
+          files = {
+            -- browse newest-first; fuzzy score still wins when searching
+            matcher = { sort_empty = true },
+            sort = { fields = { "score:desc", "mtime:desc", "#text", "idx" } },
+            transform = function(item)
+              local path = item.file and Snacks.picker.util.path(item)
+              if path then
+                local st = vim.uv.fs_stat(path)
+                item.mtime = st and st.mtime.sec or 0
+              end
+              return item
+            end,
+            -- render obsidivim wiki/external links in markdown previews
+            preview = function(ctx)
+              local ret = require("snacks.picker.preview").file(ctx)
+              local buf = ctx.preview.win and ctx.preview.win.buf
+              if buf and vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].filetype:match("markdown") then
+                pcall(function() require("obsidivim.highlight").refresh(buf) end)
+              end
+              return ret
+            end,
+          },
+        },
       },
       quickfile = { enabled = true },
       scope = { enabled = true },
@@ -174,7 +200,8 @@ return {
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find buffers" },
       { "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
       { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
-      { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
+      { "<leader>fd", function() Snacks.picker.files({ cwd = vim.fn.expand("~/dotfiles"), hidden = true }) end, desc = "Find dotfiles" },
+      { "<leader>fD", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
       {
         "<leader>fg",
         function()
