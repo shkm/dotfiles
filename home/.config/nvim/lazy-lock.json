@@ -24,7 +24,7 @@
   "nvim-nio": { "branch": "master", "commit": "21f5324bfac14e22ba26553caf69ec76ae8a7662" },
   "nvim-treesitter": { "branch": "main", "commit": "4916d6592ede8c07973490d9322f187e07dfefac" },
   "nvim-web-devicons": { "branch": "master", "commit": "dad71387de386a946b123079d0e53f23028f3abd" },
-  "obsidivim": { "branch": "main", "commit": "9b75e98f48aa336fa3fba6eae96564baae65a5b8" },
+  "obsidivim": { "branch": "main", "commit": "f369567975ccb551f3fe24b647d21b4134f76cdf" },
   "octo.nvim": { "branch": "master", "commit": "b9a73e167f851a98d8f29d62658d3640bb8a7314" },
   "oil-git-status.nvim": { "branch": "main", "commit": "a3e2ccb00cb8822115e28a9a1791eda051d940c9" },
   "oil.nvim": { "branch": "master", "commit": "b73018b75affd13fa38e2fc94ef753b465f770d7" },
