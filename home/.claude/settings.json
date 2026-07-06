@@ -85,5 +85,6 @@
   "terminal": {
     "vimMode": false
   },
-  "includePrerelease": false
+  "includePrerelease": false,
+  "tui": "fullscreen"
 }
