@@ -98,6 +98,21 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = setup_tabline_highlights,
 })
 
+-- Transparent editor background so nvim matches the terminal. Ghostty runs with
+-- background-opacity, so an opaque nvim background clashes with it and with
+-- adjacent shell panes. Works for any colorscheme.
+local function transparent_background()
+  for _, group in ipairs({ "Normal", "NormalNC", "SignColumn", "EndOfBuffer", "MsgArea" }) do
+    local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+    hl.bg, hl.ctermbg = nil, nil
+    vim.api.nvim_set_hl(0, group, hl)
+  end
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = transparent_background,
+})
+
 -- Auto-switch theme when macOS appearance changes
 vim.api.nvim_create_autocmd("FocusGained", {
   desc = "Switch colorscheme to match macOS appearance",
