@@ -36,9 +36,9 @@
     "border_size": 2.0,
   },
   "icon_theme": {
-    "mode": "light",
-    "light": "Zed (Default)",
-    "dark": "Zed (Default)",
+    "mode": "system",
+    "light": "Catppuccin Frappé",
+    "dark": "Catppuccin Mocha"
   },
   "toolbar": {
     "quick_actions": false,
@@ -64,7 +64,7 @@
     "enable_feedback": false,
   },
   "theme": {
-    "mode": "light",
+    "mode": "system",
     "light": "Ayu Light",
     "dark": "Ayu Dark",
   },
