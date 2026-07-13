@@ -31,6 +31,13 @@ return {
     end,
   },
 
+  -- Flexoki (kept available so theme-switch can swap to it without restarting nvim)
+  {
+    "kepano/flexoki-neovim",
+    name = "flexoki",
+    lazy = true,
+  },
+
   -- Lualine - statusline
   {
     "nvim-lualine/lualine.nvim",

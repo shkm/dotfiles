@@ -94,7 +94,7 @@ local function setup_tabline_highlights()
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = { "tokyonight*", "ayu*" },
+  pattern = { "tokyonight*", "ayu*", "flexoki*" },
   callback = setup_tabline_highlights,
 })
 

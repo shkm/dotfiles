@@ -1,0 +1,17 @@
+[delta "flexoki-light"]
+	dark = false
+	syntax-theme = "Flexoki Light"
+	line-numbers = true
+	line-numbers-left-style = "#b7b5ac"
+	line-numbers-right-style = "#b7b5ac"
+	line-numbers-zero-style = "#cecdc3"
+	line-numbers-minus-style = "#af3029"
+	line-numbers-plus-style = "#66800b"
+	file-decoration-style = "#100f0f"
+	file-style = "#100f0f"
+	hunk-header-decoration-style = "box ul"
+	hunk-header-file-style = "bold"
+	hunk-header-line-number-style = "bold #6f6e69"
+	hunk-header-style = "file line-number syntax"
+	commit-decoration-style = "box ul"
+	blame-palette = "#fffcf0 #f2f0e5 #e6e4d9 #dad8ce #cecdc3"
