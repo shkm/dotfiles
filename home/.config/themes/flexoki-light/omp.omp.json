@@ -15,13 +15,13 @@
         {
           "properties": {
             "cache_duration": "none",
-            "folder_icon": "",
-            "home_icon": "",
+            "folder_icon": "",
+            "home_icon": "",
             "max_depth": 1,
             "style": "agnoster_short",
             "mapped_locations_enabled": true,
             "mapped_locations": {
-              "~/repos": ""
+              "~/repos": ""
             }
           },
           "template": "{{ .Path }} ",
@@ -31,17 +31,17 @@
         },
         {
           "properties": {
-            "branch_icon": " ",
+            "branch_icon": " ",
             "cache_duration": "none",
-            "cherry_pick_icon": " ",
-            "commit_icon": " ",
+            "cherry_pick_icon": " ",
+            "commit_icon": " ",
             "fetch_status": false,
             "fetch_upstream_icon": false,
-            "merge_icon": " ",
-            "no_commits_icon": " ",
-            "rebase_icon": " ",
-            "revert_icon": " ",
-            "tag_icon": " "
+            "merge_icon": " ",
+            "no_commits_icon": " ",
+            "rebase_icon": " ",
+            "revert_icon": " ",
+            "tag_icon": " "
           },
           "template": "{{ .HEAD }} ",
           "foreground": "p:lavender",
@@ -52,7 +52,7 @@
           "properties": {
             "cache_duration": "none"
           },
-          "template": "",
+          "template": "",
           "foreground": "p:closer",
           "type": "text",
           "style": "plain"
