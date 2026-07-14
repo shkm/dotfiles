@@ -16,10 +16,8 @@ function __theme_apply
         set -gx FZF_DEFAULT_OPTS (cat $theme_dir/fzf.opts)
     end
 
-    # Oh My Posh (re-init with new config)
-    if type -q oh-my-posh
-        oh-my-posh init fish --config "$theme_dir/omp.omp.json" | source
-    end
+    # Oh My Posh needs no re-init: its palette follows $THEME (updated above
+    # via theme-env) at each prompt render.
 
     # Fish prompt colors. `theme save` (vs `choose`) writes universal vars
     # so other running fish shells pick up the change automatically.

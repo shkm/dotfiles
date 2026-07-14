@@ -7,6 +7,67 @@
     "os": "#878580",
     "pink": "#da702c"
   },
+  "palettes": {
+    "template": "{{ .Env.THEME }}",
+    "list": {
+      "tokyonight-storm": {
+        "blue": "#7aa2f7",
+        "closer": "p:os",
+        "lavender": "#bb9af7",
+        "os": "#9aa5ce",
+        "pink": "#ff9e64"
+      },
+      "tokyonight-day": {
+        "blue": "#2e7de9",
+        "closer": "p:os",
+        "lavender": "#9854f1",
+        "os": "#8990b3",
+        "pink": "#b15c00"
+      },
+      "ayu-dark": {
+        "blue": "#59C2FF",
+        "closer": "p:os",
+        "lavender": "#D2A6FF",
+        "os": "#8A9199",
+        "pink": "#E6B450"
+      },
+      "ayu-light": {
+        "blue": "#399EE6",
+        "closer": "p:os",
+        "lavender": "#A37ACC",
+        "os": "#ABB0B6",
+        "pink": "#FFAA33"
+      },
+      "catppuccin-mocha": {
+        "blue": "#89b4fa",
+        "closer": "p:os",
+        "lavender": "#b4befe",
+        "os": "#bac2de",
+        "pink": "#fab387"
+      },
+      "catppuccin-latte": {
+        "blue": "#1e66f5",
+        "closer": "p:os",
+        "lavender": "#7287fd",
+        "os": "#5c5f77",
+        "pink": "#fe640b"
+      },
+      "flexoki-dark": {
+        "blue": "#4385be",
+        "closer": "p:os",
+        "lavender": "#8b7ec8",
+        "os": "#878580",
+        "pink": "#da702c"
+      },
+      "flexoki-light": {
+        "blue": "#205ea6",
+        "closer": "p:os",
+        "lavender": "#5e409d",
+        "os": "#6f6e69",
+        "pink": "#bc5215"
+      }
+    }
+  },
   "blocks": [
     {
       "type": "prompt",
