@@ -9,6 +9,10 @@
 - Work with minimum viable deliverables. This may mean splitting up a large feature into smaller features, ideally with each feature adding some small value.
 - Avoid excessive comments. Only add a comment when it is genuinely useful (explains a non-obvious "why", not the "what"), and keep it concise. Don't narrate code that speaks for itself.
 
+## Obsidian vault
+
+- My Obsidian vault is at `~/notes`. When asked to save a note there, put it at the vault root (the structure is mostly flat — e.g. recipes like `couscous.md` live at the root). Recipes should link to `[[Recipes]]`.
+
 ## Commands
 
 - **NEVER** use `rm` to remove files or folders. **DO** use `trash`.
