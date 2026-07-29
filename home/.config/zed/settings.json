@@ -10,16 +10,16 @@
   "cli_default_open_behavior": "new_window",
   "diff_view_style": "split",
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git_panel": {
-    "tree_view": true
+    "tree_view": true,
   },
   "buffer_line_height": "standard",
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "effort": "medium"
+        "effort": "medium",
       },
       "type": "registry",
     },
@@ -38,7 +38,7 @@
   "icon_theme": {
     "mode": "system",
     "light": "Colored Zed Icons Theme Light",
-    "dark": "Colored Zed Icons Theme Dark"
+    "dark": "Colored Zed Icons Theme Dark",
   },
   "toolbar": {
     "quick_actions": false,
@@ -78,6 +78,10 @@
   "terminal": {
     "font_family": "0xProto Nerd Font Mono",
     "font_size": 13,
+    "env": {
+      "EDITOR": "zed-wait",
+      "VISUAL": "zed-wait",
+    },
   },
   "languages": {
     "Markdown": {
