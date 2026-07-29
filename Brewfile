@@ -1,6 +1,5 @@
 tap "jandedobbeleer/oh-my-posh"
 tap "tsonglew/dutis"
-tap "qmk/qmk"
 tap "shkm/brew"
 tap "timrogers/tap"
 tap "dsully/tap"
@@ -50,11 +49,6 @@ brew "fswatch"
 brew "go"
 brew "elixir-ls"
 brew "pnpm"
-
-# Containers & Infra
-brew "docker"
-brew "docker-compose"
-brew "dive"
 
 # Networking
 brew "curl"

@@ -33,6 +33,13 @@ mkdir -p ~/repos
 echo ""
 if [ "$(uname)" = "Darwin" ]; then
   echo "Installing Homebrew packages..."
+
+  # Homebrew 6+ refuses to load formulae from non-official taps until they're
+  # trusted. Trust the taps the Brewfile declares so `brew bundle` doesn't fail.
+  grep -oE '^tap "[^"]+"' "$DOTFILES_DIR/Brewfile" \
+    | sed -E 's/^tap "([^"]+)"/\1/' \
+    | while read -r tap; do brew trust --tap "$tap"; done
+
   brew bundle --file="$DOTFILES_DIR/Brewfile"
 fi
 
