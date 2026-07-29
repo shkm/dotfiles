@@ -78,6 +78,8 @@
   "terminal": {
     "font_family": "0xProto Nerd Font Mono",
     "font_size": 13,
+    // $SHELL is /bin/zsh for GUI-launched apps; pin fish (the login shell).
+    "shell": { "program": "/opt/homebrew/bin/fish" },
     "env": {
       "EDITOR": "zed-wait",
       "VISUAL": "zed-wait",
