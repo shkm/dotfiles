@@ -94,3 +94,4 @@ mise.toml
 /.worktrees
 /.onemanband/config.local.jsonc
 **/__pycache__/**
+**/.claude/.*
