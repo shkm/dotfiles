@@ -3,7 +3,7 @@
 # preferred_background: fffcf0 # bg
 
 fish_color_normal	100f0f # tx
-fish_color_command	bc5215 # or
+fish_color_command	205ea6 --bold # bl
 fish_color_keyword	66800b # gr
 fish_color_quote	24837b # cy
 fish_color_redirection	a02f6f # ma
