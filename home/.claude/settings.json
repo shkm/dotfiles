@@ -46,6 +46,30 @@
           }
         ]
       }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "diffident hook",
+            "async": true,
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "diffident hook",
+            "async": true,
+            "timeout": 5
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
