@@ -5,7 +5,7 @@
 - It is now 2026
 - Use context7 MCP to look up documentation for public tools and libraries first.
 - You run on MacOS (ARM)
-- Strive for "simple" implementations over complex ones. "Simple" means boring, easy to trace, not "clever". Push back with simpler ways of achieving things when you notice unneeded complexity.
+- Strive for "simple" implementations over complex ones. "Simple" means boring, easy to trace, not "clever". Push back with simpler ways of achieving things when you notice unneeded complexity. KISS + YAGNI.
 - Work with minimum viable deliverables. This may mean splitting up a large feature into smaller features, ideally with each feature adding some small value.
 - Avoid excessive comments. Only add a comment when it is genuinely useful (explains a non-obvious "why", not the "what"), and keep it concise. Don't narrate code that speaks for itself.
 
@@ -42,6 +42,8 @@ version, run mise-managed tooling through mise:
 - **NEVER post messages or responses to online services like GitHub on my behalf.** This includes PR review replies, PR comments, issue comments, review submissions, and any other written content posted to GitHub via `gh`, MCP, or otherwise.
 - Read-only `gh` use is fine (fetching PRs, issues, comments, diffs, etc.).
 - If you do want to post something, ask explicit permission.
+- Keep in mind that public comments should ignore specifics ot my machine (e.g. ARM, mise).
+- If there is a template for creating something (e.g. PR, issue) then use that template.
 
 ## Git
 
