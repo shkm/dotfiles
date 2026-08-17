@@ -23,7 +23,6 @@
 	all = true
 [pull]
   default = current ; only pull current branch
-  ff = only ; only attempt to fast-forward branches
 	rebase = true
 [push]
   default = current ; push only the current branch
