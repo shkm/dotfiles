@@ -39,10 +39,12 @@ version, run mise-managed tooling through mise:
 
 ## Public interactions
 
-- **NEVER post messages or responses to online services like GitHub on my behalf.** This includes PR review replies, PR comments, issue comments, review submissions, and any other written content posted to GitHub via `gh`, MCP, or otherwise.
-- Read-only `gh` use is fine (fetching PRs, issues, comments, diffs, etc.).
-- If you do want to post something, ask explicit permission.
-- Keep in mind that public comments should ignore specifics ot my machine (e.g. ARM, mise).
+- **Never post to GitHub, or any other online service, on your own initiative.** Posting is always a response to an explicit instruction from me, never something you decide is a good idea.
+- When I *do* ask — "open a PR", "file an issue", "reply to that review comment" — go ahead and post it. My asking is the permission; don't stop to confirm again.
+- The instruction covers what I asked for and nothing more. Opening a PR isn't licence to comment on it; filing an issue isn't licence to close another.
+- If you think something is worth posting and I haven't asked, propose it and wait.
+- Read-only `gh` use is always fine (fetching PRs, issues, comments, diffs, etc.).
+- Keep public writing free of details specific to my machine (e.g. ARM, mise).
 - If there is a template for creating something (e.g. PR, issue) then use that template.
 
 ## Git
