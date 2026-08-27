@@ -1,13 +1,19 @@
 # Claude Code User Preferences
 
+## Language
+
+Language rules apply to your discussions with me, comments, etc.
+
+- Do not paint pictures or write poetry; you are to convey information in as few words possible but no fewer.
+- Aim for concise but information-dense.
+- Easy to understand; avoid rare or interesting words.
+
 ## General
 
-- It is now 2026
-- Use context7 MCP to look up documentation for public tools and libraries first.
-- You run on MacOS (ARM)
-- Strive for "simple" implementations over complex ones. "Simple" means boring, easy to trace, not "clever". Push back with simpler ways of achieving things when you notice unneeded complexity. KISS + YAGNI.
-- Work with minimum viable deliverables. This may mean splitting up a large feature into smaller features, ideally with each feature adding some small value.
-- Avoid excessive comments. Only add a comment when it is genuinely useful (explains a non-obvious "why", not the "what"), and keep it concise. Don't narrate code that speaks for itself.
+- "Simple" implementations over complex ones. "Simple" means boring, easy to trace, not "clever".
+- Push back with simpler ways of achieving goals when you notice unneeded complexity. KISS + YAGNI.
+- Work with minimum viable deliverables. Splitting up a large feature into smaller features, with each feature adding some small value where possible.
+- Avoid excessive comments. Only add a comment when it is genuinely useful (explains a non-obvious "why", not the "what"), and keep it concise. Don't narrate code that speaks for itself. These comments live forever; if you are simply explaining to me, then do not write a comment in code but discuss.
 
 ## Obsidian vault
 
@@ -20,31 +26,15 @@
 
 ### mise (tool versions)
 
-My tools (Ruby, Node, etc.) are managed by mise. Claude Code's tool shell
-captures its PATH once at GUI launch (in `$HOME`), so it often points at the
-wrong, global tool version — not the project's. To get the project-correct
-version, run mise-managed tooling through mise:
-
-- Prefix commands with `mise exec --` (alias `mise x --`), e.g.
-  `mise exec -- bundle exec rspec`, `mise exec -- ruby script.rb`.
-- **Do NOT** pin a version (`mise exec ruby@3.3.10 -- …`). Let mise resolve it
-  from the current directory's `.tool-versions`/config so it stays correct
-  across projects.
-- If a command fails with missing gems / wrong language version, it's almost
-  certainly this — re-run it via `mise exec --`.
-- This includes git hooks: if `git commit`/`git push` fails because a hook
-  (e.g. lefthook running standardrb/brakeman) can't find gems, run the git
-  command itself through mise (`mise exec -- git commit …`) so the hook's
-  subprocesses inherit the right version. Prefer this over `--no-verify`.
+Many ecosystems (Ruby, Node, etc.) are managed by mise. Prefix commands with `mise exec --` when such a tool is needed. Do not write these prefixes in documentation. Only use them on execution.
 
 ## Public interactions
 
-- **Never post to GitHub, or any other online service, on your own initiative.** Posting is always a response to an explicit instruction from me, never something you decide is a good idea.
+- **Never post to GitHub, or any other online service, on your own initiative.** Posting is always a response to an explicit instruction from me.
 - When I *do* ask — "open a PR", "file an issue", "reply to that review comment" — go ahead and post it. My asking is the permission; don't stop to confirm again.
-- The instruction covers what I asked for and nothing more. Opening a PR isn't licence to comment on it; filing an issue isn't licence to close another.
 - If you think something is worth posting and I haven't asked, propose it and wait.
-- Read-only `gh` use is always fine (fetching PRs, issues, comments, diffs, etc.).
-- Keep public writing free of details specific to my machine (e.g. ARM, mise).
+- Read-only `gh` use is always approved.
+- Keep public writing free of details specific to my machine (e.g. architecture, mise).
 - If there is a template for creating something (e.g. PR, issue) then use that template.
 
 ## Git
