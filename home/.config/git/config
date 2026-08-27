@@ -74,7 +74,7 @@
   tool = difftool
 	algorithm = histogram
 	colorMoved = plain
-	mnemonicPrefix = true
+	mnemonicPrefix = false
 	renames = true
 [difftool]
   prompt = false
