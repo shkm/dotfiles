@@ -58,6 +58,7 @@
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 
 ;; Discoverability for the leader key below. Built in since Emacs 30.
+(setopt which-key-idle-delay 0.0)       ; nvim: delay = 0
 (which-key-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -134,6 +135,20 @@
 
 (evil-define-key '(normal visual motion) 'global (kbd "SPC") my-leader-map)
 
+(defun my-find-dotfile ()
+  "Find a file in the dotfiles repo.
+Git tracks the dotfiles themselves, so `project-find-file' lists them
+without needing nvim's `hidden = true'."
+  (interactive)
+  (let ((default-directory "~/dotfiles/"))
+    (project-find-file)))
+
+(defun my-find-emacs-config ()
+  "Find a file in the emacs configuration."
+  (interactive)
+  (let ((default-directory user-emacs-directory))
+    (call-interactively #'find-file)))
+
 (keymap-set my-leader-map "<tab>" #'evil-switch-to-windows-last-buffer)
 (keymap-set my-leader-map "/" #'project-find-regexp)
 
@@ -142,6 +157,8 @@
 (keymap-set my-leader-map "f b" #'switch-to-buffer)
 (keymap-set my-leader-map "f ." #'recentf-open)
 (keymap-set my-leader-map "f p" #'project-switch-project)
+(keymap-set my-leader-map "f d" #'my-find-dotfile)
+(keymap-set my-leader-map "f e" #'my-find-emacs-config)
 
 (keymap-set my-leader-map "b d" #'kill-current-buffer)
 
