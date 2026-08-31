@@ -138,10 +138,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Built-in modus themes, following the macOS appearance the way nvim does.
-(load-theme (if (string= "on" (string-trim (shell-command-to-string "dark-mode status")))
-                'modus-vivendi
-              'modus-operandi)
-            :no-confirm)
+;; emacs-plus calls a hook when the appearance changes, so this tracks a
+;; light/dark switch live. `ns-system-appearance' is unset before the first
+;; frame exists and in a terminal, hence the shell fallback.
+(defun my-apply-theme (&optional appearance)
+  "Load the modus theme matching APPEARANCE, or the current macOS setting."
+  (interactive)
+  (let ((dark (pcase (or appearance (bound-and-true-p ns-system-appearance))
+                ('dark t)
+                ('light nil)
+                (_ (string= "on" (string-trim
+                                  (shell-command-to-string "dark-mode status")))))))
+    (mapc #'disable-theme (copy-sequence custom-enabled-themes))
+    (load-theme (if dark 'modus-vivendi 'modus-operandi) :no-confirm)))
+
+(my-apply-theme)
+(when (boundp 'ns-system-appearance-change-functions)
+  (add-hook 'ns-system-appearance-change-functions #'my-apply-theme))
 
 ;; The minibuffer, vertico's list and which-key all share the buffer's
 ;; background, so they don't read as separate surfaces. Give them a dimmed one.
