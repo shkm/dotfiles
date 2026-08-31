@@ -266,6 +266,38 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   Dired
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Out of the box dired is a full `ls -l' dump: permissions, link count, owner,
+;; group, size and date on every line. oil shows names and icons, so do that.
+;; `(' toggles the columns back when they're actually wanted.
+(use-package dired
+  :ensure nil                           ; built in
+  :hook (dired-mode . dired-hide-details-mode)
+  :custom
+  ;; macOS ships BSD ls, which doesn't understand --dired and says so on every
+  ;; dired buffer. It also rules out GNU-only switches like
+  ;; --group-directories-first, so directories sort in with everything else.
+  (dired-use-ls-dired nil)
+  ;; -A keeps dotfiles (oil: show_hidden) but drops the . and .. entries; `-'
+  ;; already goes up a directory.
+  (dired-listing-switches "-Alh")
+  ;; oil opens directories in place. Without this, every directory visited
+  ;; leaves its own buffer behind.
+  (dired-kill-when-opening-new-dired-buffer t)
+  ;; oil: delete_to_trash
+  (delete-by-moving-to-trash t))
+
+;; oil's devicons. nerd-icons is already configured for the completion UI.
+(use-package nerd-icons-dired
+  :ensure t
+  :after nerd-icons
+  :hook (dired-mode . nerd-icons-dired-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Git
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
