@@ -219,6 +219,53 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   Mode line
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; No mode line at all: buffer status goes to the right of the echo area, which
+;; sits idle most of the time. Buys back a line in every window, and drops the
+;; stock mode line's coding-system and minor-mode clutter along with it.
+;;
+;; Windows no longer have a mode line to separate them, so mini-echo turns on
+;; `window-divider-mode' to draw the borders instead.
+(use-package mini-echo
+  :ensure t
+  :custom
+  ;; Segments are rendered in reverse, so each list reads right to left. The
+  ;; long form shows, from the left: evil state, branch, file, mode, position —
+  ;; the same order as lualine. Swap "buffer-name" for "shrink-path" to get an
+  ;; abbreviated full path instead of just the file name.
+  (mini-echo-persistent-rule
+   '(:long ("buffer-position" "major-mode" "buffer-name" "vcs" "evil")
+     :short ("buffer-position" "buffer-name" "evil")))
+  ;; Without this a full-width line wraps into a second one.
+  (mini-echo-right-padding 1)
+  :config
+  ;; mini-echo's palette is the raw X11 "red", "green", "blue" and so on, much
+  ;; louder than anything in flexoki. Point the base colours at the theme's own
+  ;; accents; every other mini-echo face inherits from these seven. Clearing
+  ;; :foreground is what lets :inherit take over, and keeps light/dark tracking.
+  (dolist (mapping '((mini-echo-blue    . flexoki-themes-blue)
+                     (mini-echo-green   . flexoki-themes-green)
+                     (mini-echo-yellow  . flexoki-themes-yellow)
+                     (mini-echo-red     . flexoki-themes-red)
+                     (mini-echo-magenta . flexoki-themes-magenta)
+                     (mini-echo-cyan    . flexoki-themes-cyan)
+                     (mini-echo-gray    . shadow)))
+    (set-face-attribute (car mapping) nil
+                        :foreground 'unspecified
+                        :inherit (cdr mapping)))
+
+  ;; lualine colours the mode indicator and greys everything else out. Let the
+  ;; evil state keep its colour and let these recede.
+  (set-face-attribute 'mini-echo-major-mode nil :inherit 'shadow)
+  (set-face-attribute 'mini-echo-buffer-position nil :inherit 'shadow)
+
+  (mini-echo-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Keys
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
