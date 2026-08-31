@@ -151,12 +151,9 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Built-in modus themes, following the macOS appearance the way nvim does.
-;; emacs-plus calls a hook when the appearance changes, so this tracks a
-;; light/dark switch live. `ns-system-appearance' is unset before the first
-;; frame exists and in a terminal, hence the shell fallback.
+;; Flexoki, the same theme the terminal and nvim use.
 (defun my-apply-theme (&optional appearance)
-  "Load the modus theme matching APPEARANCE, or the current macOS setting."
+  "Load the flexoki theme matching APPEARANCE, or the current macOS setting."
   (interactive)
   (let ((dark (pcase (or appearance (bound-and-true-p ns-system-appearance))
                 ('dark t)
@@ -164,29 +161,32 @@
                 (_ (string= "on" (string-trim
                                   (shell-command-to-string "dark-mode status")))))))
     (mapc #'disable-theme (copy-sequence custom-enabled-themes))
-    (load-theme (if dark 'modus-vivendi 'modus-operandi) :no-confirm)))
+    (load-theme (if dark 'flexoki-themes-dark 'flexoki-themes-light) :no-confirm)))
 
-(my-apply-theme)
-(when (boundp 'ns-system-appearance-change-functions)
-  (add-hook 'ns-system-appearance-change-functions #'my-apply-theme))
+;; emacs-plus calls a hook when the macOS appearance changes, so this tracks a
+;; light/dark switch live. `ns-system-appearance' is unset before the first
+;; frame exists and in a terminal, hence the shell fallback in `my-apply-theme'.
+(use-package flexoki-themes
+  :ensure t
+  :demand t
+  :config
+  (my-apply-theme)
+  (when (boundp 'ns-system-appearance-change-functions)
+    (add-hook 'ns-system-appearance-change-functions #'my-apply-theme)))
 
 ;; The minibuffer, vertico's list and which-key all share the buffer's
-;; background, so they don't read as separate surfaces. Give them a dimmed one.
-(require 'modus-themes)
-
-(defface my-panel '((t :inherit default))
-  "Background for the popups along the bottom of the frame.")
-
-(defun my-restyle-panel (&rest _)
-  "Point `my-panel' at the current theme's dim background."
-  (set-face-attribute 'my-panel nil
-                      :background (modus-themes-get-color-value 'bg-dim)))
+;; background, so they don't read as separate surfaces. Remapping `default'
+;; leaves the rest of its attributes alone, and follows a theme switch for free.
+;;
+;; flexoki styles `flexoki-themes-faint-bg' but never declares it, so it isn't a
+;; usable face until something does. Declaring it here picks up the theme's own
+;; value rather than repeating the hex codes.
+(defface flexoki-themes-faint-bg nil
+  "Dimmed background, set by whichever flexoki variant is loaded.")
 
 (defun my-use-panel-face ()
-  (face-remap-add-relative 'default 'my-panel))
+  (face-remap-add-relative 'default 'flexoki-themes-faint-bg))
 
-(my-restyle-panel)
-(add-hook 'enable-theme-functions #'my-restyle-panel)
 (add-hook 'minibuffer-setup-hook #'my-use-panel-face)
 (add-hook 'which-key-init-buffer-hook #'my-use-panel-face)
 
