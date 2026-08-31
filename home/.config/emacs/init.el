@@ -125,19 +125,6 @@
   ;; Give them the standard file preview.
   (consult-customize consult-fd consult-find :state (consult--file-preview)))
 
-;; Float the picker in the centre of the frame rather than along the bottom,
-;; closer to nvim's snacks.picker. Child frames are GUI-only, so a terminal
-;; Emacs keeps the ordinary minibuffer.
-(use-package vertico-posframe
-  :ensure t
-  :if (display-graphic-p)
-  :after vertico
-  :init
-  (vertico-posframe-mode)
-  :custom
-  ;; Fixed width; the default auto-sizes and so jumps around as you type.
-  (vertico-posframe-width 120))
-
 ;; Annotations to the right of each candidate: file size and date, buffer mode,
 ;; command docstring.
 (use-package marginalia
