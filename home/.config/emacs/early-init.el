@@ -21,6 +21,11 @@
 (when (and (fboundp 'startup-redirect-eln-cache) (native-comp-available-p))
   (startup-redirect-eln-cache (expand-file-name "eln-cache/" my-state-dir)))
 
+;; Same font and size as neovide's guifont. Ignored in a terminal, which uses
+;; Ghostty's font instead. Set as a frame parameter so every frame gets it,
+;; including ones a daemon creates later.
+(push '(font . "0xProto Nerd Font Mono-14") default-frame-alist)
+
 ;; No toolbar, menu bar or scroll bars.
 (push '(tool-bar-lines . 0) default-frame-alist)
 (push '(menu-bar-lines . 0) default-frame-alist)
