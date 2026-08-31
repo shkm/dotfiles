@@ -1,2 +1,5 @@
 #!/bin/sh
-exec zed --wait "$@"
+# EDITOR for use inside Zed's terminal: open in the current workspace
+# (--add overrides cli_default_open_behavior=new_window) and block until
+# the buffer is closed.
+exec zed --add --wait "$@"

@@ -129,7 +129,12 @@ fi
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 2048000"
 
 # EDITOR
-export EDITOR='nvim'
+if [ -n "$ZED_TERM" ]; then
+  export EDITOR='zed-wait'
+  export VISUAL='zed-wait'
+else
+  export EDITOR='nvim'
+fi
 
 # Rootless docker
 if [ -f "${XDG_RUNTIME_DIR}/docker.sock" ]; then
