@@ -368,7 +368,21 @@
 (defvar my-leader-map (make-sparse-keymap)
   "Keymap bound to SPC in evil's normal, visual and motion states.")
 
-(evil-define-key '(normal visual motion) 'global (kbd "SPC") my-leader-map)
+;; Binding SPC in evil's global state map isn't enough: evil-collection marks
+;; maps like `dired-mode-map' as overriding, and evil ranks intercept maps above
+;; overriding maps above global state maps. Without this, SPC in dired is
+;; `dired-next-line' and the leader is silently dead there, as in magit and Info.
+(define-minor-mode my-leader-mode
+  "Make SPC the leader key in every buffer."
+  :global t
+  :keymap (make-sparse-keymap))
+
+(dolist (state '(normal visual motion))
+  (evil-define-key state my-leader-mode-map (kbd "SPC") my-leader-map)
+  (evil-make-intercept-map
+   (evil-get-auxiliary-keymap my-leader-mode-map state t) state))
+
+(my-leader-mode 1)
 
 (defun my-find-dotfile ()
   "Find a file in the dotfiles repo."
