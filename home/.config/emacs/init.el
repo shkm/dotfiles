@@ -6,6 +6,7 @@
 ;;;
 ;;;  - Packages
 ;;;  - Defaults
+;;;  - Completion
 ;;;  - Theme
 ;;;  - Evil
 ;;;  - Keys
@@ -68,6 +69,70 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   Completion
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; The picker list itself: candidates narrow as you type.
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode)
+  :custom
+  (vertico-cycle t)
+  (vertico-count 15))
+
+;; Space-separated matching in any order, so "ini emacs" finds
+;; home/.config/emacs/init.el. This is the part that makes it a fuzzy finder.
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  ;; File-name completion still wants prefix matching, so /u/s/b expands.
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; Live grep and better buffer/file pickers, feeding results to the minibuffer
+;; as you type rather than dumping them in a results buffer.
+(use-package consult
+  :ensure t
+  :bind (("C-x b" . consult-buffer)      ; orig. switch-to-buffer
+         ("M-y"   . consult-yank-pop))   ; orig. yank-pop
+  :custom
+  ;; Type < inside a multi-source picker to limit it to one source, e.g. < f
+  ;; in consult-buffer for recent files only.
+  (consult-narrow-key "<")
+  (consult-async-min-input 2)
+  ;; fd hides dotfiles by default, which in this repo means nearly everything —
+  ;; home/.config, home/.claude and so on. fd still honours .gitignore.
+  (consult-fd-args '("fd" "--full-path --color=never --hidden --exclude .git"))
+  :config
+  ;; consult-fd and consult-find pass no :state to consult--read, so unlike
+  ;; consult-ripgrep and consult-recent-file they have no preview at all.
+  ;; Give them the standard file preview.
+  (consult-customize consult-fd consult-find :state (consult--file-preview)))
+
+;; Annotations to the right of each candidate: file size and date, buffer mode,
+;; command docstring.
+(use-package marginalia
+  :ensure t
+  :init
+  (marginalia-mode))
+
+;; nerd-icons defaults to "Symbols Nerd Font Mono", which isn't installed here.
+;; 0xProto is a full Nerd Font patch, so it already carries the glyphs.
+(use-package nerd-icons
+  :ensure t
+  :custom
+  (nerd-icons-font-family "0xProto Nerd Font Mono"))
+
+(use-package nerd-icons-completion
+  :ensure t
+  :after (marginalia nerd-icons)
+  :config
+  (nerd-icons-completion-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Theme
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -77,6 +142,26 @@
                 'modus-vivendi
               'modus-operandi)
             :no-confirm)
+
+;; The minibuffer, vertico's list and which-key all share the buffer's
+;; background, so they don't read as separate surfaces. Give them a dimmed one.
+(require 'modus-themes)
+
+(defface my-panel '((t :inherit default))
+  "Background for the popups along the bottom of the frame.")
+
+(defun my-restyle-panel (&rest _)
+  "Point `my-panel' at the current theme's dim background."
+  (set-face-attribute 'my-panel nil
+                      :background (modus-themes-get-color-value 'bg-dim)))
+
+(defun my-use-panel-face ()
+  (face-remap-add-relative 'default 'my-panel))
+
+(my-restyle-panel)
+(add-hook 'enable-theme-functions #'my-restyle-panel)
+(add-hook 'minibuffer-setup-hook #'my-use-panel-face)
+(add-hook 'which-key-init-buffer-hook #'my-use-panel-face)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -141,12 +226,9 @@
 (evil-define-key '(normal visual motion) 'global (kbd "SPC") my-leader-map)
 
 (defun my-find-dotfile ()
-  "Find a file in the dotfiles repo.
-Git tracks the dotfiles themselves, so `project-find-file' lists them
-without needing nvim's `hidden = true'."
+  "Find a file in the dotfiles repo."
   (interactive)
-  (let ((default-directory "~/dotfiles/"))
-    (project-find-file)))
+  (consult-fd "~/dotfiles/"))
 
 (defun my-find-emacs-config ()
   "Find a file in the emacs configuration."
@@ -160,12 +242,12 @@ without needing nvim's `hidden = true'."
 (keymap-set my-leader-map "ESC" #'keyboard-quit)
 
 (keymap-set my-leader-map "<tab>" #'evil-switch-to-windows-last-buffer)
-(keymap-set my-leader-map "/" #'project-find-regexp)
+(keymap-set my-leader-map "/" #'consult-ripgrep)
 
-(keymap-set my-leader-map "f f" #'project-find-file)
+(keymap-set my-leader-map "f f" #'consult-fd)
 (keymap-set my-leader-map "f F" #'find-file)
-(keymap-set my-leader-map "f b" #'switch-to-buffer)
-(keymap-set my-leader-map "f ." #'recentf-open)
+(keymap-set my-leader-map "f b" #'consult-buffer)
+(keymap-set my-leader-map "f ." #'consult-recent-file)
 (keymap-set my-leader-map "f p" #'project-switch-project)
 (keymap-set my-leader-map "f d" #'my-find-dotfile)
 (keymap-set my-leader-map "f e" #'my-find-emacs-config)
