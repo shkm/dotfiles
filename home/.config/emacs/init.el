@@ -39,6 +39,7 @@
 (setopt backup-directory-alist `(("." . ,(expand-file-name "backup/" my-state-dir))))
 (setopt savehist-file (expand-file-name "history" my-state-dir))
 (setopt recentf-save-file (expand-file-name "recentf" my-state-dir))
+(setopt project-list-file (expand-file-name "projects" my-state-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
 
