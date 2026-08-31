@@ -54,6 +54,10 @@
 (setopt tab-width 2)                    ; nvim: tabstop
 (setopt use-short-answers t)            ; y/n instead of yes/no
 
+;; Emacs rings the bell on undefined keys and on C-g, which is constant noise
+;; when a leader sequence gets abandoned.
+(setopt ring-bell-function #'ignore)
+
 (setopt display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
@@ -149,6 +153,11 @@ without needing nvim's `hidden = true'."
   (interactive)
   (let ((default-directory user-emacs-directory))
     (call-interactively #'find-file)))
+
+;; ESC cancels a pending leader sequence, like nvim. Emacs's own cancel is C-g.
+;; A GUI sends the `escape' symbol, a terminal sends the character; bind both.
+(keymap-set my-leader-map "<escape>" #'keyboard-quit)
+(keymap-set my-leader-map "ESC" #'keyboard-quit)
 
 (keymap-set my-leader-map "<tab>" #'evil-switch-to-windows-last-buffer)
 (keymap-set my-leader-map "/" #'project-find-regexp)
