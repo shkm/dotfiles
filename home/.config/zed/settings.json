@@ -80,15 +80,15 @@
     "font_size": 13,
     // $SHELL is /bin/zsh for GUI-launched apps; pin fish (the login shell).
     "shell": { "program": "/opt/homebrew/bin/fish" },
-    "env": {
-      "EDITOR": "zed-wait",
-      "VISUAL": "zed-wait",
-    },
+  },
+  "auto_install_extensions": {
+    "markdown-oxide": true,
   },
   "languages": {
     "Markdown": {
       "show_edit_predictions": false,
       "remove_trailing_whitespace_on_save": false,
+      "language_servers": ["markdown-oxide"],
     },
     "Ruby": {
       "show_edit_predictions": true,

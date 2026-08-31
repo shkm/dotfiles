@@ -1,0 +1,6 @@
+# markdown-oxide — https://oxide.md/Configuration
+# Vault root is marked by ~/notes/.moxide.toml.
+
+# Match obsidivim: daily notes at daily/%Y/%m/%Y-%m-%d.md
+daily_notes_folder = "daily"
+dailynote = "%Y/%m/%Y-%m-%d"
