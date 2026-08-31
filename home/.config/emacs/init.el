@@ -59,6 +59,11 @@
 ;; when a leader sequence gets abandoned.
 (setopt ring-bell-function #'ignore)
 
+;; Left Option stays as Meta; free the right one to type native macOS
+;; characters, so Option+- gives – and Option+Shift+- gives —. nvim needs
+;; explicit insert-mode bindings for those because a terminal can't.
+(setq ns-right-alternate-modifier 'none)
+
 (setopt display-line-numbers-type 'relative)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
