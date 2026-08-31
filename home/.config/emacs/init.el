@@ -29,6 +29,15 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+;; A GUI Emacs launched from the Dock inherits macOS's minimal PATH rather than
+;; the shell's, so fd, rg and anything mise manages can't be found. A terminal
+;; Emacs already has the right PATH, hence the guard.
+(use-package exec-path-from-shell
+  :ensure t
+  :if (display-graphic-p)
+  :config
+  (exec-path-from-shell-initialize))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   Defaults
@@ -115,6 +124,19 @@
   ;; consult-ripgrep and consult-recent-file they have no preview at all.
   ;; Give them the standard file preview.
   (consult-customize consult-fd consult-find :state (consult--file-preview)))
+
+;; Float the picker in the centre of the frame rather than along the bottom,
+;; closer to nvim's snacks.picker. Child frames are GUI-only, so a terminal
+;; Emacs keeps the ordinary minibuffer.
+(use-package vertico-posframe
+  :ensure t
+  :if (display-graphic-p)
+  :after vertico
+  :init
+  (vertico-posframe-mode)
+  :custom
+  ;; Fixed width; the default auto-sizes and so jumps around as you type.
+  (vertico-posframe-width 120))
 
 ;; Annotations to the right of each candidate: file size and date, buffer mode,
 ;; command docstring.
