@@ -347,6 +347,12 @@
 ;; Leave insert state without reaching for Esc.
 (keymap-set evil-insert-state-map "M-j" #'evil-normal-state)
 
+;; Esc closes a picker, the way snacks.picker does. evil is not active in the
+;; minibuffer, so this is a plain Emacs binding. Only `<escape>' is bound: in a
+;; terminal, Alt-<key> arrives as ESC <key>, so binding "ESC" too would swallow
+;; the minibuffer's M-p/M-n history bindings.
+(keymap-set minibuffer-local-map "<escape>" #'abort-minibuffers)
+
 ;; `-' opens the containing directory, like oil.nvim.
 (evil-define-key '(normal motion) 'global "-" #'dired-jump)
 
