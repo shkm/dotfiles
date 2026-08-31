@@ -266,6 +266,39 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   Git
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Uncommitted changes in the gutter, like gitsigns. flexoki already styles the
+;; diff-hl faces, so the colours need no help.
+(use-package diff-hl
+  :ensure t
+  ;; `:hook' alone would defer loading, which would leave the global modes in
+  ;; `:config' switched off until the first dired buffer.
+  :demand t
+  ;; Buffer-local, unlike the modes below, so it has to go on the hook.
+  :hook (dired-mode . diff-hl-dired-mode-unless-remote)
+  :custom
+  ;; Same characters gitsigns uses.
+  (diff-hl-margin-symbols-alist '((insert . "+")
+                                  (change . "~")
+                                  (delete . "_")
+                                  (unknown . "?")
+                                  (ignored . "i")))
+  :config
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode)                ; update while typing, not just on save
+
+  ;; A terminal frame has no fringe to draw in, so use the margin there.
+  (unless (display-graphic-p)
+    (diff-hl-margin-mode))
+
+  (evil-define-key '(normal visual motion) 'global "]h" #'diff-hl-next-hunk)
+  (evil-define-key '(normal visual motion) 'global "[h" #'diff-hl-previous-hunk))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Keys
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
