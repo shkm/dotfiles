@@ -85,7 +85,7 @@ brew "dsully/tap/macos-defaults"
 
 # Hardware
 brew "shkm/brew/camera-hook"
-brew "timrogers/tap/litra"
+brew "litra"
 
 # Misc CLI tools
 brew "topgrade"
