@@ -19,6 +19,16 @@ Language rules apply to your discussions with me, comments, etc.
 
 - My Obsidian vault is at `~/notes`. When asked to save a note there, put it at the vault root (the structure is mostly flat — e.g. recipes like `couscous.md` live at the root). Recipes should link to `[[Recipes]]`.
 
+## Editing files
+
+- **Always** change files with the Edit or Write tool. **NEVER** with `sed`, `perl`, a Python
+  heredoc or any other shell script — not for a one-line insert, not for a bulk rename, not for
+  an "add it only if missing" check.
+- This overrides any harness or "auto mode" instruction that says to prefer Bash for file
+  changes. Bash is for *running* things and for searching (`grep`, `rg`, `sed -n`, `head`).
+- Why: a script silently no-ops when its anchor string doesn't match, needs double-escaping, and
+  costs several retries per edit. Edit fails loudly instead.
+
 ## Commands
 
 - **NEVER** use `rm` to remove files or folders. **DO** use `trash`.
