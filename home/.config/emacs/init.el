@@ -185,7 +185,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;;   LSP
+;;;   Languages
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -216,6 +216,20 @@
   ;; The event log costs time and memory, and only matters when debugging a
   ;; misbehaving server.
   (eglot-events-buffer-config '(:size 0 :format full)))
+
+;; Emacs 31 handles tree-sitter without a helper package: each ts mode registers
+;; where its own grammar comes from, so it only needs telling to prefer those
+;; modes and to fetch a missing grammar rather than asking every time.
+;;
+;; Grammars are compiled into `user-emacs-directory' by default, which here is a
+;; symlink into the dotfiles repo, so send them to the state directory instead.
+(defvar my-treesit-dir (expand-file-name "tree-sitter/" my-state-dir)
+  "Directory for compiled tree-sitter grammars.")
+(make-directory my-treesit-dir t)
+
+(setopt treesit-extra-load-path (list my-treesit-dir))
+(setopt treesit-enabled-modes t)        ; ruby-ts-mode over ruby-mode, etc.
+(setopt treesit-auto-install-grammar 'always)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
