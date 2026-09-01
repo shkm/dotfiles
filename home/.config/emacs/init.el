@@ -555,6 +555,25 @@ pixel-ish numbers big enough to clear the margin restores it."
                 (lambda (&optional f) (+ (funcall real-width f) 32))))
       (funcall orig frame window))))
 
+(defun my-eldoc-hover ()
+  "Show the hover for the thing at point straight away.
+`eldoc-box' dismisses its box after any command that isn't typing, so
+asking for a hover would otherwise cancel itself; see
+`my-eldoc-box-keep-on-hover'."
+  (interactive)
+  (setq eldoc-box--inhibit-childframe nil)
+  ;; Not `(eldoc t)': the interactive flag reaches `eldoc-display-in-buffer',
+  ;; which eldoc-box leaves in `eldoc-display-functions', and that opens the
+  ;; *eldoc* buffer in a window below. The float is the whole point here.
+  (eldoc))
+
+(defun my-eldoc-box-keep-on-hover (orig)
+  "Run ORIG unless the command that just ran asked for a hover.
+`eldoc-box--follow-cursor' treats every non-typing command as a reason
+to hide the box, which includes `my-eldoc-hover' itself."
+  (unless (eq this-command 'my-eldoc-hover)
+    (funcall orig)))
+
 (use-package eldoc-box
   :ensure t
   :hook (grove-mode . eldoc-box-hover-at-point-mode)
@@ -564,7 +583,9 @@ pixel-ish numbers big enough to clear the margin restores it."
   (eldoc-echo-area-use-multiline-p t)
   :config
   (advice-add 'eldoc-box--update-childframe-geometry
-              :around #'my-eldoc-box-tty-geometry))
+              :around #'my-eldoc-box-tty-geometry)
+  (advice-add 'eldoc-box--follow-cursor
+              :around #'my-eldoc-box-keep-on-hover))
 
 (defun my-grove-setup-eldoc ()
   "Make wikilinks an eldoc source in this buffer."
@@ -588,7 +609,10 @@ pixel-ish numbers big enough to clear the margin restores it."
   ;; nvim: obsidivim binds both of these to follow a link, and K to preview.
   (evil-define-key 'normal grove-mode-map (kbd "gf") #'grove-link-follow-at-point)
   (evil-define-key 'normal grove-mode-map (kbd "C-]") #'grove-link-follow-at-point)
-  (evil-define-key 'normal grove-mode-map (kbd "K") #'eldoc-box-help-at-point)
+  ;; `eldoc-box-help-at-point' shows a box you can scroll, so it selects the
+  ;; child frame and takes you out of the note. This goes through the same
+  ;; display path the idle hover uses, so K only brings it forward.
+  (evil-define-key 'normal grove-mode-map (kbd "K") #'my-eldoc-hover)
 
   ;; grove-mode switches on per buffer after evil has already worked out which
   ;; keymaps are active, so without this evil never sees the bindings above and
