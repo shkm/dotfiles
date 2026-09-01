@@ -231,6 +231,17 @@
 (setopt treesit-enabled-modes t)        ; ruby-ts-mode over ruby-mode, etc.
 (setopt treesit-auto-install-grammar 'always)
 
+;; Emacs has no markdown mode of its own, built-in or tree-sitter, so .md files
+;; open in Fundamental mode with no highlighting at all until this is installed.
+(use-package markdown-mode
+  :ensure t
+  :custom
+  ;; Highlight fenced code in its own language, as treesitter injections do.
+  (markdown-fontify-code-blocks-natively t)
+  ;; Wikilinks are grove's job; letting markdown-mode claim [[...]] as well
+  ;; means two systems resolving the same syntax differently.
+  (markdown-enable-wiki-links nil))
+
 ;; Format on save, the conform equivalent. apheleia runs the formatter in a
 ;; subprocess and applies the result as a diff, so point, scroll position and
 ;; undo history all survive and a slow formatter never blocks the save.
