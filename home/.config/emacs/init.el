@@ -185,6 +185,40 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   LSP
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Emacs has no equivalent of Zed's bundled language servers, so mason supplies
+;; them -- the same registry mason.nvim uses. `mason-setup' puts its bin
+;; directory on `exec-path' straight away, then runs its body once the registry
+;; has been fetched, so nothing here delays startup. `M-x mason-manager' browses
+;; and updates what is installed.
+(use-package mason
+  :ensure t
+  :custom
+  ;; With the rest of the generated state, not in the dotfiles repo.
+  (mason-dir (expand-file-name "mason/" my-state-dir))
+  :config
+  (mason-setup
+   (dolist (pkg '("ruby-lsp" "lua-language-server"))
+     (unless (mason-installed-p pkg)
+       (ignore-errors (mason-install pkg))))))
+
+;; eglot is the built-in client, and already knows which command each language
+;; needs, so this only has to say which modes should start a server.
+(use-package eglot
+  :ensure nil                           ; built in
+  :hook ((ruby-mode ruby-ts-mode lua-mode lua-ts-mode) . eglot-ensure)
+  :custom
+  ;; Report diagnostics while typing rather than on save, as Zed does.
+  (eglot-send-changes-idle-time 0.3)
+  ;; The event log costs time and memory, and only matters when debugging a
+  ;; misbehaving server.
+  (eglot-events-buffer-config '(:size 0 :format full)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Theme
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
