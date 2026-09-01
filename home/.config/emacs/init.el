@@ -407,6 +407,21 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Magit, in place of lazygit. evil-collection already supplies the vim keys
+;; inside its buffers, so there is nothing to bind here.
+(use-package magit
+  :ensure t
+  :custom
+  ;; Show the status buffer in the current window instead of splitting, which
+  ;; is closer to lazygit taking over the frame.
+  (magit-display-buffer-function
+   #'magit-display-buffer-same-window-except-diff-v1)
+  :config
+  ;; Staging or committing changes what the gutter should show, and magit
+  ;; doesn't touch the buffer, so diff-hl has to be told to recalculate.
+  (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh))
+
 ;; Uncommitted changes in the gutter, like gitsigns. flexoki already styles the
 ;; diff-hl faces, so the colours need no help.
 (use-package diff-hl
@@ -518,9 +533,17 @@
 
 (keymap-set my-leader-map "b d" #'kill-current-buffer)
 
+;; Same letters as nvim, where gg opened lazygit.
+(keymap-set my-leader-map "g g" #'magit-status)
+(keymap-set my-leader-map "g b" #'magit-blame)
+(keymap-set my-leader-map "g h" #'magit-log-current)
+(keymap-set my-leader-map "g f" #'magit-log-buffer-file)
+(keymap-set my-leader-map "g d" #'magit-diff-buffer-file)
+
 (which-key-add-keymap-based-replacements my-leader-map
   "f" "find"
-  "b" "buffer")
+  "b" "buffer"
+  "g" "git")
 
 (setq gc-cons-threshold my-initial-gc-threshold)
 
