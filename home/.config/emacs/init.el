@@ -462,6 +462,143 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   Notes
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ~/notes is a plain folder of markdown; what makes it a vault is wikilinks and
+;; daily notes. grove supplies exactly those -- following links, ripgrep-backed
+;; backlinks, and dailies -- without a database or an index file.
+
+(defun my-grove-resolve-by-filename (orig title)
+  "Resolve TITLE with ORIG, falling back to matching a note's filename.
+grove resolves a wikilink against note titles. Obsidian resolves against
+filenames, so `[[2024-02-14]]' has to find daily/2024/02/2024-02-14.md
+even though that note's title is `Wednesday, February 14, 2024'."
+  (or (funcall orig title)
+      (seq-find (lambda (path)
+                  (string-equal-ignore-case (file-name-base path) title))
+                (mapcar #'cdr (grove--note-titles)))))
+
+(defcustom my-notes-daily-title-format "# %A, %-d %B %Y"
+  "Heading written at the top of a new daily note."
+  :type 'string
+  :group 'grove)
+
+(defun my-grove-daily (orig &optional time)
+  "Open the daily note for TIME through ORIG, in this vault's own shape.
+Two things differ from grove's default. The year/month directory is
+created first, since grove makes only the daily directory itself and
+doesn't expect a nested `grove-daily-format', so the first note of each
+month would stop to ask. And a note grove has just created gets its YAML
+front matter replaced by the plain heading the existing dailies use."
+  (let* ((time (or time (current-time)))
+         (path (expand-file-name
+                (concat (format-time-string grove-daily-format time)
+                        (grove--new-note-extension))
+                (grove--daily-path)))
+         (new (not (file-exists-p path))))
+    (make-directory (file-name-directory path) t)
+    (funcall orig time)
+    ;; Guard on the buffer as well: `erase-buffer' in the wrong one would
+    ;; discard real notes.
+    (when (and new
+               buffer-file-name
+               (file-equal-p buffer-file-name path))
+      (erase-buffer)
+      (insert (format-time-string my-notes-daily-title-format time) "\n\n")
+      (save-buffer))))
+
+(defun my-notes-find-daily ()
+  "Find a daily note."
+  (interactive)
+  (consult-fd (expand-file-name "daily" grove-directory)))
+
+(defconst my-grove-preview-length 2000
+  "How much of a linked note to read for its hover preview.")
+
+(defun my-grove-eldoc-link (callback &rest _)
+  "Offer the note behind the wikilink at point to eldoc via CALLBACK.
+Registering this as an eldoc source is what makes hovering a link show
+the note: eldoc decides when to show and hide, so there is no window or
+frame to manage here."
+  (when-let* ((title (grove-link--target-at-point))
+              (path (grove-link--resolve title)))
+    (funcall callback
+             (with-temp-buffer
+               (insert-file-contents path nil 0 my-grove-preview-length)
+               ;; Fontify the preview the way the note itself is fontified;
+               ;; eldoc-box renders whatever faces the string carries.
+               (delay-mode-hooks (markdown-mode))
+               (font-lock-ensure)
+               (buffer-string))
+             :thing title)))
+
+;; eldoc-box floats eldoc's output in a child frame at point, so hovering a
+;; wikilink previews the note the way nvim does. Emacs 31 draws child frames in
+;; a terminal too. Point it at eldoc-box alone, so a multi-line preview doesn't
+;; also expand the echo area, where mini-echo lives.
+(defun my-eldoc-box-tty-geometry (orig frame window)
+  "Size the eldoc-box child frame via ORIG for FRAME and WINDOW.
+`eldoc-box--update-childframe-geometry' clamps the box to the parent
+frame's size less a 32 pixel margin. A terminal frame measures in
+character cells, so on an 80x24 terminal that margin is larger than the
+whole frame and the box collapses to a single line. Reporting cells as
+pixel-ish numbers big enough to clear the margin restores it."
+  (if (display-graphic-p frame)
+      (funcall orig frame window)
+    (cl-letf* ((real-height (symbol-function 'frame-pixel-height))
+               (real-width (symbol-function 'frame-pixel-width))
+               ((symbol-function 'frame-pixel-height)
+                (lambda (&optional f) (+ (funcall real-height f) 32)))
+               ((symbol-function 'frame-pixel-width)
+                (lambda (&optional f) (+ (funcall real-width f) 32))))
+      (funcall orig frame window))))
+
+(use-package eldoc-box
+  :ensure t
+  :hook (grove-mode . eldoc-box-hover-at-point-mode)
+  :custom
+  ;; eldoc collapses a doc to one line unless told otherwise, which would
+  ;; reduce a note preview to its title.
+  (eldoc-echo-area-use-multiline-p t)
+  :config
+  (advice-add 'eldoc-box--update-childframe-geometry
+              :around #'my-eldoc-box-tty-geometry))
+
+(defun my-grove-setup-eldoc ()
+  "Make wikilinks an eldoc source in this buffer."
+  (add-hook 'eldoc-documentation-functions #'my-grove-eldoc-link nil t))
+
+(use-package grove
+  :ensure t
+  :custom
+  (grove-directory "~/notes/")
+  (grove-default-format 'md)            ; the vault is markdown, not org
+  ;; Matches the layout already on disk: daily/2024/02/2024-02-14.md. The format
+  ;; goes to `format-time-string' and is then joined to the daily directory, so
+  ;; a nested path works.
+  (grove-daily-format "%Y/%m/%Y-%m-%d")
+  :config
+  (advice-add 'grove-link--resolve :around #'my-grove-resolve-by-filename)
+  (advice-add 'grove-daily :around #'my-grove-daily)
+
+  (add-hook 'grove-mode-hook #'my-grove-setup-eldoc)
+
+  ;; nvim: obsidivim binds both of these to follow a link, and K to preview.
+  (evil-define-key 'normal grove-mode-map (kbd "gf") #'grove-link-follow-at-point)
+  (evil-define-key 'normal grove-mode-map (kbd "C-]") #'grove-link-follow-at-point)
+  (evil-define-key 'normal grove-mode-map (kbd "K") #'eldoc-box-help-at-point)
+
+  ;; grove-mode switches on per buffer after evil has already worked out which
+  ;; keymaps are active, so without this evil never sees the bindings above and
+  ;; K stays `evil-lookup', which opens a man page.
+  (add-hook 'grove-mode-hook #'evil-normalize-keymaps)
+
+  (global-grove-mode 1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Keys
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -551,10 +688,23 @@
 (keymap-set my-leader-map "g f" #'magit-log-buffer-file)
 (keymap-set my-leader-map "g d" #'magit-diff-buffer-file)
 
+;; Same letters obsidivim used.
+(keymap-set my-leader-map "n f" #'grove-find)
+(keymap-set my-leader-map "n /" #'grove-search)
+(keymap-set my-leader-map "n b" #'grove-backlinks)
+(keymap-set my-leader-map "n #" #'grove-search-tag)
+(keymap-set my-leader-map "n n" #'grove-capture)
+(keymap-set my-leader-map "n l" #'grove-link-insert)
+(keymap-set my-leader-map "n t" #'grove-daily)
+(keymap-set my-leader-map "n y" #'grove-daily-yesterday)
+(keymap-set my-leader-map "n d" #'my-notes-find-daily)
+(keymap-set my-leader-map "n P" #'grove-toggle)
+
 (which-key-add-keymap-based-replacements my-leader-map
   "f" "find"
   "b" "buffer"
-  "g" "git")
+  "g" "git"
+  "n" "notes")
 
 (setq gc-cons-threshold my-initial-gc-threshold)
 
