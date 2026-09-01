@@ -157,6 +157,32 @@
   :config
   (nerd-icons-completion-mode))
 
+;; In-buffer completion popup, the counterpart to blink.cmp. Emacs 31 draws
+;; child frames in a terminal as well as a GUI, so this needs no separate
+;; terminal package.
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-auto t)                        ; pop up while typing, as Zed does
+  (corfu-auto-delay 0.1)
+  (corfu-auto-prefix 1)
+  (corfu-cycle t)
+  ;; Preselect the prompt rather than the first candidate, so RET stays a
+  ;; newline and never silently accepts something. TAB accepts, as in blink.cmp.
+  (corfu-preselect 'prompt)
+  :bind (:map corfu-map
+              ("RET" . nil))
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode))               ; blink.cmp: documentation.auto_show
+
+;; Sources the LSP doesn't provide: file paths, and words from open buffers.
+(use-package cape
+  :ensure t
+  :init
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-dabbrev))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   Theme
