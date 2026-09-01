@@ -201,7 +201,7 @@
   (mason-dir (expand-file-name "mason/" my-state-dir))
   :config
   (mason-setup
-   (dolist (pkg '("ruby-lsp" "lua-language-server"))
+   (dolist (pkg '("ruby-lsp" "lua-language-server" "stylua"))
      (unless (mason-installed-p pkg)
        (ignore-errors (mason-install pkg))))))
 
@@ -230,6 +230,25 @@
 (setopt treesit-extra-load-path (list my-treesit-dir))
 (setopt treesit-enabled-modes t)        ; ruby-ts-mode over ruby-mode, etc.
 (setopt treesit-auto-install-grammar 'always)
+
+;; Format on save, the conform equivalent. apheleia runs the formatter in a
+;; subprocess and applies the result as a diff, so point, scroll position and
+;; undo history all survive and a slow formatter never blocks the save.
+(use-package apheleia
+  :ensure t
+  :config
+  ;; Ruby defaults to prettier-ruby, which needs a prettier plugin that no
+  ;; ordinary Ruby project has. rubocop does the job; swap in `ruby-standard'
+  ;; for a project on standardrb.
+  (setf (alist-get 'ruby-mode apheleia-mode-alist) 'rubocop
+        (alist-get 'ruby-ts-mode apheleia-mode-alist) 'rubocop)
+
+  ;; Leave Elisp alone. conform never reformatted it either, and reindenting
+  ;; this file on every save buries the actual change in the diff.
+  (setf apheleia-mode-alist
+        (assq-delete-all 'emacs-lisp-mode apheleia-mode-alist))
+
+  (apheleia-global-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
