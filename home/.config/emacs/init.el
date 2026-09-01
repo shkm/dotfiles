@@ -77,6 +77,18 @@
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'display-line-numbers-mode)
 
+;; A wrapped line is marked with a curly arrow in the fringe in a GUI, and with
+;; a backslash in the last column in a terminal. Both are worth keeping, but
+;; they draw the eye in the theme's foreground colour. Mute them to `shadow',
+;; and use a turnstile rather than a backslash, which reads as an escape.
+(set-fringe-bitmap-face 'left-curly-arrow 'shadow)
+(set-fringe-bitmap-face 'right-curly-arrow 'shadow)
+
+(unless standard-display-table
+  (setq standard-display-table (make-display-table)))
+(set-display-table-slot standard-display-table 'wrap
+                        (make-glyph-code ?↩ 'shadow))
+
 ;; Discoverability for the leader key below. Built in since Emacs 30.
 (setopt which-key-idle-delay 0.0)       ; nvim: delay = 0
 (which-key-mode)
