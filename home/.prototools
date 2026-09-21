@@ -1,0 +1,4 @@
+node = "latest"
+ruby = "latest"
+pnpm = "latest"
+
