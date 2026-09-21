@@ -58,7 +58,6 @@ coverage/
 *.orig
 .irb_history
 .byebug_history
-.serena/
 
 # GNU global
 GPATH
