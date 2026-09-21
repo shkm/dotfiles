@@ -23,6 +23,9 @@ key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKG6MzwoD0mg3557duYaXJPHcQXoKdBLiy0i
 [--scope.signing.backends.ssh]
 program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
+[aliases]
+tug = ["bookmark", "advance", "--to", "@-"]
+
 [ui]
 default-command = "log"
 diff-formatter = ":git"
