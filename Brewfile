@@ -1,4 +1,3 @@
-tap "d12frosted/emacs-plus"
 tap "jandedobbeleer/oh-my-posh"
 tap "tsonglew/dutis"
 tap "shkm/brew"
@@ -105,7 +104,6 @@ brew "figlet"
 
 # Casks -- Apps
 cask "claude-code"
-cask "emacs-plus-app"
 cask "ghostty"
 cask "github"
 cask "google-chrome"
