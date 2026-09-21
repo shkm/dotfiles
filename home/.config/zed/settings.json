@@ -111,14 +111,6 @@
   },
   "lsp": {
     "ruby-lsp": {
-      // Launch ruby-lsp through mise so it always runs under the project's Ruby
-      // (resolved from the LSP's cwd), regardless of what PATH Zed captured at
-      // startup. Without this, a stale cached env can run ruby-lsp under the
-      // wrong Ruby and bundler fails with "Could not find <gem> ... GemNotFound".
-      "binary": {
-        "path": "mise",
-        "arguments": ["exec", "--", "ruby-lsp"],
-      },
       "initialization_options": {
         "experimentalFeaturesEnabled": true,
         "formatter": "standard",

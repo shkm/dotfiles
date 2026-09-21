@@ -86,7 +86,6 @@ Thumbs.db
 docker-compose.override.yml
 .env
 
-mise.toml
 .aider*
 
 **/.claude/settings.local.json

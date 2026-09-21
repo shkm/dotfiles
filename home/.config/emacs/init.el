@@ -30,7 +30,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; A GUI Emacs launched from the Dock inherits macOS's minimal PATH rather than
-;; the shell's, so fd, rg and anything mise manages can't be found. A terminal
+;; the shell's, so fd, rg and version-managed tools can't be found. A terminal
 ;; Emacs already has the right PATH, hence the guard.
 (use-package exec-path-from-shell
   :ensure t

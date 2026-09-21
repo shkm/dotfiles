@@ -34,17 +34,13 @@ Language rules apply to your discussions with me, comments, etc.
 - **NEVER** use `rm` to remove files or folders. **DO** use `trash`.
 - Use `gh` for GitHub issues, pull requests, and other GitHub interactions.
 
-### mise (tool versions)
-
-Many ecosystems (Ruby, Node, etc.) are managed by mise. Prefix commands with `mise exec --` when such a tool is needed. Do not write these prefixes in documentation. Only use them on execution.
-
 ## Public interactions
 
 - **Never post to GitHub, or any other online service, on your own initiative.** Posting is always a response to an explicit instruction from me.
 - When I *do* ask — "open a PR", "file an issue", "reply to that review comment" — go ahead and post it. My asking is the permission; don't stop to confirm again.
 - If you think something is worth posting and I haven't asked, propose it and wait.
 - Read-only `gh` use is always approved.
-- Keep public writing free of details specific to my machine (e.g. architecture, mise).
+- Keep public writing free of details specific to my machine (e.g. architecture, tool version manager).
 - If there is a template for creating something (e.g. PR, issue) then use that template.
 
 ## Git

@@ -21,7 +21,6 @@ disable = [
   "yarn",
   "ruby_gems",
   "gem",
-  "mise",
   "helm",
   "pipx",
   "containers",
