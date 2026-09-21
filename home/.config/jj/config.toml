@@ -27,7 +27,7 @@ program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 tug = ["bookmark", "advance", "--to", "@-"]
 
 [ui]
-default-command = "log"
+default-command = "status"
 diff-formatter = ":git"
 pager = "delta"
 
