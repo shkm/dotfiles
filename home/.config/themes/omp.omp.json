@@ -92,10 +92,23 @@
         },
         {
           "properties": {
-            "branch_icon": " ",
+            "cache_duration": "none",
+            "fetch_status": false,
+            "fetch_ahead_counter": false,
+            "ignore_working_copy": true
+          },
+          "template": " {{ if .ClosestBookmarks }}{{ .ClosestBookmarks }}{{ else }}{{ .ChangeID }}{{ end }} ",
+          "foreground": "p:lavender",
+          "type": "jujutsu",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "branch_icon":" ",
             "cache_duration": "none",
             "cherry_pick_icon": " ",
             "commit_icon": " ",
+            "disable_with_jj": true,
             "fetch_status": false,
             "fetch_upstream_icon": false,
             "merge_icon": " ",
