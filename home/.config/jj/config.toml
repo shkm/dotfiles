@@ -1,0 +1,24 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Jamie Schembri"
+email = "jamie@schembri.me"
+
+[experimental-advance-branches]
+enabled-branches = ["main"]
+
+[signing]
+backend = "ssh"
+behavior = "own"
+key = "~/.ssh/jamie-macbook.pub"
+
+[git]
+sign-on-push = true
+
+# Work Mac: sign with the 1Password key, mirroring git's includeIf for config-nedap.
+[[--scope]]
+--when.repositories = ["/Users/jamie.schembri/"]
+[--scope.signing]
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEKG6MzwoD0mg3557duYaXJPHcQXoKdBLiy0i4e/uhQU"
+[--scope.signing.backends.ssh]
+program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
