@@ -25,6 +25,8 @@ program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [ui]
 default-command = "log"
+diff-formatter = ":git"
+pager = "delta"
 
 # Show the diff in the description editor, like git's commit.verbose.
 # Unprefixed after ignore-rest so nvim's jjdescription syntax highlights it.
