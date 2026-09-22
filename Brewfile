@@ -22,7 +22,6 @@ brew "watch"
 brew "dark-mode"
 
 # Disk usage
-brew "dust"
 brew "duf"
 brew "dua-cli"
 brew "diskonaut"
