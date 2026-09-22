@@ -96,8 +96,9 @@ if [ -d "$PNPM_HOME" ]; then
   export PATH="$PNPM_HOME/bin:$PATH"
 fi
 
-export PROTO_HOME="$XDG_DATA_HOME/proto"
-export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/asdfrc"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # bun
 BUN_INSTALL="${HOME}/.bun"

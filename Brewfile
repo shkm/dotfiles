@@ -31,7 +31,7 @@ brew "diskonaut"
 
 # Dev tools
 brew "overmind"
-brew "proto"
+brew "asdf"
 brew "tig"
 brew "git"
 brew "git-delta"

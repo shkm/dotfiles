@@ -53,7 +53,6 @@ TAGS
 node_modules
 coverage/
 .yardoc/
-.tool-versions
 .solargraph-rails
 *.orig
 .irb_history
