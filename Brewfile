@@ -106,7 +106,6 @@ cask "neovide-app"
 cask "linearmouse"
 cask "qobuz"
 cask "slack"
-cask "sublime-merge"
 cask "zed"
 cask "zoom"
 
