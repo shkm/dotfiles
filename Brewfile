@@ -44,7 +44,6 @@ brew "fswatch"
 
 # Languages & Package Managers
 brew "go"
-brew "elixir-ls"
 brew "pnpm"
 
 # Networking
