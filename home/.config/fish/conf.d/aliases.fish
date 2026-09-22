@@ -8,6 +8,7 @@ if status is-interactive
     abbr gcd "cd (git rev-parse --show-toplevel)"
     abbr gsha 'git rev-parse HEAD'
     abbr j jj
+    abbr ju jjui
     alias ll "eza -lga --group-directories-first"
     abbr ls ll
     abbr o open
