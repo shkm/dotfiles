@@ -111,7 +111,6 @@ cask "zoom"
 
 # Casks -- Browsers
 cask "firefox"
-cask "orion"
 cask "vivaldi"
 
 # Casks -- Utilities
