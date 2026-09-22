@@ -1,7 +1,6 @@
 tap "jandedobbeleer/oh-my-posh"
 tap "tsonglew/dutis"
 tap "shkm/brew"
-tap "timrogers/tap"
 tap "dsully/tap"
 
 # Shell & Terminal
