@@ -61,7 +61,6 @@ brew "swaks"
 
 # Media & Images
 brew "ffmpeg"
-brew "imagemagick-full"
 brew "graphicsmagick"
 brew "vips"
 brew "mcat"
