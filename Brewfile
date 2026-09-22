@@ -90,7 +90,6 @@ brew "llm"
 brew "ntfy"
 brew "rsync"
 brew "ouch"
-brew "rbspy"
 brew "fx"
 
 # Fun
