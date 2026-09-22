@@ -25,7 +25,6 @@ brew "dark-mode"
 brew "dust"
 brew "duf"
 brew "dua-cli"
-brew "ncdu"
 brew "diskonaut"
 
 # Dev tools
