@@ -31,6 +31,12 @@ default-command = "status"
 diff-formatter = ":git"
 pager = "delta"
 
+# For jjui's preview pane, which can't pipe through the pager. jjui sets
+# COLUMNS to the pane width; delta would otherwise use the full terminal.
+[merge-tools.delta]
+program = "sh"
+diff-args = ["-c", "delta --paging=never ${COLUMNS:+--width=$COLUMNS} \"$0\" \"$1\"", "$left", "$right"]
+
 # Show the diff in the description editor, like git's commit.verbose.
 # Unprefixed after ignore-rest so nvim's jjdescription syntax highlights it.
 [templates]
