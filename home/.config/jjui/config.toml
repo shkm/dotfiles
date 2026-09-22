@@ -1,7 +1,3 @@
-[preview]
-revision_command = ["show", "--color", "always", "-r", "$change_id", "--tool", "delta"]
-file_command = ["diff", "--color", "always", "-r", "$change_id", "$file", "--tool", "delta"]
-
 # Replaces the default jump to parent/children on these keys.
 [[bindings]]
 key = "shift+j"
