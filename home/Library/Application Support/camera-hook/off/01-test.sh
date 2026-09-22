@@ -1,2 +1,2 @@
-#!/bin/bash
-$HOME/bin/litra off
+#!/bin/bash -l
+litra off

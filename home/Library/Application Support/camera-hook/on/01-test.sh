@@ -1,2 +1,2 @@
-#!/bin/bash
-$HOME/bin/litra on
+#!/bin/bash -l
+litra on
